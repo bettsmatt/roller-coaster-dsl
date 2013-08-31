@@ -1,0 +1,9 @@
+grammar org.xtext.rollercoaster.dsl.Coaster with org.eclipse.xtext.common.Terminals
+
+generate coaster "http://www.xtext.org/rollercoaster/dsl/Coaster"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
