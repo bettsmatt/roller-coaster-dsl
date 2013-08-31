@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.xtext.rollercoaster.dsl/src-gen" editDirectory="/org.xtext.rollercoaster.dsl.edit/src"
+    editorDirectory="/org.xtext.rollercoaster.dsl.editor/src" modelPluginID="org.xtext.rollercoaster.dsl"
+    forceOverwrite="true" modelName="Coaster" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.xtext.rollercoaster.dsl.edit"
+    editorPluginID="org.xtext.rollercoaster.dsl.editor" runtimeVersion="2.9">
+  <genPackages prefix="Coaster" basePackage="org.xtext.rollercoaster.dsl" disposableProviderFactory="true"
+      fileExtensions="coaster" ecorePackage="Coaster.ecore#/">
+    <genClasses ecoreClass="Coaster.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coaster.ecore#//Model/greetings"/>
+    </genClasses>
+    <genClasses ecoreClass="Coaster.ecore#//Greeting">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Greeting/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

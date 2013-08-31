@@ -11,6 +11,25 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
  org.eclipse.emf.mwe.utils;resolution:=optional,
- org.eclipse.emf.mwe2.launch;resolution:=optional
-Import-Package: org.apache.log4j
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.xtext.rollercoaster.dsl,
+ org.xtext.rollercoaster.dsl.services,
+ org.xtext.rollercoaster.dsl.coaster,
+ org.xtext.rollercoaster.dsl.coaster.impl,
+ org.xtext.rollercoaster.dsl.coaster.util,
+ org.xtext.rollercoaster.dsl.serializer,
+ org.xtext.rollercoaster.dsl.parser.antlr,
+ org.xtext.rollercoaster.dsl.parser.antlr.internal,
+ org.xtext.rollercoaster.dsl.validation,
+ org.xtext.rollercoaster.dsl.scoping,
+ org.xtext.rollercoaster.dsl.generator,
+ org.xtext.rollercoaster.dsl.formatting
+
