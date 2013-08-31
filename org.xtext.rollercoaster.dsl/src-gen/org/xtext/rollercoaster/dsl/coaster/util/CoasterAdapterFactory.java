@@ -85,6 +85,11 @@ public class CoasterAdapterFactory extends AdapterFactoryImpl
         return createGreetingAdapter();
       }
       @Override
+      public Adapter caseInsult(Insult object)
+      {
+        return createInsultAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -132,6 +137,21 @@ public class CoasterAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createGreetingAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.rollercoaster.dsl.coaster.Insult <em>Insult</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.rollercoaster.dsl.coaster.Insult
+   * @generated
+   */
+  public Adapter createInsultAdapter()
   {
     return null;
   }

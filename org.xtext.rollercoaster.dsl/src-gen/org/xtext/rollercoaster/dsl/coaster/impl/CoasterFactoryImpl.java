@@ -66,6 +66,7 @@ public class CoasterFactoryImpl extends EFactoryImpl implements CoasterFactory
     {
       case CoasterPackage.MODEL: return createModel();
       case CoasterPackage.GREETING: return createGreeting();
+      case CoasterPackage.INSULT: return createInsult();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -91,6 +92,17 @@ public class CoasterFactoryImpl extends EFactoryImpl implements CoasterFactory
   {
     GreetingImpl greeting = new GreetingImpl();
     return greeting;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Insult createInsult()
+  {
+    InsultImpl insult = new InsultImpl();
+    return insult;
   }
 
   /**

@@ -112,6 +112,34 @@ public interface CoasterPackage extends EPackage
    */
   int GREETING_FEATURE_COUNT = 1;
 
+  /**
+   * The meta object id for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.InsultImpl <em>Insult</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.rollercoaster.dsl.coaster.impl.InsultImpl
+   * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getInsult()
+   * @generated
+   */
+  int INSULT = 2;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSULT__NAME = 0;
+
+  /**
+   * The number of structural features of the '<em>Insult</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSULT_FEATURE_COUNT = 1;
+
 
   /**
    * Returns the meta object for class '{@link org.xtext.rollercoaster.dsl.coaster.Model <em>Model</em>}'.
@@ -154,6 +182,27 @@ public interface CoasterPackage extends EPackage
    * @generated
    */
   EAttribute getGreeting_Name();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.rollercoaster.dsl.coaster.Insult <em>Insult</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Insult</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Insult
+   * @generated
+   */
+  EClass getInsult();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Insult#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Insult#getName()
+   * @see #getInsult()
+   * @generated
+   */
+  EAttribute getInsult_Name();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -213,6 +262,24 @@ public interface CoasterPackage extends EPackage
      * @generated
      */
     EAttribute GREETING__NAME = eINSTANCE.getGreeting_Name();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.InsultImpl <em>Insult</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.rollercoaster.dsl.coaster.impl.InsultImpl
+     * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getInsult()
+     * @generated
+     */
+    EClass INSULT = eINSTANCE.getInsult();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INSULT__NAME = eINSTANCE.getInsult_Name();
 
   }
 

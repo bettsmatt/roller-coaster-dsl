@@ -41,6 +41,15 @@ public interface CoasterFactory extends EFactory
   Greeting createGreeting();
 
   /**
+   * Returns a new object of class '<em>Insult</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Insult</em>'.
+   * @generated
+   */
+  Insult createInsult();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

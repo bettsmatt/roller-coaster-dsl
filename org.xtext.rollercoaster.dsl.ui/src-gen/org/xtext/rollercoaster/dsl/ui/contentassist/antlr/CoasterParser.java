@@ -37,9 +37,12 @@ public class CoasterParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getModelAccess().getGreetingsAlternatives_0(), "rule__Model__GreetingsAlternatives_0");
 					put(grammarAccess.getGreetingAccess().getGroup(), "rule__Greeting__Group__0");
+					put(grammarAccess.getInsultAccess().getGroup(), "rule__Insult__Group__0");
 					put(grammarAccess.getModelAccess().getGreetingsAssignment(), "rule__Model__GreetingsAssignment");
 					put(grammarAccess.getGreetingAccess().getNameAssignment_1(), "rule__Greeting__NameAssignment_1");
+					put(grammarAccess.getInsultAccess().getNameAssignment_1(), "rule__Insult__NameAssignment_1");
 				}
 			};
 		}

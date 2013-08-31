@@ -3,7 +3,10 @@ grammar org.xtext.rollercoaster.dsl.Coaster with org.eclipse.xtext.common.Termin
 generate coaster "http://www.xtext.org/rollercoaster/dsl/Coaster"
 
 Model:
-	greetings+=Greeting*;
+	greetings+=(Greeting | Insult)*;
 	
 Greeting:
 	'Hello' name=ID '!';
+
+Insult:
+	'Die' name=ID '!';

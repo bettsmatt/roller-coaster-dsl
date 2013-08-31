@@ -79,20 +79,38 @@ ruleModel returns [EObject current=null]
     @after { leaveRule(); }:
 (
 (
+(
 		{ 
-	        newCompositeNode(grammarAccess.getModelAccess().getGreetingsGreetingParserRuleCall_0()); 
+	        newCompositeNode(grammarAccess.getModelAccess().getGreetingsGreetingParserRuleCall_0_0()); 
 	    }
-		lv_greetings_0_0=ruleGreeting		{
+		lv_greetings_0_1=ruleGreeting		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getModelRule());
 	        }
        		add(
        			$current, 
        			"greetings",
-        		lv_greetings_0_0, 
+        		lv_greetings_0_1, 
         		"Greeting");
 	        afterParserOrEnumRuleCall();
 	    }
+
+    |		{ 
+	        newCompositeNode(grammarAccess.getModelAccess().getGreetingsInsultParserRuleCall_0_1()); 
+	    }
+		lv_greetings_0_2=ruleInsult		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getModelRule());
+	        }
+       		add(
+       			$current, 
+       			"greetings",
+        		lv_greetings_0_2, 
+        		"Insult");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
 
 )
 )*
@@ -141,6 +159,53 @@ ruleGreeting returns [EObject current=null]
 )	otherlv_2='!' 
     {
     	newLeafNode(otherlv_2, grammarAccess.getGreetingAccess().getExclamationMarkKeyword_2());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleInsult
+entryRuleInsult returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getInsultRule()); }
+	 iv_ruleInsult=ruleInsult 
+	 { $current=$iv_ruleInsult.current; } 
+	 EOF 
+;
+
+// Rule Insult
+ruleInsult returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='Die' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getInsultAccess().getDieKeyword_0());
+    }
+(
+(
+		lv_name_1_0=RULE_ID
+		{
+			newLeafNode(lv_name_1_0, grammarAccess.getInsultAccess().getNameIDTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getInsultRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_1_0, 
+        		"ID");
+	    }
+
+)
+)	otherlv_2='!' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getInsultAccess().getExclamationMarkKeyword_2());
     }
 )
 ;

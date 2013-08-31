@@ -21,17 +21,25 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 	public class ModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Model");
 		private final Assignment cGreetingsAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cGreetingsGreetingParserRuleCall_0 = (RuleCall)cGreetingsAssignment.eContents().get(0);
+		private final Alternatives cGreetingsAlternatives_0 = (Alternatives)cGreetingsAssignment.eContents().get(0);
+		private final RuleCall cGreetingsGreetingParserRuleCall_0_0 = (RuleCall)cGreetingsAlternatives_0.eContents().get(0);
+		private final RuleCall cGreetingsInsultParserRuleCall_0_1 = (RuleCall)cGreetingsAlternatives_0.eContents().get(1);
 		
 		//Model:
-		//	greetings+=Greeting*;
+		//	greetings+=(Greeting | Insult)*;
 		public ParserRule getRule() { return rule; }
 
-		//greetings+=Greeting*
+		//greetings+=(Greeting | Insult)*
 		public Assignment getGreetingsAssignment() { return cGreetingsAssignment; }
 
+		//Greeting | Insult
+		public Alternatives getGreetingsAlternatives_0() { return cGreetingsAlternatives_0; }
+
 		//Greeting
-		public RuleCall getGreetingsGreetingParserRuleCall_0() { return cGreetingsGreetingParserRuleCall_0; }
+		public RuleCall getGreetingsGreetingParserRuleCall_0_0() { return cGreetingsGreetingParserRuleCall_0_0; }
+
+		//Insult
+		public RuleCall getGreetingsInsultParserRuleCall_0_1() { return cGreetingsInsultParserRuleCall_0_1; }
 	}
 
 	public class GreetingElements extends AbstractParserRuleElementFinder {
@@ -61,10 +69,39 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 		//"!"
 		public Keyword getExclamationMarkKeyword_2() { return cExclamationMarkKeyword_2; }
 	}
+
+	public class InsultElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Insult");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cDieKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cExclamationMarkKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//Insult:
+		//	"Die" name=ID "!";
+		public ParserRule getRule() { return rule; }
+
+		//"Die" name=ID "!"
+		public Group getGroup() { return cGroup; }
+
+		//"Die"
+		public Keyword getDieKeyword_0() { return cDieKeyword_0; }
+
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+
+		//"!"
+		public Keyword getExclamationMarkKeyword_2() { return cExclamationMarkKeyword_2; }
+	}
 	
 	
 	private ModelElements pModel;
 	private GreetingElements pGreeting;
+	private InsultElements pInsult;
 	
 	private final Grammar grammar;
 
@@ -105,7 +142,7 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//	greetings+=Greeting*;
+	//	greetings+=(Greeting | Insult)*;
 	public ModelElements getModelAccess() {
 		return (pModel != null) ? pModel : (pModel = new ModelElements());
 	}
@@ -122,6 +159,16 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getGreetingRule() {
 		return getGreetingAccess().getRule();
+	}
+
+	//Insult:
+	//	"Die" name=ID "!";
+	public InsultElements getInsultAccess() {
+		return (pInsult != null) ? pInsult : (pInsult = new InsultElements());
+	}
+	
+	public ParserRule getInsultRule() {
+		return getInsultAccess().getRule();
 	}
 
 	//terminal ID:

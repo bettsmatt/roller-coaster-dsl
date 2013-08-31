@@ -21,12 +21,13 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalCoasterParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Hello'", "'!'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Hello'", "'!'", "'Die'"
     };
     public static final int RULE_ID=4;
     public static final int RULE_STRING=6;
     public static final int T__12=12;
     public static final int T__11=11;
+    public static final int T__13=13;
     public static final int RULE_ANY_OTHER=10;
     public static final int RULE_INT=5;
     public static final int RULE_WS=9;
@@ -109,56 +110,109 @@ public class InternalCoasterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleModel"
-    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:76:1: ruleModel returns [EObject current=null] : ( (lv_greetings_0_0= ruleGreeting ) )* ;
+    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:76:1: ruleModel returns [EObject current=null] : ( ( (lv_greetings_0_1= ruleGreeting | lv_greetings_0_2= ruleInsult ) ) )* ;
     public final EObject ruleModel() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_greetings_0_0 = null;
+        EObject lv_greetings_0_1 = null;
+
+        EObject lv_greetings_0_2 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:79:28: ( ( (lv_greetings_0_0= ruleGreeting ) )* )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:80:1: ( (lv_greetings_0_0= ruleGreeting ) )*
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:79:28: ( ( ( (lv_greetings_0_1= ruleGreeting | lv_greetings_0_2= ruleInsult ) ) )* )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:80:1: ( ( (lv_greetings_0_1= ruleGreeting | lv_greetings_0_2= ruleInsult ) ) )*
             {
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:80:1: ( (lv_greetings_0_0= ruleGreeting ) )*
-            loop1:
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:80:1: ( ( (lv_greetings_0_1= ruleGreeting | lv_greetings_0_2= ruleInsult ) ) )*
+            loop2:
             do {
-                int alt1=2;
-                int LA1_0 = input.LA(1);
+                int alt2=2;
+                int LA2_0 = input.LA(1);
 
-                if ( (LA1_0==11) ) {
-                    alt1=1;
+                if ( (LA2_0==11||LA2_0==13) ) {
+                    alt2=1;
                 }
 
 
-                switch (alt1) {
+                switch (alt2) {
             	case 1 :
-            	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:81:1: (lv_greetings_0_0= ruleGreeting )
+            	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:81:1: ( (lv_greetings_0_1= ruleGreeting | lv_greetings_0_2= ruleInsult ) )
             	    {
-            	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:81:1: (lv_greetings_0_0= ruleGreeting )
-            	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:82:3: lv_greetings_0_0= ruleGreeting
+            	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:81:1: ( (lv_greetings_0_1= ruleGreeting | lv_greetings_0_2= ruleInsult ) )
+            	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:82:1: (lv_greetings_0_1= ruleGreeting | lv_greetings_0_2= ruleInsult )
             	    {
-            	     
-            	    	        newCompositeNode(grammarAccess.getModelAccess().getGreetingsGreetingParserRuleCall_0()); 
-            	    	    
-            	    pushFollow(FOLLOW_ruleGreeting_in_ruleModel130);
-            	    lv_greetings_0_0=ruleGreeting();
+            	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:82:1: (lv_greetings_0_1= ruleGreeting | lv_greetings_0_2= ruleInsult )
+            	    int alt1=2;
+            	    int LA1_0 = input.LA(1);
 
-            	    state._fsp--;
+            	    if ( (LA1_0==11) ) {
+            	        alt1=1;
+            	    }
+            	    else if ( (LA1_0==13) ) {
+            	        alt1=2;
+            	    }
+            	    else {
+            	        NoViableAltException nvae =
+            	            new NoViableAltException("", 1, 0, input);
+
+            	        throw nvae;
+            	    }
+            	    switch (alt1) {
+            	        case 1 :
+            	            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:83:3: lv_greetings_0_1= ruleGreeting
+            	            {
+            	             
+            	            	        newCompositeNode(grammarAccess.getModelAccess().getGreetingsGreetingParserRuleCall_0_0()); 
+            	            	    
+            	            pushFollow(FOLLOW_ruleGreeting_in_ruleModel132);
+            	            lv_greetings_0_1=ruleGreeting();
+
+            	            state._fsp--;
 
 
-            	    	        if (current==null) {
-            	    	            current = createModelElementForParent(grammarAccess.getModelRule());
-            	    	        }
-            	           		add(
-            	           			current, 
-            	           			"greetings",
-            	            		lv_greetings_0_0, 
-            	            		"Greeting");
-            	    	        afterParserOrEnumRuleCall();
-            	    	    
+            	            	        if (current==null) {
+            	            	            current = createModelElementForParent(grammarAccess.getModelRule());
+            	            	        }
+            	                   		add(
+            	                   			current, 
+            	                   			"greetings",
+            	                    		lv_greetings_0_1, 
+            	                    		"Greeting");
+            	            	        afterParserOrEnumRuleCall();
+            	            	    
+
+            	            }
+            	            break;
+            	        case 2 :
+            	            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:98:8: lv_greetings_0_2= ruleInsult
+            	            {
+            	             
+            	            	        newCompositeNode(grammarAccess.getModelAccess().getGreetingsInsultParserRuleCall_0_1()); 
+            	            	    
+            	            pushFollow(FOLLOW_ruleInsult_in_ruleModel151);
+            	            lv_greetings_0_2=ruleInsult();
+
+            	            state._fsp--;
+
+
+            	            	        if (current==null) {
+            	            	            current = createModelElementForParent(grammarAccess.getModelRule());
+            	            	        }
+            	                   		add(
+            	                   			current, 
+            	                   			"greetings",
+            	                    		lv_greetings_0_2, 
+            	                    		"Insult");
+            	            	        afterParserOrEnumRuleCall();
+            	            	    
+
+            	            }
+            	            break;
+
+            	    }
+
 
             	    }
 
@@ -167,7 +221,7 @@ public class InternalCoasterParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop1;
+            	    break loop2;
                 }
             } while (true);
 
@@ -189,7 +243,7 @@ public class InternalCoasterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleGreeting"
-    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:106:1: entryRuleGreeting returns [EObject current=null] : iv_ruleGreeting= ruleGreeting EOF ;
+    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:124:1: entryRuleGreeting returns [EObject current=null] : iv_ruleGreeting= ruleGreeting EOF ;
     public final EObject entryRuleGreeting() throws RecognitionException {
         EObject current = null;
 
@@ -197,17 +251,17 @@ public class InternalCoasterParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:107:2: (iv_ruleGreeting= ruleGreeting EOF )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:108:2: iv_ruleGreeting= ruleGreeting EOF
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:125:2: (iv_ruleGreeting= ruleGreeting EOF )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:126:2: iv_ruleGreeting= ruleGreeting EOF
             {
              newCompositeNode(grammarAccess.getGreetingRule()); 
-            pushFollow(FOLLOW_ruleGreeting_in_entryRuleGreeting166);
+            pushFollow(FOLLOW_ruleGreeting_in_entryRuleGreeting190);
             iv_ruleGreeting=ruleGreeting();
 
             state._fsp--;
 
              current =iv_ruleGreeting; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleGreeting176); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleGreeting200); 
 
             }
 
@@ -225,7 +279,7 @@ public class InternalCoasterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleGreeting"
-    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:115:1: ruleGreeting returns [EObject current=null] : (otherlv_0= 'Hello' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '!' ) ;
+    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:133:1: ruleGreeting returns [EObject current=null] : (otherlv_0= 'Hello' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '!' ) ;
     public final EObject ruleGreeting() throws RecognitionException {
         EObject current = null;
 
@@ -236,23 +290,23 @@ public class InternalCoasterParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:118:28: ( (otherlv_0= 'Hello' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '!' ) )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:119:1: (otherlv_0= 'Hello' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '!' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:136:28: ( (otherlv_0= 'Hello' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '!' ) )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:137:1: (otherlv_0= 'Hello' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '!' )
             {
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:119:1: (otherlv_0= 'Hello' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '!' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:119:3: otherlv_0= 'Hello' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '!'
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:137:1: (otherlv_0= 'Hello' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '!' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:137:3: otherlv_0= 'Hello' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '!'
             {
-            otherlv_0=(Token)match(input,11,FOLLOW_11_in_ruleGreeting213); 
+            otherlv_0=(Token)match(input,11,FOLLOW_11_in_ruleGreeting237); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getGreetingAccess().getHelloKeyword_0());
                 
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:123:1: ( (lv_name_1_0= RULE_ID ) )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:124:1: (lv_name_1_0= RULE_ID )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:141:1: ( (lv_name_1_0= RULE_ID ) )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:142:1: (lv_name_1_0= RULE_ID )
             {
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:124:1: (lv_name_1_0= RULE_ID )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:125:3: lv_name_1_0= RULE_ID
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:142:1: (lv_name_1_0= RULE_ID )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:143:3: lv_name_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleGreeting230); 
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleGreeting254); 
 
             			newLeafNode(lv_name_1_0, grammarAccess.getGreetingAccess().getNameIDTerminalRuleCall_1_0()); 
             		
@@ -272,7 +326,7 @@ public class InternalCoasterParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,12,FOLLOW_12_in_ruleGreeting247); 
+            otherlv_2=(Token)match(input,12,FOLLOW_12_in_ruleGreeting271); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getGreetingAccess().getExclamationMarkKeyword_2());
                 
@@ -295,6 +349,114 @@ public class InternalCoasterParser extends AbstractInternalAntlrParser {
     }
     // $ANTLR end "ruleGreeting"
 
+
+    // $ANTLR start "entryRuleInsult"
+    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:171:1: entryRuleInsult returns [EObject current=null] : iv_ruleInsult= ruleInsult EOF ;
+    public final EObject entryRuleInsult() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleInsult = null;
+
+
+        try {
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:172:2: (iv_ruleInsult= ruleInsult EOF )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:173:2: iv_ruleInsult= ruleInsult EOF
+            {
+             newCompositeNode(grammarAccess.getInsultRule()); 
+            pushFollow(FOLLOW_ruleInsult_in_entryRuleInsult307);
+            iv_ruleInsult=ruleInsult();
+
+            state._fsp--;
+
+             current =iv_ruleInsult; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleInsult317); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleInsult"
+
+
+    // $ANTLR start "ruleInsult"
+    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:180:1: ruleInsult returns [EObject current=null] : (otherlv_0= 'Die' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '!' ) ;
+    public final EObject ruleInsult() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_0=null;
+        Token lv_name_1_0=null;
+        Token otherlv_2=null;
+
+         enterRule(); 
+            
+        try {
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:183:28: ( (otherlv_0= 'Die' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '!' ) )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:184:1: (otherlv_0= 'Die' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '!' )
+            {
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:184:1: (otherlv_0= 'Die' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '!' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:184:3: otherlv_0= 'Die' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '!'
+            {
+            otherlv_0=(Token)match(input,13,FOLLOW_13_in_ruleInsult354); 
+
+                	newLeafNode(otherlv_0, grammarAccess.getInsultAccess().getDieKeyword_0());
+                
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:188:1: ( (lv_name_1_0= RULE_ID ) )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:189:1: (lv_name_1_0= RULE_ID )
+            {
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:189:1: (lv_name_1_0= RULE_ID )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:190:3: lv_name_1_0= RULE_ID
+            {
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleInsult371); 
+
+            			newLeafNode(lv_name_1_0, grammarAccess.getInsultAccess().getNameIDTerminalRuleCall_1_0()); 
+            		
+
+            	        if (current==null) {
+            	            current = createModelElement(grammarAccess.getInsultRule());
+            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"name",
+                    		lv_name_1_0, 
+                    		"ID");
+            	    
+
+            }
+
+
+            }
+
+            otherlv_2=(Token)match(input,12,FOLLOW_12_in_ruleInsult388); 
+
+                	newLeafNode(otherlv_2, grammarAccess.getInsultAccess().getExclamationMarkKeyword_2());
+                
+
+            }
+
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleInsult"
+
     // Delegated rules
 
 
@@ -302,11 +464,17 @@ public class InternalCoasterParser extends AbstractInternalAntlrParser {
 
     public static final BitSet FOLLOW_ruleModel_in_entryRuleModel75 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleModel85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleGreeting_in_ruleModel130 = new BitSet(new long[]{0x0000000000000802L});
-    public static final BitSet FOLLOW_ruleGreeting_in_entryRuleGreeting166 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleGreeting176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_ruleGreeting213 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleGreeting230 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_ruleGreeting247 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleGreeting_in_ruleModel132 = new BitSet(new long[]{0x0000000000002802L});
+    public static final BitSet FOLLOW_ruleInsult_in_ruleModel151 = new BitSet(new long[]{0x0000000000002802L});
+    public static final BitSet FOLLOW_ruleGreeting_in_entryRuleGreeting190 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleGreeting200 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_11_in_ruleGreeting237 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleGreeting254 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_ruleGreeting271 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInsult_in_entryRuleInsult307 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleInsult317 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_ruleInsult354 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleInsult371 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_ruleInsult388 = new BitSet(new long[]{0x0000000000000002L});
 
 }

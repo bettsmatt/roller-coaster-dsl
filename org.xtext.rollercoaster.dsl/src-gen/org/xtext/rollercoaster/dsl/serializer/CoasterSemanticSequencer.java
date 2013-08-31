@@ -15,6 +15,7 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.rollercoaster.dsl.coaster.CoasterPackage;
 import org.xtext.rollercoaster.dsl.coaster.Greeting;
+import org.xtext.rollercoaster.dsl.coaster.Insult;
 import org.xtext.rollercoaster.dsl.coaster.Model;
 import org.xtext.rollercoaster.dsl.services.CoasterGrammarAccess;
 
@@ -29,6 +30,12 @@ public class CoasterSemanticSequencer extends AbstractDelegatingSemanticSequence
 			case CoasterPackage.GREETING:
 				if(context == grammarAccess.getGreetingRule()) {
 					sequence_Greeting(context, (Greeting) semanticObject); 
+					return; 
+				}
+				else break;
+			case CoasterPackage.INSULT:
+				if(context == grammarAccess.getInsultRule()) {
+					sequence_Insult(context, (Insult) semanticObject); 
 					return; 
 				}
 				else break;
@@ -60,7 +67,23 @@ public class CoasterSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     greetings+=Greeting*
+	 *     name=ID
+	 */
+	protected void sequence_Insult(EObject context, Insult semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, CoasterPackage.Literals.INSULT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CoasterPackage.Literals.INSULT__NAME));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getInsultAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (greetings+=Greeting | greetings+=Insult)*
 	 */
 	protected void sequence_Model(EObject context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

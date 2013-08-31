@@ -13,5 +13,8 @@
     <genClasses ecoreClass="Coaster.ecore#//Greeting">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Greeting/name"/>
     </genClasses>
+    <genClasses ecoreClass="Coaster.ecore#//Insult">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Insult/name"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

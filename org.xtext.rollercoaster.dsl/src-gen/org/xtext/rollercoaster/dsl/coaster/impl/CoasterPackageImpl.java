@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.xtext.rollercoaster.dsl.coaster.CoasterFactory;
 import org.xtext.rollercoaster.dsl.coaster.CoasterPackage;
 import org.xtext.rollercoaster.dsl.coaster.Greeting;
+import org.xtext.rollercoaster.dsl.coaster.Insult;
 import org.xtext.rollercoaster.dsl.coaster.Model;
 
 /**
@@ -35,6 +36,13 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
    * @generated
    */
   private EClass greetingEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass insultEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -144,6 +152,26 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getInsult()
+  {
+    return insultEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getInsult_Name()
+  {
+    return (EAttribute)insultEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public CoasterFactory getCoasterFactory()
   {
     return (CoasterFactory)getEFactoryInstance();
@@ -174,6 +202,9 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
 
     greetingEClass = createEClass(GREETING);
     createEAttribute(greetingEClass, GREETING__NAME);
+
+    insultEClass = createEClass(INSULT);
+    createEAttribute(insultEClass, INSULT__NAME);
   }
 
   /**
@@ -208,10 +239,13 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModel_Greetings(), this.getGreeting(), null, "greetings", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Greetings(), ecorePackage.getEObject(), null, "greetings", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(greetingEClass, Greeting.class, "Greeting", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGreeting_Name(), ecorePackage.getEString(), "name", null, 0, 1, Greeting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(insultEClass, Insult.class, "Insult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getInsult_Name(), ecorePackage.getEString(), "name", null, 0, 1, Insult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);
