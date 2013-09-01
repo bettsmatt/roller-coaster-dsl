@@ -7,7 +7,6 @@ import org.xtext.rollercoaster.dsl.coaster.RollerCoaster
 import org.eclipse.xtext.validation.Check
 import org.xtext.rollercoaster.dsl.coaster.CoasterPackage
 import org.xtext.rollercoaster.dsl.coaster.Corner
-import org.eclipse.emf.ecore.EObject
 import org.xtext.rollercoaster.dsl.coaster.Straight
 
 //import org.eclipse.xtext.validation.Check
@@ -63,49 +62,45 @@ def checkStartMeetsEnd(RollerCoaster rc){
 			dir = -1;
 			}
 		   if(c.type.equals('sharp45')||c.type.equals('easy45')){
-				angle = Math.toRadians((45*dir));
+				angle = Math.toRadians((22.5*dir));
 			}
 			else{
-				angle = Math.toRadians((90*dir));
+				angle = Math.toRadians((45*dir));
 			}
-			//currentX = (currentX + (Math.cos(currentAngle+angle)*rc.trackUnitLength)).floatValue.intValue;
-			//currentY = (currentY + (Math.sin(currentAngle+angle)*rc.trackUnitLength)).floatValue.intValue;
+			var r = rc.trackUnitLength;
 			if(c.type.equals('sharp45')){
-				currentX = (currentX + (Math.cos(currentAngle+angle)*rc.trackUnitLength/4));
-				currentY = (currentY + (Math.sin(currentAngle+angle)*rc.trackUnitLength));
+				currentX = (currentX + (Math.cos(currentAngle+angle)*r/4.0));
+				currentY = (currentY + (Math.sin(currentAngle+angle)*r));
 			}
 			else if(c.type.equals('sharp90')){
-				currentX = (currentX + (Math.cos(currentAngle+angle)*rc.trackUnitLength/2));
-				currentY = (currentY + (Math.sin(currentAngle+angle)*rc.trackUnitLength/2));
+				currentX = (currentX + Math.cos(currentAngle+angle)*(r/2.0));
+				currentY = (currentY + Math.sin(currentAngle+angle)*(r/2.0));
+				
 			}
 			else if(c.type.equals('easy45')){
-				currentX = (currentX + (Math.cos(currentAngle+angle)*rc.trackUnitLength/2));
-				currentY = (currentY + (Math.sin(currentAngle+angle)*rc.trackUnitLength*2));
+				currentX = (currentX + (Math.cos(currentAngle+angle)*(r/2.0)));
+				currentY = (currentY + (Math.sin(currentAngle+angle)*(r*2.0)));
 			}
 			else if(c.type.equals('easy90')){
-				currentX = (currentX + (Math.cos(currentAngle+angle)*rc.trackUnitLength));
-				currentY = (currentY + (Math.sin(currentAngle+angle)*rc.trackUnitLength));
+				currentX = (currentX + (Math.cos(currentAngle+angle)*r));
+				currentY = (currentY + (Math.sin(currentAngle+angle)*r));
 			}
 			
-			currentAngle = currentAngle+angle;
+			currentAngle = currentAngle+(angle*2);
 		}
 		// ITs a straight
 		else if (s != null){
-			currentX = (currentX + (Math.cos(currentAngle)*s.length)).floatValue.intValue;
-			currentY = (currentY + (Math.sin(currentAngle)*s.length)).floatValue.intValue;
+			currentX = (currentX + (Math.cos(currentAngle)*s.length));
+			currentY = (currentY + (Math.sin(currentAngle)*s.length));
 			
 		}
-		println(currentX+">>"+currentY);
+		//println(currentX+">>"+currentY);
 	}
-	distance = Math.sqrt(Math.pow(currentX, 2) + Math.pow(currentY, 2)).floatValue.intValue;
+	distance = Math.sqrt(Math.pow(currentX, 2) + Math.pow(currentY, 2));
 	
-	if( distance != 0){
-		error("End of Track does not meet start! End of track is"+distance+"m from the start.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+	if( distance >= 0.5){
+		error("End of Track does not meet start! End of track is"+distance.intValue+1+"m from the start.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
 	}
 }
-	
-	
-	
 }
-
 

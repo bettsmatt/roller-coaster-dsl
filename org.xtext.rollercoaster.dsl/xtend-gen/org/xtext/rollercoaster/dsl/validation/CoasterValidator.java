@@ -259,8 +259,13 @@ public class CoasterValidator extends AbstractCoasterValidator {
     boolean _greaterEqualsThan = (distance >= 0.5);
     if (_greaterEqualsThan) {
       int _intValue = Double.valueOf(distance).intValue();
+<<<<<<< HEAD
       int _plus_1 = (_intValue + 1);
       String _plus_2 = ("End of Track does not meet start! End of track is" + Integer.valueOf(_plus_1));
+=======
+      String _plus_1 = ("End of Track does not meet start! End of track is" + Integer.valueOf(_intValue));
+      String _plus_2 = (_plus_1 + Integer.valueOf(1));
+>>>>>>> 6f081e6ed886795e86612c7b9d8d8573ad0d983e
       String _plus_3 = (_plus_2 + "m from the start.");
       EStructuralFeature _eStructuralFeature = Literals.ROLLER_COASTER.getEStructuralFeature("track");
       this.error(_plus_3, _eStructuralFeature);

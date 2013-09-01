@@ -14,9 +14,13 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.Conversions;
-import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.Functions.Function2;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.rollercoaster.utils.Costs;
+import org.rollercoaster.utils.Descriptions;
 import org.xtext.rollercoaster.dsl.coaster.Cart;
 import org.xtext.rollercoaster.dsl.coaster.Corner;
 import org.xtext.rollercoaster.dsl.coaster.RollerCoaster;
@@ -30,13 +34,18 @@ import org.xtext.rollercoaster.dsl.coaster.Straight;
 @SuppressWarnings("all")
 public class CoasterGenerator implements IGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
-    String _plus = ("RollerCoasterReport" + ".html");
     TreeIterator<EObject> _allContents = resource.getAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
     Iterable<RollerCoaster> _filter = Iterables.<RollerCoaster>filter(_iterable, RollerCoaster.class);
-    RollerCoaster _head = IterableExtensions.<RollerCoaster>head(_filter);
-    CharSequence _genReport = this.genReport(_head);
-    fsa.generateFile(_plus, _genReport);
+    final Procedure1<RollerCoaster> _function = new Procedure1<RollerCoaster>() {
+        public void apply(final RollerCoaster rc) {
+          String _name = rc.getName();
+          String _plus = (_name + ".html");
+          CharSequence _genReport = CoasterGenerator.this.genReport(rc);
+          fsa.generateFile(_plus, _genReport);
+        }
+      };
+    IterableExtensions.<RollerCoaster>forEach(_filter, _function);
   }
   
   /**
@@ -55,13 +64,13 @@ public class CoasterGenerator implements IGenerator {
     _builder.append("<body>");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("<h1>Roller Coaster report for the ");
+    _builder.append("<h4>Roller Coaster report for the ");
     String _name = rc.getName();
     _builder.append(_name, "		");
     _builder.append(" roller coaster on the  ");
     Date _date = new Date();
     _builder.append(_date, "		");
-    _builder.append("</h1>");
+    _builder.append("</h4>");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("<p>Number of Pieces of track \t: ");
@@ -71,20 +80,156 @@ public class CoasterGenerator implements IGenerator {
     _builder.append("</p>");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
-    _builder.append("<p>Number of Carts \t\t\t: ");
+    _builder.append("<p>Number of Carts \t\t\t\t: ");
     EList<Cart> _cart = rc.getCart();
     int _length_1 = ((Object[])Conversions.unwrapArray(_cart, Object.class)).length;
     _builder.append(_length_1, "		");
     _builder.append("</p>");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
+    _builder.append("<h4>Itemized Cost of Track</h4>");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("<h1> Rendering of the track </h1>");
+    _builder.append("<ul> ");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    EList<EObject> _track_1 = rc.getTrack();
+    final Function1<EObject,Boolean> _function = new Function1<EObject,Boolean>() {
+        public Boolean apply(final EObject t) {
+          return Boolean.valueOf((t instanceof Straight));
+        }
+      };
+    final Iterable<EObject> listOfStraight = IterableExtensions.<EObject>filter(_track_1, _function);
+    _builder.newLineIfNotEmpty();
+    {
+      int _length_2 = ((Object[])Conversions.unwrapArray(listOfStraight, Object.class)).length;
+      boolean _greaterThan = (_length_2 > 0);
+      if (_greaterThan) {
+        _builder.append("\t\t\t");
+        final EObject head = IterableExtensions.<EObject>head(listOfStraight);
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t\t");
+        _builder.append("<li> ");
+        String _short = Descriptions.getShort(head);
+        _builder.append(_short, "			");
+        _builder.append(" : ");
+        double _get = Costs.get(head);
+        _builder.append(_get, "			");
+        _builder.append(" * ");
+        int _length_3 = ((Object[])Conversions.unwrapArray(listOfStraight, Object.class)).length;
+        _builder.append(_length_3, "			");
+        _builder.append(" : ");
+        double _get_1 = Costs.get(head);
+        int _length_4 = ((Object[])Conversions.unwrapArray(listOfStraight, Object.class)).length;
+        double _multiply = (_get_1 * _length_4);
+        _builder.append(_multiply, "			");
+        _builder.append(" </li>");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t\t\t");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    EList<EObject> _track_2 = rc.getTrack();
+    final Function1<EObject,Boolean> _function_1 = new Function1<EObject,Boolean>() {
+        public Boolean apply(final EObject t) {
+          return Boolean.valueOf((t instanceof Corner));
+        }
+      };
+    final Iterable<EObject> listOfCorner = IterableExtensions.<EObject>filter(_track_2, _function_1);
+    _builder.newLineIfNotEmpty();
+    {
+      int _length_5 = ((Object[])Conversions.unwrapArray(listOfCorner, Object.class)).length;
+      boolean _greaterThan_1 = (_length_5 > 0);
+      if (_greaterThan_1) {
+        _builder.append("\t\t\t");
+        final EObject head_1 = IterableExtensions.<EObject>head(listOfCorner);
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t\t");
+        _builder.append("<li> ");
+        String _short_1 = Descriptions.getShort(head_1);
+        _builder.append(_short_1, "			");
+        _builder.append(" : ");
+        double _get_2 = Costs.get(head_1);
+        _builder.append(_get_2, "			");
+        _builder.append(" * ");
+        int _length_6 = ((Object[])Conversions.unwrapArray(listOfCorner, Object.class)).length;
+        _builder.append(_length_6, "			");
+        _builder.append(" : ");
+        double _get_3 = Costs.get(head_1);
+        int _length_7 = ((Object[])Conversions.unwrapArray(listOfCorner, Object.class)).length;
+        double _multiply_1 = (_get_3 * _length_7);
+        _builder.append(_multiply_1, "			");
+        _builder.append(" </li>");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t\t\t");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("<li> Total Track Cost : ");
+    EList<EObject> _track_3 = rc.getTrack();
+    final Function2<Double,EObject,Double> _function_2 = new Function2<Double,EObject,Double>() {
+        public Double apply(final Double seed, final EObject item) {
+          double _get = Costs.get(item);
+          double _plus = ((seed).doubleValue() + _get);
+          return Double.valueOf(_plus);
+        }
+      };
+    Double _fold = IterableExtensions.<EObject, Double>fold(_track_3, Double.valueOf(0.00), _function_2);
+    _builder.append(_fold, "			");
+    _builder.append("</li>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("</ul>");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<h4>Itemized Cost of Carts</h4> ");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<ul> ");
+    _builder.newLine();
+    {
+      EList<Cart> _cart_1 = rc.getCart();
+      for(final Cart o : _cart_1) {
+        _builder.append("\t\t\t");
+        _builder.append("<li> ");
+        String _short_2 = Descriptions.getShort(o);
+        _builder.append(_short_2, "			");
+        _builder.append(" : ");
+        double _get_4 = Costs.get(o);
+        _builder.append(_get_4, "			");
+        _builder.append(" </li>");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t\t\t");
+    _builder.append("<li> Total : ");
+    EList<Cart> _cart_2 = rc.getCart();
+    final Function2<Double,Cart,Double> _function_3 = new Function2<Double,Cart,Double>() {
+        public Double apply(final Double seed, final Cart item) {
+          double _get = Costs.get(item);
+          double _plus = ((seed).doubleValue() + _get);
+          return Double.valueOf(_plus);
+        }
+      };
+    Double _fold_1 = IterableExtensions.<Cart, Double>fold(_cart_2, Double.valueOf(0.00), _function_3);
+    _builder.append(_fold_1, "			");
+    _builder.append("</li>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("</ul>");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<h4> Sample rendering of the track </h4>");
     _builder.newLine();
     _builder.append("  \t\t\t\t");
-    EList<EObject> _track_1 = rc.getTrack();
-    String _pathForTrack = this.getPathForTrack(_track_1);
+    EList<EObject> _track_4 = rc.getTrack();
+    String _pathForTrack = this.getPathForTrack(_track_4);
     _builder.append(_pathForTrack, "  				");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -118,8 +263,6 @@ public class CoasterGenerator implements IGenerator {
             _matched=true;
             String _xblockexpression_1 = null;
             {
-              InputOutput.<String>println("Straight Piece of Track");
-              InputOutput.<Double>println(Double.valueOf(currentAngle));
               final int length = _straight.getLength();
               double _radians = Math.toRadians(currentAngle);
               double _sin = Math.sin(_radians);
@@ -219,51 +362,37 @@ public class CoasterGenerator implements IGenerator {
                   arcSize = " 100 100 ";
                 }
               }
-              String _type_1 = _corner.getType();
-              String _plus = (_type_1 + ", X:");
-              String _plus_1 = (_plus + Integer.valueOf(x));
-              String _plus_2 = (_plus_1 + ", Y:");
-              String _plus_3 = (_plus_2 + Integer.valueOf(y));
-              String _plus_4 = (_plus_3 + ", A ");
-              String _plus_5 = (_plus_4 + Double.valueOf(angle));
-              InputOutput.<String>println(_plus_5);
               double _multiply = ((modifier).intValue() * angle);
-              double _plus_6 = (_multiply + currentAngle);
-              double _radians = Math.toRadians(_plus_6);
+              double _plus = (_multiply + currentAngle);
+              double _radians = Math.toRadians(_plus);
               double _sin = Math.sin(_radians);
               int _multiply_1 = (x * x);
               int _multiply_2 = (y * y);
-              int _plus_7 = (_multiply_1 + _multiply_2);
-              double _sqrt = Math.sqrt(_plus_7);
+              int _plus_1 = (_multiply_1 + _multiply_2);
+              double _sqrt = Math.sqrt(_plus_1);
               final double endX = (_sin * _sqrt);
               double _multiply_3 = ((modifier).intValue() * angle);
-              double _plus_8 = (_multiply_3 + currentAngle);
-              double _radians_1 = Math.toRadians(_plus_8);
+              double _plus_2 = (_multiply_3 + currentAngle);
+              double _radians_1 = Math.toRadians(_plus_2);
               double _cos = Math.cos(_radians_1);
               int _multiply_4 = (x * x);
               int _multiply_5 = (y * y);
-              int _plus_9 = (_multiply_4 + _multiply_5);
-              double _sqrt_1 = Math.sqrt(_plus_9);
+              int _plus_3 = (_multiply_4 + _multiply_5);
+              double _sqrt_1 = Math.sqrt(_plus_3);
               final double endY = (_cos * _sqrt_1);
-              String _plus_10 = ("End X:" + Double.valueOf(endX));
-              String _plus_11 = (_plus_10 + ", EndY:");
-              String _plus_12 = (_plus_11 + Double.valueOf(endY));
-              InputOutput.<String>println(_plus_12);
               double _multiply_6 = (angle * 2);
               double _multiply_7 = (_multiply_6 * (modifier).intValue());
-              double _plus_13 = (currentAngle + _multiply_7);
-              currentAngle = _plus_13;
-              InputOutput.<String>println("Corner");
-              String _plus_14 = (" a " + arcSize);
-              String _plus_15 = (_plus_14 + " ");
-              String _plus_16 = (_plus_15 + flags);
-              String _plus_17 = (_plus_16 + " ");
-              String _plus_18 = (_plus_17 + Double.valueOf(endX));
-              String _plus_19 = (_plus_18 + " ");
-              String _plus_20 = (_plus_19 + Double.valueOf(endY));
-              String arc = (_plus_20 + " ");
-              InputOutput.<String>println(arc);
-              _xblockexpression_1 = (arc);
+              double _plus_4 = (currentAngle + _multiply_7);
+              currentAngle = _plus_4;
+              String _plus_5 = (" a " + arcSize);
+              String _plus_6 = (_plus_5 + " ");
+              String _plus_7 = (_plus_6 + flags);
+              String _plus_8 = (_plus_7 + " ");
+              String _plus_9 = (_plus_8 + Double.valueOf(endX));
+              String _plus_10 = (_plus_9 + " ");
+              String _plus_11 = (_plus_10 + Double.valueOf(endY));
+              String _plus_12 = (_plus_11 + " ");
+              _xblockexpression_1 = (_plus_12);
             }
             _switchResult = _xblockexpression_1;
           }

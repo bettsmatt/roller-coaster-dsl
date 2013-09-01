@@ -102,8 +102,5 @@ def checkStartMeetsEnd(RollerCoaster rc){
 		error("End of Track does not meet start! End of track is"+(distance.intValue+1)+"m from the start.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
 	}
 }
-	
-	
-	
 }
 
