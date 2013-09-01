@@ -228,8 +228,7 @@ public class CoasterGenerator implements IGenerator {
     _builder.append("<h4> Sample rendering of the track </h4>");
     _builder.newLine();
     _builder.append("  \t\t\t\t");
-    EList<EObject> _track_4 = rc.getTrack();
-    String _pathForTrack = this.getPathForTrack(_track_4);
+    String _pathForTrack = this.getPathForTrack(rc);
     _builder.append(_pathForTrack, "  				");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -243,9 +242,10 @@ public class CoasterGenerator implements IGenerator {
   /**
    * Build a svg path from a list of tracks
    */
-  public String getPathForTrack(final Iterable<EObject> tracks) {
+  public String getPathForTrack(final RollerCoaster rc) {
     String _xblockexpression = null;
     {
+      EList<EObject> tracks = rc.getTrack();
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("<svg width=\"2000px\" height=\"2000px\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"> ");
       final String start = _builder.toString();
@@ -323,76 +323,97 @@ public class CoasterGenerator implements IGenerator {
               int x = 0;
               int y = 0;
               double angle = 0.0;
+              int r = rc.getTrackUnitLength();
               String _type = _corner.getType();
               final String _switchValue_2 = _type;
               boolean _matched_3 = false;
               if (!_matched_3) {
                 if (Objects.equal(_switchValue_2,"sharp45")) {
                   _matched_3=true;
-                  x = 25;
-                  y = 50;
+                  int _divide = (r / 2);
+                  x = _divide;
+                  y = r;
                   angle = 22.5;
-                  arcSize = " 50 50 ";
+                  String _plus = (" " + Integer.valueOf(y));
+                  String _plus_1 = (_plus + " ");
+                  String _plus_2 = (_plus_1 + Integer.valueOf(y));
+                  String _plus_3 = (_plus_2 + " ");
+                  arcSize = _plus_3;
                 }
               }
               if (!_matched_3) {
                 if (Objects.equal(_switchValue_2,"sharp90")) {
                   _matched_3=true;
-                  x = 50;
-                  y = 50;
+                  int _divide_1 = (r / 2);
+                  x = _divide_1;
+                  int _divide_2 = (r / 2);
+                  y = _divide_2;
                   angle = 45;
-                  arcSize = " 50 50 ";
+                  String _plus_4 = (" " + Integer.valueOf(y));
+                  String _plus_5 = (_plus_4 + " ");
+                  String _plus_6 = (_plus_5 + Integer.valueOf(y));
+                  String _plus_7 = (_plus_6 + " ");
+                  arcSize = _plus_7;
                 }
               }
               if (!_matched_3) {
                 if (Objects.equal(_switchValue_2,"easy45")) {
                   _matched_3=true;
-                  x = 50;
-                  y = 100;
+                  int _divide_3 = (r / 2);
+                  x = _divide_3;
+                  y = r;
                   angle = 22.5;
-                  arcSize = " 100 100 ";
+                  String _plus_8 = (" " + Integer.valueOf(y));
+                  String _plus_9 = (_plus_8 + " ");
+                  String _plus_10 = (_plus_9 + Integer.valueOf(y));
+                  String _plus_11 = (_plus_10 + " ");
+                  arcSize = _plus_11;
                 }
               }
               if (!_matched_3) {
                 if (Objects.equal(_switchValue_2,"easy90")) {
                   _matched_3=true;
-                  x = 100;
-                  y = 100;
+                  x = r;
+                  y = r;
                   angle = 45;
-                  arcSize = " 100 100 ";
+                  String _plus_12 = (" " + Integer.valueOf(y));
+                  String _plus_13 = (_plus_12 + " ");
+                  String _plus_14 = (_plus_13 + Integer.valueOf(y));
+                  String _plus_15 = (_plus_14 + " ");
+                  arcSize = _plus_15;
                 }
               }
               double _multiply = ((modifier).intValue() * angle);
-              double _plus = (_multiply + currentAngle);
-              double _radians = Math.toRadians(_plus);
+              double _plus_16 = (_multiply + currentAngle);
+              double _radians = Math.toRadians(_plus_16);
               double _sin = Math.sin(_radians);
               int _multiply_1 = (x * x);
               int _multiply_2 = (y * y);
-              int _plus_1 = (_multiply_1 + _multiply_2);
-              double _sqrt = Math.sqrt(_plus_1);
+              int _plus_17 = (_multiply_1 + _multiply_2);
+              double _sqrt = Math.sqrt(_plus_17);
               final double endX = (_sin * _sqrt);
               double _multiply_3 = ((modifier).intValue() * angle);
-              double _plus_2 = (_multiply_3 + currentAngle);
-              double _radians_1 = Math.toRadians(_plus_2);
+              double _plus_18 = (_multiply_3 + currentAngle);
+              double _radians_1 = Math.toRadians(_plus_18);
               double _cos = Math.cos(_radians_1);
               int _multiply_4 = (x * x);
               int _multiply_5 = (y * y);
-              int _plus_3 = (_multiply_4 + _multiply_5);
-              double _sqrt_1 = Math.sqrt(_plus_3);
+              int _plus_19 = (_multiply_4 + _multiply_5);
+              double _sqrt_1 = Math.sqrt(_plus_19);
               final double endY = (_cos * _sqrt_1);
               double _multiply_6 = (angle * 2);
               double _multiply_7 = (_multiply_6 * (modifier).intValue());
-              double _plus_4 = (currentAngle + _multiply_7);
-              currentAngle = _plus_4;
-              String _plus_5 = (" a " + arcSize);
-              String _plus_6 = (_plus_5 + " ");
-              String _plus_7 = (_plus_6 + flags);
-              String _plus_8 = (_plus_7 + " ");
-              String _plus_9 = (_plus_8 + Double.valueOf(endX));
-              String _plus_10 = (_plus_9 + " ");
-              String _plus_11 = (_plus_10 + Double.valueOf(endY));
-              String _plus_12 = (_plus_11 + " ");
-              _xblockexpression_1 = (_plus_12);
+              double _plus_20 = (currentAngle + _multiply_7);
+              currentAngle = _plus_20;
+              String _plus_21 = (" a " + arcSize);
+              String _plus_22 = (_plus_21 + " ");
+              String _plus_23 = (_plus_22 + flags);
+              String _plus_24 = (_plus_23 + " ");
+              String _plus_25 = (_plus_24 + Double.valueOf(endX));
+              String _plus_26 = (_plus_25 + " ");
+              String _plus_27 = (_plus_26 + Double.valueOf(endY));
+              String _plus_28 = (_plus_27 + " ");
+              _xblockexpression_1 = (_plus_28);
             }
             _switchResult = _xblockexpression_1;
           }

@@ -15,7 +15,7 @@ RollerCoaster:
 
 	
 Straight:
-	'Straight' name=ID length=INT (elevationChange=INT)?;
+	'Straight' name=ID (powered="powered")? length=INT (elevationChange=SignedInt)?;
 
 Corner:
 	'Corner' name=ID direction=('left'|'right') type=('sharp45'|'sharp90'|'easy45'|'easy90');

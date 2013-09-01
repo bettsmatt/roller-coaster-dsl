@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.Straight#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.rollercoaster.dsl.coaster.Straight#getPowered <em>Powered</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.Straight#getLength <em>Length</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.Straight#getElevationChange <em>Elevation Change</em>}</li>
  * </ul>
@@ -51,6 +52,32 @@ public interface Straight extends EObject
   void setName(String value);
 
   /**
+   * Returns the value of the '<em><b>Powered</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Powered</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Powered</em>' attribute.
+   * @see #setPowered(String)
+   * @see org.xtext.rollercoaster.dsl.coaster.CoasterPackage#getStraight_Powered()
+   * @model
+   * @generated
+   */
+  String getPowered();
+
+  /**
+   * Sets the value of the '{@link org.xtext.rollercoaster.dsl.coaster.Straight#getPowered <em>Powered</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Powered</em>' attribute.
+   * @see #getPowered()
+   * @generated
+   */
+  void setPowered(String value);
+
+  /**
    * Returns the value of the '<em><b>Length</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
@@ -77,29 +104,29 @@ public interface Straight extends EObject
   void setLength(int value);
 
   /**
-   * Returns the value of the '<em><b>Elevation Change</b></em>' attribute.
+   * Returns the value of the '<em><b>Elevation Change</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Elevation Change</em>' attribute isn't clear,
+   * If the meaning of the '<em>Elevation Change</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Elevation Change</em>' attribute.
-   * @see #setElevationChange(int)
+   * @return the value of the '<em>Elevation Change</em>' containment reference.
+   * @see #setElevationChange(SignedInt)
    * @see org.xtext.rollercoaster.dsl.coaster.CoasterPackage#getStraight_ElevationChange()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  int getElevationChange();
+  SignedInt getElevationChange();
 
   /**
-   * Sets the value of the '{@link org.xtext.rollercoaster.dsl.coaster.Straight#getElevationChange <em>Elevation Change</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.rollercoaster.dsl.coaster.Straight#getElevationChange <em>Elevation Change</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Elevation Change</em>' attribute.
+   * @param value the new value of the '<em>Elevation Change</em>' containment reference.
    * @see #getElevationChange()
    * @generated
    */
-  void setElevationChange(int value);
+  void setElevationChange(SignedInt value);
 
 } // Straight

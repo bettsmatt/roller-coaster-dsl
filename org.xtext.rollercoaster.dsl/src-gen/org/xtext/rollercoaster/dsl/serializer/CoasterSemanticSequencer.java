@@ -124,7 +124,7 @@ public class CoasterSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=ID length=INT elevationChange=INT?)
+	 *     (name=ID powered='powered'? length=INT elevationChange=SignedInt?)
 	 */
 	protected void sequence_Straight(EObject context, Straight semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

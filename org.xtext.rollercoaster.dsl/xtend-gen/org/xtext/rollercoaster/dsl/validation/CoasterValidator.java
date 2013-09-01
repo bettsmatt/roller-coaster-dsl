@@ -13,6 +13,7 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.xtext.rollercoaster.dsl.coaster.CoasterPackage.Literals;
 import org.xtext.rollercoaster.dsl.coaster.Corner;
 import org.xtext.rollercoaster.dsl.coaster.RollerCoaster;
+import org.xtext.rollercoaster.dsl.coaster.SignedInt;
 import org.xtext.rollercoaster.dsl.coaster.Straight;
 import org.xtext.rollercoaster.dsl.validation.AbstractCoasterValidator;
 
@@ -67,7 +68,7 @@ public class CoasterValidator extends AbstractCoasterValidator {
         String _plus = ("Track angles do not form a cycle! " + Integer.valueOf(_modulo_1));
         String _plus_1 = (_plus + " degrees from a cycle.");
         EStructuralFeature _eStructuralFeature = Literals.ROLLER_COASTER.getEStructuralFeature("track");
-        this.error(_plus_1, _eStructuralFeature);
+        this.warning(_plus_1, _eStructuralFeature);
       }
       String _plus_2 = ("totalAngle = " + Integer.valueOf(totalAngle));
       String _println = InputOutput.<String>println(_plus_2);
@@ -259,16 +260,133 @@ public class CoasterValidator extends AbstractCoasterValidator {
     boolean _greaterEqualsThan = (distance >= 0.5);
     if (_greaterEqualsThan) {
       int _intValue = Double.valueOf(distance).intValue();
-<<<<<<< HEAD
       int _plus_1 = (_intValue + 1);
       String _plus_2 = ("End of Track does not meet start! End of track is" + Integer.valueOf(_plus_1));
-=======
-      String _plus_1 = ("End of Track does not meet start! End of track is" + Integer.valueOf(_intValue));
-      String _plus_2 = (_plus_1 + Integer.valueOf(1));
->>>>>>> 6f081e6ed886795e86612c7b9d8d8573ad0d983e
       String _plus_3 = (_plus_2 + "m from the start.");
       EStructuralFeature _eStructuralFeature = Literals.ROLLER_COASTER.getEStructuralFeature("track");
-      this.error(_plus_3, _eStructuralFeature);
+      this.warning(_plus_3, _eStructuralFeature);
+    }
+  }
+  
+  @Check
+  public void elevationMeetsAtStartAndEnd(final RollerCoaster rc) {
+    int elevation = 0;
+    EList<EObject> _track = rc.getTrack();
+    for (final Object t : _track) {
+      {
+        Corner c = null;
+        Straight s = null;
+        boolean _matched = false;
+        if (!_matched) {
+          if (t instanceof Corner) {
+            final Corner _corner = (Corner)t;
+            _matched=true;
+            c = _corner;
+          }
+        }
+        if (!_matched) {
+          if (t instanceof Straight) {
+            final Straight _straight = (Straight)t;
+            _matched=true;
+            s = _straight;
+          }
+        }
+        boolean _notEquals = (!Objects.equal(s, null));
+        if (_notEquals) {
+          SignedInt _elevationChange = s.getElevationChange();
+          int change = _elevationChange.getValue();
+          SignedInt _elevationChange_1 = s.getElevationChange();
+          String _sign = _elevationChange_1.getSign();
+          boolean _notEquals_1 = (!Objects.equal(_sign, null));
+          if (_notEquals_1) {
+            int _minus = (-1);
+            int _multiply = (change * _minus);
+            change = _multiply;
+          }
+          int _plus = (elevation + change);
+          elevation = _plus;
+        }
+      }
+    }
+    boolean _notEquals = (elevation != 0);
+    if (_notEquals) {
+      String _plus = ("End of Track does not meet start! Height of last track unit is " + Integer.valueOf(elevation));
+      String _plus_1 = (_plus + "m from start.");
+      EStructuralFeature _eStructuralFeature = Literals.ROLLER_COASTER.getEStructuralFeature("track");
+      this.warning(_plus_1, _eStructuralFeature);
+    }
+  }
+  
+  @Check
+  public void hasEnoughPower(final RollerCoaster rc) {
+    int speed = 0;
+    EList<EObject> _track = rc.getTrack();
+    for (final Object t : _track) {
+      {
+        Corner c = null;
+        Straight s = null;
+        boolean _matched = false;
+        if (!_matched) {
+          if (t instanceof Corner) {
+            final Corner _corner = (Corner)t;
+            _matched=true;
+            c = _corner;
+          }
+        }
+        if (!_matched) {
+          if (t instanceof Straight) {
+            final Straight _straight = (Straight)t;
+            _matched=true;
+            s = _straight;
+          }
+        }
+        boolean _notEquals = (!Objects.equal(s, null));
+        if (_notEquals) {
+          String _powered = s.getPowered();
+          boolean _notEquals_1 = (!Objects.equal(_powered, null));
+          if (_notEquals_1) {
+            int _length = s.getLength();
+            int _multiply = (_length * 2);
+            int _plus = (speed + _multiply);
+            speed = _plus;
+          }
+          SignedInt _elevationChange = s.getElevationChange();
+          boolean _notEquals_2 = (!Objects.equal(_elevationChange, null));
+          if (_notEquals_2) {
+            SignedInt _elevationChange_1 = s.getElevationChange();
+            int change = _elevationChange_1.getValue();
+            SignedInt _elevationChange_2 = s.getElevationChange();
+            String _sign = _elevationChange_2.getSign();
+            boolean _notEquals_3 = (!Objects.equal(_sign, null));
+            if (_notEquals_3) {
+              int _minus = (-1);
+              int _multiply_1 = (change * _minus);
+              change = _multiply_1;
+            }
+            boolean _notEquals_4 = (change != 0);
+            if (_notEquals_4) {
+              int _length_1 = s.getLength();
+              int _multiply_2 = (change * _length_1);
+              int _plus_1 = (speed + _multiply_2);
+              speed = _plus_1;
+            }
+          } else {
+            int _length_2 = s.getLength();
+            int _divide = (_length_2 / 2);
+            int _minus_1 = (speed - _divide);
+            speed = _minus_1;
+          }
+          InputOutput.<Integer>println(Integer.valueOf(speed));
+          boolean _lessEqualsThan = (speed <= 0);
+          if (_lessEqualsThan) {
+            String _name = s.getName();
+            String _plus_2 = ("Cart is moving backwards or stopped on " + _name);
+            String _plus_3 = (_plus_2 + ", add powered units or downhill slopes.");
+            EStructuralFeature _eStructuralFeature = Literals.ROLLER_COASTER.getEStructuralFeature("track");
+            this.warning(_plus_3, _eStructuralFeature);
+          }
+        }
+      }
     }
   }
 }

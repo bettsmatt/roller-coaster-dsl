@@ -36,7 +36,7 @@ def checkCompletePath(RollerCoaster rc){
 		}
 		
 	if(totalAngle%360 != 0){
-		error("Track angles do not form a cycle! "+totalAngle%360+" degrees from a cycle.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+		warning("Track angles do not form a cycle! "+totalAngle%360+" degrees from a cycle.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
 	}
 	println("totalAngle = "+totalAngle);
 }
@@ -99,8 +99,78 @@ def checkStartMeetsEnd(RollerCoaster rc){
 	distance = Math.sqrt(Math.pow(currentX, 2) + Math.pow(currentY, 2));
 	
 	if( distance >= 0.5){
-		error("End of Track does not meet start! End of track is"+(distance.intValue+1)+"m from the start.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+		warning("End of Track does not meet start! End of track is"+(distance.intValue+1)+"m from the start.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
 	}
 }
+
+@Check
+def elevationMeetsAtStartAndEnd(RollerCoaster rc){
+	var elevation = 0;
+	for(Object t: rc.track){
+		var Corner c = null;
+		var Straight s = null;
+		switch (t) {
+			Corner:  c = t
+			Straight: s =t
+		}
+		if(s != null){
+			var change = s.elevationChange.value;
+			if(s.elevationChange.sign != null){
+				change = change * -1;
+			}
+			
+			elevation = elevation + change;
+		}
+		}
+		if(elevation != 0){
+			warning("End of Track does not meet start! Height of last track unit is "+(elevation)+"m from start.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+		}
+}
+
+@Check
+def hasEnoughPower(RollerCoaster rc){
+	var speed = 0;
+	
+	for(Object t: rc.track){
+		var Corner c = null;
+		var Straight s = null;
+		switch (t) {
+			Corner:  c = t
+			Straight: s = t
+		}
+
+		if(s != null){
+				
+			if(s.powered != null){
+				speed = speed + (s.length*2); //fine tune
+			}
+			// Ellevation facotr
+				
+				if(s.elevationChange != null){
+			var change = s.elevationChange.value;
+			if(s.elevationChange.sign != null){
+				change = change * -1;
+			}
+			
+			if (change != 0){
+				speed = speed + (change *  s.length);
+			}
+						}
+			else{speed = speed - s.length/2;} 
+						
+			println(speed);
+			if (speed <=0){
+				warning("Cart is moving backwards or stopped on "+(s.name)+", add powered units or downhill slopes.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+	
+			}
+		}
+			
+			
+			
+		}
+	
+}
+
+
 }
 

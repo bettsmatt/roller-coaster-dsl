@@ -96,16 +96,18 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cStraightKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cLengthAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cLengthINTTerminalRuleCall_2_0 = (RuleCall)cLengthAssignment_2.eContents().get(0);
-		private final Assignment cElevationChangeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cElevationChangeINTTerminalRuleCall_3_0 = (RuleCall)cElevationChangeAssignment_3.eContents().get(0);
+		private final Assignment cPoweredAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cPoweredPoweredKeyword_2_0 = (Keyword)cPoweredAssignment_2.eContents().get(0);
+		private final Assignment cLengthAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cLengthINTTerminalRuleCall_3_0 = (RuleCall)cLengthAssignment_3.eContents().get(0);
+		private final Assignment cElevationChangeAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cElevationChangeSignedIntParserRuleCall_4_0 = (RuleCall)cElevationChangeAssignment_4.eContents().get(0);
 		
 		//Straight:
-		//	"Straight" name=ID length=INT elevationChange=INT?;
+		//	"Straight" name=ID powered="powered"? length=INT elevationChange=SignedInt?;
 		public ParserRule getRule() { return rule; }
 
-		//"Straight" name=ID length=INT elevationChange=INT?
+		//"Straight" name=ID powered="powered"? length=INT elevationChange=SignedInt?
 		public Group getGroup() { return cGroup; }
 
 		//"Straight"
@@ -117,17 +119,23 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
+		//powered="powered"?
+		public Assignment getPoweredAssignment_2() { return cPoweredAssignment_2; }
+
+		//"powered"
+		public Keyword getPoweredPoweredKeyword_2_0() { return cPoweredPoweredKeyword_2_0; }
+
 		//length=INT
-		public Assignment getLengthAssignment_2() { return cLengthAssignment_2; }
+		public Assignment getLengthAssignment_3() { return cLengthAssignment_3; }
 
 		//INT
-		public RuleCall getLengthINTTerminalRuleCall_2_0() { return cLengthINTTerminalRuleCall_2_0; }
+		public RuleCall getLengthINTTerminalRuleCall_3_0() { return cLengthINTTerminalRuleCall_3_0; }
 
-		//elevationChange=INT?
-		public Assignment getElevationChangeAssignment_3() { return cElevationChangeAssignment_3; }
+		//elevationChange=SignedInt?
+		public Assignment getElevationChangeAssignment_4() { return cElevationChangeAssignment_4; }
 
-		//INT
-		public RuleCall getElevationChangeINTTerminalRuleCall_3_0() { return cElevationChangeINTTerminalRuleCall_3_0; }
+		//SignedInt
+		public RuleCall getElevationChangeSignedIntParserRuleCall_4_0() { return cElevationChangeSignedIntParserRuleCall_4_0; }
 	}
 
 	public class CornerElements extends AbstractParserRuleElementFinder {
@@ -313,7 +321,7 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Straight:
-	//	"Straight" name=ID length=INT elevationChange=INT?;
+	//	"Straight" name=ID powered="powered"? length=INT elevationChange=SignedInt?;
 	public StraightElements getStraightAccess() {
 		return (pStraight != null) ? pStraight : (pStraight = new StraightElements());
 	}

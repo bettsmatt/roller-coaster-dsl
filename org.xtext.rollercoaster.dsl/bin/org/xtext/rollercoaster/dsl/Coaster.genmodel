@@ -18,8 +18,9 @@
     </genClasses>
     <genClasses ecoreClass="Coaster.ecore#//Straight">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Straight/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Straight/powered"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Straight/length"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Straight/elevationChange"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coaster.ecore#//Straight/elevationChange"/>
     </genClasses>
     <genClasses ecoreClass="Coaster.ecore#//Corner">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Corner/name"/>

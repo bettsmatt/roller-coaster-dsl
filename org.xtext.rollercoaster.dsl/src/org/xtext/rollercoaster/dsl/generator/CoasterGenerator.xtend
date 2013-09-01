@@ -14,6 +14,7 @@ import org.xtext.rollercoaster.dsl.coaster.Corner
 import org.rollercoaster.utils.Costs
 import org.rollercoaster.utils.Descriptions
 
+
 /**
  * Generates code from your model files on save.
  * 
@@ -72,7 +73,7 @@ class CoasterGenerator implements IGenerator {
 					<li> Total : «rc.cart.fold(0.00)[seed,item | seed + Costs.get(item)]»</li>
 				</ul>
 				<h4> Sample rendering of the track </h4>
-  				« getPathForTrack (rc.track)»
+  				« getPathForTrack (rc)»
 			</body>
 		</html>	
 		'''
@@ -80,8 +81,9 @@ class CoasterGenerator implements IGenerator {
 	/**
 	 * Build a svg path from a list of tracks
 	 */
-	def getPathForTrack (Iterable <EObject> tracks){
+	def getPathForTrack (RollerCoaster rc){
 		// The start of the svg
+		var tracks = rc.track;
 		val start = '''<svg width="2000px" height="2000px" version="1.1" xmlns="http://www.w3.org/2000/svg"> '''
 		val pathStart = '''<path d=" M 400 300 '''
 		
@@ -135,28 +137,29 @@ class CoasterGenerator implements IGenerator {
 					var x = 0;
 					var y = 0;
 					var angle = 0.0;
-		
+				
+					var r = rc.trackUnitLength
 					switch trackPiece.type {
 						case 'sharp45': {
-							x = 25;
-							y = 50;
+							x = r/2;//25;
+							y = r;//50; // Possibly break
 							angle = 22.5;
-							arcSize = " 50 50 ";
+							arcSize = " "+y+" "+y+" ";
 						} case 'sharp90': {
-							x = 50;
-							y = 50;
+							x = r/2;//50;
+							y = r/2;//50;
 							angle = 45;
-							arcSize = " 50 50 ";
+							arcSize = " "+y+" "+y+" ";
 						} case 'easy45': {
-							x = 50;
-							y = 100;
+							x = r/2;//50;
+							y = r;//100;
 							angle = 22.5;
-							arcSize = " 100 100 ";
+							arcSize = " "+y+" "+y+" ";
 						} case 'easy90': {
-							x = 100;
-							y = 100;
+							x = r;//100;
+							y = r;//100;
 							angle = 45;
-							arcSize = " 100 100 ";
+							arcSize = " "+y+" "+y+" ";
 						}
 					}
 					

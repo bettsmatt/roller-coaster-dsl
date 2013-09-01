@@ -159,22 +159,31 @@ public interface CoasterPackage extends EPackage
   int STRAIGHT__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Powered</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRAIGHT__POWERED = 1;
+
+  /**
    * The feature id for the '<em><b>Length</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STRAIGHT__LENGTH = 1;
+  int STRAIGHT__LENGTH = 2;
 
   /**
-   * The feature id for the '<em><b>Elevation Change</b></em>' attribute.
+   * The feature id for the '<em><b>Elevation Change</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STRAIGHT__ELEVATION_CHANGE = 2;
+  int STRAIGHT__ELEVATION_CHANGE = 3;
 
   /**
    * The number of structural features of the '<em>Straight</em>' class.
@@ -183,7 +192,7 @@ public interface CoasterPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STRAIGHT_FEATURE_COUNT = 3;
+  int STRAIGHT_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.CornerImpl <em>Corner</em>}' class.
@@ -394,6 +403,17 @@ public interface CoasterPackage extends EPackage
   EAttribute getStraight_Name();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Straight#getPowered <em>Powered</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Powered</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Straight#getPowered()
+   * @see #getStraight()
+   * @generated
+   */
+  EAttribute getStraight_Powered();
+
+  /**
    * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Straight#getLength <em>Length</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -405,15 +425,15 @@ public interface CoasterPackage extends EPackage
   EAttribute getStraight_Length();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Straight#getElevationChange <em>Elevation Change</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.rollercoaster.dsl.coaster.Straight#getElevationChange <em>Elevation Change</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Elevation Change</em>'.
+   * @return the meta object for the containment reference '<em>Elevation Change</em>'.
    * @see org.xtext.rollercoaster.dsl.coaster.Straight#getElevationChange()
    * @see #getStraight()
    * @generated
    */
-  EAttribute getStraight_ElevationChange();
+  EReference getStraight_ElevationChange();
 
   /**
    * Returns the meta object for class '{@link org.xtext.rollercoaster.dsl.coaster.Corner <em>Corner</em>}'.
@@ -613,6 +633,14 @@ public interface CoasterPackage extends EPackage
     EAttribute STRAIGHT__NAME = eINSTANCE.getStraight_Name();
 
     /**
+     * The meta object literal for the '<em><b>Powered</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STRAIGHT__POWERED = eINSTANCE.getStraight_Powered();
+
+    /**
      * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -621,12 +649,12 @@ public interface CoasterPackage extends EPackage
     EAttribute STRAIGHT__LENGTH = eINSTANCE.getStraight_Length();
 
     /**
-     * The meta object literal for the '<em><b>Elevation Change</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Elevation Change</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute STRAIGHT__ELEVATION_CHANGE = eINSTANCE.getStraight_ElevationChange();
+    EReference STRAIGHT__ELEVATION_CHANGE = eINSTANCE.getStraight_ElevationChange();
 
     /**
      * The meta object literal for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.CornerImpl <em>Corner</em>}' class.

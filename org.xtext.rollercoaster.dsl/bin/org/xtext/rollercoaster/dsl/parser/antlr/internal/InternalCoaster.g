@@ -255,9 +255,24 @@ ruleStraight returns [EObject current=null]
 )
 )(
 (
-		lv_length_2_0=RULE_INT
+		lv_powered_2_0=	'powered' 
+    {
+        newLeafNode(lv_powered_2_0, grammarAccess.getStraightAccess().getPoweredPoweredKeyword_2_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getStraightRule());
+	        }
+       		setWithLastConsumed($current, "powered", lv_powered_2_0, "powered");
+	    }
+
+)
+)?(
+(
+		lv_length_3_0=RULE_INT
 		{
-			newLeafNode(lv_length_2_0, grammarAccess.getStraightAccess().getLengthINTTerminalRuleCall_2_0()); 
+			newLeafNode(lv_length_3_0, grammarAccess.getStraightAccess().getLengthINTTerminalRuleCall_3_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -266,26 +281,26 @@ ruleStraight returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"length",
-        		lv_length_2_0, 
+        		lv_length_3_0, 
         		"INT");
 	    }
 
 )
 )(
 (
-		lv_elevationChange_3_0=RULE_INT
-		{
-			newLeafNode(lv_elevationChange_3_0, grammarAccess.getStraightAccess().getElevationChangeINTTerminalRuleCall_3_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getStraightAccess().getElevationChangeSignedIntParserRuleCall_4_0()); 
+	    }
+		lv_elevationChange_4_0=ruleSignedInt		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getStraightRule());
+	            $current = createModelElementForParent(grammarAccess.getStraightRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
        			"elevationChange",
-        		lv_elevationChange_3_0, 
-        		"INT");
+        		lv_elevationChange_4_0, 
+        		"SignedInt");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -463,6 +478,58 @@ ruleCart returns [EObject current=null]
 ;
 
 
+
+
+
+// Entry rule entryRuleSignedInt
+entryRuleSignedInt returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getSignedIntRule()); }
+	 iv_ruleSignedInt=ruleSignedInt 
+	 { $current=$iv_ruleSignedInt.current; } 
+	 EOF 
+;
+
+// Rule SignedInt
+ruleSignedInt returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		lv_sign_0_0=	'-' 
+    {
+        newLeafNode(lv_sign_0_0, grammarAccess.getSignedIntAccess().getSignHyphenMinusKeyword_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getSignedIntRule());
+	        }
+       		setWithLastConsumed($current, "sign", lv_sign_0_0, "-");
+	    }
+
+)
+)?(
+(
+		lv_value_1_0=RULE_INT
+		{
+			newLeafNode(lv_value_1_0, grammarAccess.getSignedIntAccess().getValueINTTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getSignedIntRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_1_0, 
+        		"INT");
+	    }
+
+)
+))
+;
 
 
 
