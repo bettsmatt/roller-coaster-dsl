@@ -69,21 +69,21 @@ def checkStartMeetsEnd(RollerCoaster rc){
 			}
 			var r = rc.trackUnitLength;
 			if(c.type.equals('sharp45')){
-				currentX = (currentX + (Math.cos(currentAngle+angle)*r/4.0));
-				currentY = (currentY + (Math.sin(currentAngle+angle)*r));
+				currentX = (currentX + (Math.cos(currentAngle+angle)*Math.sqrt((Math.pow(r/2.0,2)+Math.pow(r,2)))));
+				currentY = (currentY + (Math.sin(currentAngle+angle)*Math.sqrt((Math.pow(r/2.0,2)+Math.pow(r,2)))));
 			}
 			else if(c.type.equals('sharp90')){
-				currentX = (currentX + Math.cos(currentAngle+angle)*(r/2.0));
-				currentY = (currentY + Math.sin(currentAngle+angle)*(r/2.0));
+				currentX = (currentX + Math.cos(currentAngle+angle)*Math.sqrt((Math.pow(r/2.0,2)+Math.pow(r/2.0,2))));
+				currentY = (currentY + Math.sin(currentAngle+angle)*Math.sqrt((Math.pow(r/2.0,2)+Math.pow(r/2.0,2))));
 				
 			}
 			else if(c.type.equals('easy45')){
-				currentX = (currentX + (Math.cos(currentAngle+angle)*(r/2.0)));
-				currentY = (currentY + (Math.sin(currentAngle+angle)*(r*2.0)));
+				currentX = (currentX + (Math.cos(currentAngle+angle)*Math.sqrt((Math.pow(r,2)+Math.pow(r*2,2)))));
+				currentY = (currentY + (Math.sin(currentAngle+angle)*Math.sqrt((Math.pow(r,2)+Math.pow(r*2,2)))));
 			}
 			else if(c.type.equals('easy90')){
-				currentX = (currentX + (Math.cos(currentAngle+angle)*r));
-				currentY = (currentY + (Math.sin(currentAngle+angle)*r));
+				currentX = (currentX + (Math.cos(currentAngle+angle)*Math.sqrt((Math.pow(r,2)+Math.pow(r,2)))));
+				currentY = (currentY + (Math.sin(currentAngle+angle)*Math.sqrt((Math.pow(r,2)+Math.pow(r,2)))));
 			}
 			
 			currentAngle = currentAngle+(angle*2);
@@ -99,7 +99,7 @@ def checkStartMeetsEnd(RollerCoaster rc){
 	distance = Math.sqrt(Math.pow(currentX, 2) + Math.pow(currentY, 2));
 	
 	if( distance >= 0.5){
-		error("End of Track does not meet start! End of track is"+distance.intValue+1+"m from the start.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+		error("End of Track does not meet start! End of track is"+(distance.intValue+1)+"m from the start.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
 	}
 }
 	

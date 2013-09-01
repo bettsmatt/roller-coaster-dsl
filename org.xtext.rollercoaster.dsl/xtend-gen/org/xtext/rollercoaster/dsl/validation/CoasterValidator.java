@@ -137,81 +137,116 @@ public class CoasterValidator extends AbstractCoasterValidator {
           if (_equals_3) {
             double _plus = (currentAngle + angle);
             double _cos = Math.cos(_plus);
-            double _multiply_2 = (_cos * r);
-            double _divide = (_multiply_2 / 4.0);
-            double _plus_1 = (currentX + _divide);
-            currentX = _plus_1;
-            double _plus_2 = (currentAngle + angle);
-            double _sin = Math.sin(_plus_2);
-            double _multiply_3 = (_sin * r);
-            double _plus_3 = (currentY + _multiply_3);
-            currentY = _plus_3;
+            double _divide = (r / 2.0);
+            double _pow = Math.pow(_divide, 2);
+            double _pow_1 = Math.pow(r, 2);
+            double _plus_1 = (_pow + _pow_1);
+            double _sqrt = Math.sqrt(_plus_1);
+            double _multiply_2 = (_cos * _sqrt);
+            double _plus_2 = (currentX + _multiply_2);
+            currentX = _plus_2;
+            double _plus_3 = (currentAngle + angle);
+            double _sin = Math.sin(_plus_3);
+            double _divide_1 = (r / 2.0);
+            double _pow_2 = Math.pow(_divide_1, 2);
+            double _pow_3 = Math.pow(r, 2);
+            double _plus_4 = (_pow_2 + _pow_3);
+            double _sqrt_1 = Math.sqrt(_plus_4);
+            double _multiply_3 = (_sin * _sqrt_1);
+            double _plus_5 = (currentY + _multiply_3);
+            currentY = _plus_5;
           } else {
             String _type_3 = c.getType();
             boolean _equals_4 = _type_3.equals("sharp90");
             if (_equals_4) {
-              double _plus_4 = (currentAngle + angle);
-              double _cos_1 = Math.cos(_plus_4);
-              double _divide_1 = (r / 2.0);
-              double _multiply_4 = (_cos_1 * _divide_1);
-              double _plus_5 = (currentX + _multiply_4);
-              currentX = _plus_5;
               double _plus_6 = (currentAngle + angle);
-              double _sin_1 = Math.sin(_plus_6);
+              double _cos_1 = Math.cos(_plus_6);
               double _divide_2 = (r / 2.0);
-              double _multiply_5 = (_sin_1 * _divide_2);
-              double _plus_7 = (currentY + _multiply_5);
-              currentY = _plus_7;
+              double _pow_4 = Math.pow(_divide_2, 2);
+              double _divide_3 = (r / 2.0);
+              double _pow_5 = Math.pow(_divide_3, 2);
+              double _plus_7 = (_pow_4 + _pow_5);
+              double _sqrt_2 = Math.sqrt(_plus_7);
+              double _multiply_4 = (_cos_1 * _sqrt_2);
+              double _plus_8 = (currentX + _multiply_4);
+              currentX = _plus_8;
+              double _plus_9 = (currentAngle + angle);
+              double _sin_1 = Math.sin(_plus_9);
+              double _divide_4 = (r / 2.0);
+              double _pow_6 = Math.pow(_divide_4, 2);
+              double _divide_5 = (r / 2.0);
+              double _pow_7 = Math.pow(_divide_5, 2);
+              double _plus_10 = (_pow_6 + _pow_7);
+              double _sqrt_3 = Math.sqrt(_plus_10);
+              double _multiply_5 = (_sin_1 * _sqrt_3);
+              double _plus_11 = (currentY + _multiply_5);
+              currentY = _plus_11;
             } else {
               String _type_4 = c.getType();
               boolean _equals_5 = _type_4.equals("easy45");
               if (_equals_5) {
-                double _plus_8 = (currentAngle + angle);
-                double _cos_2 = Math.cos(_plus_8);
-                double _divide_3 = (r / 2.0);
-                double _multiply_6 = (_cos_2 * _divide_3);
-                double _plus_9 = (currentX + _multiply_6);
-                currentX = _plus_9;
-                double _plus_10 = (currentAngle + angle);
-                double _sin_2 = Math.sin(_plus_10);
-                double _multiply_7 = (r * 2.0);
-                double _multiply_8 = (_sin_2 * _multiply_7);
-                double _plus_11 = (currentY + _multiply_8);
-                currentY = _plus_11;
+                double _plus_12 = (currentAngle + angle);
+                double _cos_2 = Math.cos(_plus_12);
+                double _pow_8 = Math.pow(r, 2);
+                int _multiply_6 = (r * 2);
+                double _pow_9 = Math.pow(_multiply_6, 2);
+                double _plus_13 = (_pow_8 + _pow_9);
+                double _sqrt_4 = Math.sqrt(_plus_13);
+                double _multiply_7 = (_cos_2 * _sqrt_4);
+                double _plus_14 = (currentX + _multiply_7);
+                currentX = _plus_14;
+                double _plus_15 = (currentAngle + angle);
+                double _sin_2 = Math.sin(_plus_15);
+                double _pow_10 = Math.pow(r, 2);
+                int _multiply_8 = (r * 2);
+                double _pow_11 = Math.pow(_multiply_8, 2);
+                double _plus_16 = (_pow_10 + _pow_11);
+                double _sqrt_5 = Math.sqrt(_plus_16);
+                double _multiply_9 = (_sin_2 * _sqrt_5);
+                double _plus_17 = (currentY + _multiply_9);
+                currentY = _plus_17;
               } else {
                 String _type_5 = c.getType();
                 boolean _equals_6 = _type_5.equals("easy90");
                 if (_equals_6) {
-                  double _plus_12 = (currentAngle + angle);
-                  double _cos_3 = Math.cos(_plus_12);
-                  double _multiply_9 = (_cos_3 * r);
-                  double _plus_13 = (currentX + _multiply_9);
-                  currentX = _plus_13;
-                  double _plus_14 = (currentAngle + angle);
-                  double _sin_3 = Math.sin(_plus_14);
-                  double _multiply_10 = (_sin_3 * r);
-                  double _plus_15 = (currentY + _multiply_10);
-                  currentY = _plus_15;
+                  double _plus_18 = (currentAngle + angle);
+                  double _cos_3 = Math.cos(_plus_18);
+                  double _pow_12 = Math.pow(r, 2);
+                  double _pow_13 = Math.pow(r, 2);
+                  double _plus_19 = (_pow_12 + _pow_13);
+                  double _sqrt_6 = Math.sqrt(_plus_19);
+                  double _multiply_10 = (_cos_3 * _sqrt_6);
+                  double _plus_20 = (currentX + _multiply_10);
+                  currentX = _plus_20;
+                  double _plus_21 = (currentAngle + angle);
+                  double _sin_3 = Math.sin(_plus_21);
+                  double _pow_14 = Math.pow(r, 2);
+                  double _pow_15 = Math.pow(r, 2);
+                  double _plus_22 = (_pow_14 + _pow_15);
+                  double _sqrt_7 = Math.sqrt(_plus_22);
+                  double _multiply_11 = (_sin_3 * _sqrt_7);
+                  double _plus_23 = (currentY + _multiply_11);
+                  currentY = _plus_23;
                 }
               }
             }
           }
-          double _multiply_11 = (angle * 2);
-          double _plus_16 = (currentAngle + _multiply_11);
-          currentAngle = _plus_16;
+          double _multiply_12 = (angle * 2);
+          double _plus_24 = (currentAngle + _multiply_12);
+          currentAngle = _plus_24;
         } else {
           boolean _notEquals_1 = (!Objects.equal(s, null));
           if (_notEquals_1) {
             double _cos_4 = Math.cos(currentAngle);
             int _length = s.getLength();
-            double _multiply_12 = (_cos_4 * _length);
-            double _plus_17 = (currentX + _multiply_12);
-            currentX = _plus_17;
+            double _multiply_13 = (_cos_4 * _length);
+            double _plus_25 = (currentX + _multiply_13);
+            currentX = _plus_25;
             double _sin_4 = Math.sin(currentAngle);
             int _length_1 = s.getLength();
-            double _multiply_13 = (_sin_4 * _length_1);
-            double _plus_18 = (currentY + _multiply_13);
-            currentY = _plus_18;
+            double _multiply_14 = (_sin_4 * _length_1);
+            double _plus_26 = (currentY + _multiply_14);
+            currentY = _plus_26;
           }
         }
       }
@@ -221,13 +256,14 @@ public class CoasterValidator extends AbstractCoasterValidator {
     double _plus = (_pow + _pow_1);
     double _sqrt = Math.sqrt(_plus);
     distance = _sqrt;
-    boolean _greaterThan = (distance > 0.05);
-    if (_greaterThan) {
+    boolean _greaterEqualsThan = (distance >= 0.5);
+    if (_greaterEqualsThan) {
       int _intValue = Double.valueOf(distance).intValue();
-      String _plus_1 = ("End of Track does not meet start! End of track is" + Integer.valueOf(_intValue));
-      String _plus_2 = (_plus_1 + "m from the start.");
+      int _plus_1 = (_intValue + 1);
+      String _plus_2 = ("End of Track does not meet start! End of track is" + Integer.valueOf(_plus_1));
+      String _plus_3 = (_plus_2 + "m from the start.");
       EStructuralFeature _eStructuralFeature = Literals.ROLLER_COASTER.getEStructuralFeature("track");
-      this.error(_plus_2, _eStructuralFeature);
+      this.error(_plus_3, _eStructuralFeature);
     }
   }
 }
