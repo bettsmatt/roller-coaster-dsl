@@ -3,6 +3,17 @@
  */
 package org.xtext.rollercoaster.dsl.validation;
 
+import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.xtext.rollercoaster.dsl.coaster.CoasterPackage.Literals;
+import org.xtext.rollercoaster.dsl.coaster.Corner;
+import org.xtext.rollercoaster.dsl.coaster.RollerCoaster;
+import org.xtext.rollercoaster.dsl.coaster.Straight;
 import org.xtext.rollercoaster.dsl.validation.AbstractCoasterValidator;
 
 /**
@@ -12,4 +23,212 @@ import org.xtext.rollercoaster.dsl.validation.AbstractCoasterValidator;
  */
 @SuppressWarnings("all")
 public class CoasterValidator extends AbstractCoasterValidator {
+  @Check
+  public String checkCompletePath(final RollerCoaster rc) {
+    String _xblockexpression = null;
+    {
+      int totalAngle = 0;
+      EList<EObject> _track = rc.getTrack();
+      Iterable<Corner> _filter = Iterables.<Corner>filter(_track, Corner.class);
+      for (final Corner t : _filter) {
+        {
+          int dir = 1;
+          String _direction = t.getDirection();
+          boolean _equals = _direction.equals("left");
+          if (_equals) {
+            int _minus = (-1);
+            dir = _minus;
+          }
+          boolean _or = false;
+          String _type = t.getType();
+          boolean _equals_1 = _type.equals("sharp45");
+          if (_equals_1) {
+            _or = true;
+          } else {
+            String _type_1 = t.getType();
+            boolean _equals_2 = _type_1.equals("easy45");
+            _or = (_equals_1 || _equals_2);
+          }
+          if (_or) {
+            int _multiply = (45 * dir);
+            int _plus = (totalAngle + _multiply);
+            totalAngle = _plus;
+          } else {
+            int _multiply_1 = (90 * dir);
+            int _plus_1 = (totalAngle + _multiply_1);
+            totalAngle = _plus_1;
+          }
+        }
+      }
+      int _modulo = (totalAngle % 360);
+      boolean _notEquals = (_modulo != 0);
+      if (_notEquals) {
+        int _modulo_1 = (totalAngle % 360);
+        String _plus = ("Track angles do not form a cycle! " + Integer.valueOf(_modulo_1));
+        String _plus_1 = (_plus + " degrees from a cycle.");
+        EStructuralFeature _eStructuralFeature = Literals.ROLLER_COASTER.getEStructuralFeature("track");
+        this.error(_plus_1, _eStructuralFeature);
+      }
+      String _plus_2 = ("totalAngle = " + Integer.valueOf(totalAngle));
+      String _println = InputOutput.<String>println(_plus_2);
+      _xblockexpression = (_println);
+    }
+    return _xblockexpression;
+  }
+  
+  @Check
+  public void checkStartMeetsEnd(final RollerCoaster rc) {
+    double distance = 0.0;
+    double currentX = 0.0;
+    double currentY = 0.0;
+    double currentAngle = 0.0;
+    EList<EObject> _track = rc.getTrack();
+    for (final Object t : _track) {
+      {
+        Corner c = null;
+        Straight s = null;
+        boolean _matched = false;
+        if (!_matched) {
+          if (t instanceof Corner) {
+            final Corner _corner = (Corner)t;
+            _matched=true;
+            c = _corner;
+          }
+        }
+        if (!_matched) {
+          if (t instanceof Straight) {
+            final Straight _straight = (Straight)t;
+            _matched=true;
+            s = _straight;
+          }
+        }
+        boolean _notEquals = (!Objects.equal(c, null));
+        if (_notEquals) {
+          double dir = 1.0;
+          double angle = 0.0;
+          String _direction = c.getDirection();
+          boolean _equals = _direction.equals("left");
+          if (_equals) {
+            int _minus = (-1);
+            dir = _minus;
+          }
+          boolean _or = false;
+          String _type = c.getType();
+          boolean _equals_1 = _type.equals("sharp45");
+          if (_equals_1) {
+            _or = true;
+          } else {
+            String _type_1 = c.getType();
+            boolean _equals_2 = _type_1.equals("easy45");
+            _or = (_equals_1 || _equals_2);
+          }
+          if (_or) {
+            double _multiply = (22.5 * dir);
+            double _radians = Math.toRadians(_multiply);
+            angle = _radians;
+          } else {
+            double _multiply_1 = (45 * dir);
+            double _radians_1 = Math.toRadians(_multiply_1);
+            angle = _radians_1;
+          }
+          int r = rc.getTrackUnitLength();
+          String _type_2 = c.getType();
+          boolean _equals_3 = _type_2.equals("sharp45");
+          if (_equals_3) {
+            double _plus = (currentAngle + angle);
+            double _cos = Math.cos(_plus);
+            double _multiply_2 = (_cos * r);
+            double _divide = (_multiply_2 / 4.0);
+            double _plus_1 = (currentX + _divide);
+            currentX = _plus_1;
+            double _plus_2 = (currentAngle + angle);
+            double _sin = Math.sin(_plus_2);
+            double _multiply_3 = (_sin * r);
+            double _plus_3 = (currentY + _multiply_3);
+            currentY = _plus_3;
+          } else {
+            String _type_3 = c.getType();
+            boolean _equals_4 = _type_3.equals("sharp90");
+            if (_equals_4) {
+              double _plus_4 = (currentAngle + angle);
+              double _cos_1 = Math.cos(_plus_4);
+              double _divide_1 = (r / 2.0);
+              double _multiply_4 = (_cos_1 * _divide_1);
+              double _plus_5 = (currentX + _multiply_4);
+              currentX = _plus_5;
+              double _plus_6 = (currentAngle + angle);
+              double _sin_1 = Math.sin(_plus_6);
+              double _divide_2 = (r / 2.0);
+              double _multiply_5 = (_sin_1 * _divide_2);
+              double _plus_7 = (currentY + _multiply_5);
+              currentY = _plus_7;
+            } else {
+              String _type_4 = c.getType();
+              boolean _equals_5 = _type_4.equals("easy45");
+              if (_equals_5) {
+                double _plus_8 = (currentAngle + angle);
+                double _cos_2 = Math.cos(_plus_8);
+                double _divide_3 = (r / 2.0);
+                double _multiply_6 = (_cos_2 * _divide_3);
+                double _plus_9 = (currentX + _multiply_6);
+                currentX = _plus_9;
+                double _plus_10 = (currentAngle + angle);
+                double _sin_2 = Math.sin(_plus_10);
+                double _multiply_7 = (r * 2.0);
+                double _multiply_8 = (_sin_2 * _multiply_7);
+                double _plus_11 = (currentY + _multiply_8);
+                currentY = _plus_11;
+              } else {
+                String _type_5 = c.getType();
+                boolean _equals_6 = _type_5.equals("easy90");
+                if (_equals_6) {
+                  double _plus_12 = (currentAngle + angle);
+                  double _cos_3 = Math.cos(_plus_12);
+                  double _multiply_9 = (_cos_3 * r);
+                  double _plus_13 = (currentX + _multiply_9);
+                  currentX = _plus_13;
+                  double _plus_14 = (currentAngle + angle);
+                  double _sin_3 = Math.sin(_plus_14);
+                  double _multiply_10 = (_sin_3 * r);
+                  double _plus_15 = (currentY + _multiply_10);
+                  currentY = _plus_15;
+                }
+              }
+            }
+          }
+          double _multiply_11 = (angle * 2);
+          double _plus_16 = (currentAngle + _multiply_11);
+          currentAngle = _plus_16;
+        } else {
+          boolean _notEquals_1 = (!Objects.equal(s, null));
+          if (_notEquals_1) {
+            double _cos_4 = Math.cos(currentAngle);
+            int _length = s.getLength();
+            double _multiply_12 = (_cos_4 * _length);
+            double _plus_17 = (currentX + _multiply_12);
+            currentX = _plus_17;
+            double _sin_4 = Math.sin(currentAngle);
+            int _length_1 = s.getLength();
+            double _multiply_13 = (_sin_4 * _length_1);
+            double _plus_18 = (currentY + _multiply_13);
+            currentY = _plus_18;
+          }
+        }
+      }
+    }
+    double _pow = Math.pow(currentX, 2);
+    double _pow_1 = Math.pow(currentY, 2);
+    double _plus = (_pow + _pow_1);
+    double _sqrt = Math.sqrt(_plus);
+    distance = _sqrt;
+    boolean _greaterEqualsThan = (distance >= 0.5);
+    if (_greaterEqualsThan) {
+      int _intValue = Double.valueOf(distance).intValue();
+      String _plus_1 = ("End of Track does not meet start! End of track is" + Integer.valueOf(_intValue));
+      String _plus_2 = (_plus_1 + Integer.valueOf(1));
+      String _plus_3 = (_plus_2 + "m from the start.");
+      EStructuralFeature _eStructuralFeature = Literals.ROLLER_COASTER.getEStructuralFeature("track");
+      this.error(_plus_3, _eStructuralFeature);
+    }
+  }
 }
