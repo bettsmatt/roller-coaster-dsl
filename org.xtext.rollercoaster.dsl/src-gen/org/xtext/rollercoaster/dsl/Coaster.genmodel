@@ -14,12 +14,17 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//RollerCoaster/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coaster.ecore#//RollerCoaster/track"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coaster.ecore#//RollerCoaster/cart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//RollerCoaster/trackUnitLength"/>
     </genClasses>
-    <genClasses ecoreClass="Coaster.ecore#//Track">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Track/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Track/length"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Track/elevationChange"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coaster.ecore#//Track/angle"/>
+    <genClasses ecoreClass="Coaster.ecore#//Straight">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Straight/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Straight/length"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Straight/elevationChange"/>
+    </genClasses>
+    <genClasses ecoreClass="Coaster.ecore#//Corner">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Corner/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Corner/direction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Corner/type"/>
     </genClasses>
     <genClasses ecoreClass="Coaster.ecore#//Cart">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Cart/name"/>

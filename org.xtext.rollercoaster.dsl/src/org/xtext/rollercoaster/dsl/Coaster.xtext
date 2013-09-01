@@ -8,13 +8,17 @@ Model:
 	
 	
 RollerCoaster:
-	name=ID
-	track += Track*
-	cart += Cart*;	
+	'RollerCoaster' name=ID
+	track += (Straight|Corner)*
+	cart += Cart*
+	trackUnitLength=INT;	
 
 	
-Track:
-	'Track' name=ID length=INT (elevationChange=INT)? (angle=SignedInt)? ;
+Straight:
+	'Straight' name=ID length=INT (elevationChange=INT)?;
+
+Corner:
+	'Corner' name=ID direction=('left'|'right') type=('sharp45'|'sharp90'|'easy45'|'easy90');
 
 Cart:
 	'Cart' name=ID;

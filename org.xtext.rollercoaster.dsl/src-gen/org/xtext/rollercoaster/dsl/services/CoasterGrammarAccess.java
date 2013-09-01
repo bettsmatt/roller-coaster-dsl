@@ -37,61 +37,79 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 	public class RollerCoasterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RollerCoaster");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Assignment cTrackAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTrackTrackParserRuleCall_1_0 = (RuleCall)cTrackAssignment_1.eContents().get(0);
-		private final Assignment cCartAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cCartCartParserRuleCall_2_0 = (RuleCall)cCartAssignment_2.eContents().get(0);
+		private final Keyword cRollerCoasterKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cTrackAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cTrackAlternatives_2_0 = (Alternatives)cTrackAssignment_2.eContents().get(0);
+		private final RuleCall cTrackStraightParserRuleCall_2_0_0 = (RuleCall)cTrackAlternatives_2_0.eContents().get(0);
+		private final RuleCall cTrackCornerParserRuleCall_2_0_1 = (RuleCall)cTrackAlternatives_2_0.eContents().get(1);
+		private final Assignment cCartAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cCartCartParserRuleCall_3_0 = (RuleCall)cCartAssignment_3.eContents().get(0);
+		private final Assignment cTrackUnitLengthAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cTrackUnitLengthINTTerminalRuleCall_4_0 = (RuleCall)cTrackUnitLengthAssignment_4.eContents().get(0);
 		
 		//RollerCoaster:
-		//	name=ID track+=Track* cart+=Cart*;
+		//	"RollerCoaster" name=ID track+=(Straight | Corner)* cart+=Cart* trackUnitLength=INT;
 		public ParserRule getRule() { return rule; }
 
-		//name=ID track+=Track* cart+=Cart*
+		//"RollerCoaster" name=ID track+=(Straight | Corner)* cart+=Cart* trackUnitLength=INT
 		public Group getGroup() { return cGroup; }
 
+		//"RollerCoaster"
+		public Keyword getRollerCoasterKeyword_0() { return cRollerCoasterKeyword_0; }
+
 		//name=ID
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
-		//track+=Track*
-		public Assignment getTrackAssignment_1() { return cTrackAssignment_1; }
+		//track+=(Straight | Corner)*
+		public Assignment getTrackAssignment_2() { return cTrackAssignment_2; }
 
-		//Track
-		public RuleCall getTrackTrackParserRuleCall_1_0() { return cTrackTrackParserRuleCall_1_0; }
+		//Straight | Corner
+		public Alternatives getTrackAlternatives_2_0() { return cTrackAlternatives_2_0; }
+
+		//Straight
+		public RuleCall getTrackStraightParserRuleCall_2_0_0() { return cTrackStraightParserRuleCall_2_0_0; }
+
+		//Corner
+		public RuleCall getTrackCornerParserRuleCall_2_0_1() { return cTrackCornerParserRuleCall_2_0_1; }
 
 		//cart+=Cart*
-		public Assignment getCartAssignment_2() { return cCartAssignment_2; }
+		public Assignment getCartAssignment_3() { return cCartAssignment_3; }
 
 		//Cart
-		public RuleCall getCartCartParserRuleCall_2_0() { return cCartCartParserRuleCall_2_0; }
+		public RuleCall getCartCartParserRuleCall_3_0() { return cCartCartParserRuleCall_3_0; }
+
+		//trackUnitLength=INT
+		public Assignment getTrackUnitLengthAssignment_4() { return cTrackUnitLengthAssignment_4; }
+
+		//INT
+		public RuleCall getTrackUnitLengthINTTerminalRuleCall_4_0() { return cTrackUnitLengthINTTerminalRuleCall_4_0; }
 	}
 
-	public class TrackElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Track");
+	public class StraightElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Straight");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cTrackKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cStraightKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Assignment cLengthAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cLengthINTTerminalRuleCall_2_0 = (RuleCall)cLengthAssignment_2.eContents().get(0);
 		private final Assignment cElevationChangeAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cElevationChangeINTTerminalRuleCall_3_0 = (RuleCall)cElevationChangeAssignment_3.eContents().get(0);
-		private final Assignment cAngleAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cAngleSignedIntParserRuleCall_4_0 = (RuleCall)cAngleAssignment_4.eContents().get(0);
 		
-		//Track:
-		//	"Track" name=ID length=INT elevationChange=INT? angle=SignedInt?;
+		//Straight:
+		//	"Straight" name=ID length=INT elevationChange=INT?;
 		public ParserRule getRule() { return rule; }
 
-		//"Track" name=ID length=INT elevationChange=INT? angle=SignedInt?
+		//"Straight" name=ID length=INT elevationChange=INT?
 		public Group getGroup() { return cGroup; }
 
-		//"Track"
-		public Keyword getTrackKeyword_0() { return cTrackKeyword_0; }
+		//"Straight"
+		public Keyword getStraightKeyword_0() { return cStraightKeyword_0; }
 
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -110,12 +128,70 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 
 		//INT
 		public RuleCall getElevationChangeINTTerminalRuleCall_3_0() { return cElevationChangeINTTerminalRuleCall_3_0; }
+	}
 
-		//angle=SignedInt?
-		public Assignment getAngleAssignment_4() { return cAngleAssignment_4; }
+	public class CornerElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Corner");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cCornerKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cDirectionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cDirectionAlternatives_2_0 = (Alternatives)cDirectionAssignment_2.eContents().get(0);
+		private final Keyword cDirectionLeftKeyword_2_0_0 = (Keyword)cDirectionAlternatives_2_0.eContents().get(0);
+		private final Keyword cDirectionRightKeyword_2_0_1 = (Keyword)cDirectionAlternatives_2_0.eContents().get(1);
+		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Alternatives cTypeAlternatives_3_0 = (Alternatives)cTypeAssignment_3.eContents().get(0);
+		private final Keyword cTypeSharp45Keyword_3_0_0 = (Keyword)cTypeAlternatives_3_0.eContents().get(0);
+		private final Keyword cTypeSharp90Keyword_3_0_1 = (Keyword)cTypeAlternatives_3_0.eContents().get(1);
+		private final Keyword cTypeEasy45Keyword_3_0_2 = (Keyword)cTypeAlternatives_3_0.eContents().get(2);
+		private final Keyword cTypeEasy90Keyword_3_0_3 = (Keyword)cTypeAlternatives_3_0.eContents().get(3);
+		
+		//Corner:
+		//	"Corner" name=ID direction=("left" | "right") type=("sharp45" | "sharp90" | "easy45" | "easy90");
+		public ParserRule getRule() { return rule; }
 
-		//SignedInt
-		public RuleCall getAngleSignedIntParserRuleCall_4_0() { return cAngleSignedIntParserRuleCall_4_0; }
+		//"Corner" name=ID direction=("left" | "right") type=("sharp45" | "sharp90" | "easy45" | "easy90")
+		public Group getGroup() { return cGroup; }
+
+		//"Corner"
+		public Keyword getCornerKeyword_0() { return cCornerKeyword_0; }
+
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+
+		//direction=("left" | "right")
+		public Assignment getDirectionAssignment_2() { return cDirectionAssignment_2; }
+
+		//"left" | "right"
+		public Alternatives getDirectionAlternatives_2_0() { return cDirectionAlternatives_2_0; }
+
+		//"left"
+		public Keyword getDirectionLeftKeyword_2_0_0() { return cDirectionLeftKeyword_2_0_0; }
+
+		//"right"
+		public Keyword getDirectionRightKeyword_2_0_1() { return cDirectionRightKeyword_2_0_1; }
+
+		//type=("sharp45" | "sharp90" | "easy45" | "easy90")
+		public Assignment getTypeAssignment_3() { return cTypeAssignment_3; }
+
+		//"sharp45" | "sharp90" | "easy45" | "easy90"
+		public Alternatives getTypeAlternatives_3_0() { return cTypeAlternatives_3_0; }
+
+		//"sharp45"
+		public Keyword getTypeSharp45Keyword_3_0_0() { return cTypeSharp45Keyword_3_0_0; }
+
+		//"sharp90"
+		public Keyword getTypeSharp90Keyword_3_0_1() { return cTypeSharp90Keyword_3_0_1; }
+
+		//"easy45"
+		public Keyword getTypeEasy45Keyword_3_0_2() { return cTypeEasy45Keyword_3_0_2; }
+
+		//"easy90"
+		public Keyword getTypeEasy90Keyword_3_0_3() { return cTypeEasy90Keyword_3_0_3; }
 	}
 
 	public class CartElements extends AbstractParserRuleElementFinder {
@@ -173,7 +249,8 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private ModelElements pModel;
 	private RollerCoasterElements pRollerCoaster;
-	private TrackElements pTrack;
+	private StraightElements pStraight;
+	private CornerElements pCorner;
 	private CartElements pCart;
 	private SignedIntElements pSignedInt;
 	
@@ -226,7 +303,7 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RollerCoaster:
-	//	name=ID track+=Track* cart+=Cart*;
+	//	"RollerCoaster" name=ID track+=(Straight | Corner)* cart+=Cart* trackUnitLength=INT;
 	public RollerCoasterElements getRollerCoasterAccess() {
 		return (pRollerCoaster != null) ? pRollerCoaster : (pRollerCoaster = new RollerCoasterElements());
 	}
@@ -235,14 +312,24 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 		return getRollerCoasterAccess().getRule();
 	}
 
-	//Track:
-	//	"Track" name=ID length=INT elevationChange=INT? angle=SignedInt?;
-	public TrackElements getTrackAccess() {
-		return (pTrack != null) ? pTrack : (pTrack = new TrackElements());
+	//Straight:
+	//	"Straight" name=ID length=INT elevationChange=INT?;
+	public StraightElements getStraightAccess() {
+		return (pStraight != null) ? pStraight : (pStraight = new StraightElements());
 	}
 	
-	public ParserRule getTrackRule() {
-		return getTrackAccess().getRule();
+	public ParserRule getStraightRule() {
+		return getStraightAccess().getRule();
+	}
+
+	//Corner:
+	//	"Corner" name=ID direction=("left" | "right") type=("sharp45" | "sharp90" | "easy45" | "easy90");
+	public CornerElements getCornerAccess() {
+		return (pCorner != null) ? pCorner : (pCorner = new CornerElements());
+	}
+	
+	public ParserRule getCornerRule() {
+		return getCornerAccess().getRule();
 	}
 
 	//Cart:

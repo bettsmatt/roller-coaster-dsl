@@ -122,23 +122,32 @@ public interface CoasterPackage extends EPackage
   int ROLLER_COASTER__CART = 2;
 
   /**
+   * The feature id for the '<em><b>Track Unit Length</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLLER_COASTER__TRACK_UNIT_LENGTH = 3;
+
+  /**
    * The number of structural features of the '<em>Roller Coaster</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ROLLER_COASTER_FEATURE_COUNT = 3;
+  int ROLLER_COASTER_FEATURE_COUNT = 4;
 
   /**
-   * The meta object id for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.TrackImpl <em>Track</em>}' class.
+   * The meta object id for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.StraightImpl <em>Straight</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.rollercoaster.dsl.coaster.impl.TrackImpl
-   * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getTrack()
+   * @see org.xtext.rollercoaster.dsl.coaster.impl.StraightImpl
+   * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getStraight()
    * @generated
    */
-  int TRACK = 2;
+  int STRAIGHT = 2;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -147,7 +156,7 @@ public interface CoasterPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TRACK__NAME = 0;
+  int STRAIGHT__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -156,7 +165,7 @@ public interface CoasterPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TRACK__LENGTH = 1;
+  int STRAIGHT__LENGTH = 1;
 
   /**
    * The feature id for the '<em><b>Elevation Change</b></em>' attribute.
@@ -165,25 +174,62 @@ public interface CoasterPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TRACK__ELEVATION_CHANGE = 2;
+  int STRAIGHT__ELEVATION_CHANGE = 2;
 
   /**
-   * The feature id for the '<em><b>Angle</b></em>' containment reference.
+   * The number of structural features of the '<em>Straight</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TRACK__ANGLE = 3;
+  int STRAIGHT_FEATURE_COUNT = 3;
 
   /**
-   * The number of structural features of the '<em>Track</em>' class.
+   * The meta object id for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.CornerImpl <em>Corner</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.rollercoaster.dsl.coaster.impl.CornerImpl
+   * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getCorner()
+   * @generated
+   */
+  int CORNER = 3;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TRACK_FEATURE_COUNT = 4;
+  int CORNER__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Direction</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CORNER__DIRECTION = 1;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CORNER__TYPE = 2;
+
+  /**
+   * The number of structural features of the '<em>Corner</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CORNER_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.CartImpl <em>Cart</em>}' class.
@@ -193,7 +239,7 @@ public interface CoasterPackage extends EPackage
    * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getCart()
    * @generated
    */
-  int CART = 3;
+  int CART = 4;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -221,7 +267,7 @@ public interface CoasterPackage extends EPackage
    * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getSignedInt()
    * @generated
    */
-  int SIGNED_INT = 4;
+  int SIGNED_INT = 5;
 
   /**
    * The feature id for the '<em><b>Sign</b></em>' attribute.
@@ -316,58 +362,101 @@ public interface CoasterPackage extends EPackage
   EReference getRollerCoaster_Cart();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.rollercoaster.dsl.coaster.Track <em>Track</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTrackUnitLength <em>Track Unit Length</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Track</em>'.
-   * @see org.xtext.rollercoaster.dsl.coaster.Track
+   * @return the meta object for the attribute '<em>Track Unit Length</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTrackUnitLength()
+   * @see #getRollerCoaster()
    * @generated
    */
-  EClass getTrack();
+  EAttribute getRollerCoaster_TrackUnitLength();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Track#getName <em>Name</em>}'.
+   * Returns the meta object for class '{@link org.xtext.rollercoaster.dsl.coaster.Straight <em>Straight</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Straight</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Straight
+   * @generated
+   */
+  EClass getStraight();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Straight#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.rollercoaster.dsl.coaster.Track#getName()
-   * @see #getTrack()
+   * @see org.xtext.rollercoaster.dsl.coaster.Straight#getName()
+   * @see #getStraight()
    * @generated
    */
-  EAttribute getTrack_Name();
+  EAttribute getStraight_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Track#getLength <em>Length</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Straight#getLength <em>Length</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Length</em>'.
-   * @see org.xtext.rollercoaster.dsl.coaster.Track#getLength()
-   * @see #getTrack()
+   * @see org.xtext.rollercoaster.dsl.coaster.Straight#getLength()
+   * @see #getStraight()
    * @generated
    */
-  EAttribute getTrack_Length();
+  EAttribute getStraight_Length();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Track#getElevationChange <em>Elevation Change</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Straight#getElevationChange <em>Elevation Change</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Elevation Change</em>'.
-   * @see org.xtext.rollercoaster.dsl.coaster.Track#getElevationChange()
-   * @see #getTrack()
+   * @see org.xtext.rollercoaster.dsl.coaster.Straight#getElevationChange()
+   * @see #getStraight()
    * @generated
    */
-  EAttribute getTrack_ElevationChange();
+  EAttribute getStraight_ElevationChange();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.rollercoaster.dsl.coaster.Track#getAngle <em>Angle</em>}'.
+   * Returns the meta object for class '{@link org.xtext.rollercoaster.dsl.coaster.Corner <em>Corner</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Angle</em>'.
-   * @see org.xtext.rollercoaster.dsl.coaster.Track#getAngle()
-   * @see #getTrack()
+   * @return the meta object for class '<em>Corner</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Corner
    * @generated
    */
-  EReference getTrack_Angle();
+  EClass getCorner();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Corner#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Corner#getName()
+   * @see #getCorner()
+   * @generated
+   */
+  EAttribute getCorner_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Corner#getDirection <em>Direction</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Direction</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Corner#getDirection()
+   * @see #getCorner()
+   * @generated
+   */
+  EAttribute getCorner_Direction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Corner#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Corner#getType()
+   * @see #getCorner()
+   * @generated
+   */
+  EAttribute getCorner_Type();
 
   /**
    * Returns the meta object for class '{@link org.xtext.rollercoaster.dsl.coaster.Cart <em>Cart</em>}'.
@@ -498,14 +587,22 @@ public interface CoasterPackage extends EPackage
     EReference ROLLER_COASTER__CART = eINSTANCE.getRollerCoaster_Cart();
 
     /**
-     * The meta object literal for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.TrackImpl <em>Track</em>}' class.
+     * The meta object literal for the '<em><b>Track Unit Length</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.rollercoaster.dsl.coaster.impl.TrackImpl
-     * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getTrack()
      * @generated
      */
-    EClass TRACK = eINSTANCE.getTrack();
+    EAttribute ROLLER_COASTER__TRACK_UNIT_LENGTH = eINSTANCE.getRollerCoaster_TrackUnitLength();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.StraightImpl <em>Straight</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.rollercoaster.dsl.coaster.impl.StraightImpl
+     * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getStraight()
+     * @generated
+     */
+    EClass STRAIGHT = eINSTANCE.getStraight();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -513,7 +610,7 @@ public interface CoasterPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute TRACK__NAME = eINSTANCE.getTrack_Name();
+    EAttribute STRAIGHT__NAME = eINSTANCE.getStraight_Name();
 
     /**
      * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
@@ -521,7 +618,7 @@ public interface CoasterPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute TRACK__LENGTH = eINSTANCE.getTrack_Length();
+    EAttribute STRAIGHT__LENGTH = eINSTANCE.getStraight_Length();
 
     /**
      * The meta object literal for the '<em><b>Elevation Change</b></em>' attribute feature.
@@ -529,15 +626,41 @@ public interface CoasterPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute TRACK__ELEVATION_CHANGE = eINSTANCE.getTrack_ElevationChange();
+    EAttribute STRAIGHT__ELEVATION_CHANGE = eINSTANCE.getStraight_ElevationChange();
 
     /**
-     * The meta object literal for the '<em><b>Angle</b></em>' containment reference feature.
+     * The meta object literal for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.CornerImpl <em>Corner</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.rollercoaster.dsl.coaster.impl.CornerImpl
+     * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getCorner()
+     * @generated
+     */
+    EClass CORNER = eINSTANCE.getCorner();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference TRACK__ANGLE = eINSTANCE.getTrack_Angle();
+    EAttribute CORNER__NAME = eINSTANCE.getCorner_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Direction</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CORNER__DIRECTION = eINSTANCE.getCorner_Direction();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CORNER__TYPE = eINSTANCE.getCorner_Type();
 
     /**
      * The meta object literal for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.CartImpl <em>Cart</em>}' class.

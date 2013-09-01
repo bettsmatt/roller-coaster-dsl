@@ -37,18 +37,25 @@ public class CoasterParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getRollerCoasterAccess().getTrackAlternatives_2_0(), "rule__RollerCoaster__TrackAlternatives_2_0");
+					put(grammarAccess.getCornerAccess().getDirectionAlternatives_2_0(), "rule__Corner__DirectionAlternatives_2_0");
+					put(grammarAccess.getCornerAccess().getTypeAlternatives_3_0(), "rule__Corner__TypeAlternatives_3_0");
 					put(grammarAccess.getRollerCoasterAccess().getGroup(), "rule__RollerCoaster__Group__0");
-					put(grammarAccess.getTrackAccess().getGroup(), "rule__Track__Group__0");
+					put(grammarAccess.getStraightAccess().getGroup(), "rule__Straight__Group__0");
+					put(grammarAccess.getCornerAccess().getGroup(), "rule__Corner__Group__0");
 					put(grammarAccess.getCartAccess().getGroup(), "rule__Cart__Group__0");
 					put(grammarAccess.getSignedIntAccess().getGroup(), "rule__SignedInt__Group__0");
 					put(grammarAccess.getModelAccess().getRollerCoasterAssignment(), "rule__Model__RollerCoasterAssignment");
-					put(grammarAccess.getRollerCoasterAccess().getNameAssignment_0(), "rule__RollerCoaster__NameAssignment_0");
-					put(grammarAccess.getRollerCoasterAccess().getTrackAssignment_1(), "rule__RollerCoaster__TrackAssignment_1");
-					put(grammarAccess.getRollerCoasterAccess().getCartAssignment_2(), "rule__RollerCoaster__CartAssignment_2");
-					put(grammarAccess.getTrackAccess().getNameAssignment_1(), "rule__Track__NameAssignment_1");
-					put(grammarAccess.getTrackAccess().getLengthAssignment_2(), "rule__Track__LengthAssignment_2");
-					put(grammarAccess.getTrackAccess().getElevationChangeAssignment_3(), "rule__Track__ElevationChangeAssignment_3");
-					put(grammarAccess.getTrackAccess().getAngleAssignment_4(), "rule__Track__AngleAssignment_4");
+					put(grammarAccess.getRollerCoasterAccess().getNameAssignment_1(), "rule__RollerCoaster__NameAssignment_1");
+					put(grammarAccess.getRollerCoasterAccess().getTrackAssignment_2(), "rule__RollerCoaster__TrackAssignment_2");
+					put(grammarAccess.getRollerCoasterAccess().getCartAssignment_3(), "rule__RollerCoaster__CartAssignment_3");
+					put(grammarAccess.getRollerCoasterAccess().getTrackUnitLengthAssignment_4(), "rule__RollerCoaster__TrackUnitLengthAssignment_4");
+					put(grammarAccess.getStraightAccess().getNameAssignment_1(), "rule__Straight__NameAssignment_1");
+					put(grammarAccess.getStraightAccess().getLengthAssignment_2(), "rule__Straight__LengthAssignment_2");
+					put(grammarAccess.getStraightAccess().getElevationChangeAssignment_3(), "rule__Straight__ElevationChangeAssignment_3");
+					put(grammarAccess.getCornerAccess().getNameAssignment_1(), "rule__Corner__NameAssignment_1");
+					put(grammarAccess.getCornerAccess().getDirectionAssignment_2(), "rule__Corner__DirectionAssignment_2");
+					put(grammarAccess.getCornerAccess().getTypeAssignment_3(), "rule__Corner__TypeAssignment_3");
 					put(grammarAccess.getCartAccess().getNameAssignment_1(), "rule__Cart__NameAssignment_1");
 					put(grammarAccess.getSignedIntAccess().getSignAssignment_0(), "rule__SignedInt__SignAssignment_0");
 					put(grammarAccess.getSignedIntAccess().getValueAssignment_1(), "rule__SignedInt__ValueAssignment_1");

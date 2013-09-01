@@ -41,13 +41,22 @@ public interface CoasterFactory extends EFactory
   RollerCoaster createRollerCoaster();
 
   /**
-   * Returns a new object of class '<em>Track</em>'.
+   * Returns a new object of class '<em>Straight</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Track</em>'.
+   * @return a new object of class '<em>Straight</em>'.
    * @generated
    */
-  Track createTrack();
+  Straight createStraight();
+
+  /**
+   * Returns a new object of class '<em>Corner</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Corner</em>'.
+   * @generated
+   */
+  Corner createCorner();
 
   /**
    * Returns a new object of class '<em>Cart</em>'.
