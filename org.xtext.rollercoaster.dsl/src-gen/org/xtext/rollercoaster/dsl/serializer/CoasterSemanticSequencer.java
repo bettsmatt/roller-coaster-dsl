@@ -15,10 +15,11 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.rollercoaster.dsl.coaster.Cart;
 import org.xtext.rollercoaster.dsl.coaster.CoasterPackage;
+import org.xtext.rollercoaster.dsl.coaster.Corner;
 import org.xtext.rollercoaster.dsl.coaster.Model;
 import org.xtext.rollercoaster.dsl.coaster.RollerCoaster;
 import org.xtext.rollercoaster.dsl.coaster.SignedInt;
-import org.xtext.rollercoaster.dsl.coaster.Track;
+import org.xtext.rollercoaster.dsl.coaster.Straight;
 import org.xtext.rollercoaster.dsl.services.CoasterGrammarAccess;
 
 @SuppressWarnings("all")
@@ -32,6 +33,12 @@ public class CoasterSemanticSequencer extends AbstractDelegatingSemanticSequence
 			case CoasterPackage.CART:
 				if(context == grammarAccess.getCartRule()) {
 					sequence_Cart(context, (Cart) semanticObject); 
+					return; 
+				}
+				else break;
+			case CoasterPackage.CORNER:
+				if(context == grammarAccess.getCornerRule()) {
+					sequence_Corner(context, (Corner) semanticObject); 
 					return; 
 				}
 				else break;
@@ -53,9 +60,9 @@ public class CoasterSemanticSequencer extends AbstractDelegatingSemanticSequence
 					return; 
 				}
 				else break;
-			case CoasterPackage.TRACK:
-				if(context == grammarAccess.getTrackRule()) {
-					sequence_Track(context, (Track) semanticObject); 
+			case CoasterPackage.STRAIGHT:
+				if(context == grammarAccess.getStraightRule()) {
+					sequence_Straight(context, (Straight) semanticObject); 
 					return; 
 				}
 				else break;
@@ -81,6 +88,15 @@ public class CoasterSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
+	 *     (name=ID (direction='left' | direction='right') (type='sharp45' | type='sharp90' | type='easy45' | type='easy90'))
+	 */
+	protected void sequence_Corner(EObject context, Corner semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     rollerCoaster+=RollerCoaster
 	 */
 	protected void sequence_Model(EObject context, Model semanticObject) {
@@ -90,7 +106,7 @@ public class CoasterSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=ID track+=Track* cart+=Cart*)
+	 *     (name=ID (track+=Straight | track+=Corner)* cart+=Cart* trackUnitLength=INT)
 	 */
 	protected void sequence_RollerCoaster(EObject context, RollerCoaster semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -108,9 +124,9 @@ public class CoasterSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=ID length=INT elevationChange=INT? angle=SignedInt?)
+	 *     (name=ID length=INT elevationChange=INT?)
 	 */
-	protected void sequence_Track(EObject context, Track semanticObject) {
+	protected void sequence_Straight(EObject context, Straight semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 }

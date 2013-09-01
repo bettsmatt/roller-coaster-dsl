@@ -66,7 +66,8 @@ public class CoasterFactoryImpl extends EFactoryImpl implements CoasterFactory
     {
       case CoasterPackage.MODEL: return createModel();
       case CoasterPackage.ROLLER_COASTER: return createRollerCoaster();
-      case CoasterPackage.TRACK: return createTrack();
+      case CoasterPackage.STRAIGHT: return createStraight();
+      case CoasterPackage.CORNER: return createCorner();
       case CoasterPackage.CART: return createCart();
       case CoasterPackage.SIGNED_INT: return createSignedInt();
       default:
@@ -101,10 +102,21 @@ public class CoasterFactoryImpl extends EFactoryImpl implements CoasterFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Track createTrack()
+  public Straight createStraight()
   {
-    TrackImpl track = new TrackImpl();
-    return track;
+    StraightImpl straight = new StraightImpl();
+    return straight;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Corner createCorner()
+  {
+    CornerImpl corner = new CornerImpl();
+    return corner;
   }
 
   /**

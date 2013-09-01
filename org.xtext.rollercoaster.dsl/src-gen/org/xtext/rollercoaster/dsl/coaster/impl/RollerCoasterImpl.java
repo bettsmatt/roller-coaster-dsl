@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -21,7 +22,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.xtext.rollercoaster.dsl.coaster.Cart;
 import org.xtext.rollercoaster.dsl.coaster.CoasterPackage;
 import org.xtext.rollercoaster.dsl.coaster.RollerCoaster;
-import org.xtext.rollercoaster.dsl.coaster.Track;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,6 +33,7 @@ import org.xtext.rollercoaster.dsl.coaster.Track;
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl#getTrack <em>Track</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl#getCart <em>Cart</em>}</li>
+ *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl#getTrackUnitLength <em>Track Unit Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,7 +69,7 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
    * @generated
    * @ordered
    */
-  protected EList<Track> track;
+  protected EList<EObject> track;
 
   /**
    * The cached value of the '{@link #getCart() <em>Cart</em>}' containment reference list.
@@ -79,6 +80,26 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
    * @ordered
    */
   protected EList<Cart> cart;
+
+  /**
+   * The default value of the '{@link #getTrackUnitLength() <em>Track Unit Length</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTrackUnitLength()
+   * @generated
+   * @ordered
+   */
+  protected static final int TRACK_UNIT_LENGTH_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getTrackUnitLength() <em>Track Unit Length</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTrackUnitLength()
+   * @generated
+   * @ordered
+   */
+  protected int trackUnitLength = TRACK_UNIT_LENGTH_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -129,11 +150,11 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Track> getTrack()
+  public EList<EObject> getTrack()
   {
     if (track == null)
     {
-      track = new EObjectContainmentEList<Track>(Track.class, this, CoasterPackage.ROLLER_COASTER__TRACK);
+      track = new EObjectContainmentEList<EObject>(EObject.class, this, CoasterPackage.ROLLER_COASTER__TRACK);
     }
     return track;
   }
@@ -150,6 +171,29 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
       cart = new EObjectContainmentEList<Cart>(Cart.class, this, CoasterPackage.ROLLER_COASTER__CART);
     }
     return cart;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public int getTrackUnitLength()
+  {
+    return trackUnitLength;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTrackUnitLength(int newTrackUnitLength)
+  {
+    int oldTrackUnitLength = trackUnitLength;
+    trackUnitLength = newTrackUnitLength;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, CoasterPackage.ROLLER_COASTER__TRACK_UNIT_LENGTH, oldTrackUnitLength, trackUnitLength));
   }
 
   /**
@@ -186,6 +230,8 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
         return getTrack();
       case CoasterPackage.ROLLER_COASTER__CART:
         return getCart();
+      case CoasterPackage.ROLLER_COASTER__TRACK_UNIT_LENGTH:
+        return getTrackUnitLength();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -206,11 +252,14 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
         return;
       case CoasterPackage.ROLLER_COASTER__TRACK:
         getTrack().clear();
-        getTrack().addAll((Collection<? extends Track>)newValue);
+        getTrack().addAll((Collection<? extends EObject>)newValue);
         return;
       case CoasterPackage.ROLLER_COASTER__CART:
         getCart().clear();
         getCart().addAll((Collection<? extends Cart>)newValue);
+        return;
+      case CoasterPackage.ROLLER_COASTER__TRACK_UNIT_LENGTH:
+        setTrackUnitLength((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -235,6 +284,9 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
       case CoasterPackage.ROLLER_COASTER__CART:
         getCart().clear();
         return;
+      case CoasterPackage.ROLLER_COASTER__TRACK_UNIT_LENGTH:
+        setTrackUnitLength(TRACK_UNIT_LENGTH_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -255,6 +307,8 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
         return track != null && !track.isEmpty();
       case CoasterPackage.ROLLER_COASTER__CART:
         return cart != null && !cart.isEmpty();
+      case CoasterPackage.ROLLER_COASTER__TRACK_UNIT_LENGTH:
+        return trackUnitLength != TRACK_UNIT_LENGTH_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -272,6 +326,8 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", trackUnitLength: ");
+    result.append(trackUnitLength);
     result.append(')');
     return result.toString();
   }

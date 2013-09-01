@@ -86,10 +86,17 @@ public class CoasterSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case CoasterPackage.TRACK:
+      case CoasterPackage.STRAIGHT:
       {
-        Track track = (Track)theEObject;
-        T result = caseTrack(track);
+        Straight straight = (Straight)theEObject;
+        T result = caseStraight(straight);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CoasterPackage.CORNER:
+      {
+        Corner corner = (Corner)theEObject;
+        T result = caseCorner(corner);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -144,17 +151,33 @@ public class CoasterSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Track</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Straight</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Track</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Straight</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTrack(Track object)
+  public T caseStraight(Straight object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Corner</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Corner</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCorner(Corner object)
   {
     return null;
   }

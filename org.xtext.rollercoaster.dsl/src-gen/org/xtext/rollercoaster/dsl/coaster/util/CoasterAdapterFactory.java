@@ -85,9 +85,14 @@ public class CoasterAdapterFactory extends AdapterFactoryImpl
         return createRollerCoasterAdapter();
       }
       @Override
-      public Adapter caseTrack(Track object)
+      public Adapter caseStraight(Straight object)
       {
-        return createTrackAdapter();
+        return createStraightAdapter();
+      }
+      @Override
+      public Adapter caseCorner(Corner object)
+      {
+        return createCornerAdapter();
       }
       @Override
       public Adapter caseCart(Cart object)
@@ -152,16 +157,31 @@ public class CoasterAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.rollercoaster.dsl.coaster.Track <em>Track</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.rollercoaster.dsl.coaster.Straight <em>Straight</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.rollercoaster.dsl.coaster.Track
+   * @see org.xtext.rollercoaster.dsl.coaster.Straight
    * @generated
    */
-  public Adapter createTrackAdapter()
+  public Adapter createStraightAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.rollercoaster.dsl.coaster.Corner <em>Corner</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.rollercoaster.dsl.coaster.Corner
+   * @generated
+   */
+  public Adapter createCornerAdapter()
   {
     return null;
   }

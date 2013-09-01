@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTrack <em>Track</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getCart <em>Cart</em>}</li>
+ *   <li>{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTrackUnitLength <em>Track Unit Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,7 +55,7 @@ public interface RollerCoaster extends EObject
 
   /**
    * Returns the value of the '<em><b>Track</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.rollercoaster.dsl.coaster.Track}.
+   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Track</em>' containment reference list isn't clear,
@@ -66,7 +67,7 @@ public interface RollerCoaster extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<Track> getTrack();
+  EList<EObject> getTrack();
 
   /**
    * Returns the value of the '<em><b>Cart</b></em>' containment reference list.
@@ -83,5 +84,31 @@ public interface RollerCoaster extends EObject
    * @generated
    */
   EList<Cart> getCart();
+
+  /**
+   * Returns the value of the '<em><b>Track Unit Length</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Track Unit Length</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Track Unit Length</em>' attribute.
+   * @see #setTrackUnitLength(int)
+   * @see org.xtext.rollercoaster.dsl.coaster.CoasterPackage#getRollerCoaster_TrackUnitLength()
+   * @model
+   * @generated
+   */
+  int getTrackUnitLength();
+
+  /**
+   * Sets the value of the '{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTrackUnitLength <em>Track Unit Length</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Track Unit Length</em>' attribute.
+   * @see #getTrackUnitLength()
+   * @generated
+   */
+  void setTrackUnitLength(int value);
 
 } // RollerCoaster
