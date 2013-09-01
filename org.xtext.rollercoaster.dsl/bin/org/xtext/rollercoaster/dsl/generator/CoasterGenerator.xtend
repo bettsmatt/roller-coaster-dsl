@@ -11,6 +11,8 @@ import java.util.Date
 import org.eclipse.emf.ecore.EObject
 import org.xtext.rollercoaster.dsl.coaster.Straight
 import org.xtext.rollercoaster.dsl.coaster.Corner
+import org.rollercoaster.utils.Costs
+import org.rollercoaster.utils.Descriptions
 
 /**
  * Generates code from your model files on save.
@@ -22,14 +24,11 @@ class CoasterGenerator implements IGenerator {
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 	
-	  	// Generate a example java file
-	  	//fsa.generateFile("Track" + ".java", compile(resource.allContents.toIterable.filter(Track)))
+		resource.allContents.toIterable.filter(RollerCoaster).forEach[ rc | 
+			fsa.generateFile(rc.name + ".html", genReport(rc));
+		]
 		
-		// Generate a text file report
-		fsa.generateFile("RollerCoasterReport" + ".html", genReport(resource.allContents.toIterable.filter(RollerCoaster).head));
-
 	}
-	
 	
 	/**
 	 * Generate an html report of the coasters stats
@@ -44,11 +43,35 @@ class CoasterGenerator implements IGenerator {
 		'''
 		<html>
 			<body>
-				<h1>Roller Coaster report for the « rc.name » roller coaster on the  « new Date() »</h1>
+				<h4>Roller Coaster report for the « rc.name » roller coaster on the  « new Date() »</h4>
 				<p>Number of Pieces of track 	: « rc.track.length »</p>
-				<p>Number of Carts 			: « rc.cart.length»</p>
+				<p>Number of Carts 				: « rc.cart.length»</p>
+				<h4>Itemized Cost of Track</h4>
+				<ul> 
+					« val listOfStraight = rc.track.filter[t | t instanceof Straight ]»
+					« IF listOfStraight.length > 0 »
+						« val head = listOfStraight.head »
+						<li> « Descriptions.getShort(head) » : « Costs.get(head) » * « listOfStraight.length » : « Costs.get(head) * listOfStraight.length » </li>
+					« ENDIF »
+					
+					« val listOfCorner = rc.track.filter[t | t instanceof Corner ]»
+					« IF listOfCorner.length > 0 »
+						« val head = listOfCorner.head »
+						<li> « Descriptions.getShort(head) » : « Costs.get(head) » * « listOfCorner.length » : « Costs.get(head) * listOfCorner.length » </li>
+					« ENDIF »
+					
+					<li> Total Track Cost : «rc.track.fold(0.00)[seed,item | seed + Costs.get(item)]»</li>
+					
+				</ul>
 				
-				<h1> Rendering of the track </h1>
+				<h4>Itemized Cost of Carts</h4> 
+				<ul> 
+					« FOR o: rc.cart »
+						<li> « Descriptions.getShort(o) » : « Costs.get(o) » </li>
+					« ENDFOR »
+					<li> Total : «rc.cart.fold(0.00)[seed,item | seed + Costs.get(item)]»</li>
+				</ul>
+				<h4> Sample rendering of the track </h4>
   				« getPathForTrack (rc.track)»
 			</body>
 		</html>	
@@ -72,10 +95,10 @@ class CoasterGenerator implements IGenerator {
 			// Find out what type of track we are dealing with
 			path = path + switch trackPiece {
 		
-				// Straight Track
+				/*
+				 * Straight Track
+				 */
 				Straight: {
-					println("Straight Piece of Track");
-					println(currentAngle);
 					
 					// Calculate the end position
 					val length = trackPiece.length;
@@ -88,68 +111,65 @@ class CoasterGenerator implements IGenerator {
 					
 				}
 				
+				/*
+				 * Cornered Track
+				 */
 				Corner: {
 				
-				// For now with all corners we are going to fix arc size at 100.
-				var arcSize = " 0 0 ";
-				
-				// -1 for anticlockwise and 1 for clockwise
-				val modifier = switch trackPiece.direction {
-					case 'left': -1 
-					case 'right': 1
-				};
-				
-				val flags = switch trackPiece.direction {
-					case 'left':  " 0 0 1 "
-					case 'right': " 0 0 0 "
-				}
-
-				var x = 0;
-				var y = 0;
-				var angle = 0.0;
-				
-				// Work out the distances
-				switch trackPiece.type {
-					case 'sharp45': {
-						x = 25;
-						y = 50;
-						angle = 22.5;
-						arcSize = " 50 50 ";
-					} case 'sharp90': {
-						x = 50;
-						y = 50;
-						angle = 45;
-						arcSize = " 50 50 ";
-					} case 'easy45': {
-						x = 50;
-						y = 100;
-						angle = 22.5;
-						arcSize = " 100 100 ";
-					} case 'easy90': {
-						x = 100;
-						y = 100;
-						angle = 45;
-						arcSize = " 100 100 ";
+					// For now with all corners we are going to fix arc size at 100.
+					var arcSize = " 0 0 ";
+					
+					// -1 for anti-clockwise and 1 for clockwise
+					val modifier = switch trackPiece.direction {
+						case 'left': -1 
+						case 'right': 1
+					};
+					
+					// Flags for the direction of the arc
+					val flags = switch trackPiece.direction {
+						case 'left':  " 0 0 1 "
+						case 'right': " 0 0 0 "
 					}
-				}
-				
-				println(trackPiece.type + ", X:" + x + ", Y:" + y + ", A "+angle);
-				
-				// Rotate end points around the current angle, modifier controls the direction
-				val endX = Math.sin(Math.toRadians((modifier * angle) + currentAngle)) *  Math.sqrt(x * x + y * y);
-				val endY = Math.cos(Math.toRadians((modifier * angle) + currentAngle)) *  Math.sqrt(x * x + y * y);
-				
-				println("End X:" + endX + ", EndY:" + endY);
-				
-				// Set the new angle
-				currentAngle = currentAngle + (angle * 2 * modifier);
-				
-				println("Corner");
-				
-				var arc = " a " + arcSize + " "+ flags + " " + endX + " " + endY + " ";
-				println(arc);
-				arc;
-
+	
+					// Work out where the curve will end up
+					var x = 0;
+					var y = 0;
+					var angle = 0.0;
+		
+					switch trackPiece.type {
+						case 'sharp45': {
+							x = 25;
+							y = 50;
+							angle = 22.5;
+							arcSize = " 50 50 ";
+						} case 'sharp90': {
+							x = 50;
+							y = 50;
+							angle = 45;
+							arcSize = " 50 50 ";
+						} case 'easy45': {
+							x = 50;
+							y = 100;
+							angle = 22.5;
+							arcSize = " 100 100 ";
+						} case 'easy90': {
+							x = 100;
+							y = 100;
+							angle = 45;
+							arcSize = " 100 100 ";
+						}
+					}
+					
+					// Rotate end points around the current angle, the modifier controls the direction
+					val endX = Math.sin(Math.toRadians((modifier * angle) + currentAngle)) *  Math.sqrt(x * x + y * y);
+					val endY = Math.cos(Math.toRadians((modifier * angle) + currentAngle)) *  Math.sqrt(x * x + y * y);
+					
+					// Update the coasters angle
+					currentAngle = currentAngle + (angle * 2 * modifier);
+					
+					// Return the arc
+					" a " + arcSize + " "+ flags + " " + endX + " " + endY + " ";
+					
 				}
 				
 			}
