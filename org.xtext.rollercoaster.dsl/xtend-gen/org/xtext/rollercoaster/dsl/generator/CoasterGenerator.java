@@ -102,7 +102,7 @@ public class CoasterGenerator implements IGenerator {
     String _xblockexpression = null;
     {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("<svg width=\"800px\" height=\"600px\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"> ");
+      _builder.append("<svg width=\"2000px\" height=\"2000px\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"> ");
       final String start = _builder.toString();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("<path d=\" M 400 300 ");
@@ -141,7 +141,7 @@ public class CoasterGenerator implements IGenerator {
             _matched=true;
             String _xblockexpression_1 = null;
             {
-              final String arcSize = " 100 100 ";
+              String arcSize = " 0 0 ";
               Integer _switchResult_1 = null;
               String _direction = _corner.getDirection();
               final String _switchValue = _direction;
@@ -189,6 +189,7 @@ public class CoasterGenerator implements IGenerator {
                   x = 25;
                   y = 50;
                   angle = 22.5;
+                  arcSize = " 50 50 ";
                 }
               }
               if (!_matched_3) {
@@ -197,6 +198,7 @@ public class CoasterGenerator implements IGenerator {
                   x = 50;
                   y = 50;
                   angle = 45;
+                  arcSize = " 50 50 ";
                 }
               }
               if (!_matched_3) {
@@ -205,6 +207,7 @@ public class CoasterGenerator implements IGenerator {
                   x = 50;
                   y = 100;
                   angle = 22.5;
+                  arcSize = " 100 100 ";
                 }
               }
               if (!_matched_3) {
@@ -213,6 +216,7 @@ public class CoasterGenerator implements IGenerator {
                   x = 100;
                   y = 100;
                   angle = 45;
+                  arcSize = " 100 100 ";
                 }
               }
               String _type_1 = _corner.getType();
@@ -223,18 +227,18 @@ public class CoasterGenerator implements IGenerator {
               String _plus_4 = (_plus_3 + ", A ");
               String _plus_5 = (_plus_4 + Double.valueOf(angle));
               InputOutput.<String>println(_plus_5);
-              double _plus_6 = (angle + currentAngle);
-              double _multiply = ((modifier).intValue() * _plus_6);
-              double _radians = Math.toRadians(_multiply);
+              double _multiply = ((modifier).intValue() * angle);
+              double _plus_6 = (_multiply + currentAngle);
+              double _radians = Math.toRadians(_plus_6);
               double _sin = Math.sin(_radians);
               int _multiply_1 = (x * x);
               int _multiply_2 = (y * y);
               int _plus_7 = (_multiply_1 + _multiply_2);
               double _sqrt = Math.sqrt(_plus_7);
               final double endX = (_sin * _sqrt);
-              double _plus_8 = (angle + currentAngle);
-              double _multiply_3 = ((modifier).intValue() * _plus_8);
-              double _radians_1 = Math.toRadians(_multiply_3);
+              double _multiply_3 = ((modifier).intValue() * angle);
+              double _plus_8 = (_multiply_3 + currentAngle);
+              double _radians_1 = Math.toRadians(_plus_8);
               double _cos = Math.cos(_radians_1);
               int _multiply_4 = (x * x);
               int _multiply_5 = (y * y);

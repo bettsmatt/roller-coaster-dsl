@@ -59,7 +59,7 @@ class CoasterGenerator implements IGenerator {
 	 */
 	def getPathForTrack (Iterable <EObject> tracks){
 		// The start of the svg
-		val start = '''<svg width="800px" height="600px" version="1.1" xmlns="http://www.w3.org/2000/svg"> '''
+		val start = '''<svg width="2000px" height="2000px" version="1.1" xmlns="http://www.w3.org/2000/svg"> '''
 		val pathStart = '''<path d=" M 400 300 '''
 		
 		var path = "";
@@ -91,7 +91,7 @@ class CoasterGenerator implements IGenerator {
 				Corner: {
 				
 				// For now with all corners we are going to fix arc size at 100.
-				val arcSize = " 100 100 ";
+				var arcSize = " 0 0 ";
 				
 				// -1 for anticlockwise and 1 for clockwise
 				val modifier = switch trackPiece.direction {
@@ -114,26 +114,30 @@ class CoasterGenerator implements IGenerator {
 						x = 25;
 						y = 50;
 						angle = 22.5;
+						arcSize = " 50 50 ";
 					} case 'sharp90': {
 						x = 50;
 						y = 50;
 						angle = 45;
+						arcSize = " 50 50 ";
 					} case 'easy45': {
 						x = 50;
 						y = 100;
 						angle = 22.5;
+						arcSize = " 100 100 ";
 					} case 'easy90': {
 						x = 100;
 						y = 100;
 						angle = 45;
+						arcSize = " 100 100 ";
 					}
 				}
 				
 				println(trackPiece.type + ", X:" + x + ", Y:" + y + ", A "+angle);
 				
 				// Rotate end points around the current angle, modifier controls the direction
-				val endX = Math.sin(Math.toRadians(modifier * (angle + currentAngle))) *  Math.sqrt(x * x + y * y);
-				val endY = Math.cos(Math.toRadians(modifier * (angle + currentAngle))) *  Math.sqrt(x * x + y * y);
+				val endX = Math.sin(Math.toRadians((modifier * angle) + currentAngle)) *  Math.sqrt(x * x + y * y);
+				val endY = Math.cos(Math.toRadians((modifier * angle) + currentAngle)) *  Math.sqrt(x * x + y * y);
 				
 				println("End X:" + endX + ", EndY:" + endY);
 				
