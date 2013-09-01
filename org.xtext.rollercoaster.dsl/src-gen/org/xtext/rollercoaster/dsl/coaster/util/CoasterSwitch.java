@@ -79,17 +79,31 @@ public class CoasterSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case CoasterPackage.GREETING:
+      case CoasterPackage.ROLLER_COASTER:
       {
-        Greeting greeting = (Greeting)theEObject;
-        T result = caseGreeting(greeting);
+        RollerCoaster rollerCoaster = (RollerCoaster)theEObject;
+        T result = caseRollerCoaster(rollerCoaster);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case CoasterPackage.INSULT:
+      case CoasterPackage.TRACK:
       {
-        Insult insult = (Insult)theEObject;
-        T result = caseInsult(insult);
+        Track track = (Track)theEObject;
+        T result = caseTrack(track);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CoasterPackage.CART:
+      {
+        Cart cart = (Cart)theEObject;
+        T result = caseCart(cart);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case CoasterPackage.SIGNED_INT:
+      {
+        SignedInt signedInt = (SignedInt)theEObject;
+        T result = caseSignedInt(signedInt);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -114,33 +128,65 @@ public class CoasterSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Greeting</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Roller Coaster</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Greeting</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Roller Coaster</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGreeting(Greeting object)
+  public T caseRollerCoaster(RollerCoaster object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Insult</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Track</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Insult</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Track</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseInsult(Insult object)
+  public T caseTrack(Track object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Cart</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Cart</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCart(Cart object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Signed Int</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Signed Int</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSignedInt(SignedInt object)
   {
     return null;
   }

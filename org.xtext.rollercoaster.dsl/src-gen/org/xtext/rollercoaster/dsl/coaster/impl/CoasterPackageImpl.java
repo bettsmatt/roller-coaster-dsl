@@ -9,11 +9,13 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.xtext.rollercoaster.dsl.coaster.Cart;
 import org.xtext.rollercoaster.dsl.coaster.CoasterFactory;
 import org.xtext.rollercoaster.dsl.coaster.CoasterPackage;
-import org.xtext.rollercoaster.dsl.coaster.Greeting;
-import org.xtext.rollercoaster.dsl.coaster.Insult;
 import org.xtext.rollercoaster.dsl.coaster.Model;
+import org.xtext.rollercoaster.dsl.coaster.RollerCoaster;
+import org.xtext.rollercoaster.dsl.coaster.SignedInt;
+import org.xtext.rollercoaster.dsl.coaster.Track;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,14 +37,28 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass greetingEClass = null;
+  private EClass rollerCoasterEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass insultEClass = null;
+  private EClass trackEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass cartEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass signedIntEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -122,7 +138,7 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_Greetings()
+  public EReference getModel_RollerCoaster()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(0);
   }
@@ -132,9 +148,9 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getGreeting()
+  public EClass getRollerCoaster()
   {
-    return greetingEClass;
+    return rollerCoasterEClass;
   }
 
   /**
@@ -142,9 +158,9 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getGreeting_Name()
+  public EAttribute getRollerCoaster_Name()
   {
-    return (EAttribute)greetingEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)rollerCoasterEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -152,9 +168,9 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getInsult()
+  public EReference getRollerCoaster_Track()
   {
-    return insultEClass;
+    return (EReference)rollerCoasterEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -162,9 +178,109 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getInsult_Name()
+  public EReference getRollerCoaster_Cart()
   {
-    return (EAttribute)insultEClass.getEStructuralFeatures().get(0);
+    return (EReference)rollerCoasterEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTrack()
+  {
+    return trackEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTrack_Name()
+  {
+    return (EAttribute)trackEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTrack_Length()
+  {
+    return (EAttribute)trackEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTrack_ElevationChange()
+  {
+    return (EAttribute)trackEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTrack_Angle()
+  {
+    return (EReference)trackEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCart()
+  {
+    return cartEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCart_Name()
+  {
+    return (EAttribute)cartEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSignedInt()
+  {
+    return signedIntEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSignedInt_Sign()
+  {
+    return (EAttribute)signedIntEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSignedInt_Value()
+  {
+    return (EAttribute)signedIntEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -198,13 +314,25 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
 
     // Create classes and their features
     modelEClass = createEClass(MODEL);
-    createEReference(modelEClass, MODEL__GREETINGS);
+    createEReference(modelEClass, MODEL__ROLLER_COASTER);
 
-    greetingEClass = createEClass(GREETING);
-    createEAttribute(greetingEClass, GREETING__NAME);
+    rollerCoasterEClass = createEClass(ROLLER_COASTER);
+    createEAttribute(rollerCoasterEClass, ROLLER_COASTER__NAME);
+    createEReference(rollerCoasterEClass, ROLLER_COASTER__TRACK);
+    createEReference(rollerCoasterEClass, ROLLER_COASTER__CART);
 
-    insultEClass = createEClass(INSULT);
-    createEAttribute(insultEClass, INSULT__NAME);
+    trackEClass = createEClass(TRACK);
+    createEAttribute(trackEClass, TRACK__NAME);
+    createEAttribute(trackEClass, TRACK__LENGTH);
+    createEAttribute(trackEClass, TRACK__ELEVATION_CHANGE);
+    createEReference(trackEClass, TRACK__ANGLE);
+
+    cartEClass = createEClass(CART);
+    createEAttribute(cartEClass, CART__NAME);
+
+    signedIntEClass = createEClass(SIGNED_INT);
+    createEAttribute(signedIntEClass, SIGNED_INT__SIGN);
+    createEAttribute(signedIntEClass, SIGNED_INT__VALUE);
   }
 
   /**
@@ -239,13 +367,25 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModel_Greetings(), ecorePackage.getEObject(), null, "greetings", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_RollerCoaster(), this.getRollerCoaster(), null, "rollerCoaster", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(greetingEClass, Greeting.class, "Greeting", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getGreeting_Name(), ecorePackage.getEString(), "name", null, 0, 1, Greeting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(rollerCoasterEClass, RollerCoaster.class, "RollerCoaster", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRollerCoaster_Name(), ecorePackage.getEString(), "name", null, 0, 1, RollerCoaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRollerCoaster_Track(), this.getTrack(), null, "track", null, 0, -1, RollerCoaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRollerCoaster_Cart(), this.getCart(), null, "cart", null, 0, -1, RollerCoaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(insultEClass, Insult.class, "Insult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getInsult_Name(), ecorePackage.getEString(), "name", null, 0, 1, Insult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(trackEClass, Track.class, "Track", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTrack_Name(), ecorePackage.getEString(), "name", null, 0, 1, Track.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTrack_Length(), ecorePackage.getEInt(), "length", null, 0, 1, Track.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTrack_ElevationChange(), ecorePackage.getEInt(), "elevationChange", null, 0, 1, Track.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTrack_Angle(), this.getSignedInt(), null, "angle", null, 0, 1, Track.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(cartEClass, Cart.class, "Cart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCart_Name(), ecorePackage.getEString(), "name", null, 0, 1, Cart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(signedIntEClass, SignedInt.class, "SignedInt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSignedInt_Sign(), ecorePackage.getEString(), "sign", null, 0, 1, SignedInt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSignedInt_Value(), ecorePackage.getEInt(), "value", null, 0, 1, SignedInt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

@@ -3,6 +3,15 @@
  */
 package org.xtext.rollercoaster.dsl.validation;
 
+import com.google.common.base.Objects;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.xtext.rollercoaster.dsl.coaster.CoasterPackage.Literals;
+import org.xtext.rollercoaster.dsl.coaster.RollerCoaster;
+import org.xtext.rollercoaster.dsl.coaster.SignedInt;
+import org.xtext.rollercoaster.dsl.coaster.Track;
 import org.xtext.rollercoaster.dsl.validation.AbstractCoasterValidator;
 
 /**
@@ -12,4 +21,123 @@ import org.xtext.rollercoaster.dsl.validation.AbstractCoasterValidator;
  */
 @SuppressWarnings("all")
 public class CoasterValidator extends AbstractCoasterValidator {
+  @Check
+  public String checkCompletePath(final RollerCoaster rc) {
+    String _xblockexpression = null;
+    {
+      int totalAngle = 0;
+      EList<Track> _track = rc.getTrack();
+      for (final Track t : _track) {
+        SignedInt _angle = t.getAngle();
+        boolean _notEquals = (!Objects.equal(_angle, null));
+        if (_notEquals) {
+          SignedInt _angle_1 = t.getAngle();
+          String _sign = _angle_1.getSign();
+          boolean _notEquals_1 = (!Objects.equal(_sign, null));
+          if (_notEquals_1) {
+            SignedInt _angle_2 = t.getAngle();
+            int _value = _angle_2.getValue();
+            int _minus = (totalAngle - _value);
+            totalAngle = _minus;
+          } else {
+            SignedInt _angle_3 = t.getAngle();
+            int _value_1 = _angle_3.getValue();
+            int _plus = (totalAngle + _value_1);
+            totalAngle = _plus;
+          }
+        }
+      }
+      int _modulo = (totalAngle % 360);
+      boolean _notEquals_2 = (_modulo != 0);
+      if (_notEquals_2) {
+        int _modulo_1 = (totalAngle % 360);
+        String _plus_1 = ("Track angles do not form a cycle! " + Integer.valueOf(_modulo_1));
+        String _plus_2 = (_plus_1 + " degrees from a cycle.");
+        EStructuralFeature _eStructuralFeature = Literals.ROLLER_COASTER.getEStructuralFeature("track");
+        this.error(_plus_2, _eStructuralFeature);
+      }
+      String _plus_3 = ("totalAngle = " + Integer.valueOf(totalAngle));
+      String _println = InputOutput.<String>println(_plus_3);
+      _xblockexpression = (_println);
+    }
+    return _xblockexpression;
+  }
+  
+  @Check
+  public void checkStartMeetsEnd(final RollerCoaster rc) {
+    double distance = 0.0;
+    double currentX = 0.0;
+    double currentY = 0.0;
+    double currentAngle = 0.0;
+    EList<Track> _track = rc.getTrack();
+    for (final Track t : _track) {
+      SignedInt _angle = t.getAngle();
+      boolean _notEquals = (!Objects.equal(_angle, null));
+      if (_notEquals) {
+        SignedInt _angle_1 = t.getAngle();
+        int angle = _angle_1.getValue();
+        SignedInt _angle_2 = t.getAngle();
+        String _sign = _angle_2.getSign();
+        boolean _notEquals_1 = (!Objects.equal(_sign, null));
+        if (_notEquals_1) {
+          int _minus = (-1);
+          int _multiply = (angle * _minus);
+          angle = _multiply;
+        }
+        double _plus = (currentAngle + angle);
+        double _cos = Math.cos(_plus);
+        int _length = t.getLength();
+        double _multiply_1 = (_cos * _length);
+        double _plus_1 = (currentX + _multiply_1);
+        float _floatValue = Double.valueOf(_plus_1).floatValue();
+        int _intValue = Float.valueOf(_floatValue).intValue();
+        currentX = _intValue;
+        double _plus_2 = (currentAngle + angle);
+        double _sin = Math.sin(_plus_2);
+        int _length_1 = t.getLength();
+        double _multiply_2 = (_sin * _length_1);
+        double _plus_3 = (currentY + _multiply_2);
+        float _floatValue_1 = Double.valueOf(_plus_3).floatValue();
+        int _intValue_1 = Float.valueOf(_floatValue_1).intValue();
+        currentY = _intValue_1;
+        double _plus_4 = (currentAngle + angle);
+        currentAngle = _plus_4;
+      } else {
+        double _cos_1 = Math.cos(currentAngle);
+        int _length_2 = t.getLength();
+        double _multiply_3 = (_cos_1 * _length_2);
+        double _plus_5 = (currentX + _multiply_3);
+        float _floatValue_2 = Double.valueOf(_plus_5).floatValue();
+        int _intValue_2 = Float.valueOf(_floatValue_2).intValue();
+        currentX = _intValue_2;
+        double _sin_1 = Math.sin(currentAngle);
+        int _length_3 = t.getLength();
+        double _multiply_4 = (_sin_1 * _length_3);
+        double _plus_6 = (currentY + _multiply_4);
+        float _floatValue_3 = Double.valueOf(_plus_6).floatValue();
+        int _intValue_3 = Float.valueOf(_floatValue_3).intValue();
+        currentY = _intValue_3;
+      }
+    }
+    double _pow = Math.pow(currentX, 2);
+    double _pow_1 = Math.pow(currentY, 2);
+    double _plus_7 = (_pow + _pow_1);
+    double _sqrt = Math.sqrt(_plus_7);
+    distance = _sqrt;
+    boolean _or = false;
+    double _modulo = (currentAngle % 360);
+    boolean _notEquals_2 = (_modulo != 0);
+    if (_notEquals_2) {
+      _or = true;
+    } else {
+      boolean _notEquals_3 = (distance != 0);
+      _or = (_notEquals_2 || _notEquals_3);
+    }
+    if (_or) {
+      String _plus_8 = ("End of Track does not meet start! End of track is" + Double.valueOf(distance));
+      String _plus_9 = (_plus_8 + "m from the start.");
+      EStructuralFeature _eStructuralFeature = Literals.ROLLER_COASTER.getEStructuralFeature("track");
+      this.error(_plus_9, _eStructuralFeature);
+    }
+  }
 }

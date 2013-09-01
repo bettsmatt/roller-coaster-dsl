@@ -65,8 +65,10 @@ public class CoasterFactoryImpl extends EFactoryImpl implements CoasterFactory
     switch (eClass.getClassifierID())
     {
       case CoasterPackage.MODEL: return createModel();
-      case CoasterPackage.GREETING: return createGreeting();
-      case CoasterPackage.INSULT: return createInsult();
+      case CoasterPackage.ROLLER_COASTER: return createRollerCoaster();
+      case CoasterPackage.TRACK: return createTrack();
+      case CoasterPackage.CART: return createCart();
+      case CoasterPackage.SIGNED_INT: return createSignedInt();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -88,10 +90,10 @@ public class CoasterFactoryImpl extends EFactoryImpl implements CoasterFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Greeting createGreeting()
+  public RollerCoaster createRollerCoaster()
   {
-    GreetingImpl greeting = new GreetingImpl();
-    return greeting;
+    RollerCoasterImpl rollerCoaster = new RollerCoasterImpl();
+    return rollerCoaster;
   }
 
   /**
@@ -99,10 +101,32 @@ public class CoasterFactoryImpl extends EFactoryImpl implements CoasterFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Insult createInsult()
+  public Track createTrack()
   {
-    InsultImpl insult = new InsultImpl();
-    return insult;
+    TrackImpl track = new TrackImpl();
+    return track;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Cart createCart()
+  {
+    CartImpl cart = new CartImpl();
+    return cart;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SignedInt createSignedInt()
+  {
+    SignedIntImpl signedInt = new SignedIntImpl();
+    return signedInt;
   }
 
   /**

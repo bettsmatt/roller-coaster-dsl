@@ -80,14 +80,24 @@ public class CoasterAdapterFactory extends AdapterFactoryImpl
         return createModelAdapter();
       }
       @Override
-      public Adapter caseGreeting(Greeting object)
+      public Adapter caseRollerCoaster(RollerCoaster object)
       {
-        return createGreetingAdapter();
+        return createRollerCoasterAdapter();
       }
       @Override
-      public Adapter caseInsult(Insult object)
+      public Adapter caseTrack(Track object)
       {
-        return createInsultAdapter();
+        return createTrackAdapter();
+      }
+      @Override
+      public Adapter caseCart(Cart object)
+      {
+        return createCartAdapter();
+      }
+      @Override
+      public Adapter caseSignedInt(SignedInt object)
+      {
+        return createSignedIntAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -127,31 +137,61 @@ public class CoasterAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.rollercoaster.dsl.coaster.Greeting <em>Greeting</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster <em>Roller Coaster</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.rollercoaster.dsl.coaster.Greeting
+   * @see org.xtext.rollercoaster.dsl.coaster.RollerCoaster
    * @generated
    */
-  public Adapter createGreetingAdapter()
+  public Adapter createRollerCoasterAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.rollercoaster.dsl.coaster.Insult <em>Insult</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.rollercoaster.dsl.coaster.Track <em>Track</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.rollercoaster.dsl.coaster.Insult
+   * @see org.xtext.rollercoaster.dsl.coaster.Track
    * @generated
    */
-  public Adapter createInsultAdapter()
+  public Adapter createTrackAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.rollercoaster.dsl.coaster.Cart <em>Cart</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.rollercoaster.dsl.coaster.Cart
+   * @generated
+   */
+  public Adapter createCartAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.rollercoaster.dsl.coaster.SignedInt <em>Signed Int</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.rollercoaster.dsl.coaster.SignedInt
+   * @generated
+   */
+  public Adapter createSignedIntAdapter()
   {
     return null;
   }

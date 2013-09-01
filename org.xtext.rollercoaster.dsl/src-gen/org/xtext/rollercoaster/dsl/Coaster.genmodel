@@ -8,13 +8,25 @@
   <genPackages prefix="Coaster" basePackage="org.xtext.rollercoaster.dsl" disposableProviderFactory="true"
       fileExtensions="coaster" ecorePackage="Coaster.ecore#/">
     <genClasses ecoreClass="Coaster.ecore#//Model">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coaster.ecore#//Model/greetings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coaster.ecore#//Model/rollerCoaster"/>
     </genClasses>
-    <genClasses ecoreClass="Coaster.ecore#//Greeting">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Greeting/name"/>
+    <genClasses ecoreClass="Coaster.ecore#//RollerCoaster">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//RollerCoaster/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coaster.ecore#//RollerCoaster/track"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coaster.ecore#//RollerCoaster/cart"/>
     </genClasses>
-    <genClasses ecoreClass="Coaster.ecore#//Insult">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Insult/name"/>
+    <genClasses ecoreClass="Coaster.ecore#//Track">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Track/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Track/length"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Track/elevationChange"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coaster.ecore#//Track/angle"/>
+    </genClasses>
+    <genClasses ecoreClass="Coaster.ecore#//Cart">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Cart/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Coaster.ecore#//SignedInt">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//SignedInt/sign"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//SignedInt/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -9,7 +9,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -19,6 +18,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.rollercoaster.dsl.coaster.CoasterPackage;
 import org.xtext.rollercoaster.dsl.coaster.Model;
+import org.xtext.rollercoaster.dsl.coaster.RollerCoaster;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +27,7 @@ import org.xtext.rollercoaster.dsl.coaster.Model;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.ModelImpl#getGreetings <em>Greetings</em>}</li>
+ *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.ModelImpl#getRollerCoaster <em>Roller Coaster</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,14 +36,14 @@ import org.xtext.rollercoaster.dsl.coaster.Model;
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
   /**
-   * The cached value of the '{@link #getGreetings() <em>Greetings</em>}' containment reference list.
+   * The cached value of the '{@link #getRollerCoaster() <em>Roller Coaster</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getGreetings()
+   * @see #getRollerCoaster()
    * @generated
    * @ordered
    */
-  protected EList<EObject> greetings;
+  protected EList<RollerCoaster> rollerCoaster;
 
   /**
    * <!-- begin-user-doc -->
@@ -71,13 +71,13 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EObject> getGreetings()
+  public EList<RollerCoaster> getRollerCoaster()
   {
-    if (greetings == null)
+    if (rollerCoaster == null)
     {
-      greetings = new EObjectContainmentEList<EObject>(EObject.class, this, CoasterPackage.MODEL__GREETINGS);
+      rollerCoaster = new EObjectContainmentEList<RollerCoaster>(RollerCoaster.class, this, CoasterPackage.MODEL__ROLLER_COASTER);
     }
-    return greetings;
+    return rollerCoaster;
   }
 
   /**
@@ -90,8 +90,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case CoasterPackage.MODEL__GREETINGS:
-        return ((InternalEList<?>)getGreetings()).basicRemove(otherEnd, msgs);
+      case CoasterPackage.MODEL__ROLLER_COASTER:
+        return ((InternalEList<?>)getRollerCoaster()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -106,8 +106,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case CoasterPackage.MODEL__GREETINGS:
-        return getGreetings();
+      case CoasterPackage.MODEL__ROLLER_COASTER:
+        return getRollerCoaster();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -123,9 +123,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case CoasterPackage.MODEL__GREETINGS:
-        getGreetings().clear();
-        getGreetings().addAll((Collection<? extends EObject>)newValue);
+      case CoasterPackage.MODEL__ROLLER_COASTER:
+        getRollerCoaster().clear();
+        getRollerCoaster().addAll((Collection<? extends RollerCoaster>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -141,8 +141,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case CoasterPackage.MODEL__GREETINGS:
-        getGreetings().clear();
+      case CoasterPackage.MODEL__ROLLER_COASTER:
+        getRollerCoaster().clear();
         return;
     }
     super.eUnset(featureID);
@@ -158,8 +158,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case CoasterPackage.MODEL__GREETINGS:
-        return greetings != null && !greetings.isEmpty();
+      case CoasterPackage.MODEL__ROLLER_COASTER:
+        return rollerCoaster != null && !rollerCoaster.isEmpty();
     }
     return super.eIsSet(featureID);
   }

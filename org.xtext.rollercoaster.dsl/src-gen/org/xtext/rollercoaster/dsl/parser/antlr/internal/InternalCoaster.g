@@ -79,74 +79,131 @@ ruleModel returns [EObject current=null]
     @after { leaveRule(); }:
 (
 (
+		{ 
+	        newCompositeNode(grammarAccess.getModelAccess().getRollerCoasterRollerCoasterParserRuleCall_0()); 
+	    }
+		lv_rollerCoaster_0_0=ruleRollerCoaster		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getModelRule());
+	        }
+       		add(
+       			$current, 
+       			"rollerCoaster",
+        		lv_rollerCoaster_0_0, 
+        		"RollerCoaster");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+;
+
+
+
+
+
+// Entry rule entryRuleRollerCoaster
+entryRuleRollerCoaster returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getRollerCoasterRule()); }
+	 iv_ruleRollerCoaster=ruleRollerCoaster 
+	 { $current=$iv_ruleRollerCoaster.current; } 
+	 EOF 
+;
+
+// Rule RollerCoaster
+ruleRollerCoaster returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		lv_name_0_0=RULE_ID
+		{
+			newLeafNode(lv_name_0_0, grammarAccess.getRollerCoasterAccess().getNameIDTerminalRuleCall_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getRollerCoasterRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_0_0, 
+        		"ID");
+	    }
+
+)
+)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModelAccess().getGreetingsGreetingParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getRollerCoasterAccess().getTrackTrackParserRuleCall_1_0()); 
 	    }
-		lv_greetings_0_1=ruleGreeting		{
+		lv_track_1_0=ruleTrack		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getModelRule());
+	            $current = createModelElementForParent(grammarAccess.getRollerCoasterRule());
 	        }
        		add(
        			$current, 
-       			"greetings",
-        		lv_greetings_0_1, 
-        		"Greeting");
-	        afterParserOrEnumRuleCall();
-	    }
-
-    |		{ 
-	        newCompositeNode(grammarAccess.getModelAccess().getGreetingsInsultParserRuleCall_0_1()); 
-	    }
-		lv_greetings_0_2=ruleInsult		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getModelRule());
-	        }
-       		add(
-       			$current, 
-       			"greetings",
-        		lv_greetings_0_2, 
-        		"Insult");
+       			"track",
+        		lv_track_1_0, 
+        		"Track");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
+)*(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRollerCoasterAccess().getCartCartParserRuleCall_2_0()); 
+	    }
+		lv_cart_2_0=ruleCart		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRollerCoasterRule());
+	        }
+       		add(
+       			$current, 
+       			"cart",
+        		lv_cart_2_0, 
+        		"Cart");
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
-)*
+)*)
 ;
 
 
 
 
 
-// Entry rule entryRuleGreeting
-entryRuleGreeting returns [EObject current=null] 
+// Entry rule entryRuleTrack
+entryRuleTrack returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getGreetingRule()); }
-	 iv_ruleGreeting=ruleGreeting 
-	 { $current=$iv_ruleGreeting.current; } 
+	{ newCompositeNode(grammarAccess.getTrackRule()); }
+	 iv_ruleTrack=ruleTrack 
+	 { $current=$iv_ruleTrack.current; } 
 	 EOF 
 ;
 
-// Rule Greeting
-ruleGreeting returns [EObject current=null] 
+// Rule Track
+ruleTrack returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='Hello' 
+(	otherlv_0='Track' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getGreetingAccess().getHelloKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getTrackAccess().getTrackKeyword_0());
     }
 (
 (
 		lv_name_1_0=RULE_ID
 		{
-			newLeafNode(lv_name_1_0, grammarAccess.getGreetingAccess().getNameIDTerminalRuleCall_1_0()); 
+			newLeafNode(lv_name_1_0, grammarAccess.getTrackAccess().getNameIDTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getGreetingRule());
+	            $current = createModelElement(grammarAccess.getTrackRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -156,44 +213,94 @@ ruleGreeting returns [EObject current=null]
 	    }
 
 )
-)	otherlv_2='!' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getGreetingAccess().getExclamationMarkKeyword_2());
-    }
+)(
+(
+		lv_length_2_0=RULE_INT
+		{
+			newLeafNode(lv_length_2_0, grammarAccess.getTrackAccess().getLengthINTTerminalRuleCall_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTrackRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"length",
+        		lv_length_2_0, 
+        		"INT");
+	    }
+
 )
+)(
+(
+		lv_elevationChange_3_0=RULE_INT
+		{
+			newLeafNode(lv_elevationChange_3_0, grammarAccess.getTrackAccess().getElevationChangeINTTerminalRuleCall_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTrackRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"elevationChange",
+        		lv_elevationChange_3_0, 
+        		"INT");
+	    }
+
+)
+)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTrackAccess().getAngleSignedIntParserRuleCall_4_0()); 
+	    }
+		lv_angle_4_0=ruleSignedInt		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTrackRule());
+	        }
+       		set(
+       			$current, 
+       			"angle",
+        		lv_angle_4_0, 
+        		"SignedInt");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?)
 ;
 
 
 
 
 
-// Entry rule entryRuleInsult
-entryRuleInsult returns [EObject current=null] 
+// Entry rule entryRuleCart
+entryRuleCart returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getInsultRule()); }
-	 iv_ruleInsult=ruleInsult 
-	 { $current=$iv_ruleInsult.current; } 
+	{ newCompositeNode(grammarAccess.getCartRule()); }
+	 iv_ruleCart=ruleCart 
+	 { $current=$iv_ruleCart.current; } 
 	 EOF 
 ;
 
-// Rule Insult
-ruleInsult returns [EObject current=null] 
+// Rule Cart
+ruleCart returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='Die' 
+(	otherlv_0='Cart' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getInsultAccess().getDieKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getCartAccess().getCartKeyword_0());
     }
 (
 (
 		lv_name_1_0=RULE_ID
 		{
-			newLeafNode(lv_name_1_0, grammarAccess.getInsultAccess().getNameIDTerminalRuleCall_1_0()); 
+			newLeafNode(lv_name_1_0, grammarAccess.getCartAccess().getNameIDTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getInsultRule());
+	            $current = createModelElement(grammarAccess.getCartRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -203,11 +310,61 @@ ruleInsult returns [EObject current=null]
 	    }
 
 )
-)	otherlv_2='!' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getInsultAccess().getExclamationMarkKeyword_2());
+))
+;
+
+
+
+
+
+// Entry rule entryRuleSignedInt
+entryRuleSignedInt returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getSignedIntRule()); }
+	 iv_ruleSignedInt=ruleSignedInt 
+	 { $current=$iv_ruleSignedInt.current; } 
+	 EOF 
+;
+
+// Rule SignedInt
+ruleSignedInt returns [EObject current=null] 
+    @init { enterRule(); 
     }
+    @after { leaveRule(); }:
+((
+(
+		lv_sign_0_0=	'-' 
+    {
+        newLeafNode(lv_sign_0_0, grammarAccess.getSignedIntAccess().getSignHyphenMinusKeyword_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getSignedIntRule());
+	        }
+       		setWithLastConsumed($current, "sign", lv_sign_0_0, "-");
+	    }
+
 )
+)?(
+(
+		lv_value_1_0=RULE_INT
+		{
+			newLeafNode(lv_value_1_0, grammarAccess.getSignedIntAccess().getValueINTTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getSignedIntRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_1_0, 
+        		"INT");
+	    }
+
+)
+))
 ;
 
 

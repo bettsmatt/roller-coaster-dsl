@@ -67,13 +67,13 @@ public interface CoasterPackage extends EPackage
   int MODEL = 0;
 
   /**
-   * The feature id for the '<em><b>Greetings</b></em>' containment reference list.
+   * The feature id for the '<em><b>Roller Coaster</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL__GREETINGS = 0;
+  int MODEL__ROLLER_COASTER = 0;
 
   /**
    * The number of structural features of the '<em>Model</em>' class.
@@ -85,14 +85,14 @@ public interface CoasterPackage extends EPackage
   int MODEL_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.GreetingImpl <em>Greeting</em>}' class.
+   * The meta object id for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl <em>Roller Coaster</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.rollercoaster.dsl.coaster.impl.GreetingImpl
-   * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getGreeting()
+   * @see org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl
+   * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getRollerCoaster()
    * @generated
    */
-  int GREETING = 1;
+  int ROLLER_COASTER = 1;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -101,26 +101,44 @@ public interface CoasterPackage extends EPackage
    * @generated
    * @ordered
    */
-  int GREETING__NAME = 0;
+  int ROLLER_COASTER__NAME = 0;
 
   /**
-   * The number of structural features of the '<em>Greeting</em>' class.
+   * The feature id for the '<em><b>Track</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GREETING_FEATURE_COUNT = 1;
+  int ROLLER_COASTER__TRACK = 1;
 
   /**
-   * The meta object id for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.InsultImpl <em>Insult</em>}' class.
+   * The feature id for the '<em><b>Cart</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.rollercoaster.dsl.coaster.impl.InsultImpl
-   * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getInsult()
+   * @generated
+   * @ordered
+   */
+  int ROLLER_COASTER__CART = 2;
+
+  /**
+   * The number of structural features of the '<em>Roller Coaster</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLLER_COASTER_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.TrackImpl <em>Track</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.rollercoaster.dsl.coaster.impl.TrackImpl
+   * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getTrack()
    * @generated
    */
-  int INSULT = 2;
+  int TRACK = 2;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -129,16 +147,108 @@ public interface CoasterPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSULT__NAME = 0;
+  int TRACK__NAME = 0;
 
   /**
-   * The number of structural features of the '<em>Insult</em>' class.
+   * The feature id for the '<em><b>Length</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INSULT_FEATURE_COUNT = 1;
+  int TRACK__LENGTH = 1;
+
+  /**
+   * The feature id for the '<em><b>Elevation Change</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRACK__ELEVATION_CHANGE = 2;
+
+  /**
+   * The feature id for the '<em><b>Angle</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRACK__ANGLE = 3;
+
+  /**
+   * The number of structural features of the '<em>Track</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRACK_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.CartImpl <em>Cart</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.rollercoaster.dsl.coaster.impl.CartImpl
+   * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getCart()
+   * @generated
+   */
+  int CART = 3;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CART__NAME = 0;
+
+  /**
+   * The number of structural features of the '<em>Cart</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CART_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.SignedIntImpl <em>Signed Int</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.rollercoaster.dsl.coaster.impl.SignedIntImpl
+   * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getSignedInt()
+   * @generated
+   */
+  int SIGNED_INT = 4;
+
+  /**
+   * The feature id for the '<em><b>Sign</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SIGNED_INT__SIGN = 0;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SIGNED_INT__VALUE = 1;
+
+  /**
+   * The number of structural features of the '<em>Signed Int</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SIGNED_INT_FEATURE_COUNT = 2;
 
 
   /**
@@ -152,57 +262,165 @@ public interface CoasterPackage extends EPackage
   EClass getModel();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.rollercoaster.dsl.coaster.Model#getGreetings <em>Greetings</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.rollercoaster.dsl.coaster.Model#getRollerCoaster <em>Roller Coaster</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Greetings</em>'.
-   * @see org.xtext.rollercoaster.dsl.coaster.Model#getGreetings()
+   * @return the meta object for the containment reference list '<em>Roller Coaster</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Model#getRollerCoaster()
    * @see #getModel()
    * @generated
    */
-  EReference getModel_Greetings();
+  EReference getModel_RollerCoaster();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.rollercoaster.dsl.coaster.Greeting <em>Greeting</em>}'.
+   * Returns the meta object for class '{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster <em>Roller Coaster</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Greeting</em>'.
-   * @see org.xtext.rollercoaster.dsl.coaster.Greeting
+   * @return the meta object for class '<em>Roller Coaster</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.RollerCoaster
    * @generated
    */
-  EClass getGreeting();
+  EClass getRollerCoaster();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Greeting#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.rollercoaster.dsl.coaster.Greeting#getName()
-   * @see #getGreeting()
-   * @generated
-   */
-  EAttribute getGreeting_Name();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.rollercoaster.dsl.coaster.Insult <em>Insult</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Insult</em>'.
-   * @see org.xtext.rollercoaster.dsl.coaster.Insult
-   * @generated
-   */
-  EClass getInsult();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Insult#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.rollercoaster.dsl.coaster.Insult#getName()
-   * @see #getInsult()
+   * @see org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getName()
+   * @see #getRollerCoaster()
    * @generated
    */
-  EAttribute getInsult_Name();
+  EAttribute getRollerCoaster_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTrack <em>Track</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Track</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTrack()
+   * @see #getRollerCoaster()
+   * @generated
+   */
+  EReference getRollerCoaster_Track();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getCart <em>Cart</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Cart</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getCart()
+   * @see #getRollerCoaster()
+   * @generated
+   */
+  EReference getRollerCoaster_Cart();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.rollercoaster.dsl.coaster.Track <em>Track</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Track</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Track
+   * @generated
+   */
+  EClass getTrack();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Track#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Track#getName()
+   * @see #getTrack()
+   * @generated
+   */
+  EAttribute getTrack_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Track#getLength <em>Length</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Length</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Track#getLength()
+   * @see #getTrack()
+   * @generated
+   */
+  EAttribute getTrack_Length();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Track#getElevationChange <em>Elevation Change</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Elevation Change</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Track#getElevationChange()
+   * @see #getTrack()
+   * @generated
+   */
+  EAttribute getTrack_ElevationChange();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.rollercoaster.dsl.coaster.Track#getAngle <em>Angle</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Angle</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Track#getAngle()
+   * @see #getTrack()
+   * @generated
+   */
+  EReference getTrack_Angle();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.rollercoaster.dsl.coaster.Cart <em>Cart</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Cart</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Cart
+   * @generated
+   */
+  EClass getCart();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.Cart#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.Cart#getName()
+   * @see #getCart()
+   * @generated
+   */
+  EAttribute getCart_Name();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.rollercoaster.dsl.coaster.SignedInt <em>Signed Int</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Signed Int</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.SignedInt
+   * @generated
+   */
+  EClass getSignedInt();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.SignedInt#getSign <em>Sign</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Sign</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.SignedInt#getSign()
+   * @see #getSignedInt()
+   * @generated
+   */
+  EAttribute getSignedInt_Sign();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.SignedInt#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.SignedInt#getValue()
+   * @see #getSignedInt()
+   * @generated
+   */
+  EAttribute getSignedInt_Value();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -238,40 +456,22 @@ public interface CoasterPackage extends EPackage
     EClass MODEL = eINSTANCE.getModel();
 
     /**
-     * The meta object literal for the '<em><b>Greetings</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Roller Coaster</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL__GREETINGS = eINSTANCE.getModel_Greetings();
+    EReference MODEL__ROLLER_COASTER = eINSTANCE.getModel_RollerCoaster();
 
     /**
-     * The meta object literal for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.GreetingImpl <em>Greeting</em>}' class.
+     * The meta object literal for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl <em>Roller Coaster</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.rollercoaster.dsl.coaster.impl.GreetingImpl
-     * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getGreeting()
+     * @see org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl
+     * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getRollerCoaster()
      * @generated
      */
-    EClass GREETING = eINSTANCE.getGreeting();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute GREETING__NAME = eINSTANCE.getGreeting_Name();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.InsultImpl <em>Insult</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.rollercoaster.dsl.coaster.impl.InsultImpl
-     * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getInsult()
-     * @generated
-     */
-    EClass INSULT = eINSTANCE.getInsult();
+    EClass ROLLER_COASTER = eINSTANCE.getRollerCoaster();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -279,7 +479,109 @@ public interface CoasterPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute INSULT__NAME = eINSTANCE.getInsult_Name();
+    EAttribute ROLLER_COASTER__NAME = eINSTANCE.getRollerCoaster_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Track</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ROLLER_COASTER__TRACK = eINSTANCE.getRollerCoaster_Track();
+
+    /**
+     * The meta object literal for the '<em><b>Cart</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ROLLER_COASTER__CART = eINSTANCE.getRollerCoaster_Cart();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.TrackImpl <em>Track</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.rollercoaster.dsl.coaster.impl.TrackImpl
+     * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getTrack()
+     * @generated
+     */
+    EClass TRACK = eINSTANCE.getTrack();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TRACK__NAME = eINSTANCE.getTrack_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TRACK__LENGTH = eINSTANCE.getTrack_Length();
+
+    /**
+     * The meta object literal for the '<em><b>Elevation Change</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TRACK__ELEVATION_CHANGE = eINSTANCE.getTrack_ElevationChange();
+
+    /**
+     * The meta object literal for the '<em><b>Angle</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TRACK__ANGLE = eINSTANCE.getTrack_Angle();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.CartImpl <em>Cart</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.rollercoaster.dsl.coaster.impl.CartImpl
+     * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getCart()
+     * @generated
+     */
+    EClass CART = eINSTANCE.getCart();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CART__NAME = eINSTANCE.getCart_Name();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.SignedIntImpl <em>Signed Int</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.rollercoaster.dsl.coaster.impl.SignedIntImpl
+     * @see org.xtext.rollercoaster.dsl.coaster.impl.CoasterPackageImpl#getSignedInt()
+     * @generated
+     */
+    EClass SIGNED_INT = eINSTANCE.getSignedInt();
+
+    /**
+     * The meta object literal for the '<em><b>Sign</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SIGNED_INT__SIGN = eINSTANCE.getSignedInt_Sign();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SIGNED_INT__VALUE = eINSTANCE.getSignedInt_Value();
 
   }
 

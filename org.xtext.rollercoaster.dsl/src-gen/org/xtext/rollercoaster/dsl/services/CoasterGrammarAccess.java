@@ -20,45 +20,78 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public class ModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Model");
-		private final Assignment cGreetingsAssignment = (Assignment)rule.eContents().get(1);
-		private final Alternatives cGreetingsAlternatives_0 = (Alternatives)cGreetingsAssignment.eContents().get(0);
-		private final RuleCall cGreetingsGreetingParserRuleCall_0_0 = (RuleCall)cGreetingsAlternatives_0.eContents().get(0);
-		private final RuleCall cGreetingsInsultParserRuleCall_0_1 = (RuleCall)cGreetingsAlternatives_0.eContents().get(1);
+		private final Assignment cRollerCoasterAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cRollerCoasterRollerCoasterParserRuleCall_0 = (RuleCall)cRollerCoasterAssignment.eContents().get(0);
 		
 		//Model:
-		//	greetings+=(Greeting | Insult)*;
+		//	rollerCoaster+=RollerCoaster;
 		public ParserRule getRule() { return rule; }
 
-		//greetings+=(Greeting | Insult)*
-		public Assignment getGreetingsAssignment() { return cGreetingsAssignment; }
+		//rollerCoaster+=RollerCoaster
+		public Assignment getRollerCoasterAssignment() { return cRollerCoasterAssignment; }
 
-		//Greeting | Insult
-		public Alternatives getGreetingsAlternatives_0() { return cGreetingsAlternatives_0; }
-
-		//Greeting
-		public RuleCall getGreetingsGreetingParserRuleCall_0_0() { return cGreetingsGreetingParserRuleCall_0_0; }
-
-		//Insult
-		public RuleCall getGreetingsInsultParserRuleCall_0_1() { return cGreetingsInsultParserRuleCall_0_1; }
+		//RollerCoaster
+		public RuleCall getRollerCoasterRollerCoasterParserRuleCall_0() { return cRollerCoasterRollerCoasterParserRuleCall_0; }
 	}
 
-	public class GreetingElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Greeting");
+	public class RollerCoasterElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RollerCoaster");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cHelloKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cExclamationMarkKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Assignment cTrackAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTrackTrackParserRuleCall_1_0 = (RuleCall)cTrackAssignment_1.eContents().get(0);
+		private final Assignment cCartAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cCartCartParserRuleCall_2_0 = (RuleCall)cCartAssignment_2.eContents().get(0);
 		
-		//Greeting:
-		//	"Hello" name=ID "!";
+		//RollerCoaster:
+		//	name=ID track+=Track* cart+=Cart*;
 		public ParserRule getRule() { return rule; }
 
-		//"Hello" name=ID "!"
+		//name=ID track+=Track* cart+=Cart*
 		public Group getGroup() { return cGroup; }
 
-		//"Hello"
-		public Keyword getHelloKeyword_0() { return cHelloKeyword_0; }
+		//name=ID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
+
+		//track+=Track*
+		public Assignment getTrackAssignment_1() { return cTrackAssignment_1; }
+
+		//Track
+		public RuleCall getTrackTrackParserRuleCall_1_0() { return cTrackTrackParserRuleCall_1_0; }
+
+		//cart+=Cart*
+		public Assignment getCartAssignment_2() { return cCartAssignment_2; }
+
+		//Cart
+		public RuleCall getCartCartParserRuleCall_2_0() { return cCartCartParserRuleCall_2_0; }
+	}
+
+	public class TrackElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Track");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cTrackKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cLengthAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cLengthINTTerminalRuleCall_2_0 = (RuleCall)cLengthAssignment_2.eContents().get(0);
+		private final Assignment cElevationChangeAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cElevationChangeINTTerminalRuleCall_3_0 = (RuleCall)cElevationChangeAssignment_3.eContents().get(0);
+		private final Assignment cAngleAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cAngleSignedIntParserRuleCall_4_0 = (RuleCall)cAngleAssignment_4.eContents().get(0);
+		
+		//Track:
+		//	"Track" name=ID length=INT elevationChange=INT? angle=SignedInt?;
+		public ParserRule getRule() { return rule; }
+
+		//"Track" name=ID length=INT elevationChange=INT? angle=SignedInt?
+		public Group getGroup() { return cGroup; }
+
+		//"Track"
+		public Keyword getTrackKeyword_0() { return cTrackKeyword_0; }
 
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -66,42 +99,83 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
-		//"!"
-		public Keyword getExclamationMarkKeyword_2() { return cExclamationMarkKeyword_2; }
+		//length=INT
+		public Assignment getLengthAssignment_2() { return cLengthAssignment_2; }
+
+		//INT
+		public RuleCall getLengthINTTerminalRuleCall_2_0() { return cLengthINTTerminalRuleCall_2_0; }
+
+		//elevationChange=INT?
+		public Assignment getElevationChangeAssignment_3() { return cElevationChangeAssignment_3; }
+
+		//INT
+		public RuleCall getElevationChangeINTTerminalRuleCall_3_0() { return cElevationChangeINTTerminalRuleCall_3_0; }
+
+		//angle=SignedInt?
+		public Assignment getAngleAssignment_4() { return cAngleAssignment_4; }
+
+		//SignedInt
+		public RuleCall getAngleSignedIntParserRuleCall_4_0() { return cAngleSignedIntParserRuleCall_4_0; }
 	}
 
-	public class InsultElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Insult");
+	public class CartElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Cart");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cDieKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cCartKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cExclamationMarkKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//Insult:
-		//	"Die" name=ID "!";
+		//Cart:
+		//	"Cart" name=ID;
 		public ParserRule getRule() { return rule; }
 
-		//"Die" name=ID "!"
+		//"Cart" name=ID
 		public Group getGroup() { return cGroup; }
 
-		//"Die"
-		public Keyword getDieKeyword_0() { return cDieKeyword_0; }
+		//"Cart"
+		public Keyword getCartKeyword_0() { return cCartKeyword_0; }
 
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+	}
 
-		//"!"
-		public Keyword getExclamationMarkKeyword_2() { return cExclamationMarkKeyword_2; }
+	public class SignedIntElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SignedInt");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cSignAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cSignHyphenMinusKeyword_0_0 = (Keyword)cSignAssignment_0.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueINTTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		
+		//SignedInt:
+		//	sign="-"? value=INT;
+		public ParserRule getRule() { return rule; }
+
+		//sign="-"? value=INT
+		public Group getGroup() { return cGroup; }
+
+		//sign="-"?
+		public Assignment getSignAssignment_0() { return cSignAssignment_0; }
+
+		//"-"
+		public Keyword getSignHyphenMinusKeyword_0_0() { return cSignHyphenMinusKeyword_0_0; }
+
+		//value=INT
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+
+		//INT
+		public RuleCall getValueINTTerminalRuleCall_1_0() { return cValueINTTerminalRuleCall_1_0; }
 	}
 	
 	
 	private ModelElements pModel;
-	private GreetingElements pGreeting;
-	private InsultElements pInsult;
+	private RollerCoasterElements pRollerCoaster;
+	private TrackElements pTrack;
+	private CartElements pCart;
+	private SignedIntElements pSignedInt;
 	
 	private final Grammar grammar;
 
@@ -142,7 +216,7 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//	greetings+=(Greeting | Insult)*;
+	//	rollerCoaster+=RollerCoaster;
 	public ModelElements getModelAccess() {
 		return (pModel != null) ? pModel : (pModel = new ModelElements());
 	}
@@ -151,24 +225,44 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 		return getModelAccess().getRule();
 	}
 
-	//Greeting:
-	//	"Hello" name=ID "!";
-	public GreetingElements getGreetingAccess() {
-		return (pGreeting != null) ? pGreeting : (pGreeting = new GreetingElements());
+	//RollerCoaster:
+	//	name=ID track+=Track* cart+=Cart*;
+	public RollerCoasterElements getRollerCoasterAccess() {
+		return (pRollerCoaster != null) ? pRollerCoaster : (pRollerCoaster = new RollerCoasterElements());
 	}
 	
-	public ParserRule getGreetingRule() {
-		return getGreetingAccess().getRule();
+	public ParserRule getRollerCoasterRule() {
+		return getRollerCoasterAccess().getRule();
 	}
 
-	//Insult:
-	//	"Die" name=ID "!";
-	public InsultElements getInsultAccess() {
-		return (pInsult != null) ? pInsult : (pInsult = new InsultElements());
+	//Track:
+	//	"Track" name=ID length=INT elevationChange=INT? angle=SignedInt?;
+	public TrackElements getTrackAccess() {
+		return (pTrack != null) ? pTrack : (pTrack = new TrackElements());
 	}
 	
-	public ParserRule getInsultRule() {
-		return getInsultAccess().getRule();
+	public ParserRule getTrackRule() {
+		return getTrackAccess().getRule();
+	}
+
+	//Cart:
+	//	"Cart" name=ID;
+	public CartElements getCartAccess() {
+		return (pCart != null) ? pCart : (pCart = new CartElements());
+	}
+	
+	public ParserRule getCartRule() {
+		return getCartAccess().getRule();
+	}
+
+	//SignedInt:
+	//	sign="-"? value=INT;
+	public SignedIntElements getSignedIntAccess() {
+		return (pSignedInt != null) ? pSignedInt : (pSignedInt = new SignedIntElements());
+	}
+	
+	public ParserRule getSignedIntRule() {
+		return getSignedIntAccess().getRule();
 	}
 
 	//terminal ID:

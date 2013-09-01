@@ -32,22 +32,40 @@ public interface CoasterFactory extends EFactory
   Model createModel();
 
   /**
-   * Returns a new object of class '<em>Greeting</em>'.
+   * Returns a new object of class '<em>Roller Coaster</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Greeting</em>'.
+   * @return a new object of class '<em>Roller Coaster</em>'.
    * @generated
    */
-  Greeting createGreeting();
+  RollerCoaster createRollerCoaster();
 
   /**
-   * Returns a new object of class '<em>Insult</em>'.
+   * Returns a new object of class '<em>Track</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Insult</em>'.
+   * @return a new object of class '<em>Track</em>'.
    * @generated
    */
-  Insult createInsult();
+  Track createTrack();
+
+  /**
+   * Returns a new object of class '<em>Cart</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Cart</em>'.
+   * @generated
+   */
+  Cart createCart();
+
+  /**
+   * Returns a new object of class '<em>Signed Int</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Signed Int</em>'.
+   * @generated
+   */
+  SignedInt createSignedInt();
 
   /**
    * Returns the package supported by this factory.
