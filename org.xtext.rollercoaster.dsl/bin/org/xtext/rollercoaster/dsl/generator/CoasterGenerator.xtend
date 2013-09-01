@@ -6,6 +6,9 @@ package org.xtext.rollercoaster.dsl.generator
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess
+import org.xtext.rollercoaster.dsl.coaster.Track
+import org.xtext.rollercoaster.dsl.coaster.RollerCoaster
+import java.util.Date
 
 /**
  * Generates code from your model files on save.
@@ -14,11 +17,148 @@ import org.eclipse.xtext.generator.IFileSystemAccess
  */
 class CoasterGenerator implements IGenerator {
 	
+	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(typeof(Greeting))
-//				.map[name]
-//				.join(', '))
+	
+	  	// Generate a example java file
+	  	fsa.generateFile("Track" + ".java", compile(resource.allContents.toIterable.filter(Track)))
+		
+		// Generate a text file report
+		fsa.generateFile("RollerCoasterReport" + ".html", genReport(resource.allContents.toIterable.filter(RollerCoaster).head));
+
+	}
+	
+	
+	/**
+	 * Generate an html report of the coasters stats
+	 * For starting off this is going to include the 
+	 * 	Max Speed
+	 * 	Cost
+	 * 	Fun
+	 * 	Name
+	 */	
+	def genReport (RollerCoaster rc)
+	
+		'''
+		<html>
+			<body>
+				<h1>Roller Coaster report for the « rc.name » roller coaster on the  « new Date() »</h1>
+				<p>Number of Pieces of track 	: « rc.track.length »</p>
+				<p>Number of Carts 			: « rc.cart.length»</p>
+				
+				<h1> Rendering of the track </h1>
+  				« getPathForTrack (rc.track)»
+			</body>
+		</html>	
+		'''
+
+	/**
+	 * Build a svg path from a list of tracks
+	 */
+	def getPathForTrack (Iterable <Track> tracks){
+		// The start of the svg
+		val start = '''<svg width="800px" height="600px" version="1.1" xmlns="http://www.w3.org/2000/svg"> '''
+		val pathStart = '''<path d=" M 400 300 '''
+		
+		var path = "";
+		
+		// Track the current angle of the track as it changes 
+		var currentAngle = 0;
+		
+		for(Track t : tracks){
+			
+			// Find out what type of track we are dealing with
+			path = path + switch t {
+		
+				// Straight Track
+				Track: {
+					println("Track");
+					
+					// Calculate the end position
+					val length = t.length;
+					
+					val angle = currentAngle + if(t.angle == null){
+						0;
+					} else if (t.angle.sign == null){
+						t.angle.value;
+					} else {
+						-t.angle.value;
+					};
+					
+					println(currentAngle);
+					
+					// Set the new current angle
+					currentAngle = angle;
+					
+					val endX = Math.sin(Math.toRadians(angle)) *  length;
+					val endY = Math.cos(Math.toRadians(angle)) *  length;
+					
+					
+					
+					" l " + endX + " " +endY;
+					
+				}
+				
+				default: {
+				// Example arc for a path 
+				// Anchored at 400, 300.
+				// Ending at 500, 200.
+				// With a radius of 100
+				
+				// For now with all corners we are going to fix arc size at 100.
+				// 
+					val x = '''<path d=" M 400 300 A 100 100 0 0 1 500 200"/>'''
+					"ERROR"
+				}
+				
+			}
+
+		}
+
+				
+		val pathEnd = '''"stroke="black" fill="transparent"/>'''
+		
+		// Closing of the path tag			
+		var end = '''</svg>'''
+		
+		// Build the path with enclosing svg 
+		start + pathStart + path + pathEnd + end;
+		
+	}
+	
+	
+
+	/**
+	 * Example to generate a java program to print all the tracks
+	 */
+	def compile (Iterable <Track> tracks) 
+	
+	''' 
+	public class Track { 
+	
+	String name,corner,slope;
+	
+	public Track (String name, String corner) {
+	this.name = name;
+	this.corner = corner;
+	}
+	
+	public String toString (){
+		return "I am a track with the name"+ this.name + ", with a corner of " +this.corner;
+	}
+	
+	public static void main(String[]args){
+		
+		Track t = null;
+		
+«FOR t:tracks»
+ 	t = new Track("«t.name»" «IF t.angle != null» "«t.angle»" «ELSE» "NO ANGLE" «ENDIF»);
+ 	System.out.println(t);
+«ENDFOR»
+  		
+  		System.out.println("Thoes are all the tracks");
 	}
 }
+	'''
+}
+

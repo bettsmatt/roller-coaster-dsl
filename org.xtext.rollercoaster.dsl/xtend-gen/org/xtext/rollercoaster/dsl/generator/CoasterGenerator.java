@@ -3,9 +3,24 @@
  */
 package org.xtext.rollercoaster.dsl.generator;
 
+import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
+import java.util.Date;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.rollercoaster.dsl.coaster.Cart;
+import org.xtext.rollercoaster.dsl.coaster.RollerCoaster;
+import org.xtext.rollercoaster.dsl.coaster.SignedInt;
+import org.xtext.rollercoaster.dsl.coaster.Track;
 
 /**
  * Generates code from your model files on save.
@@ -15,5 +30,253 @@ import org.eclipse.xtext.generator.IGenerator;
 @SuppressWarnings("all")
 public class CoasterGenerator implements IGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
+    String _plus = ("Track" + ".java");
+    TreeIterator<EObject> _allContents = resource.getAllContents();
+    Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
+    Iterable<Track> _filter = Iterables.<Track>filter(_iterable, Track.class);
+    CharSequence _compile = this.compile(_filter);
+    fsa.generateFile(_plus, _compile);
+    String _plus_1 = ("RollerCoasterReport" + ".html");
+    TreeIterator<EObject> _allContents_1 = resource.getAllContents();
+    Iterable<EObject> _iterable_1 = IteratorExtensions.<EObject>toIterable(_allContents_1);
+    Iterable<RollerCoaster> _filter_1 = Iterables.<RollerCoaster>filter(_iterable_1, RollerCoaster.class);
+    RollerCoaster _head = IterableExtensions.<RollerCoaster>head(_filter_1);
+    CharSequence _genReport = this.genReport(_head);
+    fsa.generateFile(_plus_1, _genReport);
+  }
+  
+  /**
+   * Generate an html report of the coasters stats
+   * For starting off this is going to include the
+   * 	Max Speed
+   * 	Cost
+   * 	Fun
+   * 	Name
+   */
+  public CharSequence genReport(final RollerCoaster rc) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<html>");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<body>");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<h1>Roller Coaster report for the ");
+    String _name = rc.getName();
+    _builder.append(_name, "		");
+    _builder.append(" roller coaster on the  ");
+    Date _date = new Date();
+    _builder.append(_date, "		");
+    _builder.append("</h1>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("<p>Number of Pieces of track \t: ");
+    EList<Track> _track = rc.getTrack();
+    int _length = ((Object[])Conversions.unwrapArray(_track, Object.class)).length;
+    _builder.append(_length, "		");
+    _builder.append("</p>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("<p>Number of Carts \t\t\t: ");
+    EList<Cart> _cart = rc.getCart();
+    int _length_1 = ((Object[])Conversions.unwrapArray(_cart, Object.class)).length;
+    _builder.append(_length_1, "		");
+    _builder.append("</p>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<h1> Rendering of the track </h1>");
+    _builder.newLine();
+    _builder.append("  \t\t\t\t");
+    EList<Track> _track_1 = rc.getTrack();
+    String _pathForTrack = this.getPathForTrack(_track_1);
+    _builder.append(_pathForTrack, "  				");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("</body>");
+    _builder.newLine();
+    _builder.append("</html>\t");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  /**
+   * Build a svg path from a list of tracks
+   */
+  public String getPathForTrack(final Iterable<Track> tracks) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("<svg width=\"800px\" height=\"600px\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"> ");
+      final String start = _builder.toString();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("<path d=\" M 400 300 ");
+      final String pathStart = _builder_1.toString();
+      String path = "";
+      int currentAngle = 0;
+      for (final Track t : tracks) {
+        String _switchResult = null;
+        boolean _matched = false;
+        if (!_matched) {
+          if (t instanceof Track) {
+            final Track _track = (Track)t;
+            _matched=true;
+            String _xblockexpression_1 = null;
+            {
+              InputOutput.<String>println("Track");
+              final int length = _track.getLength();
+              int _xifexpression = (int) 0;
+              SignedInt _angle = _track.getAngle();
+              boolean _equals = Objects.equal(_angle, null);
+              if (_equals) {
+                _xifexpression = 0;
+              } else {
+                int _xifexpression_1 = (int) 0;
+                SignedInt _angle_1 = _track.getAngle();
+                String _sign = _angle_1.getSign();
+                boolean _equals_1 = Objects.equal(_sign, null);
+                if (_equals_1) {
+                  SignedInt _angle_2 = _track.getAngle();
+                  int _value = _angle_2.getValue();
+                  _xifexpression_1 = _value;
+                } else {
+                  SignedInt _angle_3 = _track.getAngle();
+                  int _value_1 = _angle_3.getValue();
+                  int _minus = (-_value_1);
+                  _xifexpression_1 = _minus;
+                }
+                _xifexpression = _xifexpression_1;
+              }
+              final int angle = (currentAngle + _xifexpression);
+              InputOutput.<Integer>println(Integer.valueOf(currentAngle));
+              currentAngle = angle;
+              double _radians = Math.toRadians(angle);
+              double _sin = Math.sin(_radians);
+              final double endX = (_sin * length);
+              double _radians_1 = Math.toRadians(angle);
+              double _cos = Math.cos(_radians_1);
+              final double endY = (_cos * length);
+              String _plus = (" l " + Double.valueOf(endX));
+              String _plus_1 = (_plus + " ");
+              String _plus_2 = (_plus_1 + Double.valueOf(endY));
+              _xblockexpression_1 = (_plus_2);
+            }
+            _switchResult = _xblockexpression_1;
+          }
+        }
+        if (!_matched) {
+          String _xblockexpression_1 = null;
+          {
+            StringConcatenation _builder_2 = new StringConcatenation();
+            _builder_2.append("<path d=\" M 400 300 A 100 100 0 0 1 500 200\"/>");
+            final String x = _builder_2.toString();
+            _xblockexpression_1 = ("ERROR");
+          }
+          _switchResult = _xblockexpression_1;
+        }
+        String _plus = (path + _switchResult);
+        path = _plus;
+      }
+      StringConcatenation _builder_2 = new StringConcatenation();
+      _builder_2.append("\"stroke=\"black\" fill=\"transparent\"/>");
+      final String pathEnd = _builder_2.toString();
+      StringConcatenation _builder_3 = new StringConcatenation();
+      _builder_3.append("</svg>");
+      String end = _builder_3.toString();
+      String _plus_1 = (start + pathStart);
+      String _plus_2 = (_plus_1 + path);
+      String _plus_3 = (_plus_2 + pathEnd);
+      String _plus_4 = (_plus_3 + end);
+      _xblockexpression = (_plus_4);
+    }
+    return _xblockexpression;
+  }
+  
+  /**
+   * Example to generate a java program to print all the tracks
+   */
+  public CharSequence compile(final Iterable<Track> tracks) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\t");
+    _builder.append("public class Track { ");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("String name,corner,slope;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public Track (String name, String corner) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("this.name = name;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("this.corner = corner;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public String toString (){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return \"I am a track with the name\"+ this.name + \", with a corner of \" +this.corner;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public static void main(String[]args){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("Track t = null;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    {
+      for(final Track t : tracks) {
+        _builder.append("t = new Track(\"");
+        String _name = t.getName();
+        _builder.append(_name, "");
+        _builder.append("\" ");
+        {
+          SignedInt _angle = t.getAngle();
+          boolean _notEquals = (!Objects.equal(_angle, null));
+          if (_notEquals) {
+            _builder.append(" \"");
+            SignedInt _angle_1 = t.getAngle();
+            _builder.append(_angle_1, "");
+            _builder.append("\" ");
+          } else {
+            _builder.append(" \"NO ANGLE\" ");
+          }
+        }
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+        _builder.append("System.out.println(t);");
+        _builder.newLine();
+      }
+    }
+    _builder.append("  \t\t");
+    _builder.newLine();
+    _builder.append("  \t\t");
+    _builder.append("System.out.println(\"Thoes are all the tracks\");");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
   }
 }
