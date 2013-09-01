@@ -18,9 +18,9 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.rollercoaster.dsl.coaster.Cart;
+import org.xtext.rollercoaster.dsl.coaster.Corner;
 import org.xtext.rollercoaster.dsl.coaster.RollerCoaster;
-import org.xtext.rollercoaster.dsl.coaster.SignedInt;
-import org.xtext.rollercoaster.dsl.coaster.Track;
+import org.xtext.rollercoaster.dsl.coaster.Straight;
 
 /**
  * Generates code from your model files on save.
@@ -30,19 +30,13 @@ import org.xtext.rollercoaster.dsl.coaster.Track;
 @SuppressWarnings("all")
 public class CoasterGenerator implements IGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
-    String _plus = ("Track" + ".java");
+    String _plus = ("RollerCoasterReport" + ".html");
     TreeIterator<EObject> _allContents = resource.getAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
-    Iterable<Track> _filter = Iterables.<Track>filter(_iterable, Track.class);
-    CharSequence _compile = this.compile(_filter);
-    fsa.generateFile(_plus, _compile);
-    String _plus_1 = ("RollerCoasterReport" + ".html");
-    TreeIterator<EObject> _allContents_1 = resource.getAllContents();
-    Iterable<EObject> _iterable_1 = IteratorExtensions.<EObject>toIterable(_allContents_1);
-    Iterable<RollerCoaster> _filter_1 = Iterables.<RollerCoaster>filter(_iterable_1, RollerCoaster.class);
-    RollerCoaster _head = IterableExtensions.<RollerCoaster>head(_filter_1);
+    Iterable<RollerCoaster> _filter = Iterables.<RollerCoaster>filter(_iterable, RollerCoaster.class);
+    RollerCoaster _head = IterableExtensions.<RollerCoaster>head(_filter);
     CharSequence _genReport = this.genReport(_head);
-    fsa.generateFile(_plus_1, _genReport);
+    fsa.generateFile(_plus, _genReport);
   }
   
   /**
@@ -71,7 +65,7 @@ public class CoasterGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("<p>Number of Pieces of track \t: ");
-    EList<Track> _track = rc.getTrack();
+    EList<EObject> _track = rc.getTrack();
     int _length = ((Object[])Conversions.unwrapArray(_track, Object.class)).length;
     _builder.append(_length, "		");
     _builder.append("</p>");
@@ -89,7 +83,7 @@ public class CoasterGenerator implements IGenerator {
     _builder.append("<h1> Rendering of the track </h1>");
     _builder.newLine();
     _builder.append("  \t\t\t\t");
-    EList<Track> _track_1 = rc.getTrack();
+    EList<EObject> _track_1 = rc.getTrack();
     String _pathForTrack = this.getPathForTrack(_track_1);
     _builder.append(_pathForTrack, "  				");
     _builder.newLineIfNotEmpty();
@@ -104,7 +98,7 @@ public class CoasterGenerator implements IGenerator {
   /**
    * Build a svg path from a list of tracks
    */
-  public String getPathForTrack(final Iterable<Track> tracks) {
+  public String getPathForTrack(final Iterable<EObject> tracks) {
     String _xblockexpression = null;
     {
       StringConcatenation _builder = new StringConcatenation();
@@ -114,47 +108,23 @@ public class CoasterGenerator implements IGenerator {
       _builder_1.append("<path d=\" M 400 300 ");
       final String pathStart = _builder_1.toString();
       String path = "";
-      int currentAngle = 0;
-      for (final Track t : tracks) {
+      double currentAngle = 0.0;
+      for (final EObject trackPiece : tracks) {
         String _switchResult = null;
         boolean _matched = false;
         if (!_matched) {
-          if (t instanceof Track) {
-            final Track _track = (Track)t;
+          if (trackPiece instanceof Straight) {
+            final Straight _straight = (Straight)trackPiece;
             _matched=true;
             String _xblockexpression_1 = null;
             {
-              InputOutput.<String>println("Track");
-              final int length = _track.getLength();
-              int _xifexpression = (int) 0;
-              SignedInt _angle = _track.getAngle();
-              boolean _equals = Objects.equal(_angle, null);
-              if (_equals) {
-                _xifexpression = 0;
-              } else {
-                int _xifexpression_1 = (int) 0;
-                SignedInt _angle_1 = _track.getAngle();
-                String _sign = _angle_1.getSign();
-                boolean _equals_1 = Objects.equal(_sign, null);
-                if (_equals_1) {
-                  SignedInt _angle_2 = _track.getAngle();
-                  int _value = _angle_2.getValue();
-                  _xifexpression_1 = _value;
-                } else {
-                  SignedInt _angle_3 = _track.getAngle();
-                  int _value_1 = _angle_3.getValue();
-                  int _minus = (-_value_1);
-                  _xifexpression_1 = _minus;
-                }
-                _xifexpression = _xifexpression_1;
-              }
-              final int angle = (currentAngle + _xifexpression);
-              InputOutput.<Integer>println(Integer.valueOf(currentAngle));
-              currentAngle = angle;
-              double _radians = Math.toRadians(angle);
+              InputOutput.<String>println("Straight Piece of Track");
+              InputOutput.<Double>println(Double.valueOf(currentAngle));
+              final int length = _straight.getLength();
+              double _radians = Math.toRadians(currentAngle);
               double _sin = Math.sin(_radians);
               final double endX = (_sin * length);
-              double _radians_1 = Math.toRadians(angle);
+              double _radians_1 = Math.toRadians(currentAngle);
               double _cos = Math.cos(_radians_1);
               final double endY = (_cos * length);
               String _plus = (" l " + Double.valueOf(endX));
@@ -166,14 +136,133 @@ public class CoasterGenerator implements IGenerator {
           }
         }
         if (!_matched) {
-          String _xblockexpression_1 = null;
-          {
-            StringConcatenation _builder_2 = new StringConcatenation();
-            _builder_2.append("<path d=\" M 400 300 A 100 100 0 0 1 500 200\"/>");
-            final String x = _builder_2.toString();
-            _xblockexpression_1 = ("ERROR");
+          if (trackPiece instanceof Corner) {
+            final Corner _corner = (Corner)trackPiece;
+            _matched=true;
+            String _xblockexpression_1 = null;
+            {
+              final String arcSize = " 100 100 ";
+              Integer _switchResult_1 = null;
+              String _direction = _corner.getDirection();
+              final String _switchValue = _direction;
+              boolean _matched_1 = false;
+              if (!_matched_1) {
+                if (Objects.equal(_switchValue,"left")) {
+                  _matched_1=true;
+                  int _minus = (-1);
+                  _switchResult_1 = Integer.valueOf(_minus);
+                }
+              }
+              if (!_matched_1) {
+                if (Objects.equal(_switchValue,"right")) {
+                  _matched_1=true;
+                  _switchResult_1 = Integer.valueOf(1);
+                }
+              }
+              final Integer modifier = _switchResult_1;
+              String _switchResult_2 = null;
+              String _direction_1 = _corner.getDirection();
+              final String _switchValue_1 = _direction_1;
+              boolean _matched_2 = false;
+              if (!_matched_2) {
+                if (Objects.equal(_switchValue_1,"left")) {
+                  _matched_2=true;
+                  _switchResult_2 = " 0 0 1 ";
+                }
+              }
+              if (!_matched_2) {
+                if (Objects.equal(_switchValue_1,"right")) {
+                  _matched_2=true;
+                  _switchResult_2 = " 0 0 0 ";
+                }
+              }
+              final String flags = _switchResult_2;
+              int x = 0;
+              int y = 0;
+              double angle = 0.0;
+              String _type = _corner.getType();
+              final String _switchValue_2 = _type;
+              boolean _matched_3 = false;
+              if (!_matched_3) {
+                if (Objects.equal(_switchValue_2,"sharp45")) {
+                  _matched_3=true;
+                  x = 25;
+                  y = 50;
+                  angle = 22.5;
+                }
+              }
+              if (!_matched_3) {
+                if (Objects.equal(_switchValue_2,"sharp90")) {
+                  _matched_3=true;
+                  x = 50;
+                  y = 50;
+                  angle = 45;
+                }
+              }
+              if (!_matched_3) {
+                if (Objects.equal(_switchValue_2,"easy45")) {
+                  _matched_3=true;
+                  x = 50;
+                  y = 100;
+                  angle = 22.5;
+                }
+              }
+              if (!_matched_3) {
+                if (Objects.equal(_switchValue_2,"easy90")) {
+                  _matched_3=true;
+                  x = 100;
+                  y = 100;
+                  angle = 45;
+                }
+              }
+              String _type_1 = _corner.getType();
+              String _plus = (_type_1 + ", X:");
+              String _plus_1 = (_plus + Integer.valueOf(x));
+              String _plus_2 = (_plus_1 + ", Y:");
+              String _plus_3 = (_plus_2 + Integer.valueOf(y));
+              String _plus_4 = (_plus_3 + ", A ");
+              String _plus_5 = (_plus_4 + Double.valueOf(angle));
+              InputOutput.<String>println(_plus_5);
+              double _plus_6 = (angle + currentAngle);
+              double _multiply = ((modifier).intValue() * _plus_6);
+              double _radians = Math.toRadians(_multiply);
+              double _sin = Math.sin(_radians);
+              int _multiply_1 = (x * x);
+              int _multiply_2 = (y * y);
+              int _plus_7 = (_multiply_1 + _multiply_2);
+              double _sqrt = Math.sqrt(_plus_7);
+              final double endX = (_sin * _sqrt);
+              double _plus_8 = (angle + currentAngle);
+              double _multiply_3 = ((modifier).intValue() * _plus_8);
+              double _radians_1 = Math.toRadians(_multiply_3);
+              double _cos = Math.cos(_radians_1);
+              int _multiply_4 = (x * x);
+              int _multiply_5 = (y * y);
+              int _plus_9 = (_multiply_4 + _multiply_5);
+              double _sqrt_1 = Math.sqrt(_plus_9);
+              final double endY = (_cos * _sqrt_1);
+              String _plus_10 = ("End X:" + Double.valueOf(endX));
+              String _plus_11 = (_plus_10 + ", EndY:");
+              String _plus_12 = (_plus_11 + Double.valueOf(endY));
+              InputOutput.<String>println(_plus_12);
+              double _multiply_6 = (angle * 2);
+              double _multiply_7 = (_multiply_6 * (modifier).intValue());
+              double _plus_13 = (currentAngle + _multiply_7);
+              currentAngle = _plus_13;
+              InputOutput.<String>println("Corner");
+              String _plus_14 = (" a " + arcSize);
+              String _plus_15 = (_plus_14 + " ");
+              String _plus_16 = (_plus_15 + flags);
+              String _plus_17 = (_plus_16 + " ");
+              String _plus_18 = (_plus_17 + Double.valueOf(endX));
+              String _plus_19 = (_plus_18 + " ");
+              String _plus_20 = (_plus_19 + Double.valueOf(endY));
+              String arc = (_plus_20 + " ");
+              InputOutput.<String>println(arc);
+              _xblockexpression_1 = (arc);
+            }
+            _switchResult = _xblockexpression_1;
           }
-          _switchResult = _xblockexpression_1;
         }
         String _plus = (path + _switchResult);
         path = _plus;
@@ -191,92 +280,5 @@ public class CoasterGenerator implements IGenerator {
       _xblockexpression = (_plus_4);
     }
     return _xblockexpression;
-  }
-  
-  /**
-   * Example to generate a java program to print all the tracks
-   */
-  public CharSequence compile(final Iterable<Track> tracks) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\t");
-    _builder.append("public class Track { ");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("String name,corner,slope;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public Track (String name, String corner) {");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("this.name = name;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("this.corner = corner;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public String toString (){");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("return \"I am a track with the name\"+ this.name + \", with a corner of \" +this.corner;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public static void main(String[]args){");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("Track t = null;");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.newLine();
-    {
-      for(final Track t : tracks) {
-        _builder.append("t = new Track(\"");
-        String _name = t.getName();
-        _builder.append(_name, "");
-        _builder.append("\" ");
-        {
-          SignedInt _angle = t.getAngle();
-          boolean _notEquals = (!Objects.equal(_angle, null));
-          if (_notEquals) {
-            _builder.append(" \"");
-            SignedInt _angle_1 = t.getAngle();
-            _builder.append(_angle_1, "");
-            _builder.append("\" ");
-          } else {
-            _builder.append(" \"NO ANGLE\" ");
-          }
-        }
-        _builder.append(");");
-        _builder.newLineIfNotEmpty();
-        _builder.append("System.out.println(t);");
-        _builder.newLine();
-      }
-    }
-    _builder.append("  \t\t");
-    _builder.newLine();
-    _builder.append("  \t\t");
-    _builder.append("System.out.println(\"Thoes are all the tracks\");");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    return _builder;
   }
 }

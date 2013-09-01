@@ -23,6 +23,18 @@ import org.xtext.rollercoaster.dsl.validation.AbstractCoasterValidator;
  */
 @SuppressWarnings("all")
 public class CoasterValidator extends AbstractCoasterValidator {
+  public final static String INVALID_NAME = "invalidName";
+  
+  @Check
+  public void checkGreetingStartsWithCapital(final /* Greeting */Object greeting) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field MyDslPackage is undefined for the type CoasterValidator"
+      + "\nname cannot be resolved"
+      + "\ncharAt cannot be resolved"
+      + "\nLiterals cannot be resolved"
+      + "\nGREETING__NAME cannot be resolved");
+  }
+  
   @Check
   public String checkCompletePath(final RollerCoaster rc) {
     String _xblockexpression = null;

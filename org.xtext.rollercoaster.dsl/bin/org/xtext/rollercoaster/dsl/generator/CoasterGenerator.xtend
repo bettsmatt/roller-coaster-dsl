@@ -6,9 +6,11 @@ package org.xtext.rollercoaster.dsl.generator
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.xtext.rollercoaster.dsl.coaster.Track
 import org.xtext.rollercoaster.dsl.coaster.RollerCoaster
 import java.util.Date
+import org.eclipse.emf.ecore.EObject
+import org.xtext.rollercoaster.dsl.coaster.Straight
+import org.xtext.rollercoaster.dsl.coaster.Corner
 
 /**
  * Generates code from your model files on save.
@@ -21,7 +23,7 @@ class CoasterGenerator implements IGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 	
 	  	// Generate a example java file
-	  	fsa.generateFile("Track" + ".java", compile(resource.allContents.toIterable.filter(Track)))
+	  	//fsa.generateFile("Track" + ".java", compile(resource.allContents.toIterable.filter(Track)))
 		
 		// Generate a text file report
 		fsa.generateFile("RollerCoasterReport" + ".html", genReport(resource.allContents.toIterable.filter(RollerCoaster).head));
@@ -55,7 +57,7 @@ class CoasterGenerator implements IGenerator {
 	/**
 	 * Build a svg path from a list of tracks
 	 */
-	def getPathForTrack (Iterable <Track> tracks){
+	def getPathForTrack (Iterable <EObject> tracks){
 		// The start of the svg
 		val start = '''<svg width="800px" height="600px" version="1.1" xmlns="http://www.w3.org/2000/svg"> '''
 		val pathStart = '''<path d=" M 400 300 '''
@@ -63,59 +65,93 @@ class CoasterGenerator implements IGenerator {
 		var path = "";
 		
 		// Track the current angle of the track as it changes 
-		var currentAngle = 0;
+		var currentAngle = 0.0;
 		
-		for(Track t : tracks){
+		for(EObject trackPiece : tracks){
 			
 			// Find out what type of track we are dealing with
-			path = path + switch t {
+			path = path + switch trackPiece {
 		
 				// Straight Track
-				Track: {
-					println("Track");
-					
-					// Calculate the end position
-					val length = t.length;
-					
-					val angle = currentAngle + if(t.angle == null){
-						0;
-					} else if (t.angle.sign == null){
-						t.angle.value;
-					} else {
-						-t.angle.value;
-					};
-					
+				Straight: {
+					println("Straight Piece of Track");
 					println(currentAngle);
 					
-					// Set the new current angle
-					currentAngle = angle;
+					// Calculate the end position
+					val length = trackPiece.length;
 					
-					val endX = Math.sin(Math.toRadians(angle)) *  length;
-					val endY = Math.cos(Math.toRadians(angle)) *  length;
-					
-					
+					// Project in the current direction
+					val endX = Math.sin(Math.toRadians(currentAngle)) *  length;
+					val endY = Math.cos(Math.toRadians(currentAngle)) *  length;
 					
 					" l " + endX + " " +endY;
 					
 				}
 				
-				default: {
-				// Example arc for a path 
-				// Anchored at 400, 300.
-				// Ending at 500, 200.
-				// With a radius of 100
+				Corner: {
 				
 				// For now with all corners we are going to fix arc size at 100.
-				// 
-					val x = '''<path d=" M 400 300 A 100 100 0 0 1 500 200"/>'''
-					"ERROR"
+				val arcSize = " 100 100 ";
+				
+				// -1 for anticlockwise and 1 for clockwise
+				val modifier = switch trackPiece.direction {
+					case 'left': -1 
+					case 'right': 1
+				};
+				
+				val flags = switch trackPiece.direction {
+					case 'left':  " 0 0 1 "
+					case 'right': " 0 0 0 "
+				}
+
+				var x = 0;
+				var y = 0;
+				var angle = 0.0;
+				
+				// Work out the distances
+				switch trackPiece.type {
+					case 'sharp45': {
+						x = 25;
+						y = 50;
+						angle = 22.5;
+					} case 'sharp90': {
+						x = 50;
+						y = 50;
+						angle = 45;
+					} case 'easy45': {
+						x = 50;
+						y = 100;
+						angle = 22.5;
+					} case 'easy90': {
+						x = 100;
+						y = 100;
+						angle = 45;
+					}
+				}
+				
+				println(trackPiece.type + ", X:" + x + ", Y:" + y + ", A "+angle);
+				
+				// Rotate end points around the current angle, modifier controls the direction
+				val endX = Math.sin(Math.toRadians(modifier * (angle + currentAngle))) *  Math.sqrt(x * x + y * y);
+				val endY = Math.cos(Math.toRadians(modifier * (angle + currentAngle))) *  Math.sqrt(x * x + y * y);
+				
+				println("End X:" + endX + ", EndY:" + endY);
+				
+				// Set the new angle
+				currentAngle = currentAngle + (angle * 2 * modifier);
+				
+				println("Corner");
+				
+				var arc = " a " + arcSize + " "+ flags + " " + endX + " " + endY + " ";
+				println(arc);
+				arc;
+
 				}
 				
 			}
 
 		}
 
-				
 		val pathEnd = '''"stroke="black" fill="transparent"/>'''
 		
 		// Closing of the path tag			
@@ -125,40 +161,41 @@ class CoasterGenerator implements IGenerator {
 		start + pathStart + path + pathEnd + end;
 		
 	}
+}
 	
 	
 
-	/**
-	 * Example to generate a java program to print all the tracks
-	 */
-	def compile (Iterable <Track> tracks) 
-	
-	''' 
-	public class Track { 
-	
-	String name,corner,slope;
-	
-	public Track (String name, String corner) {
-	this.name = name;
-	this.corner = corner;
-	}
-	
-	public String toString (){
-		return "I am a track with the name"+ this.name + ", with a corner of " +this.corner;
-	}
-	
-	public static void main(String[]args){
-		
-		Track t = null;
-		
-«FOR t:tracks»
- 	t = new Track("«t.name»" «IF t.angle != null» "«t.angle»" «ELSE» "NO ANGLE" «ENDIF»);
- 	System.out.println(t);
-«ENDFOR»
-  		
-  		System.out.println("Thoes are all the tracks");
-	}
-}
-	'''
-}
+//	/**
+//	 * Example to generate a java program to print all the tracks
+//	 */
+//	def compile (Iterable <Track> tracks) 
+//	
+//	''' 
+//	public class Track { 
+//	
+//	String name,corner,slope;
+//	
+//	public Track (String name, String corner) {
+//	this.name = name;
+//	this.corner = corner;
+//	}
+//	
+//	public String toString (){
+//		return "I am a track with the name"+ this.name + ", with a corner of " +this.corner;
+//	}
+//	
+//	public static void main(String[]args){
+//		
+//		Track t = null;
+//		
+//«FOR t:tracks»
+// 	t = new Track("«t.name»" «IF t.angle != null» "«t.angle»" «ELSE» "NO ANGLE" «ENDIF»);
+// 	System.out.println(t);
+//«ENDFOR»
+//  		
+//  		System.out.println("Thoes are all the tracks");
+//	}
+//}
+//	'''
+//}
 
