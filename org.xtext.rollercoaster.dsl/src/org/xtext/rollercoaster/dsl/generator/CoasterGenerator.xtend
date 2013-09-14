@@ -337,8 +337,8 @@ class CoasterGenerator implements IGenerator {
 		    <div class="container">
 		
 		      <div class="starter-template">
-		        <h1>Bootstrap starter template</h1>
-		        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+		        <h1>SWEN424 Model Driven Development Roller Coaster DSL Project</h1>
+		        <p class="lead">Owen Bannister, Matt Betts, George Davie</p>
 		      </div> ''' +
 		
 		content
