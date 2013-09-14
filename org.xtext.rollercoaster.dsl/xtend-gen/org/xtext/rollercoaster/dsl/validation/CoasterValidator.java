@@ -342,214 +342,71 @@ public class CoasterValidator extends AbstractCoasterValidator {
     int speed = 0;
     EList<EObject> _track = rc.getTrack();
     for (final Object t : _track) {
-      {
-        Corner c = null;
-        Straight s = null;
-        boolean _matched = false;
-        if (!_matched) {
-          if (t instanceof Corner) {
-            final Corner _corner = (Corner)t;
-            _matched=true;
-            c = _corner;
-          }
+      boolean _matched = false;
+      if (!_matched) {
+        if (t instanceof Corner) {
+          final Corner _corner = (Corner)t;
+          _matched=true;
+          this.checkSpeedOnCurve(rc, _corner, speed);
         }
-        if (!_matched) {
-          if (t instanceof Straight) {
-            final Straight _straight = (Straight)t;
-            _matched=true;
-            s = _straight;
-          }
-        }
-        boolean _notEquals = (!Objects.equal(c, null));
-        if (_notEquals) {
-          Integer _switchResult_1 = null;
-          String _quality = c.getQuality();
-          final String _switchValue = _quality;
-          boolean _matched_1 = false;
-          if (!_matched_1) {
-            if (_switchValue instanceof String) {
-              final String _string = (String)_switchValue;
-              if (Objects.equal(_switchValue,"wood")) {
-                _matched_1=true;
-                _switchResult_1 = Integer.valueOf(1);
-              }
-            }
-          }
-          if (!_matched_1) {
-            if (_switchValue instanceof String) {
-              final String _string = (String)_switchValue;
-              if (Objects.equal(_switchValue,"iron")) {
-                _matched_1=true;
-                _switchResult_1 = Integer.valueOf(2);
-              }
-            }
-          }
-          if (!_matched_1) {
-            if (_switchValue instanceof String) {
-              final String _string = (String)_switchValue;
-              if (Objects.equal(_switchValue,"steel")) {
-                _matched_1=true;
-                _switchResult_1 = Integer.valueOf(3);
-              }
-            }
-          }
-          if (!_matched_1) {
-            Integer _switchResult_2 = null;
-            String _baseQuality = rc.getBaseQuality();
-            final String _switchValue_1 = _baseQuality;
-            boolean _matched_2 = false;
-            if (!_matched_2) {
-              if (_switchValue_1 instanceof String) {
-                final String _string = (String)_switchValue_1;
-                if (Objects.equal(_switchValue_1,"wood")) {
-                  _matched_2=true;
-                  _switchResult_2 = Integer.valueOf(1);
-                }
-              }
-            }
-            if (!_matched_2) {
-              if (_switchValue_1 instanceof String) {
-                final String _string = (String)_switchValue_1;
-                if (Objects.equal(_switchValue_1,"iron")) {
-                  _matched_2=true;
-                  _switchResult_2 = Integer.valueOf(2);
-                }
-              }
-            }
-            if (!_matched_2) {
-              if (_switchValue_1 instanceof String) {
-                final String _string = (String)_switchValue_1;
-                if (Objects.equal(_switchValue_1,"steel")) {
-                  _matched_2=true;
-                  _switchResult_2 = Integer.valueOf(3);
-                }
-              }
-            }
-            _switchResult_1 = _switchResult_2;
-          }
-          Integer quality = _switchResult_1;
-          this.checkSpeedOnCurve(rc, c, (quality).intValue(), speed);
-        }
-        boolean _notEquals_1 = (!Objects.equal(s, null));
-        if (_notEquals_1) {
-          Integer _switchResult_3 = null;
-          String _quality_1 = s.getQuality();
-          final String _switchValue_2 = _quality_1;
-          boolean _matched_3 = false;
-          if (!_matched_3) {
-            if (_switchValue_2 instanceof String) {
-              final String _string = (String)_switchValue_2;
-              if (Objects.equal(_switchValue_2,"wood")) {
-                _matched_3=true;
-                _switchResult_3 = Integer.valueOf(1);
-              }
-            }
-          }
-          if (!_matched_3) {
-            if (_switchValue_2 instanceof String) {
-              final String _string = (String)_switchValue_2;
-              if (Objects.equal(_switchValue_2,"iron")) {
-                _matched_3=true;
-                _switchResult_3 = Integer.valueOf(2);
-              }
-            }
-          }
-          if (!_matched_3) {
-            if (_switchValue_2 instanceof String) {
-              final String _string = (String)_switchValue_2;
-              if (Objects.equal(_switchValue_2,"steel")) {
-                _matched_3=true;
-                _switchResult_3 = Integer.valueOf(3);
-              }
-            }
-          }
-          if (!_matched_3) {
-            Integer _switchResult_4 = null;
-            String _baseQuality_1 = rc.getBaseQuality();
-            final String _switchValue_3 = _baseQuality_1;
-            boolean _matched_4 = false;
-            if (!_matched_4) {
-              if (_switchValue_3 instanceof String) {
-                final String _string = (String)_switchValue_3;
-                if (Objects.equal(_switchValue_3,"wood")) {
-                  _matched_4=true;
-                  _switchResult_4 = Integer.valueOf(1);
-                }
-              }
-            }
-            if (!_matched_4) {
-              if (_switchValue_3 instanceof String) {
-                final String _string = (String)_switchValue_3;
-                if (Objects.equal(_switchValue_3,"iron")) {
-                  _matched_4=true;
-                  _switchResult_4 = Integer.valueOf(2);
-                }
-              }
-            }
-            if (!_matched_4) {
-              if (_switchValue_3 instanceof String) {
-                final String _string = (String)_switchValue_3;
-                if (Objects.equal(_switchValue_3,"steel")) {
-                  _matched_4=true;
-                  _switchResult_4 = Integer.valueOf(3);
-                }
-              }
-            }
-            _switchResult_3 = _switchResult_4;
-          }
-          Integer quality_1 = _switchResult_3;
-          String _powered = s.getPowered();
-          boolean _notEquals_2 = (!Objects.equal(_powered, null));
-          if (_notEquals_2) {
-            int _totalWeight = this.getTotalWeight(rc);
-            int _multiply = ((quality_1).intValue() * 100);
+      }
+      if (!_matched) {
+        if (t instanceof Straight) {
+          final Straight _straight = (Straight)t;
+          _matched=true;
+          final Integer quality = RollerCoasterInfo.getQuality(rc, _straight);
+          String _powered = _straight.getPowered();
+          boolean _notEquals = (!Objects.equal(_powered, null));
+          if (_notEquals) {
+            int _totalWeight = RollerCoasterInfo.getTotalWeight(rc);
+            int _multiply = ((quality).intValue() * 100);
             int temp = (_totalWeight / _multiply);
-            int _length = s.getLength();
-            int _multiply_1 = (_length * (quality_1).intValue());
+            int _length = _straight.getLength();
+            int _multiply_1 = (_length * (quality).intValue());
             int _divide = (_multiply_1 / temp);
             int _plus = (speed + _divide);
             speed = _plus;
           }
-          SignedInt _elevationChange = s.getElevationChange();
-          boolean _notEquals_3 = (!Objects.equal(_elevationChange, null));
-          if (_notEquals_3) {
-            SignedInt _elevationChange_1 = s.getElevationChange();
+          SignedInt _elevationChange = _straight.getElevationChange();
+          boolean _notEquals_1 = (!Objects.equal(_elevationChange, null));
+          if (_notEquals_1) {
+            SignedInt _elevationChange_1 = _straight.getElevationChange();
             int _value = _elevationChange_1.getValue();
             int change = (_value / 2);
-            SignedInt _elevationChange_2 = s.getElevationChange();
+            SignedInt _elevationChange_2 = _straight.getElevationChange();
             String _sign = _elevationChange_2.getSign();
-            boolean _notEquals_4 = (!Objects.equal(_sign, null));
-            if (_notEquals_4) {
-              int _length_1 = s.getLength();
+            boolean _notEquals_2 = (!Objects.equal(_sign, null));
+            if (_notEquals_2) {
+              int _length_1 = _straight.getLength();
               int _multiply_2 = (change * _length_1);
-              int _multiply_3 = (_multiply_2 * (quality_1).intValue());
+              int _multiply_3 = (_multiply_2 * (quality).intValue());
               int _plus_1 = (speed + _multiply_3);
               speed = _plus_1;
             } else {
               int _minus = (-1);
               int _multiply_4 = (change * _minus);
               change = _multiply_4;
-              int _totalWeight_1 = this.getTotalWeight(rc);
-              int _multiply_5 = ((quality_1).intValue() * 1000);
+              int _totalWeight_1 = RollerCoasterInfo.getTotalWeight(rc);
+              int _multiply_5 = ((quality).intValue() * 1000);
               int temp_1 = (_totalWeight_1 / _multiply_5);
-              int _length_2 = s.getLength();
+              int _length_2 = _straight.getLength();
               int _multiply_6 = (change * _length_2);
-              int _divide_1 = (_multiply_6 / (quality_1).intValue());
+              int _divide_1 = (_multiply_6 / (quality).intValue());
               int _plus_2 = (speed + _divide_1);
               int _minus_1 = (_plus_2 - temp_1);
               speed = _minus_1;
             }
           } else {
-            int _length_3 = s.getLength();
-            int _multiply_7 = ((quality_1).intValue() * 10);
+            int _length_3 = _straight.getLength();
+            int _multiply_7 = ((quality).intValue() * 10);
             int _divide_2 = (_length_3 / _multiply_7);
             int _minus_2 = (speed - _divide_2);
             speed = _minus_2;
           }
-          this.checkSpeedOnStraights(rc, s, (quality_1).intValue(), speed);
+          this.checkSpeedOnStraights(rc, _straight, speed);
           boolean _lessEqualsThan = (speed <= 0);
           if (_lessEqualsThan) {
-            String _name = s.getName();
+            String _name = _straight.getName();
             String _plus_3 = ("Cart is moving backwards or stopped on Track: " + _name);
             String _plus_4 = (_plus_3 + ", add powered units or downhill slopes.");
             EStructuralFeature _eStructuralFeature = Literals.ROLLER_COASTER.getEStructuralFeature("track");
@@ -565,77 +422,13 @@ public class CoasterValidator extends AbstractCoasterValidator {
     return _totalWeight;
   }
   
-  public void checkSpeedOnStraights(final RollerCoaster rc, final Straight s, final int trackQuality, final int speed) {
+  public void checkSpeedOnStraights(final RollerCoaster rc, final Straight s, final int speed) {
     EList<Cart> _cart = rc.getCart();
     for (final Cart c : _cart) {
       {
-        Integer _switchResult = null;
-        String _quality = c.getQuality();
-        final String _switchValue = _quality;
-        boolean _matched = false;
-        if (!_matched) {
-          if (_switchValue instanceof String) {
-            final String _string = (String)_switchValue;
-            if (Objects.equal(_switchValue,"wood")) {
-              _matched=true;
-              _switchResult = Integer.valueOf(1);
-            }
-          }
-        }
-        if (!_matched) {
-          if (_switchValue instanceof String) {
-            final String _string = (String)_switchValue;
-            if (Objects.equal(_switchValue,"iron")) {
-              _matched=true;
-              _switchResult = Integer.valueOf(2);
-            }
-          }
-        }
-        if (!_matched) {
-          if (_switchValue instanceof String) {
-            final String _string = (String)_switchValue;
-            if (Objects.equal(_switchValue,"steel")) {
-              _matched=true;
-              _switchResult = Integer.valueOf(3);
-            }
-          }
-        }
-        if (!_matched) {
-          Integer _switchResult_1 = null;
-          String _baseQuality = rc.getBaseQuality();
-          final String _switchValue_1 = _baseQuality;
-          boolean _matched_1 = false;
-          if (!_matched_1) {
-            if (_switchValue_1 instanceof String) {
-              final String _string = (String)_switchValue_1;
-              if (Objects.equal(_switchValue_1,"wood")) {
-                _matched_1=true;
-                _switchResult_1 = Integer.valueOf(1);
-              }
-            }
-          }
-          if (!_matched_1) {
-            if (_switchValue_1 instanceof String) {
-              final String _string = (String)_switchValue_1;
-              if (Objects.equal(_switchValue_1,"iron")) {
-                _matched_1=true;
-                _switchResult_1 = Integer.valueOf(2);
-              }
-            }
-          }
-          if (!_matched_1) {
-            if (_switchValue_1 instanceof String) {
-              final String _string = (String)_switchValue_1;
-              if (Objects.equal(_switchValue_1,"steel")) {
-                _matched_1=true;
-                _switchResult_1 = Integer.valueOf(3);
-              }
-            }
-          }
-          _switchResult = _switchResult_1;
-        }
-        Integer cartQuality = _switchResult;
-        int qualityFactor = (trackQuality + (cartQuality).intValue());
+        final Integer cartQuality = RollerCoasterInfo.getQuality(rc, c);
+        Integer _quality = RollerCoasterInfo.getQuality(rc, s);
+        int qualityFactor = ((_quality).intValue() + (cartQuality).intValue());
         int _divide = (speed / qualityFactor);
         boolean _greaterThan = (_divide > 75);
         if (_greaterThan) {
@@ -654,121 +447,12 @@ public class CoasterValidator extends AbstractCoasterValidator {
     }
   }
   
-  public void checkSpeedOnCurve(final RollerCoaster rc, final Corner corner, final int trackQuality, final int speed) {
+  public void checkSpeedOnCurve(final RollerCoaster rc, final Corner corner, final int speed) {
     EList<Cart> _cart = rc.getCart();
     for (final Cart c : _cart) {
       {
-        Integer _switchResult = null;
-        String _quality = c.getQuality();
-        final String _switchValue = _quality;
-        boolean _matched = false;
-        if (!_matched) {
-          if (_switchValue instanceof String) {
-            final String _string = (String)_switchValue;
-            if (Objects.equal(_switchValue,"wood")) {
-              _matched=true;
-              _switchResult = Integer.valueOf(1);
-            }
-          }
-        }
-        if (!_matched) {
-          if (_switchValue instanceof String) {
-            final String _string = (String)_switchValue;
-            if (Objects.equal(_switchValue,"iron")) {
-              _matched=true;
-              _switchResult = Integer.valueOf(2);
-            }
-          }
-        }
-        if (!_matched) {
-          if (_switchValue instanceof String) {
-            final String _string = (String)_switchValue;
-            if (Objects.equal(_switchValue,"steel")) {
-              _matched=true;
-              _switchResult = Integer.valueOf(3);
-            }
-          }
-        }
-        if (!_matched) {
-          Integer _switchResult_1 = null;
-          String _baseQuality = rc.getBaseQuality();
-          final String _switchValue_1 = _baseQuality;
-          boolean _matched_1 = false;
-          if (!_matched_1) {
-            if (_switchValue_1 instanceof String) {
-              final String _string = (String)_switchValue_1;
-              if (Objects.equal(_switchValue_1,"wood")) {
-                _matched_1=true;
-                _switchResult_1 = Integer.valueOf(1);
-              }
-            }
-          }
-          if (!_matched_1) {
-            if (_switchValue_1 instanceof String) {
-              final String _string = (String)_switchValue_1;
-              if (Objects.equal(_switchValue_1,"iron")) {
-                _matched_1=true;
-                _switchResult_1 = Integer.valueOf(2);
-              }
-            }
-          }
-          if (!_matched_1) {
-            if (_switchValue_1 instanceof String) {
-              final String _string = (String)_switchValue_1;
-              if (Objects.equal(_switchValue_1,"steel")) {
-                _matched_1=true;
-                _switchResult_1 = Integer.valueOf(3);
-              }
-            }
-          }
-          _switchResult = _switchResult_1;
-        }
-        Integer cartQuality = _switchResult;
-        int qualityFactor = (trackQuality + (cartQuality).intValue());
-        Integer _switchResult_2 = null;
-        String _type = corner.getType();
-        final String _switchValue_2 = _type;
-        boolean _matched_2 = false;
-        if (!_matched_2) {
-          if (_switchValue_2 instanceof String) {
-            final String _string = (String)_switchValue_2;
-            if (Objects.equal(_switchValue_2,"sharp45")) {
-              _matched_2=true;
-              _switchResult_2 = Integer.valueOf(3);
-            }
-          }
-        }
-        if (!_matched_2) {
-          if (_switchValue_2 instanceof String) {
-            final String _string = (String)_switchValue_2;
-            if (Objects.equal(_switchValue_2,"sharp90")) {
-              _matched_2=true;
-              _switchResult_2 = Integer.valueOf(4);
-            }
-          }
-        }
-        if (!_matched_2) {
-          if (_switchValue_2 instanceof String) {
-            final String _string = (String)_switchValue_2;
-            if (Objects.equal(_switchValue_2,"easy45")) {
-              _matched_2=true;
-              _switchResult_2 = Integer.valueOf(1);
-            }
-          }
-        }
-        if (!_matched_2) {
-          if (_switchValue_2 instanceof String) {
-            final String _string = (String)_switchValue_2;
-            if (Objects.equal(_switchValue_2,"easy90")) {
-              _matched_2=true;
-              _switchResult_2 = Integer.valueOf(2);
-            }
-          }
-        }
-        Integer cornerType = _switchResult_2;
-        int _divide = (speed / qualityFactor);
-        int _multiply = (_divide * (cornerType).intValue());
-        boolean _greaterThan = (_multiply > 100);
+        final int gforce = RollerCoasterInfo.getCornerGForce(rc, speed, corner);
+        boolean _greaterThan = (gforce > 100);
         if (_greaterThan) {
           String _name = c.getName();
           String _plus = ("Cart " + _name);

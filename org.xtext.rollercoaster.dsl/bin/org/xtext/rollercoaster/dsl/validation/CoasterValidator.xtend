@@ -138,136 +138,90 @@ def elevationMeetsAtStartAndEnd(RollerCoaster rc){
 		}
 }
 
-@Check
-def hasEnoughPower(RollerCoaster rc){
-	var speed = 0;
-	
-	for(Object t: rc.track){
-		var Corner c = null;
-		var Straight s = null;
-		switch (t) {
-			Corner:  c = t
-			Straight: s = t
-		}
-		if(c != null){
-			var quality = switch (c.quality) {
-					String case "wood" :  1
-					String case "iron": 2
-					String case "steel": 3
-					default: switch (rc.baseQuality) {
-					String case "wood" :  1
-					String case "iron": 2
-					String case "steel": 3
-				}	
-				}
-			
-			checkSpeedOnCurve(rc, c, quality, speed);
-		}
+	@Check
+	def hasEnoughPower(RollerCoaster rc){
 		
-		//If it is a straight
-		if(s != null){
-			// Convert text quality to numeric and if nothing provided get rc base quality
-			var quality = switch (s.quality) {
-					String case "wood" :  1
-					String case "iron": 2
-					String case "steel": 3
-					default: switch (rc.baseQuality) {
-					String case "wood" :  1
-					String case "iron": 2
-					String case "steel": 3
-				}	
-				}
+		var speed = 0;
+		
+		for(Object t: rc.track){
 			
-			
-			//if straight is powered
-			if(s.powered != null){
+			switch (t) {
 				
-				var temp = getTotalWeight(rc)/(quality*100);
-				speed = speed + (s.length*quality)/temp; //fine tune
-			}
-			// If there is an elevation change.
-			if(s.elevationChange != null){
-				var change = s.elevationChange.value/2;
-				//downhill
-				if(s.elevationChange.sign != null){
-					speed = speed + (change *  s.length *quality); //weight has no effect going downhill
-				}
-			 // uphill
-				else {
-					change = change * -1;
+				Corner: {
+					checkSpeedOnCurve(rc, t, speed);
+				} 
+				
+				Straight: {
 					
-					var temp = getTotalWeight(rc)/(quality*1000);
-					speed = speed + (change *  s.length/quality)-temp;
-				}
-			}
-			//on flat slowly decrease
-			else{speed = speed - s.length/(quality*10);} //weight has no effect on the flat 
+					val quality = RollerCoasterInfo.getQuality(rc, t);
+					
+					//if straight is powered
+					if(t.powered != null){
 						
-			//println(speed);
-			checkSpeedOnStraights(rc, s, quality, speed);
-			if (speed <=0){
-				warning("Cart is moving backwards or stopped on Track: "+(s.name)+", add powered units or downhill slopes.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+						var temp = RollerCoasterInfo.getTotalWeight(rc) / (quality * 100);
+						speed = speed + (t.length * quality ) / temp; //fine tune
+					}
+					
+					// If there is an elevation change.
+					if(t.elevationChange != null){
+						var change = t.elevationChange.value/2;
+						//downhill
+						if (t.elevationChange.sign != null){
+							speed = speed + (change *  t.length *quality); //weight has no effect going downhill
+						}
+					 // uphill
+						else {
+							change = change * -1;
+							
+							var temp = RollerCoasterInfo.getTotalWeight(rc) / (quality * 1000);
+							speed = speed + (change *  t.length/quality)-temp;
+						}
+					}
+					
+					//on flat slowly decrease
+					else {
+						speed = speed - t.length/(quality*10);
+					} //weight has no effect on the flat 
+									
+					checkSpeedOnStraights(rc, t, speed);
+					
+					if (speed <= 0){
+						warning("Cart is moving backwards or stopped on Track: "+(t.name)+", add powered units or downhill slopes.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+					}
+				}
 			}
 		}
-		}
-}
-
-
-def getTotalWeight(RollerCoaster rc){
-	RollerCoasterInfo.getTotalWeight(rc);
-}
-
-def checkSpeedOnStraights(RollerCoaster rc, Straight s, int trackQuality, int speed){
-	//cartQuality
-	//trackQuality
-	
-	for(Cart c: rc.cart){
-		var cartQuality = switch (c.quality) {
-					String case "wood" :  1
-					String case "iron": 2
-					String case "steel": 3
-					default: switch (rc.baseQuality) {
-					String case "wood" :  1
-					String case "iron": 2
-					String case "steel": 3
-				}	
-				}
-		var qualityFactor = trackQuality + cartQuality;
-			//	println("Straight - "+s.name +" - Speed - " +speed+"kph - our calculation - "+(speed/qualityFactor));
-		if(speed/qualityFactor > 75){
-			warning("Cart "+ c.name +" has been destroyed due to the excessive speed of "+speed+"kph on Track: "+s.name+", please improve quality of track or cart or reduce speed.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
-			
-		}
 	}
-}
 
-def checkSpeedOnCurve(RollerCoaster rc, Corner corner, int trackQuality, int speed){
-	for(Cart c: rc.cart){
-		var cartQuality = switch (c.quality) {
-					String case "wood" :  1
-					String case "iron": 2
-					String case "steel": 3
-					default: switch (rc.baseQuality) {
-					String case "wood" :  1
-					String case "iron": 2
-					String case "steel": 3
-				}	
-				}
-		var qualityFactor = trackQuality + cartQuality;
-			var cornerType = switch (corner.type) {
-					String case "sharp45" :  3
-					String case "sharp90": 4
-					String case "easy45": 1
-					String case "easy90": 2
-					}
+	def getTotalWeight(RollerCoaster rc){
+		RollerCoasterInfo.getTotalWeight(rc);
+	}
+
+	def checkSpeedOnStraights(RollerCoaster rc, Straight s, int speed){
 		
-		//println("Corner - "+corner.name +" - Speed - " +speed+"kph - our calculation - "+((speed/qualityFactor)*cornerType));
-		if((speed/qualityFactor)*cornerType > 100){ //cornertype/speed
-			warning("Cart "+ c.name +" has left the track due the excessive speed of "+speed+"kph on Corner: "+corner.name+", please improve quality of track or cart or reduce speed.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+		for(Cart c: rc.cart){
+			
+			val cartQuality = RollerCoasterInfo.getQuality(rc, c);
+			var qualityFactor = RollerCoasterInfo.getQuality(rc, s) + cartQuality;
+		
+			if(speed/qualityFactor > 75){
+				warning("Cart "+ c.name +" has been destroyed due to the excessive speed of "+speed+"kph on Track: "+s.name+", please improve quality of track or cart or reduce speed.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));		
+			}
 			
 		}
 	}
-}
+
+	def checkSpeedOnCurve(RollerCoaster rc, Corner corner, int speed){
+		for(Cart c: rc.cart){
+			
+			val gforce = RollerCoasterInfo.getCornerGForce(rc, speed, corner);
+		
+			if(gforce > 100){ 
+				warning("Cart " + c.name + " has left the track due the excessive speed of " +speed+ "kph on Corner: "+corner.name+", please improve quality of track or cart or reduce speed.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+			}
+		}
+	}
+	
 
 }
 

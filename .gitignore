@@ -1,5 +1,8 @@
 *.class
 .metadata
+
+*.java
+
 # Package Files #
 *.jar
 *.war
