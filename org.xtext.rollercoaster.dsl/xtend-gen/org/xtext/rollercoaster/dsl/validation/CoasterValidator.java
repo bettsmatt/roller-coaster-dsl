@@ -286,29 +286,54 @@ public class CoasterValidator extends AbstractCoasterValidator {
             s = _straight;
           }
         }
+        String _plus = (c + ">>");
+        String _plus_1 = (_plus + s);
+        InputOutput.<String>println(_plus_1);
+        boolean _and = false;
         boolean _notEquals = (!Objects.equal(s, null));
-        if (_notEquals) {
+        if (!_notEquals) {
+          _and = false;
+        } else {
           SignedInt _elevationChange = s.getElevationChange();
-          int change = _elevationChange.getValue();
+          boolean _notEquals_1 = (!Objects.equal(_elevationChange, null));
+          _and = (_notEquals && _notEquals_1);
+        }
+        if (_and) {
           SignedInt _elevationChange_1 = s.getElevationChange();
-          String _sign = _elevationChange_1.getSign();
-          boolean _notEquals_1 = (!Objects.equal(_sign, null));
-          if (_notEquals_1) {
+          int _value = _elevationChange_1.getValue();
+          String _plus_2 = ("first val: " + Integer.valueOf(_value));
+          String _plus_3 = (_plus_2 + " track:");
+          String _name = s.getName();
+          String _plus_4 = (_plus_3 + _name);
+          InputOutput.<String>println(_plus_4);
+          SignedInt _elevationChange_2 = s.getElevationChange();
+          int change = _elevationChange_2.getValue();
+          InputOutput.<String>println("1");
+          SignedInt _elevationChange_3 = s.getElevationChange();
+          String _sign = _elevationChange_3.getSign();
+          boolean _notEquals_2 = (!Objects.equal(_sign, null));
+          if (_notEquals_2) {
             int _minus = (-1);
             int _multiply = (change * _minus);
             change = _multiply;
           }
-          int _plus = (elevation + change);
-          elevation = _plus;
+          InputOutput.<String>println("2");
+          int _plus_5 = (elevation + change);
+          elevation = _plus_5;
+          InputOutput.<String>println("3");
         }
+        InputOutput.<String>println("4");
       }
     }
+    InputOutput.<String>println("5");
+    String _plus = ("final elevation: " + Integer.valueOf(elevation));
+    InputOutput.<String>println(_plus);
     boolean _notEquals = (elevation != 0);
     if (_notEquals) {
-      String _plus = ("End of Track does not meet start! Height of last track unit is " + Integer.valueOf(elevation));
-      String _plus_1 = (_plus + "m from start.");
+      String _plus_1 = ("End of Track does not meet start! Height of last track unit is " + Integer.valueOf(elevation));
+      String _plus_2 = (_plus_1 + "m from start.");
       EStructuralFeature _eStructuralFeature = Literals.ROLLER_COASTER.getEStructuralFeature("track");
-      this.warning(_plus_1, _eStructuralFeature);
+      this.warning(_plus_2, _eStructuralFeature);
     }
   }
   
@@ -525,7 +550,7 @@ public class CoasterValidator extends AbstractCoasterValidator {
           boolean _lessEqualsThan = (speed <= 0);
           if (_lessEqualsThan) {
             String _name = s.getName();
-            String _plus_3 = ("Cart is moving backwards or stopped on " + _name);
+            String _plus_3 = ("Cart is moving backwards or stopped on Track: " + _name);
             String _plus_4 = (_plus_3 + ", add powered units or downhill slopes.");
             EStructuralFeature _eStructuralFeature = Literals.ROLLER_COASTER.getEStructuralFeature("track");
             this.warning(_plus_4, _eStructuralFeature);
@@ -611,27 +636,19 @@ public class CoasterValidator extends AbstractCoasterValidator {
         }
         Integer cartQuality = _switchResult;
         int qualityFactor = (trackQuality + (cartQuality).intValue());
-        String _name = s.getName();
-        String _plus = ("Straight - " + _name);
-        String _plus_1 = (_plus + " - Speed - ");
-        String _plus_2 = (_plus_1 + Integer.valueOf(speed));
-        String _plus_3 = (_plus_2 + "kph - our calculation - ");
         int _divide = (speed / qualityFactor);
-        String _plus_4 = (_plus_3 + Integer.valueOf(_divide));
-        InputOutput.<String>println(_plus_4);
-        int _divide_1 = (speed / qualityFactor);
-        boolean _greaterThan = (_divide_1 > 75);
+        boolean _greaterThan = (_divide > 75);
         if (_greaterThan) {
-          String _name_1 = c.getName();
-          String _plus_5 = ("Cart " + _name_1);
-          String _plus_6 = (_plus_5 + " has been destroyed due to the excessive speed of ");
-          String _plus_7 = (_plus_6 + Integer.valueOf(speed));
-          String _plus_8 = (_plus_7 + "kph on track ");
-          String _name_2 = s.getName();
-          String _plus_9 = (_plus_8 + _name_2);
-          String _plus_10 = (_plus_9 + ", please improve quality of track or cart or reduce speed.");
+          String _name = c.getName();
+          String _plus = ("Cart " + _name);
+          String _plus_1 = (_plus + " has been destroyed due to the excessive speed of ");
+          String _plus_2 = (_plus_1 + Integer.valueOf(speed));
+          String _plus_3 = (_plus_2 + "kph on Track: ");
+          String _name_1 = s.getName();
+          String _plus_4 = (_plus_3 + _name_1);
+          String _plus_5 = (_plus_4 + ", please improve quality of track or cart or reduce speed.");
           EStructuralFeature _eStructuralFeature = Literals.ROLLER_COASTER.getEStructuralFeature("track");
-          this.warning(_plus_10, _eStructuralFeature);
+          this.warning(_plus_5, _eStructuralFeature);
         }
       }
     }
@@ -749,29 +766,20 @@ public class CoasterValidator extends AbstractCoasterValidator {
           }
         }
         Integer cornerType = _switchResult_2;
-        String _name = corner.getName();
-        String _plus = ("Corner - " + _name);
-        String _plus_1 = (_plus + " - Speed - ");
-        String _plus_2 = (_plus_1 + Integer.valueOf(speed));
-        String _plus_3 = (_plus_2 + "kph - our calculation - ");
         int _divide = (speed / qualityFactor);
         int _multiply = (_divide * (cornerType).intValue());
-        String _plus_4 = (_plus_3 + Integer.valueOf(_multiply));
-        InputOutput.<String>println(_plus_4);
-        int _divide_1 = (speed / qualityFactor);
-        int _multiply_1 = (_divide_1 * (cornerType).intValue());
-        boolean _greaterThan = (_multiply_1 > 100);
+        boolean _greaterThan = (_multiply > 100);
         if (_greaterThan) {
-          String _name_1 = c.getName();
-          String _plus_5 = ("Cart " + _name_1);
-          String _plus_6 = (_plus_5 + " has left the track due the excessive speed of ");
-          String _plus_7 = (_plus_6 + Integer.valueOf(speed));
-          String _plus_8 = (_plus_7 + "kph on corner ");
-          String _name_2 = corner.getName();
-          String _plus_9 = (_plus_8 + _name_2);
-          String _plus_10 = (_plus_9 + ", please improve quality of track or cart or reduce speed.");
+          String _name = c.getName();
+          String _plus = ("Cart " + _name);
+          String _plus_1 = (_plus + " has left the track due the excessive speed of ");
+          String _plus_2 = (_plus_1 + Integer.valueOf(speed));
+          String _plus_3 = (_plus_2 + "kph on Corner: ");
+          String _name_1 = corner.getName();
+          String _plus_4 = (_plus_3 + _name_1);
+          String _plus_5 = (_plus_4 + ", please improve quality of track or cart or reduce speed.");
           EStructuralFeature _eStructuralFeature = Literals.ROLLER_COASTER.getEStructuralFeature("track");
-          this.warning(_plus_10, _eStructuralFeature);
+          this.warning(_plus_5, _eStructuralFeature);
         }
       }
     }

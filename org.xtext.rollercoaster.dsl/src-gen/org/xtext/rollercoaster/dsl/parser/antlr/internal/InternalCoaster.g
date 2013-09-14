@@ -95,7 +95,7 @@ ruleModel returns [EObject current=null]
 	    }
 
 )
-)
+)*
 ;
 
 
@@ -138,77 +138,93 @@ ruleRollerCoaster returns [EObject current=null]
 	    }
 
 )
-)(
+)	otherlv_2=';' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getRollerCoasterAccess().getSemicolonKeyword_2());
+    }
+	otherlv_3='Base Quality =' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getRollerCoasterAccess().getBaseQualityKeyword_3());
+    }
 (
 (
-		lv_baseQuality_2_1=	'wood' 
+(
+		lv_baseQuality_4_1=	'wood' 
     {
-        newLeafNode(lv_baseQuality_2_1, grammarAccess.getRollerCoasterAccess().getBaseQualityWoodKeyword_2_0_0());
+        newLeafNode(lv_baseQuality_4_1, grammarAccess.getRollerCoasterAccess().getBaseQualityWoodKeyword_4_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getRollerCoasterRule());
 	        }
-       		setWithLastConsumed($current, "baseQuality", lv_baseQuality_2_1, null);
+       		setWithLastConsumed($current, "baseQuality", lv_baseQuality_4_1, null);
 	    }
 
-    |		lv_baseQuality_2_2=	'iron' 
+    |		lv_baseQuality_4_2=	'iron' 
     {
-        newLeafNode(lv_baseQuality_2_2, grammarAccess.getRollerCoasterAccess().getBaseQualityIronKeyword_2_0_1());
+        newLeafNode(lv_baseQuality_4_2, grammarAccess.getRollerCoasterAccess().getBaseQualityIronKeyword_4_0_1());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getRollerCoasterRule());
 	        }
-       		setWithLastConsumed($current, "baseQuality", lv_baseQuality_2_2, null);
+       		setWithLastConsumed($current, "baseQuality", lv_baseQuality_4_2, null);
 	    }
 
-    |		lv_baseQuality_2_3=	'steel' 
+    |		lv_baseQuality_4_3=	'steel' 
     {
-        newLeafNode(lv_baseQuality_2_3, grammarAccess.getRollerCoasterAccess().getBaseQualitySteelKeyword_2_0_2());
+        newLeafNode(lv_baseQuality_4_3, grammarAccess.getRollerCoasterAccess().getBaseQualitySteelKeyword_4_0_2());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getRollerCoasterRule());
 	        }
-       		setWithLastConsumed($current, "baseQuality", lv_baseQuality_2_3, null);
+       		setWithLastConsumed($current, "baseQuality", lv_baseQuality_4_3, null);
 	    }
 
 )
 
 )
-)(
+)	otherlv_5=';' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getRollerCoasterAccess().getSemicolonKeyword_5());
+    }
+	otherlv_6='Track =(' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getRollerCoasterAccess().getTrackKeyword_6());
+    }
+(
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRollerCoasterAccess().getTrackStraightParserRuleCall_3_0_0()); 
+	        newCompositeNode(grammarAccess.getRollerCoasterAccess().getTrackStraightParserRuleCall_7_0_0()); 
 	    }
-		lv_track_3_1=ruleStraight		{
+		lv_track_7_1=ruleStraight		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRollerCoasterRule());
 	        }
        		add(
        			$current, 
        			"track",
-        		lv_track_3_1, 
+        		lv_track_7_1, 
         		"Straight");
 	        afterParserOrEnumRuleCall();
 	    }
 
     |		{ 
-	        newCompositeNode(grammarAccess.getRollerCoasterAccess().getTrackCornerParserRuleCall_3_0_1()); 
+	        newCompositeNode(grammarAccess.getRollerCoasterAccess().getTrackCornerParserRuleCall_7_0_1()); 
 	    }
-		lv_track_3_2=ruleCorner		{
+		lv_track_7_2=ruleCorner		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRollerCoasterRule());
 	        }
        		add(
        			$current, 
        			"track",
-        		lv_track_3_2, 
+        		lv_track_7_2, 
         		"Corner");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -216,29 +232,45 @@ ruleRollerCoaster returns [EObject current=null]
 )
 
 )
-)*(
+)*	otherlv_8=');' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getRollerCoasterAccess().getRightParenthesisSemicolonKeyword_8());
+    }
+	otherlv_9='Carts =(' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getRollerCoasterAccess().getCartsKeyword_9());
+    }
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRollerCoasterAccess().getCartCartParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getRollerCoasterAccess().getCartCartParserRuleCall_10_0()); 
 	    }
-		lv_cart_4_0=ruleCart		{
+		lv_cart_10_0=ruleCart		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRollerCoasterRule());
 	        }
        		add(
        			$current, 
        			"cart",
-        		lv_cart_4_0, 
+        		lv_cart_10_0, 
         		"Cart");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*(
+)*	otherlv_11=');' 
+    {
+    	newLeafNode(otherlv_11, grammarAccess.getRollerCoasterAccess().getRightParenthesisSemicolonKeyword_11());
+    }
+	otherlv_12='DefaultTrackUnitLength =' 
+    {
+    	newLeafNode(otherlv_12, grammarAccess.getRollerCoasterAccess().getDefaultTrackUnitLengthKeyword_12());
+    }
 (
-		lv_trackUnitLength_5_0=RULE_INT
+(
+		lv_trackUnitLength_13_0=RULE_INT
 		{
-			newLeafNode(lv_trackUnitLength_5_0, grammarAccess.getRollerCoasterAccess().getTrackUnitLengthINTTerminalRuleCall_5_0()); 
+			newLeafNode(lv_trackUnitLength_13_0, grammarAccess.getRollerCoasterAccess().getTrackUnitLengthINTTerminalRuleCall_13_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -247,12 +279,16 @@ ruleRollerCoaster returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"trackUnitLength",
-        		lv_trackUnitLength_5_0, 
+        		lv_trackUnitLength_13_0, 
         		"INT");
 	    }
 
 )
-))
+)	otherlv_14=';' 
+    {
+    	newLeafNode(otherlv_14, grammarAccess.getRollerCoasterAccess().getSemicolonKeyword_14());
+    }
+)
 ;
 
 
@@ -352,11 +388,15 @@ ruleStraight returns [EObject current=null]
 )
 
 )
-)?(
+)?	otherlv_4='length =' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getStraightAccess().getLengthKeyword_4());
+    }
 (
-		lv_length_4_0=RULE_INT
+(
+		lv_length_5_0=RULE_INT
 		{
-			newLeafNode(lv_length_4_0, grammarAccess.getStraightAccess().getLengthINTTerminalRuleCall_4_0()); 
+			newLeafNode(lv_length_5_0, grammarAccess.getStraightAccess().getLengthINTTerminalRuleCall_5_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -365,30 +405,34 @@ ruleStraight returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"length",
-        		lv_length_4_0, 
+        		lv_length_5_0, 
         		"INT");
 	    }
 
 )
-)(
+)(	otherlv_6='elevationChange =' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getStraightAccess().getElevationChangeKeyword_6_0());
+    }
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getStraightAccess().getElevationChangeSignedIntParserRuleCall_5_0()); 
+	        newCompositeNode(grammarAccess.getStraightAccess().getElevationChangeSignedIntParserRuleCall_6_1_0()); 
 	    }
-		lv_elevationChange_5_0=ruleSignedInt		{
+		lv_elevationChange_7_0=ruleSignedInt		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getStraightRule());
 	        }
        		set(
        			$current, 
        			"elevationChange",
-        		lv_elevationChange_5_0, 
+        		lv_elevationChange_7_0, 
         		"SignedInt");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)?)
+))?)
 ;
 
 
@@ -642,11 +686,15 @@ ruleCart returns [EObject current=null]
 )
 
 )
-)?(
+)?	otherlv_3='seats =' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getCartAccess().getSeatsKeyword_3());
+    }
 (
-		lv_seatNumber_3_0=RULE_INT
+(
+		lv_seatNumber_4_0=RULE_INT
 		{
-			newLeafNode(lv_seatNumber_3_0, grammarAccess.getCartAccess().getSeatNumberINTTerminalRuleCall_3_0()); 
+			newLeafNode(lv_seatNumber_4_0, grammarAccess.getCartAccess().getSeatNumberINTTerminalRuleCall_4_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -655,7 +703,7 @@ ruleCart returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"seatNumber",
-        		lv_seatNumber_3_0, 
+        		lv_seatNumber_4_0, 
         		"INT");
 	    }
 

@@ -108,21 +108,31 @@ def checkStartMeetsEnd(RollerCoaster rc){
 def elevationMeetsAtStartAndEnd(RollerCoaster rc){
 	var elevation = 0;
 	for(Object t: rc.track){
+		
 		var Corner c = null;
 		var Straight s = null;
 		switch (t) {
 			Corner:  c = t
 			Straight: s =t
 		}
-		if(s != null){
+
+				println(c+">>"+s);
+
+		if(s != null && s.elevationChange != null){
+			println("first val: "+s.elevationChange.value+" track:"+s.name);
 			var change = s.elevationChange.value;
+			println("1");
 			if(s.elevationChange.sign != null){
 				change = change * -1;
 			}
-			
+			println("2");
 			elevation = elevation + change;
+			println("3");
 		}
+		println("4");
 		}
+		println("5");
+		println("final elevation: "+elevation);
 		if(elevation != 0){
 			warning("End of Track does not meet start! Height of last track unit is "+(elevation)+"m from start.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
 		}
@@ -196,7 +206,7 @@ def hasEnoughPower(RollerCoaster rc){
 			//println(speed);
 			checkSpeedOnStraights(rc, s, quality, speed);
 			if (speed <=0){
-				warning("Cart is moving backwards or stopped on "+(s.name)+", add powered units or downhill slopes.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+				warning("Cart is moving backwards or stopped on Track: "+(s.name)+", add powered units or downhill slopes.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
 			}
 		}
 		}
@@ -223,9 +233,9 @@ def checkSpeedOnStraights(RollerCoaster rc, Straight s, int trackQuality, int sp
 				}	
 				}
 		var qualityFactor = trackQuality + cartQuality;
-				println("Straight - "+s.name +" - Speed - " +speed+"kph - our calculation - "+(speed/qualityFactor));
+			//	println("Straight - "+s.name +" - Speed - " +speed+"kph - our calculation - "+(speed/qualityFactor));
 		if(speed/qualityFactor > 75){
-			warning("Cart "+ c.name +" has been destroyed due to the excessive speed of "+speed+"kph on track "+s.name+", please improve quality of track or cart or reduce speed.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+			warning("Cart "+ c.name +" has been destroyed due to the excessive speed of "+speed+"kph on Track: "+s.name+", please improve quality of track or cart or reduce speed.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
 			
 		}
 	}
@@ -251,9 +261,9 @@ def checkSpeedOnCurve(RollerCoaster rc, Corner corner, int trackQuality, int spe
 					String case "easy90": 2
 					}
 		
-		println("Corner - "+corner.name +" - Speed - " +speed+"kph - our calculation - "+((speed/qualityFactor)*cornerType));
+		//println("Corner - "+corner.name +" - Speed - " +speed+"kph - our calculation - "+((speed/qualityFactor)*cornerType));
 		if((speed/qualityFactor)*cornerType > 100){ //cornertype/speed
-			warning("Cart "+ c.name +" has left the track due the excessive speed of "+speed+"kph on corner "+corner.name+", please improve quality of track or cart or reduce speed.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+			warning("Cart "+ c.name +" has left the track due the excessive speed of "+speed+"kph on Corner: "+corner.name+", please improve quality of track or cart or reduce speed.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
 			
 		}
 	}
