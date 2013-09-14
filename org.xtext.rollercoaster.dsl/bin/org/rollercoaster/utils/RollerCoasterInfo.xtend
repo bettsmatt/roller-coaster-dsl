@@ -133,11 +133,47 @@ class RollerCoasterInfo {
 		return maxGForce;
 	}
 	
+	def static getStraightSpeed (RollerCoaster rc, Straight s, double currentSpeed) {
+		
+		var quality = getQuality(rc, s);
+		var speed = currentSpeed;
+		
+		//if straight is powered
+		if(s.powered != null){
+			
+			var temp = getTotalWeight(rc)/(quality*100);
+			speed = speed + (s.length*quality)/temp; //fine tune
+		}
+		
+		// If there is an elevation change.
+		if(s.elevationChange != null){
+			var change = s.elevationChange.value/2;
+			//downhill
+			if(s.elevationChange.sign != null){
+				speed = speed + (change *  s.length *quality); //weight has no effect going downhill
+			}
+		 // uphill
+			else {
+				change = change * -1;
+				
+				var temp = getTotalWeight(rc)/(quality*1000);
+				speed = speed + (change *  s.length/quality)-temp;
+			}
+		}
+		//on flat slowly decrease
+		else{
+			speed = speed - s.length / ( quality * 10 );
+		} //weight has no effect on the flat 
+					
+		return speed;
+		
+	}
+	
 	// Max speed, based of has power method
 	def static getMaxSpeed(RollerCoaster rc){
 		
-		var speed = 0;
-		var maxSpeed = 0;
+		var speed = 0.0;
+		var maxSpeed = 0.0;
 		
 		for(Object s: rc.track){
 		
@@ -145,38 +181,12 @@ class RollerCoasterInfo {
 				
 				Straight: {
 					
-					val quality = getQuality(rc, s);
-			
-					//if straight is powered
-					if(s.powered != null){
-						
-						var temp = getTotalWeight(rc)/(quality*100);
-						speed = speed + (s.length*quality)/temp; //fine tune
-					}
+					speed = getStraightSpeed(rc, s, speed);
 					
-					// If there is an elevation change.
-					if(s.elevationChange != null){
-						var change = s.elevationChange.value/2;
-						//downhill
-						if(s.elevationChange.sign != null){
-							speed = speed + (change *  s.length *quality); //weight has no effect going downhill
-						}
-					 // uphill
-						else {
-							change = change * -1;
-							
-							var temp = getTotalWeight(rc)/(quality*1000);
-							speed = speed + (change *  s.length/quality)-temp;
-						}
-					}
-					//on flat slowly decrease
-					else{
-						speed = speed - s.length / ( quality * 10 );
-					} //weight has no effect on the flat 
-								
-					if (speed > maxSpeed){
+					if(speed > maxSpeed){
 						maxSpeed = speed;
 					}
+
 				}
 			}
 		}

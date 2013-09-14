@@ -67,7 +67,7 @@ class CoasterGenerator implements IGenerator {
 		// Then a table of costs.
 		var report = '''
 			
-			<div class="row"> ''' + genTitle(rc) +'''</div> 
+			<div class="starter-template"> ''' + genTitle(rc) +'''</div> 
 			
 			<div class="row">
   				<div class="col-md-6">''' + getPathForTrack(rc) + '''</div>
@@ -172,13 +172,20 @@ class CoasterGenerator implements IGenerator {
 	 * Build a svg path from a list of tracks
 	 */
 	def getPathForTrack (RollerCoaster rc){
+		
 		// The start of the svg
 		var tracks = rc.track;
 		val start = '''<svg width="100%" height="400px" version="1.1" xmlns="http://www.w3.org/2000/svg"> '''
 		val zeroZeroPoint = '''<circle xmlns="http://www.w3.org/2000/svg" cx="100" cy="100" r="4" fill="#ff0000" stroke="#000000" stroke-width="2"/>'''
-		val pathStart = '''<path d=" M 100 100 '''
 		
-		var path = "";
+		var paths = "";
+		
+		// Start and 100, 100
+		var currentX = 100.00;
+		var currentY = 100.00;
+		
+		var currentSpeed = 0.00;
+		var maxSpeed = RollerCoasterInfo.getMaxSpeed(rc);
 		
 		// Track the current angle of the track as it changes 
 		var currentAngle = 0.0;
@@ -186,7 +193,7 @@ class CoasterGenerator implements IGenerator {
 		for(EObject trackPiece : tracks){
 			
 			// Find out what type of track we are dealing with
-			path = path + switch trackPiece {
+			paths = paths + switch trackPiece {
 		
 				/*
 				 * Straight Track
@@ -196,11 +203,28 @@ class CoasterGenerator implements IGenerator {
 					// Calculate the end position
 					val length = trackPiece.length;
 					
-					// Project in the current direction
-					val endX = Math.sin(Math.toRadians(currentAngle)) *  length;
-					val endY = Math.cos(Math.toRadians(currentAngle)) *  length;
+					val startX = currentX;
+					val startY = currentY;
 					
-					" l " + endX + " " +endY;
+					// Project in the current direction
+					val endX = currentX + Math.sin(Math.toRadians(currentAngle)) *  length;
+					val endY = currentY + Math.cos(Math.toRadians(currentAngle)) *  length;
+					
+					currentX = endX;
+					currentY = endY;
+					
+					currentSpeed = RollerCoasterInfo.getStraightSpeed(rc, trackPiece, currentSpeed)
+					
+					val colorMultRed = ((currentSpeed / maxSpeed) * 255) as int;
+					val colorMultGreen = ((1 - (currentSpeed / maxSpeed)) * 255) as int;
+					
+					// Straight line from current positions to end position
+					'''<path d=" M ''' + 
+						startX + ''' ''' +
+						startY + ''' L ''' + 
+						endX + ''' ''' +
+						endY +
+						'''"stroke=rgb(''' + colorMultRed + ''',''' + colorMultGreen + ''',0) fill="transparent"/>''';
 					
 				}
 				
@@ -254,29 +278,40 @@ class CoasterGenerator implements IGenerator {
 						}
 					}
 					
+					val startX = currentX;
+					val startY = currentY;
+					
 					// Rotate end points around the current angle, the modifier controls the direction
-					val endX = Math.sin(Math.toRadians((modifier * angle) + currentAngle)) *  Math.sqrt(x * x + y * y);
-					val endY = Math.cos(Math.toRadians((modifier * angle) + currentAngle)) *  Math.sqrt(x * x + y * y);
+					val endX = startX + Math.sin(Math.toRadians((modifier * angle) + currentAngle)) *  Math.sqrt(x * x + y * y);
+					val endY = startY + Math.cos(Math.toRadians((modifier * angle) + currentAngle)) *  Math.sqrt(x * x + y * y);
 					
 					// Update the coasters angle
 					currentAngle = currentAngle + (angle * 2 * modifier);
+					currentX = endX;
+					currentY = endY;
 					
-					// Return the arc
-					" a " + arcSize + " "+ flags + " " + endX + " " + endY + " ";
+					val colorMultGreen = ((currentSpeed / maxSpeed) * 255) as int;
+					val colorMultRed = ((1 - (currentSpeed / maxSpeed)) * 255) as int;
+					
+					// Move to start pos then draw the arc
+					'''<path d=" M ''' + 
+						startX + ''' ''' +
+						startY + ''' ''' + 
+						''' A ''' +
+						arcSize + ''' ''' + flags + ''' ''' + endX + ''' ''' + endY +
+						'''"stroke=rgb(''' + colorMultRed + ''',''' + colorMultGreen + ''',0) fill="transparent"/>'''
 					
 				}
 				
 			}
 
 		}
-
-		val pathEnd = '''"stroke="black" fill="transparent"/>'''
 		
 		// Closing of the path tag			
 		var end = '''</svg>'''
 		
 		// Build the path with enclosing svg 
-		start + zeroZeroPoint + pathStart + path + pathEnd + end;
+		start + zeroZeroPoint + paths + end;
 		
 	}
 	
@@ -333,14 +368,14 @@ class CoasterGenerator implements IGenerator {
 		        </div><!--/.nav-collapse -->
 		      </div>
 		    </div>
-		
 		    <div class="container">
+
 		
 		      <div class="starter-template">
 		        <h1>SWEN424 Model Driven Development Roller Coaster DSL Project</h1>
 		        <p class="lead">Owen Bannister, Matt Betts, George Davie</p>
 		      </div> ''' +
-		
+
 		content
 		
 		+ '''
