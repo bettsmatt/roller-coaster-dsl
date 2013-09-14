@@ -24,10 +24,10 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRollerCoasterRollerCoasterParserRuleCall_0 = (RuleCall)cRollerCoasterAssignment.eContents().get(0);
 		
 		//Model:
-		//	rollerCoaster+=RollerCoaster;
+		//	rollerCoaster+=RollerCoaster*;
 		public ParserRule getRule() { return rule; }
 
-		//rollerCoaster+=RollerCoaster
+		//rollerCoaster+=RollerCoaster*
 		public Assignment getRollerCoasterAssignment() { return cRollerCoasterAssignment; }
 
 		//RollerCoaster
@@ -40,27 +40,36 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRollerCoasterKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cBaseQualityAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Alternatives cBaseQualityAlternatives_2_0 = (Alternatives)cBaseQualityAssignment_2.eContents().get(0);
-		private final Keyword cBaseQualityWoodKeyword_2_0_0 = (Keyword)cBaseQualityAlternatives_2_0.eContents().get(0);
-		private final Keyword cBaseQualityIronKeyword_2_0_1 = (Keyword)cBaseQualityAlternatives_2_0.eContents().get(1);
-		private final Keyword cBaseQualitySteelKeyword_2_0_2 = (Keyword)cBaseQualityAlternatives_2_0.eContents().get(2);
-		private final Assignment cTrackAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Alternatives cTrackAlternatives_3_0 = (Alternatives)cTrackAssignment_3.eContents().get(0);
-		private final RuleCall cTrackStraightParserRuleCall_3_0_0 = (RuleCall)cTrackAlternatives_3_0.eContents().get(0);
-		private final RuleCall cTrackCornerParserRuleCall_3_0_1 = (RuleCall)cTrackAlternatives_3_0.eContents().get(1);
-		private final Assignment cCartAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cCartCartParserRuleCall_4_0 = (RuleCall)cCartAssignment_4.eContents().get(0);
-		private final Assignment cTrackUnitLengthAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cTrackUnitLengthINTTerminalRuleCall_5_0 = (RuleCall)cTrackUnitLengthAssignment_5.eContents().get(0);
+		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cBaseQualityKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cBaseQualityAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final Alternatives cBaseQualityAlternatives_4_0 = (Alternatives)cBaseQualityAssignment_4.eContents().get(0);
+		private final Keyword cBaseQualityWoodKeyword_4_0_0 = (Keyword)cBaseQualityAlternatives_4_0.eContents().get(0);
+		private final Keyword cBaseQualityIronKeyword_4_0_1 = (Keyword)cBaseQualityAlternatives_4_0.eContents().get(1);
+		private final Keyword cBaseQualitySteelKeyword_4_0_2 = (Keyword)cBaseQualityAlternatives_4_0.eContents().get(2);
+		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cTrackKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cTrackAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final Alternatives cTrackAlternatives_7_0 = (Alternatives)cTrackAssignment_7.eContents().get(0);
+		private final RuleCall cTrackStraightParserRuleCall_7_0_0 = (RuleCall)cTrackAlternatives_7_0.eContents().get(0);
+		private final RuleCall cTrackCornerParserRuleCall_7_0_1 = (RuleCall)cTrackAlternatives_7_0.eContents().get(1);
+		private final Keyword cRightParenthesisSemicolonKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Keyword cCartsKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Assignment cCartAssignment_10 = (Assignment)cGroup.eContents().get(10);
+		private final RuleCall cCartCartParserRuleCall_10_0 = (RuleCall)cCartAssignment_10.eContents().get(0);
+		private final Keyword cRightParenthesisSemicolonKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Keyword cDefaultTrackUnitLengthKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		private final Assignment cTrackUnitLengthAssignment_13 = (Assignment)cGroup.eContents().get(13);
+		private final RuleCall cTrackUnitLengthINTTerminalRuleCall_13_0 = (RuleCall)cTrackUnitLengthAssignment_13.eContents().get(0);
+		private final Keyword cSemicolonKeyword_14 = (Keyword)cGroup.eContents().get(14);
 		
 		//RollerCoaster:
-		//	"RollerCoaster" name=ID baseQuality=("wood" | "iron" | "steel") track+=(Straight | Corner)* cart+=Cart*
-		//	trackUnitLength=INT;
+		//	"RollerCoaster" name=ID ";" "Base Quality =" baseQuality=("wood" | "iron" | "steel") ";" "Track =(" track+=(Straight |
+		//	Corner)* ");" "Carts =(" cart+=Cart* ");" "DefaultTrackUnitLength =" trackUnitLength=INT ";";
 		public ParserRule getRule() { return rule; }
 
-		//"RollerCoaster" name=ID baseQuality=("wood" | "iron" | "steel") track+=(Straight | Corner)* cart+=Cart*
-		//trackUnitLength=INT
+		//"RollerCoaster" name=ID ";" "Base Quality =" baseQuality=("wood" | "iron" | "steel") ";" "Track =(" track+=(Straight |
+		//Corner)* ");" "Carts =(" cart+=Cart* ");" "DefaultTrackUnitLength =" trackUnitLength=INT ";"
 		public Group getGroup() { return cGroup; }
 
 		//"RollerCoaster"
@@ -72,44 +81,71 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
+		//";"
+		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
+
+		//"Base Quality ="
+		public Keyword getBaseQualityKeyword_3() { return cBaseQualityKeyword_3; }
+
 		//baseQuality=("wood" | "iron" | "steel")
-		public Assignment getBaseQualityAssignment_2() { return cBaseQualityAssignment_2; }
+		public Assignment getBaseQualityAssignment_4() { return cBaseQualityAssignment_4; }
 
 		//"wood" | "iron" | "steel"
-		public Alternatives getBaseQualityAlternatives_2_0() { return cBaseQualityAlternatives_2_0; }
+		public Alternatives getBaseQualityAlternatives_4_0() { return cBaseQualityAlternatives_4_0; }
 
 		//"wood"
-		public Keyword getBaseQualityWoodKeyword_2_0_0() { return cBaseQualityWoodKeyword_2_0_0; }
+		public Keyword getBaseQualityWoodKeyword_4_0_0() { return cBaseQualityWoodKeyword_4_0_0; }
 
 		//"iron"
-		public Keyword getBaseQualityIronKeyword_2_0_1() { return cBaseQualityIronKeyword_2_0_1; }
+		public Keyword getBaseQualityIronKeyword_4_0_1() { return cBaseQualityIronKeyword_4_0_1; }
 
 		//"steel"
-		public Keyword getBaseQualitySteelKeyword_2_0_2() { return cBaseQualitySteelKeyword_2_0_2; }
+		public Keyword getBaseQualitySteelKeyword_4_0_2() { return cBaseQualitySteelKeyword_4_0_2; }
+
+		//";"
+		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
+
+		//"Track =("
+		public Keyword getTrackKeyword_6() { return cTrackKeyword_6; }
 
 		//track+=(Straight | Corner)*
-		public Assignment getTrackAssignment_3() { return cTrackAssignment_3; }
+		public Assignment getTrackAssignment_7() { return cTrackAssignment_7; }
 
 		//Straight | Corner
-		public Alternatives getTrackAlternatives_3_0() { return cTrackAlternatives_3_0; }
+		public Alternatives getTrackAlternatives_7_0() { return cTrackAlternatives_7_0; }
 
 		//Straight
-		public RuleCall getTrackStraightParserRuleCall_3_0_0() { return cTrackStraightParserRuleCall_3_0_0; }
+		public RuleCall getTrackStraightParserRuleCall_7_0_0() { return cTrackStraightParserRuleCall_7_0_0; }
 
 		//Corner
-		public RuleCall getTrackCornerParserRuleCall_3_0_1() { return cTrackCornerParserRuleCall_3_0_1; }
+		public RuleCall getTrackCornerParserRuleCall_7_0_1() { return cTrackCornerParserRuleCall_7_0_1; }
+
+		//");"
+		public Keyword getRightParenthesisSemicolonKeyword_8() { return cRightParenthesisSemicolonKeyword_8; }
+
+		//"Carts =("
+		public Keyword getCartsKeyword_9() { return cCartsKeyword_9; }
 
 		//cart+=Cart*
-		public Assignment getCartAssignment_4() { return cCartAssignment_4; }
+		public Assignment getCartAssignment_10() { return cCartAssignment_10; }
 
 		//Cart
-		public RuleCall getCartCartParserRuleCall_4_0() { return cCartCartParserRuleCall_4_0; }
+		public RuleCall getCartCartParserRuleCall_10_0() { return cCartCartParserRuleCall_10_0; }
+
+		//");"
+		public Keyword getRightParenthesisSemicolonKeyword_11() { return cRightParenthesisSemicolonKeyword_11; }
+
+		//"DefaultTrackUnitLength ="
+		public Keyword getDefaultTrackUnitLengthKeyword_12() { return cDefaultTrackUnitLengthKeyword_12; }
 
 		//trackUnitLength=INT
-		public Assignment getTrackUnitLengthAssignment_5() { return cTrackUnitLengthAssignment_5; }
+		public Assignment getTrackUnitLengthAssignment_13() { return cTrackUnitLengthAssignment_13; }
 
 		//INT
-		public RuleCall getTrackUnitLengthINTTerminalRuleCall_5_0() { return cTrackUnitLengthINTTerminalRuleCall_5_0; }
+		public RuleCall getTrackUnitLengthINTTerminalRuleCall_13_0() { return cTrackUnitLengthINTTerminalRuleCall_13_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_14() { return cSemicolonKeyword_14; }
 	}
 
 	public class StraightElements extends AbstractParserRuleElementFinder {
@@ -125,16 +161,21 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cQualityWoodKeyword_3_0_0 = (Keyword)cQualityAlternatives_3_0.eContents().get(0);
 		private final Keyword cQualityIronKeyword_3_0_1 = (Keyword)cQualityAlternatives_3_0.eContents().get(1);
 		private final Keyword cQualitySteelKeyword_3_0_2 = (Keyword)cQualityAlternatives_3_0.eContents().get(2);
-		private final Assignment cLengthAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cLengthINTTerminalRuleCall_4_0 = (RuleCall)cLengthAssignment_4.eContents().get(0);
-		private final Assignment cElevationChangeAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cElevationChangeSignedIntParserRuleCall_5_0 = (RuleCall)cElevationChangeAssignment_5.eContents().get(0);
+		private final Keyword cLengthKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cLengthAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cLengthINTTerminalRuleCall_5_0 = (RuleCall)cLengthAssignment_5.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cElevationChangeKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cElevationChangeAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cElevationChangeSignedIntParserRuleCall_6_1_0 = (RuleCall)cElevationChangeAssignment_6_1.eContents().get(0);
 		
 		//Straight:
-		//	"Straight" name=ID powered="powered"? quality=("wood" | "iron" | "steel")? length=INT elevationChange=SignedInt?;
+		//	"Straight" name=ID powered="powered"? quality=("wood" | "iron" | "steel")? "length =" length=INT ("elevationChange ="
+		//	elevationChange=SignedInt)?;
 		public ParserRule getRule() { return rule; }
 
-		//"Straight" name=ID powered="powered"? quality=("wood" | "iron" | "steel")? length=INT elevationChange=SignedInt?
+		//"Straight" name=ID powered="powered"? quality=("wood" | "iron" | "steel")? "length =" length=INT ("elevationChange ="
+		//elevationChange=SignedInt)?
 		public Group getGroup() { return cGroup; }
 
 		//"Straight"
@@ -167,17 +208,26 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 		//"steel"
 		public Keyword getQualitySteelKeyword_3_0_2() { return cQualitySteelKeyword_3_0_2; }
 
+		//"length ="
+		public Keyword getLengthKeyword_4() { return cLengthKeyword_4; }
+
 		//length=INT
-		public Assignment getLengthAssignment_4() { return cLengthAssignment_4; }
+		public Assignment getLengthAssignment_5() { return cLengthAssignment_5; }
 
 		//INT
-		public RuleCall getLengthINTTerminalRuleCall_4_0() { return cLengthINTTerminalRuleCall_4_0; }
+		public RuleCall getLengthINTTerminalRuleCall_5_0() { return cLengthINTTerminalRuleCall_5_0; }
 
-		//elevationChange=SignedInt?
-		public Assignment getElevationChangeAssignment_5() { return cElevationChangeAssignment_5; }
+		//("elevationChange =" elevationChange=SignedInt)?
+		public Group getGroup_6() { return cGroup_6; }
+
+		//"elevationChange ="
+		public Keyword getElevationChangeKeyword_6_0() { return cElevationChangeKeyword_6_0; }
+
+		//elevationChange=SignedInt
+		public Assignment getElevationChangeAssignment_6_1() { return cElevationChangeAssignment_6_1; }
 
 		//SignedInt
-		public RuleCall getElevationChangeSignedIntParserRuleCall_5_0() { return cElevationChangeSignedIntParserRuleCall_5_0; }
+		public RuleCall getElevationChangeSignedIntParserRuleCall_6_1_0() { return cElevationChangeSignedIntParserRuleCall_6_1_0; }
 	}
 
 	public class CornerElements extends AbstractParserRuleElementFinder {
@@ -277,14 +327,15 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cQualityWoodKeyword_2_0_0 = (Keyword)cQualityAlternatives_2_0.eContents().get(0);
 		private final Keyword cQualityIronKeyword_2_0_1 = (Keyword)cQualityAlternatives_2_0.eContents().get(1);
 		private final Keyword cQualitySteelKeyword_2_0_2 = (Keyword)cQualityAlternatives_2_0.eContents().get(2);
-		private final Assignment cSeatNumberAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cSeatNumberINTTerminalRuleCall_3_0 = (RuleCall)cSeatNumberAssignment_3.eContents().get(0);
+		private final Keyword cSeatsKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cSeatNumberAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cSeatNumberINTTerminalRuleCall_4_0 = (RuleCall)cSeatNumberAssignment_4.eContents().get(0);
 		
 		//Cart:
-		//	"Cart" name=ID quality=("wood" | "iron" | "steel")? seatNumber=INT;
+		//	"Cart" name=ID quality=("wood" | "iron" | "steel")? "seats =" seatNumber=INT;
 		public ParserRule getRule() { return rule; }
 
-		//"Cart" name=ID quality=("wood" | "iron" | "steel")? seatNumber=INT
+		//"Cart" name=ID quality=("wood" | "iron" | "steel")? "seats =" seatNumber=INT
 		public Group getGroup() { return cGroup; }
 
 		//"Cart"
@@ -311,11 +362,14 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 		//"steel"
 		public Keyword getQualitySteelKeyword_2_0_2() { return cQualitySteelKeyword_2_0_2; }
 
+		//"seats ="
+		public Keyword getSeatsKeyword_3() { return cSeatsKeyword_3; }
+
 		//seatNumber=INT
-		public Assignment getSeatNumberAssignment_3() { return cSeatNumberAssignment_3; }
+		public Assignment getSeatNumberAssignment_4() { return cSeatNumberAssignment_4; }
 
 		//INT
-		public RuleCall getSeatNumberINTTerminalRuleCall_3_0() { return cSeatNumberINTTerminalRuleCall_3_0; }
+		public RuleCall getSeatNumberINTTerminalRuleCall_4_0() { return cSeatNumberINTTerminalRuleCall_4_0; }
 	}
 
 	public class SignedIntElements extends AbstractParserRuleElementFinder {
@@ -393,7 +447,7 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//	rollerCoaster+=RollerCoaster;
+	//	rollerCoaster+=RollerCoaster*;
 	public ModelElements getModelAccess() {
 		return (pModel != null) ? pModel : (pModel = new ModelElements());
 	}
@@ -403,8 +457,8 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RollerCoaster:
-	//	"RollerCoaster" name=ID baseQuality=("wood" | "iron" | "steel") track+=(Straight | Corner)* cart+=Cart*
-	//	trackUnitLength=INT;
+	//	"RollerCoaster" name=ID ";" "Base Quality =" baseQuality=("wood" | "iron" | "steel") ";" "Track =(" track+=(Straight |
+	//	Corner)* ");" "Carts =(" cart+=Cart* ");" "DefaultTrackUnitLength =" trackUnitLength=INT ";";
 	public RollerCoasterElements getRollerCoasterAccess() {
 		return (pRollerCoaster != null) ? pRollerCoaster : (pRollerCoaster = new RollerCoasterElements());
 	}
@@ -414,7 +468,8 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Straight:
-	//	"Straight" name=ID powered="powered"? quality=("wood" | "iron" | "steel")? length=INT elevationChange=SignedInt?;
+	//	"Straight" name=ID powered="powered"? quality=("wood" | "iron" | "steel")? "length =" length=INT ("elevationChange ="
+	//	elevationChange=SignedInt)?;
 	public StraightElements getStraightAccess() {
 		return (pStraight != null) ? pStraight : (pStraight = new StraightElements());
 	}
@@ -435,7 +490,7 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Cart:
-	//	"Cart" name=ID quality=("wood" | "iron" | "steel")? seatNumber=INT;
+	//	"Cart" name=ID quality=("wood" | "iron" | "steel")? "seats =" seatNumber=INT;
 	public CartElements getCartAccess() {
 		return (pCart != null) ? pCart : (pCart = new CartElements());
 	}

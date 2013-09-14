@@ -92,7 +92,7 @@ public class CoasterSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     rollerCoaster+=RollerCoaster
+	 *     rollerCoaster+=RollerCoaster*
 	 */
 	protected void sequence_Model(EObject context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

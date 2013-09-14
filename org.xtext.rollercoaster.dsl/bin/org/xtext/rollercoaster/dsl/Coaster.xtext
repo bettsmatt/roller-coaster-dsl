@@ -3,26 +3,28 @@ grammar org.xtext.rollercoaster.dsl.Coaster with org.eclipse.xtext.common.Termin
 generate coaster "http://www.xtext.org/rollercoaster/dsl/Coaster"
 
 Model:
-	rollerCoaster += RollerCoaster;
+	rollerCoaster += RollerCoaster*;
 	
 	
 	
 RollerCoaster:
-	'RollerCoaster' name=ID
-	baseQuality=('wood'|'iron'|'steel')
-	track += (Straight|Corner)*
-	cart += Cart*
-	trackUnitLength=INT;	
+	'RollerCoaster' name=ID ';'
+	'Base Quality =' baseQuality=('wood'|'iron'|'steel') ';'
+	'Track =('track += (Straight|Corner)*
+	');'
+	'Carts =('cart += Cart*
+	');'
+	'DefaultTrackUnitLength =' trackUnitLength=INT ';';	
 
 	
 Straight:
-	'Straight' name=ID (powered="powered")? (quality=('wood'|'iron'|'steel'))? length=INT (elevationChange=SignedInt)?;
+	'Straight' name=ID (powered="powered")? (quality=('wood'|'iron'|'steel'))? 'length =' length=INT ('elevationChange ='elevationChange=SignedInt)?;
 
 Corner:
 	'Corner' name=ID direction=('left'|'right') type=('sharp45'|'sharp90'|'easy45'|'easy90') (quality=('wood'|'iron'|'steel'))?;
 
 Cart:
-	'Cart' name=ID (quality=('wood'|'iron'|'steel'))? seatNumber=INT;
+	'Cart' name=ID (quality=('wood'|'iron'|'steel'))? 'seats =' seatNumber=INT;
 	
 SignedInt:
 	sign=('-')? value=INT;
