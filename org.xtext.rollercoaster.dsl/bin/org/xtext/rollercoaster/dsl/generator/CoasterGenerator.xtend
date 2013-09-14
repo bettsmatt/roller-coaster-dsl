@@ -3,17 +3,15 @@
  */
 package org.xtext.rollercoaster.dsl.generator
 
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.IGenerator
-import org.eclipse.xtext.generator.IFileSystemAccess
-import org.xtext.rollercoaster.dsl.coaster.RollerCoaster
-import java.util.Date
+import java.util.HashMap
 import org.eclipse.emf.ecore.EObject
-import org.xtext.rollercoaster.dsl.coaster.Straight
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.generator.IGenerator
+import org.rollercoaster.utils.RollerCoasterInfo
 import org.xtext.rollercoaster.dsl.coaster.Corner
-import org.rollercoaster.utils.Costs
-import org.rollercoaster.utils.Descriptions
-
+import org.xtext.rollercoaster.dsl.coaster.RollerCoaster
+import org.xtext.rollercoaster.dsl.coaster.Straight
 
 /**
  * Generates code from your model files on save.
@@ -22,12 +20,32 @@ import org.rollercoaster.utils.Descriptions
  */
 class CoasterGenerator implements IGenerator {
 	
+	HashMap<String, RollerCoaster> listOfRC;
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 	
+		listOfRC = new HashMap<String, RollerCoaster>();
+	
+	
+	
 		resource.allContents.toIterable.filter(RollerCoaster).forEach[ rc | 
-			fsa.generateFile(rc.name + ".html", genReport(rc));
+			listOfRC.put(rc.name+".html", rc);
 		]
+		
+		for(String currentRC: listOfRC.keySet){
+			var navList = "";
+			for(String rc: listOfRC.keySet){
+				if(rc.equals(currentRC)){
+					navList = navList+'''<li class="active"><a href="'''+rc+'''">'''+listOfRC.get(rc).name+'''</a></li>''';
+				}
+				else{
+					navList = navList+'''<li><a href="'''+rc+'''">'''+listOfRC.get(rc).name+'''</a></li>'''
+				}
+				
+			}
+			
+			fsa.generateFile(currentRC, genReport(listOfRC.get(currentRC), navList));
+		}
 		
 	}
 	
@@ -39,7 +57,7 @@ class CoasterGenerator implements IGenerator {
 	 * 	Fun
 	 * 	Name
 	 */	
-	def genReport (RollerCoaster rc) {
+	def genReport (RollerCoaster rc, String navList) {
 	
 		// Set up basic structure of the report
 		// A title and brief introduction
@@ -94,7 +112,7 @@ class CoasterGenerator implements IGenerator {
 		'''
 		 */
 		// Add this HTML into the bootstrap template
-		return addIntoBootstrapTemplate(report);
+		return addIntoBootstrapTemplate(report, navList);
 		
 	}
 	
@@ -112,15 +130,18 @@ class CoasterGenerator implements IGenerator {
 		
 		val pieces =  rc.track.length;
 		val carts = rc.cart.length;
-		
+		val speed = RollerCoasterInfo.getMaxSpeed(rc);
+		val cartWeight = RollerCoasterInfo.getTotalWeight(rc);
+		val gForce = RollerCoasterInfo.getMaxGForce(rc);
+			
 		'''
 		<h1> Summary </h1>
 		<ul class="list-group">
 			<li class="list-group-item">''' + pieces + ''' pieces of track </li>
-			<li class="list-group-item">''' + carts +''' carts </li>
-			<li class="list-group-item">Morbi leo risus</li>
-			<li class="list-group-item">Porta ac consectetur ac</li>
-			<li class="list-group-item">Vestibulum at eros</li>
+			<li class="list-group-item">''' + carts + ''' carts </li>
+			<li class="list-group-item">''' + speed + ''' max speed</li>
+			<li class="list-group-item">''' + cartWeight + ''' cart weight</li>
+			<li class="list-group-item">''' + gForce + ''' gforces </li>
 		</ul>
 		'''
 	}
@@ -245,7 +266,9 @@ class CoasterGenerator implements IGenerator {
 	 * This method injects what ever HTML we have into the content part of a bootstrap basic template.
 	 * There may be better ways to do this like a web api, but given the scope of the project this will do.
 	 */
-	def addIntoBootstrapTemplate (String content){
+	def addIntoBootstrapTemplate (String content, String navCoasters){
+		
+		
 		'''
 		<!DOCTYPE html>
 		<!-- saved from url=(0050)http://getbootstrap.com/examples/starter-template/ -->
@@ -285,10 +308,9 @@ class CoasterGenerator implements IGenerator {
 		          <a class="navbar-brand" href="http://getbootstrap.com/examples/starter-template/#">Roller Coaster Report</a>
 		        </div>
 		        <div class="collapse navbar-collapse">
-		          <ul class="nav navbar-nav">
-		            <li class="active"><a href="http://getbootstrap.com/examples/starter-template/#">Preview</a></li>
-		            <li><a href="http://getbootstrap.com/examples/starter-template/#about">Statistics</a></li>
-		            <li><a href="http://getbootstrap.com/examples/starter-template/#contact">Finincials</a></li>
+		          <ul class="nav navbar-nav">'''+
+		          navCoasters
+		          +'''
 		          </ul>
 		        </div><!--/.nav-collapse -->
 		      </div>

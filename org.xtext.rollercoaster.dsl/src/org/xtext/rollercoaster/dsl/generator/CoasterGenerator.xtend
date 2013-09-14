@@ -3,18 +3,15 @@
  */
 package org.xtext.rollercoaster.dsl.generator
 
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.IGenerator
-import org.eclipse.xtext.generator.IFileSystemAccess
-import org.xtext.rollercoaster.dsl.coaster.RollerCoaster
-import java.util.Date
-import org.eclipse.emf.ecore.EObject
-import org.xtext.rollercoaster.dsl.coaster.Straight
-import org.xtext.rollercoaster.dsl.coaster.Corner
-import org.rollercoaster.utils.Costs
-import org.rollercoaster.utils.Descriptions
-import java.util.ArrayList
 import java.util.HashMap
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.generator.IGenerator
+import org.rollercoaster.utils.RollerCoasterInfo
+import org.xtext.rollercoaster.dsl.coaster.Corner
+import org.xtext.rollercoaster.dsl.coaster.RollerCoaster
+import org.xtext.rollercoaster.dsl.coaster.Straight
 
 /**
  * Generates code from your model files on save.
@@ -133,15 +130,18 @@ class CoasterGenerator implements IGenerator {
 		
 		val pieces =  rc.track.length;
 		val carts = rc.cart.length;
-		
+		val speed = RollerCoasterInfo.getMaxSpeed(rc);
+		val cartWeight = RollerCoasterInfo.getTotalWeight(rc);
+		val gForce = RollerCoasterInfo.getMaxGForce(rc);
+			
 		'''
 		<h1> Summary </h1>
 		<ul class="list-group">
 			<li class="list-group-item">''' + pieces + ''' pieces of track </li>
-			<li class="list-group-item">''' + carts +''' carts </li>
-			<li class="list-group-item">Morbi leo risus</li>
-			<li class="list-group-item">Porta ac consectetur ac</li>
-			<li class="list-group-item">Vestibulum at eros</li>
+			<li class="list-group-item">''' + carts + ''' carts </li>
+			<li class="list-group-item">''' + speed + ''' max speed</li>
+			<li class="list-group-item">''' + cartWeight + ''' cart weight</li>
+			<li class="list-group-item">''' + gForce + ''' gforces </li>
 		</ul>
 		'''
 	}
