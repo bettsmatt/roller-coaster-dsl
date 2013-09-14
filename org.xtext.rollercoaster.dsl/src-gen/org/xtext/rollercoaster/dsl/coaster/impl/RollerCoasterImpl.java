@@ -31,6 +31,7 @@ import org.xtext.rollercoaster.dsl.coaster.RollerCoaster;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl#getBaseQuality <em>Base Quality</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl#getTrack <em>Track</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl#getCart <em>Cart</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl#getTrackUnitLength <em>Track Unit Length</em>}</li>
@@ -60,6 +61,26 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getBaseQuality() <em>Base Quality</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBaseQuality()
+   * @generated
+   * @ordered
+   */
+  protected static final String BASE_QUALITY_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getBaseQuality() <em>Base Quality</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBaseQuality()
+   * @generated
+   * @ordered
+   */
+  protected String baseQuality = BASE_QUALITY_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getTrack() <em>Track</em>}' containment reference list.
@@ -150,6 +171,29 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getBaseQuality()
+  {
+    return baseQuality;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setBaseQuality(String newBaseQuality)
+  {
+    String oldBaseQuality = baseQuality;
+    baseQuality = newBaseQuality;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, CoasterPackage.ROLLER_COASTER__BASE_QUALITY, oldBaseQuality, baseQuality));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<EObject> getTrack()
   {
     if (track == null)
@@ -226,6 +270,8 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
     {
       case CoasterPackage.ROLLER_COASTER__NAME:
         return getName();
+      case CoasterPackage.ROLLER_COASTER__BASE_QUALITY:
+        return getBaseQuality();
       case CoasterPackage.ROLLER_COASTER__TRACK:
         return getTrack();
       case CoasterPackage.ROLLER_COASTER__CART:
@@ -249,6 +295,9 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
     {
       case CoasterPackage.ROLLER_COASTER__NAME:
         setName((String)newValue);
+        return;
+      case CoasterPackage.ROLLER_COASTER__BASE_QUALITY:
+        setBaseQuality((String)newValue);
         return;
       case CoasterPackage.ROLLER_COASTER__TRACK:
         getTrack().clear();
@@ -278,6 +327,9 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
       case CoasterPackage.ROLLER_COASTER__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case CoasterPackage.ROLLER_COASTER__BASE_QUALITY:
+        setBaseQuality(BASE_QUALITY_EDEFAULT);
+        return;
       case CoasterPackage.ROLLER_COASTER__TRACK:
         getTrack().clear();
         return;
@@ -303,6 +355,8 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
     {
       case CoasterPackage.ROLLER_COASTER__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case CoasterPackage.ROLLER_COASTER__BASE_QUALITY:
+        return BASE_QUALITY_EDEFAULT == null ? baseQuality != null : !BASE_QUALITY_EDEFAULT.equals(baseQuality);
       case CoasterPackage.ROLLER_COASTER__TRACK:
         return track != null && !track.isEmpty();
       case CoasterPackage.ROLLER_COASTER__CART:
@@ -326,6 +380,8 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", baseQuality: ");
+    result.append(baseQuality);
     result.append(", trackUnitLength: ");
     result.append(trackUnitLength);
     result.append(')');

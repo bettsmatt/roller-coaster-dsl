@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.Straight#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.Straight#getPowered <em>Powered</em>}</li>
+ *   <li>{@link org.xtext.rollercoaster.dsl.coaster.Straight#getQuality <em>Quality</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.Straight#getLength <em>Length</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.Straight#getElevationChange <em>Elevation Change</em>}</li>
  * </ul>
@@ -76,6 +77,32 @@ public interface Straight extends EObject
    * @generated
    */
   void setPowered(String value);
+
+  /**
+   * Returns the value of the '<em><b>Quality</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Quality</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Quality</em>' attribute.
+   * @see #setQuality(String)
+   * @see org.xtext.rollercoaster.dsl.coaster.CoasterPackage#getStraight_Quality()
+   * @model
+   * @generated
+   */
+  String getQuality();
+
+  /**
+   * Sets the value of the '{@link org.xtext.rollercoaster.dsl.coaster.Straight#getQuality <em>Quality</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Quality</em>' attribute.
+   * @see #getQuality()
+   * @generated
+   */
+  void setQuality(String value);
 
   /**
    * Returns the value of the '<em><b>Length</b></em>' attribute.

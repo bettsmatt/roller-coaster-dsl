@@ -250,8 +250,11 @@ public class CoasterGenerator implements IGenerator {
       _builder.append("<svg width=\"2000px\" height=\"2000px\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"> ");
       final String start = _builder.toString();
       StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("<path d=\" M 400 300 ");
-      final String pathStart = _builder_1.toString();
+      _builder_1.append("<circle xmlns=\"http://www.w3.org/2000/svg\" cx=\"400\" cy=\"300\" r=\"4\" fill=\"#ff0000\" stroke=\"#000000\" stroke-width=\"2\"/>");
+      final String zeroZeroPoint = _builder_1.toString();
+      StringConcatenation _builder_2 = new StringConcatenation();
+      _builder_2.append("<path d=\" M 400 300 ");
+      final String pathStart = _builder_2.toString();
       String path = "";
       double currentAngle = 0.0;
       for (final EObject trackPiece : tracks) {
@@ -292,14 +295,14 @@ public class CoasterGenerator implements IGenerator {
               if (!_matched_1) {
                 if (Objects.equal(_switchValue,"left")) {
                   _matched_1=true;
-                  int _minus = (-1);
-                  _switchResult_1 = Integer.valueOf(_minus);
+                  _switchResult_1 = Integer.valueOf(1);
                 }
               }
               if (!_matched_1) {
                 if (Objects.equal(_switchValue,"right")) {
                   _matched_1=true;
-                  _switchResult_1 = Integer.valueOf(1);
+                  int _minus = (-1);
+                  _switchResult_1 = Integer.valueOf(_minus);
                 }
               }
               final Integer modifier = _switchResult_1;
@@ -310,13 +313,13 @@ public class CoasterGenerator implements IGenerator {
               if (!_matched_2) {
                 if (Objects.equal(_switchValue_1,"left")) {
                   _matched_2=true;
-                  _switchResult_2 = " 0 0 1 ";
+                  _switchResult_2 = " 0 0 0 ";
                 }
               }
               if (!_matched_2) {
                 if (Objects.equal(_switchValue_1,"right")) {
                   _matched_2=true;
-                  _switchResult_2 = " 0 0 0 ";
+                  _switchResult_2 = " 0 0 1 ";
                 }
               }
               final String flags = _switchResult_2;
@@ -421,17 +424,18 @@ public class CoasterGenerator implements IGenerator {
         String _plus = (path + _switchResult);
         path = _plus;
       }
-      StringConcatenation _builder_2 = new StringConcatenation();
-      _builder_2.append("\"stroke=\"black\" fill=\"transparent\"/>");
-      final String pathEnd = _builder_2.toString();
       StringConcatenation _builder_3 = new StringConcatenation();
-      _builder_3.append("</svg>");
-      String end = _builder_3.toString();
-      String _plus_1 = (start + pathStart);
-      String _plus_2 = (_plus_1 + path);
-      String _plus_3 = (_plus_2 + pathEnd);
-      String _plus_4 = (_plus_3 + end);
-      _xblockexpression = (_plus_4);
+      _builder_3.append("\"stroke=\"black\" fill=\"transparent\"/>");
+      final String pathEnd = _builder_3.toString();
+      StringConcatenation _builder_4 = new StringConcatenation();
+      _builder_4.append("</svg>");
+      String end = _builder_4.toString();
+      String _plus_1 = (start + zeroZeroPoint);
+      String _plus_2 = (_plus_1 + pathStart);
+      String _plus_3 = (_plus_2 + path);
+      String _plus_4 = (_plus_3 + pathEnd);
+      String _plus_5 = (_plus_4 + end);
+      _xblockexpression = (_plus_5);
     }
     return _xblockexpression;
   }

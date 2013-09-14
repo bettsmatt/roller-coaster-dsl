@@ -8,12 +8,13 @@ import org.eclipse.xtext.validation.Check
 import org.xtext.rollercoaster.dsl.coaster.CoasterPackage
 import org.xtext.rollercoaster.dsl.coaster.Corner
 import org.xtext.rollercoaster.dsl.coaster.Straight
+import org.xtext.rollercoaster.dsl.coaster.Cart
 
 //import org.eclipse.xtext.validation.Check
 
 /**
  * Custom validation rules. 
- *
+ *		
  * see http://www.eclipse.org/Xtext/documentation.html#validation
  */
 class CoasterValidator extends AbstractCoasterValidator {
@@ -38,7 +39,7 @@ def checkCompletePath(RollerCoaster rc){
 	if(totalAngle%360 != 0){
 		warning("Track angles do not form a cycle! "+totalAngle%360+" degrees from a cycle.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
 	}
-	println("totalAngle = "+totalAngle);
+	//println("totalAngle = "+totalAngle);
 }
 
 @Check
@@ -138,39 +139,131 @@ def hasEnoughPower(RollerCoaster rc){
 			Corner:  c = t
 			Straight: s = t
 		}
-
-		if(s != null){
-				
-			if(s.powered != null){
-				speed = speed + (s.length*2); //fine tune
-			}
-			// Ellevation facotr
-				
-				if(s.elevationChange != null){
-			var change = s.elevationChange.value;
-			if(s.elevationChange.sign != null){
-				change = change * -1;
-			}
+		if(c != null){
+			var quality = switch (c.quality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+					default: switch (rc.baseQuality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+				}	
+				}
 			
-			if (change != 0){
-				speed = speed + (change *  s.length);
+			checkSpeedOnCurve(rc, c, quality, speed);
+		}
+		
+		//If it is a straight
+		if(s != null){
+			// Convert text quality to numeric and if nothing provided get rc base quality
+			var quality = switch (s.quality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+					default: switch (rc.baseQuality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+				}	
+				}
+			
+			
+			//if straight is powered
+			if(s.powered != null){
+				
+				var temp = getTotalWeight(rc)/(quality*100);
+				speed = speed + (s.length*quality)/temp; //fine tune
 			}
-						}
-			else{speed = speed - s.length/2;} 
+			// If there is an elevation change.
+			if(s.elevationChange != null){
+				var change = s.elevationChange.value/2;
+				//downhill
+				if(s.elevationChange.sign != null){
+					speed = speed + (change *  s.length *quality); //weight has no effect going downhill
+				}
+			 // uphill
+				else {
+					change = change * -1;
+					
+					var temp = getTotalWeight(rc)/(quality*1000);
+					speed = speed + (change *  s.length/quality)-temp;
+				}
+			}
+			//on flat slowly decrease
+			else{speed = speed - s.length/(quality*10);} //weight has no effect on the flat 
 						
-			println(speed);
+			//println(speed);
+			checkSpeedOnStraights(rc, s, quality, speed);
 			if (speed <=0){
 				warning("Cart is moving backwards or stopped on "+(s.name)+", add powered units or downhill slopes.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
-	
 			}
 		}
-			
-			
+		}
+}
+
+
+def getTotalWeight(RollerCoaster rc){
+	var totalWeight = 0;
+	for(Cart c: rc.cart){
+		totalWeight = totalWeight + c.seatNumber*120 + 250;
+	}
+	return totalWeight;
+}
+
+def checkSpeedOnStraights(RollerCoaster rc, Straight s, int trackQuality, int speed){
+	//cartQuality
+	//trackQuality
+	
+	for(Cart c: rc.cart){
+		var cartQuality = switch (c.quality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+					default: switch (rc.baseQuality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+				}	
+				}
+		var qualityFactor = trackQuality + cartQuality;
+				println("Straight - "+s.name +" - Speed - " +speed+"kph - our calculation - "+(speed/qualityFactor));
+		if(speed/qualityFactor > 75){
+			warning("Cart "+ c.name +" has been destroyed due to the excessive speed of "+speed+"kph on track "+s.name+", please improve quality of track or cart or reduce speed.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
 			
 		}
-	
+	}
+}
+
+def checkSpeedOnCurve(RollerCoaster rc, Corner corner, int trackQuality, int speed){
+	for(Cart c: rc.cart){
+		var cartQuality = switch (c.quality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+					default: switch (rc.baseQuality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+				}	
+				}
+		var qualityFactor = trackQuality + cartQuality;
+			var cornerType = switch (corner.type) {
+					String case "sharp45" :  3
+					String case "sharp90": 4
+					String case "easy45": 1
+					String case "easy90": 2
+					}
+		
+		println("Corner - "+corner.name +" - Speed - " +speed+"kph - our calculation - "+((speed/qualityFactor)*cornerType));
+		if((speed/qualityFactor)*cornerType > 100){ //cornertype/speed
+			warning("Cart "+ c.name +" has left the track due the excessive speed of "+speed+"kph on corner "+corner.name+", please improve quality of track or cart or reduce speed.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+			
+		}
+	}
+}
+
 }
 
 
-}
 

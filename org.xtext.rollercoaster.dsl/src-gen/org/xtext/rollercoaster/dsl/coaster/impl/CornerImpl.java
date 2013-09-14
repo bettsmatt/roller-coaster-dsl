@@ -22,6 +22,7 @@ import org.xtext.rollercoaster.dsl.coaster.Corner;
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.CornerImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.CornerImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.CornerImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.CornerImpl#getQuality <em>Quality</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,6 +89,26 @@ public class CornerImpl extends MinimalEObjectImpl.Container implements Corner
    * @ordered
    */
   protected String type = TYPE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getQuality() <em>Quality</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getQuality()
+   * @generated
+   * @ordered
+   */
+  protected static final String QUALITY_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getQuality() <em>Quality</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getQuality()
+   * @generated
+   * @ordered
+   */
+  protected String quality = QUALITY_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -184,6 +205,29 @@ public class CornerImpl extends MinimalEObjectImpl.Container implements Corner
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getQuality()
+  {
+    return quality;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setQuality(String newQuality)
+  {
+    String oldQuality = quality;
+    quality = newQuality;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, CoasterPackage.CORNER__QUALITY, oldQuality, quality));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -195,6 +239,8 @@ public class CornerImpl extends MinimalEObjectImpl.Container implements Corner
         return getDirection();
       case CoasterPackage.CORNER__TYPE:
         return getType();
+      case CoasterPackage.CORNER__QUALITY:
+        return getQuality();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -217,6 +263,9 @@ public class CornerImpl extends MinimalEObjectImpl.Container implements Corner
         return;
       case CoasterPackage.CORNER__TYPE:
         setType((String)newValue);
+        return;
+      case CoasterPackage.CORNER__QUALITY:
+        setQuality((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -241,6 +290,9 @@ public class CornerImpl extends MinimalEObjectImpl.Container implements Corner
       case CoasterPackage.CORNER__TYPE:
         setType(TYPE_EDEFAULT);
         return;
+      case CoasterPackage.CORNER__QUALITY:
+        setQuality(QUALITY_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -261,6 +313,8 @@ public class CornerImpl extends MinimalEObjectImpl.Container implements Corner
         return DIRECTION_EDEFAULT == null ? direction != null : !DIRECTION_EDEFAULT.equals(direction);
       case CoasterPackage.CORNER__TYPE:
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+      case CoasterPackage.CORNER__QUALITY:
+        return QUALITY_EDEFAULT == null ? quality != null : !QUALITY_EDEFAULT.equals(quality);
     }
     return super.eIsSet(featureID);
   }
@@ -282,6 +336,8 @@ public class CornerImpl extends MinimalEObjectImpl.Container implements Corner
     result.append(direction);
     result.append(", type: ");
     result.append(type);
+    result.append(", quality: ");
+    result.append(quality);
     result.append(')');
     return result.toString();
   }

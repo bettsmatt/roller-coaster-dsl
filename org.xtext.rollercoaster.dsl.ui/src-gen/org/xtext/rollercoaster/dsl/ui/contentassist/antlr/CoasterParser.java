@@ -37,9 +37,13 @@ public class CoasterParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getRollerCoasterAccess().getTrackAlternatives_2_0(), "rule__RollerCoaster__TrackAlternatives_2_0");
+					put(grammarAccess.getRollerCoasterAccess().getBaseQualityAlternatives_2_0(), "rule__RollerCoaster__BaseQualityAlternatives_2_0");
+					put(grammarAccess.getRollerCoasterAccess().getTrackAlternatives_3_0(), "rule__RollerCoaster__TrackAlternatives_3_0");
+					put(grammarAccess.getStraightAccess().getQualityAlternatives_3_0(), "rule__Straight__QualityAlternatives_3_0");
 					put(grammarAccess.getCornerAccess().getDirectionAlternatives_2_0(), "rule__Corner__DirectionAlternatives_2_0");
 					put(grammarAccess.getCornerAccess().getTypeAlternatives_3_0(), "rule__Corner__TypeAlternatives_3_0");
+					put(grammarAccess.getCornerAccess().getQualityAlternatives_4_0(), "rule__Corner__QualityAlternatives_4_0");
+					put(grammarAccess.getCartAccess().getQualityAlternatives_2_0(), "rule__Cart__QualityAlternatives_2_0");
 					put(grammarAccess.getRollerCoasterAccess().getGroup(), "rule__RollerCoaster__Group__0");
 					put(grammarAccess.getStraightAccess().getGroup(), "rule__Straight__Group__0");
 					put(grammarAccess.getCornerAccess().getGroup(), "rule__Corner__Group__0");
@@ -47,17 +51,22 @@ public class CoasterParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSignedIntAccess().getGroup(), "rule__SignedInt__Group__0");
 					put(grammarAccess.getModelAccess().getRollerCoasterAssignment(), "rule__Model__RollerCoasterAssignment");
 					put(grammarAccess.getRollerCoasterAccess().getNameAssignment_1(), "rule__RollerCoaster__NameAssignment_1");
-					put(grammarAccess.getRollerCoasterAccess().getTrackAssignment_2(), "rule__RollerCoaster__TrackAssignment_2");
-					put(grammarAccess.getRollerCoasterAccess().getCartAssignment_3(), "rule__RollerCoaster__CartAssignment_3");
-					put(grammarAccess.getRollerCoasterAccess().getTrackUnitLengthAssignment_4(), "rule__RollerCoaster__TrackUnitLengthAssignment_4");
+					put(grammarAccess.getRollerCoasterAccess().getBaseQualityAssignment_2(), "rule__RollerCoaster__BaseQualityAssignment_2");
+					put(grammarAccess.getRollerCoasterAccess().getTrackAssignment_3(), "rule__RollerCoaster__TrackAssignment_3");
+					put(grammarAccess.getRollerCoasterAccess().getCartAssignment_4(), "rule__RollerCoaster__CartAssignment_4");
+					put(grammarAccess.getRollerCoasterAccess().getTrackUnitLengthAssignment_5(), "rule__RollerCoaster__TrackUnitLengthAssignment_5");
 					put(grammarAccess.getStraightAccess().getNameAssignment_1(), "rule__Straight__NameAssignment_1");
 					put(grammarAccess.getStraightAccess().getPoweredAssignment_2(), "rule__Straight__PoweredAssignment_2");
-					put(grammarAccess.getStraightAccess().getLengthAssignment_3(), "rule__Straight__LengthAssignment_3");
-					put(grammarAccess.getStraightAccess().getElevationChangeAssignment_4(), "rule__Straight__ElevationChangeAssignment_4");
+					put(grammarAccess.getStraightAccess().getQualityAssignment_3(), "rule__Straight__QualityAssignment_3");
+					put(grammarAccess.getStraightAccess().getLengthAssignment_4(), "rule__Straight__LengthAssignment_4");
+					put(grammarAccess.getStraightAccess().getElevationChangeAssignment_5(), "rule__Straight__ElevationChangeAssignment_5");
 					put(grammarAccess.getCornerAccess().getNameAssignment_1(), "rule__Corner__NameAssignment_1");
 					put(grammarAccess.getCornerAccess().getDirectionAssignment_2(), "rule__Corner__DirectionAssignment_2");
 					put(grammarAccess.getCornerAccess().getTypeAssignment_3(), "rule__Corner__TypeAssignment_3");
+					put(grammarAccess.getCornerAccess().getQualityAssignment_4(), "rule__Corner__QualityAssignment_4");
 					put(grammarAccess.getCartAccess().getNameAssignment_1(), "rule__Cart__NameAssignment_1");
+					put(grammarAccess.getCartAccess().getQualityAssignment_2(), "rule__Cart__QualityAssignment_2");
+					put(grammarAccess.getCartAccess().getSeatNumberAssignment_3(), "rule__Cart__SeatNumberAssignment_3");
 					put(grammarAccess.getSignedIntAccess().getSignAssignment_0(), "rule__SignedInt__SignAssignment_0");
 					put(grammarAccess.getSignedIntAccess().getValueAssignment_1(), "rule__SignedInt__ValueAssignment_1");
 				}

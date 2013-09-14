@@ -85,6 +85,7 @@ class CoasterGenerator implements IGenerator {
 		// The start of the svg
 		var tracks = rc.track;
 		val start = '''<svg width="2000px" height="2000px" version="1.1" xmlns="http://www.w3.org/2000/svg"> '''
+		val zeroZeroPoint = '''<circle xmlns="http://www.w3.org/2000/svg" cx="400" cy="300" r="4" fill="#ff0000" stroke="#000000" stroke-width="2"/>'''
 		val pathStart = '''<path d=" M 400 300 '''
 		
 		var path = "";
@@ -123,14 +124,14 @@ class CoasterGenerator implements IGenerator {
 					
 					// -1 for anti-clockwise and 1 for clockwise
 					val modifier = switch trackPiece.direction {
-						case 'left': -1 
-						case 'right': 1
+						case 'left': 1 
+						case 'right': -1
 					};
 					
 					// Flags for the direction of the arc
 					val flags = switch trackPiece.direction {
-						case 'left':  " 0 0 1 "
-						case 'right': " 0 0 0 "
+						case 'left':  " 0 0 0 "
+						case 'right': " 0 0 1 "
 					}
 	
 					// Work out where the curve will end up
@@ -185,7 +186,7 @@ class CoasterGenerator implements IGenerator {
 		var end = '''</svg>'''
 		
 		// Build the path with enclosing svg 
-		start + pathStart + path + pathEnd + end;
+		start + zeroZeroPoint + pathStart + path + pathEnd + end;
 		
 	}
 }

@@ -141,32 +141,74 @@ ruleRollerCoaster returns [EObject current=null]
 )(
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getRollerCoasterAccess().getTrackStraightParserRuleCall_2_0_0()); 
+		lv_baseQuality_2_1=	'wood' 
+    {
+        newLeafNode(lv_baseQuality_2_1, grammarAccess.getRollerCoasterAccess().getBaseQualityWoodKeyword_2_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getRollerCoasterRule());
+	        }
+       		setWithLastConsumed($current, "baseQuality", lv_baseQuality_2_1, null);
 	    }
-		lv_track_2_1=ruleStraight		{
+
+    |		lv_baseQuality_2_2=	'iron' 
+    {
+        newLeafNode(lv_baseQuality_2_2, grammarAccess.getRollerCoasterAccess().getBaseQualityIronKeyword_2_0_1());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getRollerCoasterRule());
+	        }
+       		setWithLastConsumed($current, "baseQuality", lv_baseQuality_2_2, null);
+	    }
+
+    |		lv_baseQuality_2_3=	'steel' 
+    {
+        newLeafNode(lv_baseQuality_2_3, grammarAccess.getRollerCoasterAccess().getBaseQualitySteelKeyword_2_0_2());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getRollerCoasterRule());
+	        }
+       		setWithLastConsumed($current, "baseQuality", lv_baseQuality_2_3, null);
+	    }
+
+)
+
+)
+)(
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRollerCoasterAccess().getTrackStraightParserRuleCall_3_0_0()); 
+	    }
+		lv_track_3_1=ruleStraight		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRollerCoasterRule());
 	        }
        		add(
        			$current, 
        			"track",
-        		lv_track_2_1, 
+        		lv_track_3_1, 
         		"Straight");
 	        afterParserOrEnumRuleCall();
 	    }
 
     |		{ 
-	        newCompositeNode(grammarAccess.getRollerCoasterAccess().getTrackCornerParserRuleCall_2_0_1()); 
+	        newCompositeNode(grammarAccess.getRollerCoasterAccess().getTrackCornerParserRuleCall_3_0_1()); 
 	    }
-		lv_track_2_2=ruleCorner		{
+		lv_track_3_2=ruleCorner		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRollerCoasterRule());
 	        }
        		add(
        			$current, 
        			"track",
-        		lv_track_2_2, 
+        		lv_track_3_2, 
         		"Corner");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -177,16 +219,16 @@ ruleRollerCoaster returns [EObject current=null]
 )*(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRollerCoasterAccess().getCartCartParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getRollerCoasterAccess().getCartCartParserRuleCall_4_0()); 
 	    }
-		lv_cart_3_0=ruleCart		{
+		lv_cart_4_0=ruleCart		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRollerCoasterRule());
 	        }
        		add(
        			$current, 
        			"cart",
-        		lv_cart_3_0, 
+        		lv_cart_4_0, 
         		"Cart");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -194,9 +236,9 @@ ruleRollerCoaster returns [EObject current=null]
 )
 )*(
 (
-		lv_trackUnitLength_4_0=RULE_INT
+		lv_trackUnitLength_5_0=RULE_INT
 		{
-			newLeafNode(lv_trackUnitLength_4_0, grammarAccess.getRollerCoasterAccess().getTrackUnitLengthINTTerminalRuleCall_4_0()); 
+			newLeafNode(lv_trackUnitLength_5_0, grammarAccess.getRollerCoasterAccess().getTrackUnitLengthINTTerminalRuleCall_5_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -205,7 +247,7 @@ ruleRollerCoaster returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"trackUnitLength",
-        		lv_trackUnitLength_4_0, 
+        		lv_trackUnitLength_5_0, 
         		"INT");
 	    }
 
@@ -270,9 +312,51 @@ ruleStraight returns [EObject current=null]
 )
 )?(
 (
-		lv_length_3_0=RULE_INT
+(
+		lv_quality_3_1=	'wood' 
+    {
+        newLeafNode(lv_quality_3_1, grammarAccess.getStraightAccess().getQualityWoodKeyword_3_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getStraightRule());
+	        }
+       		setWithLastConsumed($current, "quality", lv_quality_3_1, null);
+	    }
+
+    |		lv_quality_3_2=	'iron' 
+    {
+        newLeafNode(lv_quality_3_2, grammarAccess.getStraightAccess().getQualityIronKeyword_3_0_1());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getStraightRule());
+	        }
+       		setWithLastConsumed($current, "quality", lv_quality_3_2, null);
+	    }
+
+    |		lv_quality_3_3=	'steel' 
+    {
+        newLeafNode(lv_quality_3_3, grammarAccess.getStraightAccess().getQualitySteelKeyword_3_0_2());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getStraightRule());
+	        }
+       		setWithLastConsumed($current, "quality", lv_quality_3_3, null);
+	    }
+
+)
+
+)
+)?(
+(
+		lv_length_4_0=RULE_INT
 		{
-			newLeafNode(lv_length_3_0, grammarAccess.getStraightAccess().getLengthINTTerminalRuleCall_3_0()); 
+			newLeafNode(lv_length_4_0, grammarAccess.getStraightAccess().getLengthINTTerminalRuleCall_4_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -281,7 +365,7 @@ ruleStraight returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"length",
-        		lv_length_3_0, 
+        		lv_length_4_0, 
         		"INT");
 	    }
 
@@ -289,16 +373,16 @@ ruleStraight returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getStraightAccess().getElevationChangeSignedIntParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getStraightAccess().getElevationChangeSignedIntParserRuleCall_5_0()); 
 	    }
-		lv_elevationChange_4_0=ruleSignedInt		{
+		lv_elevationChange_5_0=ruleSignedInt		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getStraightRule());
 	        }
        		set(
        			$current, 
        			"elevationChange",
-        		lv_elevationChange_4_0, 
+        		lv_elevationChange_5_0, 
         		"SignedInt");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -431,7 +515,49 @@ ruleCorner returns [EObject current=null]
 )
 
 )
-))
+)(
+(
+(
+		lv_quality_4_1=	'wood' 
+    {
+        newLeafNode(lv_quality_4_1, grammarAccess.getCornerAccess().getQualityWoodKeyword_4_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCornerRule());
+	        }
+       		setWithLastConsumed($current, "quality", lv_quality_4_1, null);
+	    }
+
+    |		lv_quality_4_2=	'iron' 
+    {
+        newLeafNode(lv_quality_4_2, grammarAccess.getCornerAccess().getQualityIronKeyword_4_0_1());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCornerRule());
+	        }
+       		setWithLastConsumed($current, "quality", lv_quality_4_2, null);
+	    }
+
+    |		lv_quality_4_3=	'steel' 
+    {
+        newLeafNode(lv_quality_4_3, grammarAccess.getCornerAccess().getQualitySteelKeyword_4_0_2());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCornerRule());
+	        }
+       		setWithLastConsumed($current, "quality", lv_quality_4_3, null);
+	    }
+
+)
+
+)
+)?)
 ;
 
 
@@ -471,6 +597,66 @@ ruleCart returns [EObject current=null]
        			"name",
         		lv_name_1_0, 
         		"ID");
+	    }
+
+)
+)(
+(
+(
+		lv_quality_2_1=	'wood' 
+    {
+        newLeafNode(lv_quality_2_1, grammarAccess.getCartAccess().getQualityWoodKeyword_2_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCartRule());
+	        }
+       		setWithLastConsumed($current, "quality", lv_quality_2_1, null);
+	    }
+
+    |		lv_quality_2_2=	'iron' 
+    {
+        newLeafNode(lv_quality_2_2, grammarAccess.getCartAccess().getQualityIronKeyword_2_0_1());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCartRule());
+	        }
+       		setWithLastConsumed($current, "quality", lv_quality_2_2, null);
+	    }
+
+    |		lv_quality_2_3=	'steel' 
+    {
+        newLeafNode(lv_quality_2_3, grammarAccess.getCartAccess().getQualitySteelKeyword_2_0_2());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCartRule());
+	        }
+       		setWithLastConsumed($current, "quality", lv_quality_2_3, null);
+	    }
+
+)
+
+)
+)?(
+(
+		lv_seatNumber_3_0=RULE_INT
+		{
+			newLeafNode(lv_seatNumber_3_0, grammarAccess.getCartAccess().getSeatNumberINTTerminalRuleCall_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCartRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"seatNumber",
+        		lv_seatNumber_3_0, 
+        		"INT");
 	    }
 
 )

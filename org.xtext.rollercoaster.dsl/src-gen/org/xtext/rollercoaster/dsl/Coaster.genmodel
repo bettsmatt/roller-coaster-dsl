@@ -12,6 +12,7 @@
     </genClasses>
     <genClasses ecoreClass="Coaster.ecore#//RollerCoaster">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//RollerCoaster/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//RollerCoaster/baseQuality"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coaster.ecore#//RollerCoaster/track"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coaster.ecore#//RollerCoaster/cart"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//RollerCoaster/trackUnitLength"/>
@@ -19,6 +20,7 @@
     <genClasses ecoreClass="Coaster.ecore#//Straight">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Straight/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Straight/powered"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Straight/quality"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Straight/length"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coaster.ecore#//Straight/elevationChange"/>
     </genClasses>
@@ -26,9 +28,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Corner/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Corner/direction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Corner/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Corner/quality"/>
     </genClasses>
     <genClasses ecoreClass="Coaster.ecore#//Cart">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Cart/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Cart/quality"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//Cart/seatNumber"/>
     </genClasses>
     <genClasses ecoreClass="Coaster.ecore#//SignedInt">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//SignedInt/sign"/>

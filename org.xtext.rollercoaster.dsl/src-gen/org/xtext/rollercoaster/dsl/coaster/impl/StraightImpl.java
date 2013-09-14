@@ -24,6 +24,7 @@ import org.xtext.rollercoaster.dsl.coaster.Straight;
  * <ul>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.StraightImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.StraightImpl#getPowered <em>Powered</em>}</li>
+ *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.StraightImpl#getQuality <em>Quality</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.StraightImpl#getLength <em>Length</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.StraightImpl#getElevationChange <em>Elevation Change</em>}</li>
  * </ul>
@@ -72,6 +73,26 @@ public class StraightImpl extends MinimalEObjectImpl.Container implements Straig
    * @ordered
    */
   protected String powered = POWERED_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getQuality() <em>Quality</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getQuality()
+   * @generated
+   * @ordered
+   */
+  protected static final String QUALITY_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getQuality() <em>Quality</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getQuality()
+   * @generated
+   * @ordered
+   */
+  protected String quality = QUALITY_EDEFAULT;
 
   /**
    * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
@@ -175,6 +196,29 @@ public class StraightImpl extends MinimalEObjectImpl.Container implements Straig
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getQuality()
+  {
+    return quality;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setQuality(String newQuality)
+  {
+    String oldQuality = quality;
+    quality = newQuality;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, CoasterPackage.STRAIGHT__QUALITY, oldQuality, quality));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public int getLength()
   {
     return length;
@@ -271,6 +315,8 @@ public class StraightImpl extends MinimalEObjectImpl.Container implements Straig
         return getName();
       case CoasterPackage.STRAIGHT__POWERED:
         return getPowered();
+      case CoasterPackage.STRAIGHT__QUALITY:
+        return getQuality();
       case CoasterPackage.STRAIGHT__LENGTH:
         return getLength();
       case CoasterPackage.STRAIGHT__ELEVATION_CHANGE:
@@ -294,6 +340,9 @@ public class StraightImpl extends MinimalEObjectImpl.Container implements Straig
         return;
       case CoasterPackage.STRAIGHT__POWERED:
         setPowered((String)newValue);
+        return;
+      case CoasterPackage.STRAIGHT__QUALITY:
+        setQuality((String)newValue);
         return;
       case CoasterPackage.STRAIGHT__LENGTH:
         setLength((Integer)newValue);
@@ -321,6 +370,9 @@ public class StraightImpl extends MinimalEObjectImpl.Container implements Straig
       case CoasterPackage.STRAIGHT__POWERED:
         setPowered(POWERED_EDEFAULT);
         return;
+      case CoasterPackage.STRAIGHT__QUALITY:
+        setQuality(QUALITY_EDEFAULT);
+        return;
       case CoasterPackage.STRAIGHT__LENGTH:
         setLength(LENGTH_EDEFAULT);
         return;
@@ -345,6 +397,8 @@ public class StraightImpl extends MinimalEObjectImpl.Container implements Straig
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case CoasterPackage.STRAIGHT__POWERED:
         return POWERED_EDEFAULT == null ? powered != null : !POWERED_EDEFAULT.equals(powered);
+      case CoasterPackage.STRAIGHT__QUALITY:
+        return QUALITY_EDEFAULT == null ? quality != null : !QUALITY_EDEFAULT.equals(quality);
       case CoasterPackage.STRAIGHT__LENGTH:
         return length != LENGTH_EDEFAULT;
       case CoasterPackage.STRAIGHT__ELEVATION_CHANGE:
@@ -368,6 +422,8 @@ public class StraightImpl extends MinimalEObjectImpl.Container implements Straig
     result.append(name);
     result.append(", powered: ");
     result.append(powered);
+    result.append(", quality: ");
+    result.append(quality);
     result.append(", length: ");
     result.append(length);
     result.append(')');

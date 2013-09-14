@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getBaseQuality <em>Base Quality</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTrack <em>Track</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getCart <em>Cart</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTrackUnitLength <em>Track Unit Length</em>}</li>
@@ -52,6 +53,32 @@ public interface RollerCoaster extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Base Quality</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Base Quality</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Base Quality</em>' attribute.
+   * @see #setBaseQuality(String)
+   * @see org.xtext.rollercoaster.dsl.coaster.CoasterPackage#getRollerCoaster_BaseQuality()
+   * @model
+   * @generated
+   */
+  String getBaseQuality();
+
+  /**
+   * Sets the value of the '{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getBaseQuality <em>Base Quality</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Base Quality</em>' attribute.
+   * @see #getBaseQuality()
+   * @generated
+   */
+  void setBaseQuality(String value);
 
   /**
    * Returns the value of the '<em><b>Track</b></em>' containment reference list.

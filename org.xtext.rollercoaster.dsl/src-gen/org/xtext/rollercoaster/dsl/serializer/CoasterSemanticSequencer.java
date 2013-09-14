@@ -4,15 +4,12 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
-import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.diagnostic.ISemanticSequencerDiagnosticProvider;
 import org.eclipse.xtext.serializer.diagnostic.ISerializationDiagnostic.Acceptor;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.GenericSequencer;
-import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEObjectProvider;
 import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
-import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.rollercoaster.dsl.coaster.Cart;
 import org.xtext.rollercoaster.dsl.coaster.CoasterPackage;
 import org.xtext.rollercoaster.dsl.coaster.Corner;
@@ -72,23 +69,21 @@ public class CoasterSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     name=ID
+	 *     (name=ID (quality='wood' | quality='iron' | quality='steel')? seatNumber=INT)
 	 */
 	protected void sequence_Cart(EObject context, Cart semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, CoasterPackage.Literals.CART__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CoasterPackage.Literals.CART__NAME));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getCartAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (name=ID (direction='left' | direction='right') (type='sharp45' | type='sharp90' | type='easy45' | type='easy90'))
+	 *     (
+	 *         name=ID 
+	 *         (direction='left' | direction='right') 
+	 *         (type='sharp45' | type='sharp90' | type='easy45' | type='easy90') 
+	 *         (quality='wood' | quality='iron' | quality='steel')?
+	 *     )
 	 */
 	protected void sequence_Corner(EObject context, Corner semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -106,7 +101,7 @@ public class CoasterSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=ID (track+=Straight | track+=Corner)* cart+=Cart* trackUnitLength=INT)
+	 *     (name=ID (baseQuality='wood' | baseQuality='iron' | baseQuality='steel') (track+=Straight | track+=Corner)* cart+=Cart* trackUnitLength=INT)
 	 */
 	protected void sequence_RollerCoaster(EObject context, RollerCoaster semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -124,7 +119,7 @@ public class CoasterSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=ID powered='powered'? length=INT elevationChange=SignedInt?)
+	 *     (name=ID powered='powered'? (quality='wood' | quality='iron' | quality='steel')? length=INT elevationChange=SignedInt?)
 	 */
 	protected void sequence_Straight(EObject context, Straight semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -176,9 +176,9 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getRollerCoaster_Track()
+  public EAttribute getRollerCoaster_BaseQuality()
   {
-    return (EReference)rollerCoasterEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)rollerCoasterEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -186,7 +186,7 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getRollerCoaster_Cart()
+  public EReference getRollerCoaster_Track()
   {
     return (EReference)rollerCoasterEClass.getEStructuralFeatures().get(2);
   }
@@ -196,9 +196,19 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getRollerCoaster_Cart()
+  {
+    return (EReference)rollerCoasterEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EAttribute getRollerCoaster_TrackUnitLength()
   {
-    return (EAttribute)rollerCoasterEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)rollerCoasterEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -236,7 +246,7 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getStraight_Length()
+  public EAttribute getStraight_Quality()
   {
     return (EAttribute)straightEClass.getEStructuralFeatures().get(2);
   }
@@ -246,9 +256,19 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getStraight_Length()
+  {
+    return (EAttribute)straightEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getStraight_ElevationChange()
   {
-    return (EReference)straightEClass.getEStructuralFeatures().get(3);
+    return (EReference)straightEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -296,6 +316,16 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getCorner_Quality()
+  {
+    return (EAttribute)cornerEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getCart()
   {
     return cartEClass;
@@ -309,6 +339,26 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
   public EAttribute getCart_Name()
   {
     return (EAttribute)cartEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCart_Quality()
+  {
+    return (EAttribute)cartEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCart_SeatNumber()
+  {
+    return (EAttribute)cartEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -376,6 +426,7 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
 
     rollerCoasterEClass = createEClass(ROLLER_COASTER);
     createEAttribute(rollerCoasterEClass, ROLLER_COASTER__NAME);
+    createEAttribute(rollerCoasterEClass, ROLLER_COASTER__BASE_QUALITY);
     createEReference(rollerCoasterEClass, ROLLER_COASTER__TRACK);
     createEReference(rollerCoasterEClass, ROLLER_COASTER__CART);
     createEAttribute(rollerCoasterEClass, ROLLER_COASTER__TRACK_UNIT_LENGTH);
@@ -383,6 +434,7 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
     straightEClass = createEClass(STRAIGHT);
     createEAttribute(straightEClass, STRAIGHT__NAME);
     createEAttribute(straightEClass, STRAIGHT__POWERED);
+    createEAttribute(straightEClass, STRAIGHT__QUALITY);
     createEAttribute(straightEClass, STRAIGHT__LENGTH);
     createEReference(straightEClass, STRAIGHT__ELEVATION_CHANGE);
 
@@ -390,9 +442,12 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
     createEAttribute(cornerEClass, CORNER__NAME);
     createEAttribute(cornerEClass, CORNER__DIRECTION);
     createEAttribute(cornerEClass, CORNER__TYPE);
+    createEAttribute(cornerEClass, CORNER__QUALITY);
 
     cartEClass = createEClass(CART);
     createEAttribute(cartEClass, CART__NAME);
+    createEAttribute(cartEClass, CART__QUALITY);
+    createEAttribute(cartEClass, CART__SEAT_NUMBER);
 
     signedIntEClass = createEClass(SIGNED_INT);
     createEAttribute(signedIntEClass, SIGNED_INT__SIGN);
@@ -435,6 +490,7 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
 
     initEClass(rollerCoasterEClass, RollerCoaster.class, "RollerCoaster", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRollerCoaster_Name(), ecorePackage.getEString(), "name", null, 0, 1, RollerCoaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRollerCoaster_BaseQuality(), ecorePackage.getEString(), "baseQuality", null, 0, 1, RollerCoaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRollerCoaster_Track(), ecorePackage.getEObject(), null, "track", null, 0, -1, RollerCoaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRollerCoaster_Cart(), this.getCart(), null, "cart", null, 0, -1, RollerCoaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRollerCoaster_TrackUnitLength(), ecorePackage.getEInt(), "trackUnitLength", null, 0, 1, RollerCoaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -442,6 +498,7 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
     initEClass(straightEClass, Straight.class, "Straight", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getStraight_Name(), ecorePackage.getEString(), "name", null, 0, 1, Straight.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getStraight_Powered(), ecorePackage.getEString(), "powered", null, 0, 1, Straight.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getStraight_Quality(), ecorePackage.getEString(), "quality", null, 0, 1, Straight.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getStraight_Length(), ecorePackage.getEInt(), "length", null, 0, 1, Straight.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStraight_ElevationChange(), this.getSignedInt(), null, "elevationChange", null, 0, 1, Straight.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -449,9 +506,12 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
     initEAttribute(getCorner_Name(), ecorePackage.getEString(), "name", null, 0, 1, Corner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getCorner_Direction(), ecorePackage.getEString(), "direction", null, 0, 1, Corner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getCorner_Type(), ecorePackage.getEString(), "type", null, 0, 1, Corner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCorner_Quality(), ecorePackage.getEString(), "quality", null, 0, 1, Corner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(cartEClass, Cart.class, "Cart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCart_Name(), ecorePackage.getEString(), "name", null, 0, 1, Cart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCart_Quality(), ecorePackage.getEString(), "quality", null, 0, 1, Cart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCart_SeatNumber(), ecorePackage.getEInt(), "seatNumber", null, 0, 1, Cart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(signedIntEClass, SignedInt.class, "SignedInt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getSignedInt_Sign(), ecorePackage.getEString(), "sign", null, 0, 1, SignedInt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
