@@ -5,6 +5,8 @@ package org.xtext.rollercoaster.dsl.generator;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import java.util.HashMap;
+import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -28,7 +30,11 @@ import org.xtext.rollercoaster.dsl.coaster.Straight;
  */
 @SuppressWarnings("all")
 public class CoasterGenerator implements IGenerator {
+  private HashMap<String,RollerCoaster> listOfRC;
+  
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
+    HashMap<String,RollerCoaster> _hashMap = new HashMap<String,RollerCoaster>();
+    this.listOfRC = _hashMap;
     TreeIterator<EObject> _allContents = resource.getAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
     Iterable<RollerCoaster> _filter = Iterables.<RollerCoaster>filter(_iterable, RollerCoaster.class);
@@ -36,11 +42,54 @@ public class CoasterGenerator implements IGenerator {
         public void apply(final RollerCoaster rc) {
           String _name = rc.getName();
           String _plus = (_name + ".html");
-          String _genReport = CoasterGenerator.this.genReport(rc);
-          fsa.generateFile(_plus, _genReport);
+          CoasterGenerator.this.listOfRC.put(_plus, rc);
         }
       };
     IterableExtensions.<RollerCoaster>forEach(_filter, _function);
+    Set<String> _keySet = this.listOfRC.keySet();
+    for (final String currentRC : _keySet) {
+      {
+        String navList = "";
+        Set<String> _keySet_1 = this.listOfRC.keySet();
+        for (final String rc : _keySet_1) {
+          boolean _equals = rc.equals(currentRC);
+          if (_equals) {
+            StringConcatenation _builder = new StringConcatenation();
+            _builder.append("<li class=\"active\"><a href=\"");
+            String _plus = (navList + _builder);
+            String _plus_1 = (_plus + rc);
+            StringConcatenation _builder_1 = new StringConcatenation();
+            _builder_1.append("\">");
+            String _plus_2 = (_plus_1 + _builder_1);
+            RollerCoaster _get = this.listOfRC.get(rc);
+            String _name = _get.getName();
+            String _plus_3 = (_plus_2 + _name);
+            StringConcatenation _builder_2 = new StringConcatenation();
+            _builder_2.append("</a></li>");
+            String _plus_4 = (_plus_3 + _builder_2);
+            navList = _plus_4;
+          } else {
+            StringConcatenation _builder_3 = new StringConcatenation();
+            _builder_3.append("<li><a href=\"");
+            String _plus_5 = (navList + _builder_3);
+            String _plus_6 = (_plus_5 + rc);
+            StringConcatenation _builder_4 = new StringConcatenation();
+            _builder_4.append("\">");
+            String _plus_7 = (_plus_6 + _builder_4);
+            RollerCoaster _get_1 = this.listOfRC.get(rc);
+            String _name_1 = _get_1.getName();
+            String _plus_8 = (_plus_7 + _name_1);
+            StringConcatenation _builder_5 = new StringConcatenation();
+            _builder_5.append("</a></li>");
+            String _plus_9 = (_plus_8 + _builder_5);
+            navList = _plus_9;
+          }
+        }
+        RollerCoaster _get_2 = this.listOfRC.get(currentRC);
+        String _genReport = this.genReport(_get_2, navList);
+        fsa.generateFile(currentRC, _genReport);
+      }
+    }
   }
   
   /**
@@ -51,7 +100,7 @@ public class CoasterGenerator implements IGenerator {
    * 	Fun
    * 	Name
    */
-  public String genReport(final RollerCoaster rc) {
+  public String genReport(final RollerCoaster rc, final String navList) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("<div class=\"row\"> ");
@@ -97,7 +146,7 @@ public class CoasterGenerator implements IGenerator {
     _builder_4.append("\t\t");
     _builder_4.newLine();
     String report = (_plus_6 + _builder_4);
-    return this.addIntoBootstrapTemplate(report);
+    return this.addIntoBootstrapTemplate(report, navList);
   }
   
   /**
@@ -379,7 +428,7 @@ public class CoasterGenerator implements IGenerator {
    * This method injects what ever HTML we have into the content part of a bootstrap basic template.
    * There may be better ways to do this like a web api, but given the scope of the project this will do.
    */
-  public String addIntoBootstrapTemplate(final String content) {
+  public String addIntoBootstrapTemplate(final String content, final String navCoasters) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<!DOCTYPE html>");
     _builder.newLine();
@@ -481,73 +530,66 @@ public class CoasterGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("          ");
     _builder.append("<ul class=\"nav navbar-nav\">");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("<li class=\"active\"><a href=\"http://getbootstrap.com/examples/starter-template/#\">Preview</a></li>");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("<li><a href=\"http://getbootstrap.com/examples/starter-template/#about\">Statistics</a></li>");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("<li><a href=\"http://getbootstrap.com/examples/starter-template/#contact\">Finincials</a></li>");
-    _builder.newLine();
-    _builder.append("          ");
-    _builder.append("</ul>");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("</div><!--/.nav-collapse -->");
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.append("</div>");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("</div>");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("<div class=\"container\">");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.append("<div class=\"starter-template\">");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("<h1>Bootstrap starter template</h1>");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("<p class=\"lead\">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>");
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.append("</div> ");
-    String _plus = (_builder.toString() + content);
+    String _plus = (_builder.toString() + navCoasters);
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("    ");
-    _builder_1.append("</div><!-- /.container -->");
-    _builder_1.newLine();
-    _builder_1.newLine();
+    _builder_1.append("      ");
+    _builder_1.append("</ul>");
     _builder_1.newLine();
     _builder_1.append("    ");
-    _builder_1.append("<!-- Bootstrap core JavaScript");
-    _builder_1.newLine();
-    _builder_1.append("    ");
-    _builder_1.append("================================================== -->");
-    _builder_1.newLine();
-    _builder_1.append("    ");
-    _builder_1.append("<!-- Placed at the end of the document so the pages load faster -->");
-    _builder_1.newLine();
-    _builder_1.append("    ");
-    _builder_1.append("<script src=\"./Starter Template for Bootstrap_files/jquery.js\"></script>");
-    _builder_1.newLine();
-    _builder_1.append("    ");
-    _builder_1.append("<script src=\"./Starter Template for Bootstrap_files/bootstrap.min.js\"></script>");
+    _builder_1.append("</div><!--/.nav-collapse -->");
     _builder_1.newLine();
     _builder_1.append("  ");
+    _builder_1.append("</div>");
     _builder_1.newLine();
-    _builder_1.append("</body>");
+    _builder_1.append("</div>");
     _builder_1.newLine();
-    _builder_1.append("</html>");
+    _builder_1.append("\t\t");
     _builder_1.newLine();
+    _builder_1.append("<div class=\"container\">");
+    _builder_1.newLine();
+    _builder_1.append("\t\t");
+    _builder_1.newLine();
+    _builder_1.append("  ");
+    _builder_1.append("<div class=\"starter-template\">");
+    _builder_1.newLine();
+    _builder_1.append("    ");
+    _builder_1.append("<h1>Bootstrap starter template</h1>");
+    _builder_1.newLine();
+    _builder_1.append("    ");
+    _builder_1.append("<p class=\"lead\">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>");
+    _builder_1.newLine();
+    _builder_1.append("  ");
+    _builder_1.append("</div> ");
     String _plus_1 = (_plus + _builder_1);
-    return _plus_1;
+    String _plus_2 = (_plus_1 + content);
+    StringConcatenation _builder_2 = new StringConcatenation();
+    _builder_2.append("    ");
+    _builder_2.append("</div><!-- /.container -->");
+    _builder_2.newLine();
+    _builder_2.newLine();
+    _builder_2.newLine();
+    _builder_2.append("    ");
+    _builder_2.append("<!-- Bootstrap core JavaScript");
+    _builder_2.newLine();
+    _builder_2.append("    ");
+    _builder_2.append("================================================== -->");
+    _builder_2.newLine();
+    _builder_2.append("    ");
+    _builder_2.append("<!-- Placed at the end of the document so the pages load faster -->");
+    _builder_2.newLine();
+    _builder_2.append("    ");
+    _builder_2.append("<script src=\"./Starter Template for Bootstrap_files/jquery.js\"></script>");
+    _builder_2.newLine();
+    _builder_2.append("    ");
+    _builder_2.append("<script src=\"./Starter Template for Bootstrap_files/bootstrap.min.js\"></script>");
+    _builder_2.newLine();
+    _builder_2.append("  ");
+    _builder_2.newLine();
+    _builder_2.append("</body>");
+    _builder_2.newLine();
+    _builder_2.append("</html>");
+    _builder_2.newLine();
+    String _plus_3 = (_plus_2 + _builder_2);
+    return _plus_3;
   }
 }
