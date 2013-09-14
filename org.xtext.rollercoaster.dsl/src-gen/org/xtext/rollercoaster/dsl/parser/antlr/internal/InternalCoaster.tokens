@@ -21,6 +21,7 @@ T__33=33
 T__16=16
 T__34=34
 T__15=15
+T__35=35
 T__18=18
 T__17=17
 T__12=12
@@ -29,27 +30,28 @@ T__14=14
 T__13=13
 RULE_INT=5
 RULE_WS=9
-'Cart'=32
-'seats ='=33
-'Straight'=21
-'right'=27
+'Cart'=33
+'seats ='=34
+'Straight'=22
+'right'=28
 'iron'=15
 'wood'=14
-'easy45'=30
-'length ='=23
+'easy45'=31
+'length ='=24
 'steel'=16
 ';'=12
 'Carts =('=19
-'DefaultTrackUnitLength ='=20
-'sharp90'=29
+'DefaultTrackUnitLength ='=21
+'sharp90'=30
 'RollerCoaster'=11
-'sharp45'=28
+'sharp45'=29
 'Track =('=17
 'Base Quality ='=13
 ');'=18
-'-'=34
-'elevationChange ='=24
-'powered'=22
-'easy90'=31
-'left'=26
-'Corner'=25
+'-'=35
+'elevationChange ='=25
+'TicketPrice ='=20
+'powered'=23
+'easy90'=32
+'left'=27
+'Corner'=26

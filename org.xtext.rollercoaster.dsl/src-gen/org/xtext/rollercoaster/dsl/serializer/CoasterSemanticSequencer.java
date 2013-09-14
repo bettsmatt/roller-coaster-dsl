@@ -101,7 +101,14 @@ public class CoasterSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=ID (baseQuality='wood' | baseQuality='iron' | baseQuality='steel') (track+=Straight | track+=Corner)* cart+=Cart* trackUnitLength=INT)
+	 *     (
+	 *         name=ID 
+	 *         (baseQuality='wood' | baseQuality='iron' | baseQuality='steel') 
+	 *         (track+=Straight | track+=Corner)* 
+	 *         cart+=Cart* 
+	 *         ticketPrice=INT 
+	 *         trackUnitLength=INT
+	 *     )
 	 */
 	protected void sequence_RollerCoaster(EObject context, RollerCoaster semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

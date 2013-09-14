@@ -37,6 +37,7 @@ public class InternalCoasterLexer extends Lexer {
     public static final int T__15=15;
     public static final int T__34=34;
     public static final int T__18=18;
+    public static final int T__35=35;
     public static final int T__17=17;
     public static final int T__12=12;
     public static final int T__11=11;
@@ -251,10 +252,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:20:7: ( 'DefaultTrackUnitLength =' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:20:9: 'DefaultTrackUnitLength ='
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:20:7: ( 'TicketPrice =' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:20:9: 'TicketPrice ='
             {
-            match("DefaultTrackUnitLength ="); 
+            match("TicketPrice ="); 
 
 
             }
@@ -272,10 +273,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:21:7: ( 'Straight' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:21:9: 'Straight'
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:21:7: ( 'DefaultTrackUnitLength =' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:21:9: 'DefaultTrackUnitLength ='
             {
-            match("Straight"); 
+            match("DefaultTrackUnitLength ="); 
 
 
             }
@@ -293,10 +294,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:22:7: ( 'powered' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:22:9: 'powered'
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:22:7: ( 'Straight' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:22:9: 'Straight'
             {
-            match("powered"); 
+            match("Straight"); 
 
 
             }
@@ -314,10 +315,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:23:7: ( 'length =' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:23:9: 'length ='
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:23:7: ( 'powered' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:23:9: 'powered'
             {
-            match("length ="); 
+            match("powered"); 
 
 
             }
@@ -335,10 +336,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:24:7: ( 'elevationChange =' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:24:9: 'elevationChange ='
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:24:7: ( 'length =' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:24:9: 'length ='
             {
-            match("elevationChange ="); 
+            match("length ="); 
 
 
             }
@@ -356,10 +357,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:25:7: ( 'Corner' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:25:9: 'Corner'
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:25:7: ( 'elevationChange =' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:25:9: 'elevationChange ='
             {
-            match("Corner"); 
+            match("elevationChange ="); 
 
 
             }
@@ -377,10 +378,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:26:7: ( 'left' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:26:9: 'left'
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:26:7: ( 'Corner' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:26:9: 'Corner'
             {
-            match("left"); 
+            match("Corner"); 
 
 
             }
@@ -398,10 +399,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:27:7: ( 'right' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:27:9: 'right'
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:27:7: ( 'left' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:27:9: 'left'
             {
-            match("right"); 
+            match("left"); 
 
 
             }
@@ -419,10 +420,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:28:7: ( 'sharp45' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:28:9: 'sharp45'
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:28:7: ( 'right' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:28:9: 'right'
             {
-            match("sharp45"); 
+            match("right"); 
 
 
             }
@@ -440,10 +441,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:29:7: ( 'sharp90' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:29:9: 'sharp90'
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:29:7: ( 'sharp45' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:29:9: 'sharp45'
             {
-            match("sharp90"); 
+            match("sharp45"); 
 
 
             }
@@ -461,10 +462,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:30:7: ( 'easy45' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:30:9: 'easy45'
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:30:7: ( 'sharp90' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:30:9: 'sharp90'
             {
-            match("easy45"); 
+            match("sharp90"); 
 
 
             }
@@ -482,10 +483,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:31:7: ( 'easy90' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:31:9: 'easy90'
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:31:7: ( 'easy45' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:31:9: 'easy45'
             {
-            match("easy90"); 
+            match("easy45"); 
 
 
             }
@@ -503,10 +504,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:32:7: ( 'Cart' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:32:9: 'Cart'
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:32:7: ( 'easy90' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:32:9: 'easy90'
             {
-            match("Cart"); 
+            match("easy90"); 
 
 
             }
@@ -524,10 +525,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:33:7: ( 'seats =' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:33:9: 'seats ='
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:33:7: ( 'Cart' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:33:9: 'Cart'
             {
-            match("seats ="); 
+            match("Cart"); 
 
 
             }
@@ -545,10 +546,11 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:34:7: ( '-' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:34:9: '-'
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:34:7: ( 'seats =' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:34:9: 'seats ='
             {
-            match('-'); 
+            match("seats ="); 
+
 
             }
 
@@ -560,15 +562,35 @@ public class InternalCoasterLexer extends Lexer {
     }
     // $ANTLR end "T__34"
 
+    // $ANTLR start "T__35"
+    public final void mT__35() throws RecognitionException {
+        try {
+            int _type = T__35;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:35:7: ( '-' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:35:9: '-'
+            {
+            match('-'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__35"
+
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:772:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:772:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:798:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:798:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:772:11: ( '^' )?
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:798:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -577,7 +599,7 @@ public class InternalCoasterLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:772:11: '^'
+                    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:798:11: '^'
                     {
                     match('^'); 
 
@@ -595,7 +617,7 @@ public class InternalCoasterLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:772:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:798:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -644,10 +666,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:774:10: ( ( '0' .. '9' )+ )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:774:12: ( '0' .. '9' )+
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:800:10: ( ( '0' .. '9' )+ )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:800:12: ( '0' .. '9' )+
             {
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:774:12: ( '0' .. '9' )+
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:800:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -661,7 +683,7 @@ public class InternalCoasterLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:774:13: '0' .. '9'
+            	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:800:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -693,10 +715,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:776:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:776:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:802:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:802:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:776:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:802:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -714,10 +736,10 @@ public class InternalCoasterLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:776:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:802:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:776:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:802:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -733,7 +755,7 @@ public class InternalCoasterLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:776:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:802:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -749,7 +771,7 @@ public class InternalCoasterLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:776:66: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:802:66: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -774,10 +796,10 @@ public class InternalCoasterLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:776:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:802:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:776:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:802:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -793,7 +815,7 @@ public class InternalCoasterLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:776:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:802:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -809,7 +831,7 @@ public class InternalCoasterLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:776:137: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:802:137: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -852,12 +874,12 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:778:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:778:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:804:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:804:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:778:24: ( options {greedy=false; } : . )*
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:804:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -882,7 +904,7 @@ public class InternalCoasterLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:778:52: .
+            	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:804:52: .
             	    {
             	    matchAny(); 
 
@@ -912,12 +934,12 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:780:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:780:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:806:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:806:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:780:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:806:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -930,7 +952,7 @@ public class InternalCoasterLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:780:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:806:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -950,7 +972,7 @@ public class InternalCoasterLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:780:40: ( ( '\\r' )? '\\n' )?
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:806:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -959,9 +981,9 @@ public class InternalCoasterLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:780:41: ( '\\r' )? '\\n'
+                    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:806:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:780:41: ( '\\r' )?
+                    // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:806:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -970,7 +992,7 @@ public class InternalCoasterLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:780:41: '\\r'
+                            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:806:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1002,10 +1024,10 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:782:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:782:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:808:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:808:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:782:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:808:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -1059,8 +1081,8 @@ public class InternalCoasterLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:784:16: ( . )
-            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:784:18: .
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:810:16: ( . )
+            // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:810:18: .
             {
             matchAny(); 
 
@@ -1075,8 +1097,8 @@ public class InternalCoasterLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=31;
+        // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt12=32;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
@@ -1248,49 +1270,56 @@ public class InternalCoasterLexer extends Lexer {
                 }
                 break;
             case 25 :
-                // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:154: RULE_ID
+                // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:154: T__35
+                {
+                mT__35(); 
+
+                }
+                break;
+            case 26 :
+                // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:160: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 26 :
-                // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:162: RULE_INT
+            case 27 :
+                // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:168: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 27 :
-                // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:171: RULE_STRING
+            case 28 :
+                // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:177: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 28 :
-                // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:183: RULE_ML_COMMENT
+            case 29 :
+                // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:189: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 29 :
-                // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:199: RULE_SL_COMMENT
+            case 30 :
+                // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:205: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 30 :
-                // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:215: RULE_WS
+            case 31 :
+                // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:221: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 31 :
-                // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:223: RULE_ANY_OTHER
+            case 32 :
+                // ../org.xtext.rollercoaster.dsl/src-gen/org/xtext/rollercoaster/dsl/parser/antlr/internal/InternalCoaster.g:1:229: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1305,54 +1334,58 @@ public class InternalCoasterLexer extends Lexer {
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
         "\1\uffff\1\32\1\uffff\5\32\1\30\7\32\1\uffff\1\30\2\uffff\3\30\2"+
-        "\uffff\1\32\2\uffff\7\32\1\uffff\11\32\6\uffff\24\32\1\131\1\132"+
-        "\4\32\1\140\5\32\1\146\4\32\3\uffff\1\154\4\32\1\uffff\5\32\1\uffff"+
-        "\3\32\1\172\1\32\1\uffff\2\32\3\uffff\1\176\5\32\1\u0084\1\u0085"+
-        "\1\uffff\1\32\1\u0087\1\u0088\1\uffff\2\32\1\u008b\1\uffff\1\32"+
-        "\2\uffff\1\32\2\uffff\1\32\1\u008f\1\uffff\3\32\1\uffff\12\32\1"+
-        "\u009d\2\32\1\uffff\5\32\1\uffff\6\32\1\uffff";
+        "\uffff\1\32\2\uffff\10\32\1\uffff\11\32\6\uffff\25\32\1\134\1\135"+
+        "\5\32\1\144\5\32\1\152\4\32\3\uffff\1\160\5\32\1\uffff\5\32\1\uffff"+
+        "\3\32\1\177\1\32\1\uffff\2\32\2\uffff\1\32\1\uffff\1\u0084\5\32"+
+        "\1\u008a\1\u008b\1\uffff\1\32\1\u008d\1\u008e\1\32\1\uffff\2\32"+
+        "\1\u0092\1\uffff\1\32\2\uffff\1\32\2\uffff\2\32\1\u0097\1\uffff"+
+        "\4\32\1\uffff\12\32\1\uffff\2\32\1\u00a8\2\32\1\uffff\5\32\1\uffff"+
+        "\6\32\1\uffff";
     static final String DFA12_eofS =
-        "\u00ab\uffff";
+        "\u00b6\uffff";
     static final String DFA12_minS =
-        "\1\0\1\157\1\uffff\1\141\1\157\1\162\1\145\1\162\1\73\1\141\1\145"+
+        "\1\0\1\157\1\uffff\1\141\1\157\1\162\1\145\1\151\1\73\1\141\1\145"+
         "\1\164\1\157\1\145\1\141\1\151\1\uffff\1\101\2\uffff\2\0\1\52\2"+
-        "\uffff\1\154\2\uffff\1\163\2\157\1\145\3\141\1\uffff\2\162\1\146"+
-        "\1\162\1\167\1\146\1\145\1\163\1\147\6\uffff\1\154\1\145\1\144\1"+
-        "\156\1\145\1\162\1\164\1\143\1\164\1\156\2\141\1\145\1\147\1\164"+
-        "\1\166\1\171\1\150\1\145\1\40\2\60\1\154\1\160\1\163\1\153\1\60"+
-        "\1\145\1\165\1\151\1\162\1\164\1\60\1\141\1\64\1\164\1\162\3\uffff"+
-        "\1\60\1\64\3\40\1\uffff\1\162\1\154\1\147\1\145\1\150\1\uffff\1"+
-        "\164\1\65\2\60\1\103\1\uffff\1\65\1\60\3\uffff\1\60\1\164\1\150"+
-        "\1\144\1\40\1\151\2\60\1\uffff\1\157\2\60\1\uffff\1\124\1\164\1"+
-        "\60\1\uffff\1\157\2\uffff\1\141\2\uffff\1\162\1\60\1\uffff\1\156"+
-        "\1\163\1\141\1\uffff\1\103\1\164\1\143\1\150\1\145\1\153\1\141\1"+
-        "\162\1\125\1\156\1\60\1\156\1\147\1\uffff\1\151\1\145\1\164\1\40"+
-        "\1\114\1\uffff\1\145\1\156\1\147\1\164\1\150\1\40\1\uffff";
+        "\uffff\1\154\2\uffff\1\163\2\157\1\145\3\141\1\143\1\uffff\2\162"+
+        "\1\146\1\162\1\167\1\146\1\145\1\163\1\147\6\uffff\1\154\1\145\1"+
+        "\144\1\156\1\145\1\162\1\164\1\143\1\153\1\164\1\156\2\141\1\145"+
+        "\1\147\1\164\1\166\1\171\1\150\1\145\1\40\2\60\1\154\1\160\1\163"+
+        "\1\153\1\145\1\60\1\145\1\165\1\151\1\162\1\164\1\60\1\141\1\64"+
+        "\1\164\1\162\3\uffff\1\60\1\64\2\40\1\164\1\40\1\uffff\1\162\1\154"+
+        "\1\147\1\145\1\150\1\uffff\1\164\1\65\2\60\1\103\1\uffff\1\65\1"+
+        "\60\2\uffff\1\120\1\uffff\1\60\1\164\1\150\1\144\1\40\1\151\2\60"+
+        "\1\uffff\1\157\2\60\1\162\1\uffff\1\124\1\164\1\60\1\uffff\1\157"+
+        "\2\uffff\1\141\2\uffff\1\151\1\162\1\60\1\uffff\1\156\1\163\1\143"+
+        "\1\141\1\uffff\1\103\1\164\1\145\1\143\1\150\1\145\1\40\1\153\1"+
+        "\141\1\162\1\uffff\1\125\1\156\1\60\1\156\1\147\1\uffff\1\151\1"+
+        "\145\1\164\1\40\1\114\1\uffff\1\145\1\156\1\147\1\164\1\150\1\40"+
+        "\1\uffff";
     static final String DFA12_maxS =
         "\1\uffff\1\157\1\uffff\1\141\1\157\1\162\1\164\1\162\1\73\1\157"+
         "\1\145\1\164\1\157\1\145\1\154\1\151\1\uffff\1\172\2\uffff\2\uffff"+
-        "\1\57\2\uffff\1\154\2\uffff\1\163\2\157\1\145\3\141\1\uffff\2\162"+
-        "\1\146\1\162\1\167\1\156\1\145\1\163\1\147\6\uffff\1\154\1\145\1"+
-        "\144\1\156\1\145\1\162\1\164\1\143\1\164\1\156\2\141\1\145\1\147"+
-        "\1\164\1\166\1\171\1\150\1\145\1\40\2\172\1\154\1\160\1\163\1\153"+
-        "\1\172\1\145\1\165\1\151\1\162\1\164\1\172\1\141\1\71\1\164\1\162"+
-        "\3\uffff\1\172\1\71\3\40\1\uffff\1\162\1\154\1\147\1\145\1\150\1"+
-        "\uffff\1\164\1\65\1\60\1\172\1\103\1\uffff\1\65\1\60\3\uffff\1\172"+
-        "\1\164\1\150\1\144\1\40\1\151\2\172\1\uffff\1\157\2\172\1\uffff"+
-        "\1\124\1\164\1\172\1\uffff\1\157\2\uffff\1\141\2\uffff\1\162\1\172"+
-        "\1\uffff\1\156\1\163\1\141\1\uffff\1\103\1\164\1\143\1\150\1\145"+
-        "\1\153\1\141\1\162\1\125\1\156\1\172\1\156\1\147\1\uffff\1\151\1"+
-        "\145\1\164\1\40\1\114\1\uffff\1\145\1\156\1\147\1\164\1\150\1\40"+
-        "\1\uffff";
+        "\1\57\2\uffff\1\154\2\uffff\1\163\2\157\1\145\3\141\1\143\1\uffff"+
+        "\2\162\1\146\1\162\1\167\1\156\1\145\1\163\1\147\6\uffff\1\154\1"+
+        "\145\1\144\1\156\1\145\1\162\1\164\1\143\1\153\1\164\1\156\2\141"+
+        "\1\145\1\147\1\164\1\166\1\171\1\150\1\145\1\40\2\172\1\154\1\160"+
+        "\1\163\1\153\1\145\1\172\1\145\1\165\1\151\1\162\1\164\1\172\1\141"+
+        "\1\71\1\164\1\162\3\uffff\1\172\1\71\2\40\1\164\1\40\1\uffff\1\162"+
+        "\1\154\1\147\1\145\1\150\1\uffff\1\164\1\65\1\60\1\172\1\103\1\uffff"+
+        "\1\65\1\60\2\uffff\1\120\1\uffff\1\172\1\164\1\150\1\144\1\40\1"+
+        "\151\2\172\1\uffff\1\157\2\172\1\162\1\uffff\1\124\1\164\1\172\1"+
+        "\uffff\1\157\2\uffff\1\141\2\uffff\1\151\1\162\1\172\1\uffff\1\156"+
+        "\1\163\1\143\1\141\1\uffff\1\103\1\164\1\145\1\143\1\150\1\145\1"+
+        "\40\1\153\1\141\1\162\1\uffff\1\125\1\156\1\172\1\156\1\147\1\uffff"+
+        "\1\151\1\145\1\164\1\40\1\114\1\uffff\1\145\1\156\1\147\1\164\1"+
+        "\150\1\40\1\uffff";
     static final String DFA12_acceptS =
-        "\2\uffff\1\2\15\uffff\1\30\1\uffff\1\31\1\32\3\uffff\1\36\1\37\1"+
-        "\uffff\1\31\1\2\7\uffff\1\10\11\uffff\1\30\1\32\1\33\1\34\1\35\1"+
-        "\36\45\uffff\1\3\1\4\1\5\5\uffff\1\26\5\uffff\1\20\5\uffff\1\6\2"+
-        "\uffff\1\27\1\7\1\11\10\uffff\1\21\3\uffff\1\17\3\uffff\1\15\1\uffff"+
-        "\1\24\1\25\1\uffff\1\22\1\23\2\uffff\1\14\3\uffff\1\13\15\uffff"+
-        "\1\1\5\uffff\1\16\6\uffff\1\12";
+        "\2\uffff\1\2\15\uffff\1\31\1\uffff\1\32\1\33\3\uffff\1\37\1\40\1"+
+        "\uffff\1\32\1\2\10\uffff\1\10\11\uffff\1\31\1\33\1\34\1\35\1\36"+
+        "\1\37\47\uffff\1\3\1\4\1\5\6\uffff\1\27\5\uffff\1\21\5\uffff\1\6"+
+        "\2\uffff\1\30\1\7\1\uffff\1\11\10\uffff\1\22\4\uffff\1\20\3\uffff"+
+        "\1\16\1\uffff\1\25\1\26\1\uffff\1\23\1\24\3\uffff\1\15\4\uffff\1"+
+        "\14\12\uffff\1\12\5\uffff\1\1\5\uffff\1\17\6\uffff\1\13";
     static final String DFA12_specialS =
-        "\1\1\23\uffff\1\0\1\2\u0095\uffff}>";
+        "\1\1\23\uffff\1\2\1\0\u00a0\uffff}>";
     static final String[] DFA12_transitionS = {
             "\11\30\2\27\2\30\1\27\22\30\1\27\1\30\1\24\4\30\1\25\1\30\1"+
             "\10\3\30\1\20\1\30\1\26\12\23\1\30\1\2\5\30\1\22\1\3\1\11\1"+
@@ -1365,52 +1398,51 @@ public class InternalCoasterLexer extends Lexer {
             "\1\35",
             "\1\36",
             "\1\41\2\uffff\1\40\13\uffff\1\37",
-            "\1\42",
-            "\1\43",
-            "\1\44\15\uffff\1\45",
-            "\1\46",
+            "\1\43\10\uffff\1\42",
+            "\1\44",
+            "\1\45\15\uffff\1\46",
             "\1\47",
             "\1\50",
             "\1\51",
-            "\1\53\12\uffff\1\52",
-            "\1\54",
+            "\1\52",
+            "\1\54\12\uffff\1\53",
+            "\1\55",
             "",
             "\32\32\4\uffff\1\32\1\uffff\32\32",
             "",
             "",
-            "\0\57",
-            "\0\57",
-            "\1\60\4\uffff\1\61",
-            "",
-            "",
-            "\1\63",
+            "\0\60",
+            "\0\60",
+            "\1\61\4\uffff\1\62",
             "",
             "",
             "\1\64",
+            "",
+            "",
             "\1\65",
             "\1\66",
             "\1\67",
             "\1\70",
             "\1\71",
             "\1\72",
-            "",
             "\1\73",
             "\1\74",
+            "",
             "\1\75",
             "\1\76",
             "\1\77",
-            "\1\101\7\uffff\1\100",
-            "\1\102",
-            "\1\103",
+            "\1\100",
+            "\1\101",
+            "\1\103\7\uffff\1\102",
             "\1\104",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\105",
             "\1\106",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\107",
             "\1\110",
             "\1\111",
@@ -1429,33 +1461,32 @@ public class InternalCoasterLexer extends Lexer {
             "\1\126",
             "\1\127",
             "\1\130",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\131",
+            "\1\132",
             "\1\133",
-            "\1\134",
-            "\1\135",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "\1\136",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\22\32\1\137\7\32",
+            "\1\137",
+            "\1\140",
             "\1\141",
             "\1\142",
-            "\1\143",
-            "\1\144",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\22\32\1\143\7\32",
             "\1\145",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\146",
             "\1\147",
-            "\1\150\4\uffff\1\151",
-            "\1\152",
+            "\1\150",
+            "\1\151",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "\1\153",
+            "\1\154\4\uffff\1\155",
+            "\1\156",
+            "\1\157",
             "",
             "",
             "",
             "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\155\4\uffff\1\156",
-            "\1\157",
-            "\1\160",
-            "\1\161",
-            "",
-            "\1\162",
+            "\1\161\4\uffff\1\162",
             "\1\163",
             "\1\164",
             "\1\165",
@@ -1464,70 +1495,83 @@ public class InternalCoasterLexer extends Lexer {
             "\1\167",
             "\1\170",
             "\1\171",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\172",
             "\1\173",
             "",
             "\1\174",
             "\1\175",
-            "",
-            "",
-            "",
+            "\1\176",
             "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\177",
             "\1\u0080",
+            "",
             "\1\u0081",
             "\1\u0082",
+            "",
+            "",
             "\1\u0083",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\u0085",
             "\1\u0086",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "",
+            "\1\u0087",
+            "\1\u0088",
             "\1\u0089",
-            "\1\u008a",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "",
             "\1\u008c",
-            "",
-            "",
-            "\1\u008d",
-            "",
-            "",
-            "\1\u008e",
             "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\u008f",
             "",
             "\1\u0090",
             "\1\u0091",
-            "\1\u0092",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "",
             "\1\u0093",
+            "",
+            "",
             "\1\u0094",
+            "",
+            "",
             "\1\u0095",
             "\1\u0096",
-            "\1\u0097",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "",
             "\1\u0098",
             "\1\u0099",
             "\1\u009a",
             "\1\u009b",
+            "",
             "\1\u009c",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\u009d",
             "\1\u009e",
             "\1\u009f",
-            "",
             "\1\u00a0",
             "\1\u00a1",
             "\1\u00a2",
             "\1\u00a3",
             "\1\u00a4",
-            "",
             "\1\u00a5",
+            "",
             "\1\u00a6",
             "\1\u00a7",
-            "\1\u00a8",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "\1\u00a9",
             "\1\u00aa",
+            "",
+            "\1\u00ab",
+            "\1\u00ac",
+            "\1\u00ad",
+            "\1\u00ae",
+            "\1\u00af",
+            "",
+            "\1\u00b0",
+            "\1\u00b1",
+            "\1\u00b2",
+            "\1\u00b3",
+            "\1\u00b4",
+            "\1\u00b5",
             ""
     };
 
@@ -1561,17 +1605,17 @@ public class InternalCoasterLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA12_20 = input.LA(1);
+                        int LA12_21 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_20>='\u0000' && LA12_20<='\uFFFF')) ) {s = 47;}
+                        if ( ((LA12_21>='\u0000' && LA12_21<='\uFFFF')) ) {s = 48;}
 
                         else s = 24;
 
@@ -1632,10 +1676,10 @@ public class InternalCoasterLexer extends Lexer {
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA12_21 = input.LA(1);
+                        int LA12_20 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_21>='\u0000' && LA12_21<='\uFFFF')) ) {s = 47;}
+                        if ( ((LA12_20>='\u0000' && LA12_20<='\uFFFF')) ) {s = 48;}
 
                         else s = 24;
 

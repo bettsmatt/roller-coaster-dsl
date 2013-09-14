@@ -34,6 +34,7 @@ import org.xtext.rollercoaster.dsl.coaster.RollerCoaster;
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl#getBaseQuality <em>Base Quality</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl#getTrack <em>Track</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl#getCart <em>Cart</em>}</li>
+ *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl#getTicketPrice <em>Ticket Price</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.impl.RollerCoasterImpl#getTrackUnitLength <em>Track Unit Length</em>}</li>
  * </ul>
  * </p>
@@ -101,6 +102,26 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
    * @ordered
    */
   protected EList<Cart> cart;
+
+  /**
+   * The default value of the '{@link #getTicketPrice() <em>Ticket Price</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTicketPrice()
+   * @generated
+   * @ordered
+   */
+  protected static final int TICKET_PRICE_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getTicketPrice() <em>Ticket Price</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTicketPrice()
+   * @generated
+   * @ordered
+   */
+  protected int ticketPrice = TICKET_PRICE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getTrackUnitLength() <em>Track Unit Length</em>}' attribute.
@@ -222,6 +243,29 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
    * <!-- end-user-doc -->
    * @generated
    */
+  public int getTicketPrice()
+  {
+    return ticketPrice;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTicketPrice(int newTicketPrice)
+  {
+    int oldTicketPrice = ticketPrice;
+    ticketPrice = newTicketPrice;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, CoasterPackage.ROLLER_COASTER__TICKET_PRICE, oldTicketPrice, ticketPrice));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public int getTrackUnitLength()
   {
     return trackUnitLength;
@@ -276,6 +320,8 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
         return getTrack();
       case CoasterPackage.ROLLER_COASTER__CART:
         return getCart();
+      case CoasterPackage.ROLLER_COASTER__TICKET_PRICE:
+        return getTicketPrice();
       case CoasterPackage.ROLLER_COASTER__TRACK_UNIT_LENGTH:
         return getTrackUnitLength();
     }
@@ -307,6 +353,9 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
         getCart().clear();
         getCart().addAll((Collection<? extends Cart>)newValue);
         return;
+      case CoasterPackage.ROLLER_COASTER__TICKET_PRICE:
+        setTicketPrice((Integer)newValue);
+        return;
       case CoasterPackage.ROLLER_COASTER__TRACK_UNIT_LENGTH:
         setTrackUnitLength((Integer)newValue);
         return;
@@ -336,6 +385,9 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
       case CoasterPackage.ROLLER_COASTER__CART:
         getCart().clear();
         return;
+      case CoasterPackage.ROLLER_COASTER__TICKET_PRICE:
+        setTicketPrice(TICKET_PRICE_EDEFAULT);
+        return;
       case CoasterPackage.ROLLER_COASTER__TRACK_UNIT_LENGTH:
         setTrackUnitLength(TRACK_UNIT_LENGTH_EDEFAULT);
         return;
@@ -361,6 +413,8 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
         return track != null && !track.isEmpty();
       case CoasterPackage.ROLLER_COASTER__CART:
         return cart != null && !cart.isEmpty();
+      case CoasterPackage.ROLLER_COASTER__TICKET_PRICE:
+        return ticketPrice != TICKET_PRICE_EDEFAULT;
       case CoasterPackage.ROLLER_COASTER__TRACK_UNIT_LENGTH:
         return trackUnitLength != TRACK_UNIT_LENGTH_EDEFAULT;
     }
@@ -382,6 +436,8 @@ public class RollerCoasterImpl extends MinimalEObjectImpl.Container implements R
     result.append(name);
     result.append(", baseQuality: ");
     result.append(baseQuality);
+    result.append(", ticketPrice: ");
+    result.append(ticketPrice);
     result.append(", trackUnitLength: ");
     result.append(trackUnitLength);
     result.append(')');

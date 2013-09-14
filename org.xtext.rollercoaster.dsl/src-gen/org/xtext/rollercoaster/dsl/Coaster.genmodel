@@ -15,6 +15,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//RollerCoaster/baseQuality"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coaster.ecore#//RollerCoaster/track"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coaster.ecore#//RollerCoaster/cart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//RollerCoaster/ticketPrice"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coaster.ecore#//RollerCoaster/trackUnitLength"/>
     </genClasses>
     <genClasses ecoreClass="Coaster.ecore#//Straight">

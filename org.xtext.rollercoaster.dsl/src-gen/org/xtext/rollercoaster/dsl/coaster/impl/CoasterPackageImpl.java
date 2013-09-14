@@ -206,9 +206,19 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getRollerCoaster_TrackUnitLength()
+  public EAttribute getRollerCoaster_TicketPrice()
   {
     return (EAttribute)rollerCoasterEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getRollerCoaster_TrackUnitLength()
+  {
+    return (EAttribute)rollerCoasterEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -429,6 +439,7 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
     createEAttribute(rollerCoasterEClass, ROLLER_COASTER__BASE_QUALITY);
     createEReference(rollerCoasterEClass, ROLLER_COASTER__TRACK);
     createEReference(rollerCoasterEClass, ROLLER_COASTER__CART);
+    createEAttribute(rollerCoasterEClass, ROLLER_COASTER__TICKET_PRICE);
     createEAttribute(rollerCoasterEClass, ROLLER_COASTER__TRACK_UNIT_LENGTH);
 
     straightEClass = createEClass(STRAIGHT);
@@ -493,6 +504,7 @@ public class CoasterPackageImpl extends EPackageImpl implements CoasterPackage
     initEAttribute(getRollerCoaster_BaseQuality(), ecorePackage.getEString(), "baseQuality", null, 0, 1, RollerCoaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRollerCoaster_Track(), ecorePackage.getEObject(), null, "track", null, 0, -1, RollerCoaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRollerCoaster_Cart(), this.getCart(), null, "cart", null, 0, -1, RollerCoaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRollerCoaster_TicketPrice(), ecorePackage.getEInt(), "ticketPrice", null, 0, 1, RollerCoaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRollerCoaster_TrackUnitLength(), ecorePackage.getEInt(), "trackUnitLength", null, 0, 1, RollerCoaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(straightEClass, Straight.class, "Straight", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

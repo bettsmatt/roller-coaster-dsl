@@ -55,7 +55,8 @@ public class CoasterParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRollerCoasterAccess().getBaseQualityAssignment_4(), "rule__RollerCoaster__BaseQualityAssignment_4");
 					put(grammarAccess.getRollerCoasterAccess().getTrackAssignment_7(), "rule__RollerCoaster__TrackAssignment_7");
 					put(grammarAccess.getRollerCoasterAccess().getCartAssignment_10(), "rule__RollerCoaster__CartAssignment_10");
-					put(grammarAccess.getRollerCoasterAccess().getTrackUnitLengthAssignment_13(), "rule__RollerCoaster__TrackUnitLengthAssignment_13");
+					put(grammarAccess.getRollerCoasterAccess().getTicketPriceAssignment_13(), "rule__RollerCoaster__TicketPriceAssignment_13");
+					put(grammarAccess.getRollerCoasterAccess().getTrackUnitLengthAssignment_16(), "rule__RollerCoaster__TrackUnitLengthAssignment_16");
 					put(grammarAccess.getStraightAccess().getNameAssignment_1(), "rule__Straight__NameAssignment_1");
 					put(grammarAccess.getStraightAccess().getPoweredAssignment_2(), "rule__Straight__PoweredAssignment_2");
 					put(grammarAccess.getStraightAccess().getQualityAssignment_3(), "rule__Straight__QualityAssignment_3");
