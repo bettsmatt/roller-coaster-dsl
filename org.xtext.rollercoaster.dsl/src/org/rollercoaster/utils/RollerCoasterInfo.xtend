@@ -184,5 +184,56 @@ class RollerCoasterInfo {
 		return maxSpeed;
 	}
 	
+	def static getTrackConstructionCost(RollerCoaster rc){
+		var cost = 0;
+		for(Object s: rc.track){
+		switch (s) {
+				
+				Straight: {
+					cost = cost + getQuality(rc, s)*s.length*75;
+				}
+				Corner:{
+					cost = cost + getQuality(rc, s)*rc.trackUnitLength*75;
+				}
+			}
+		}
+		return cost;
+	}
+	
+	def static getCartConstructionCost(RollerCoaster rc){
+		var cost = 0;
+		for(Cart s: rc.cart){
+
+			cost = cost + getQuality(rc, s)*s.seatNumber*500;
+
+		}
+		return cost;
+	}
+	
+		def static getRunningCost(RollerCoaster rc){
+		var cost = 0;
+		for(Cart s: rc.cart){
+			cost = cost + getQuality(rc, s)*s.seatNumber;
+		}
+		for(Object s: rc.track){
+		switch (s) {
+				Straight: {
+					cost = cost + getQuality(rc, s)*s.length/150;
+				}
+				Corner:{
+					cost = cost + getQuality(rc, s)*rc.trackUnitLength/150;
+				}
+			}
+		}
+		return cost;
+	}
+	
+	def static getProfitPerRun(RollerCoaster rc){
+		var profit = 0;
+		for(Cart s: rc.cart){
+			profit = profit + (s.seatNumber*rc.ticketPrice);
+		}
+		return profit;
+	}
 	
 }

@@ -14,6 +14,7 @@ RollerCoaster:
 	');'
 	'Carts =('cart += Cart*
 	');'
+	'TicketPrice =' ticketPrice=INT ';'
 	'DefaultTrackUnitLength =' trackUnitLength=INT ';';	
 
 	

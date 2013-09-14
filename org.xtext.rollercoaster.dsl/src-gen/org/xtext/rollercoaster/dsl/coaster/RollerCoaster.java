@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getBaseQuality <em>Base Quality</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTrack <em>Track</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getCart <em>Cart</em>}</li>
+ *   <li>{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTicketPrice <em>Ticket Price</em>}</li>
  *   <li>{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTrackUnitLength <em>Track Unit Length</em>}</li>
  * </ul>
  * </p>
@@ -111,6 +112,32 @@ public interface RollerCoaster extends EObject
    * @generated
    */
   EList<Cart> getCart();
+
+  /**
+   * Returns the value of the '<em><b>Ticket Price</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Ticket Price</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ticket Price</em>' attribute.
+   * @see #setTicketPrice(int)
+   * @see org.xtext.rollercoaster.dsl.coaster.CoasterPackage#getRollerCoaster_TicketPrice()
+   * @model
+   * @generated
+   */
+  int getTicketPrice();
+
+  /**
+   * Sets the value of the '{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTicketPrice <em>Ticket Price</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ticket Price</em>' attribute.
+   * @see #getTicketPrice()
+   * @generated
+   */
+  void setTicketPrice(int value);
 
   /**
    * Returns the value of the '<em><b>Track Unit Length</b></em>' attribute.

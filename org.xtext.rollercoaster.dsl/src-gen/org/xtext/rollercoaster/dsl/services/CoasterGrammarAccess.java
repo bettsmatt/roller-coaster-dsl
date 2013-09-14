@@ -58,18 +58,24 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cCartAssignment_10 = (Assignment)cGroup.eContents().get(10);
 		private final RuleCall cCartCartParserRuleCall_10_0 = (RuleCall)cCartAssignment_10.eContents().get(0);
 		private final Keyword cRightParenthesisSemicolonKeyword_11 = (Keyword)cGroup.eContents().get(11);
-		private final Keyword cDefaultTrackUnitLengthKeyword_12 = (Keyword)cGroup.eContents().get(12);
-		private final Assignment cTrackUnitLengthAssignment_13 = (Assignment)cGroup.eContents().get(13);
-		private final RuleCall cTrackUnitLengthINTTerminalRuleCall_13_0 = (RuleCall)cTrackUnitLengthAssignment_13.eContents().get(0);
+		private final Keyword cTicketPriceKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		private final Assignment cTicketPriceAssignment_13 = (Assignment)cGroup.eContents().get(13);
+		private final RuleCall cTicketPriceINTTerminalRuleCall_13_0 = (RuleCall)cTicketPriceAssignment_13.eContents().get(0);
 		private final Keyword cSemicolonKeyword_14 = (Keyword)cGroup.eContents().get(14);
+		private final Keyword cDefaultTrackUnitLengthKeyword_15 = (Keyword)cGroup.eContents().get(15);
+		private final Assignment cTrackUnitLengthAssignment_16 = (Assignment)cGroup.eContents().get(16);
+		private final RuleCall cTrackUnitLengthINTTerminalRuleCall_16_0 = (RuleCall)cTrackUnitLengthAssignment_16.eContents().get(0);
+		private final Keyword cSemicolonKeyword_17 = (Keyword)cGroup.eContents().get(17);
 		
 		//RollerCoaster:
 		//	"RollerCoaster" name=ID ";" "Base Quality =" baseQuality=("wood" | "iron" | "steel") ";" "Track =(" track+=(Straight |
-		//	Corner)* ");" "Carts =(" cart+=Cart* ");" "DefaultTrackUnitLength =" trackUnitLength=INT ";";
+		//	Corner)* ");" "Carts =(" cart+=Cart* ");" "TicketPrice =" ticketPrice=INT ";" "DefaultTrackUnitLength ="
+		//	trackUnitLength=INT ";";
 		public ParserRule getRule() { return rule; }
 
 		//"RollerCoaster" name=ID ";" "Base Quality =" baseQuality=("wood" | "iron" | "steel") ";" "Track =(" track+=(Straight |
-		//Corner)* ");" "Carts =(" cart+=Cart* ");" "DefaultTrackUnitLength =" trackUnitLength=INT ";"
+		//Corner)* ");" "Carts =(" cart+=Cart* ");" "TicketPrice =" ticketPrice=INT ";" "DefaultTrackUnitLength ="
+		//trackUnitLength=INT ";"
 		public Group getGroup() { return cGroup; }
 
 		//"RollerCoaster"
@@ -135,17 +141,29 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 		//");"
 		public Keyword getRightParenthesisSemicolonKeyword_11() { return cRightParenthesisSemicolonKeyword_11; }
 
-		//"DefaultTrackUnitLength ="
-		public Keyword getDefaultTrackUnitLengthKeyword_12() { return cDefaultTrackUnitLengthKeyword_12; }
+		//"TicketPrice ="
+		public Keyword getTicketPriceKeyword_12() { return cTicketPriceKeyword_12; }
 
-		//trackUnitLength=INT
-		public Assignment getTrackUnitLengthAssignment_13() { return cTrackUnitLengthAssignment_13; }
+		//ticketPrice=INT
+		public Assignment getTicketPriceAssignment_13() { return cTicketPriceAssignment_13; }
 
 		//INT
-		public RuleCall getTrackUnitLengthINTTerminalRuleCall_13_0() { return cTrackUnitLengthINTTerminalRuleCall_13_0; }
+		public RuleCall getTicketPriceINTTerminalRuleCall_13_0() { return cTicketPriceINTTerminalRuleCall_13_0; }
 
 		//";"
 		public Keyword getSemicolonKeyword_14() { return cSemicolonKeyword_14; }
+
+		//"DefaultTrackUnitLength ="
+		public Keyword getDefaultTrackUnitLengthKeyword_15() { return cDefaultTrackUnitLengthKeyword_15; }
+
+		//trackUnitLength=INT
+		public Assignment getTrackUnitLengthAssignment_16() { return cTrackUnitLengthAssignment_16; }
+
+		//INT
+		public RuleCall getTrackUnitLengthINTTerminalRuleCall_16_0() { return cTrackUnitLengthINTTerminalRuleCall_16_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_17() { return cSemicolonKeyword_17; }
 	}
 
 	public class StraightElements extends AbstractParserRuleElementFinder {
@@ -458,7 +476,8 @@ public class CoasterGrammarAccess extends AbstractGrammarElementFinder {
 
 	//RollerCoaster:
 	//	"RollerCoaster" name=ID ";" "Base Quality =" baseQuality=("wood" | "iron" | "steel") ";" "Track =(" track+=(Straight |
-	//	Corner)* ");" "Carts =(" cart+=Cart* ");" "DefaultTrackUnitLength =" trackUnitLength=INT ";";
+	//	Corner)* ");" "Carts =(" cart+=Cart* ");" "TicketPrice =" ticketPrice=INT ";" "DefaultTrackUnitLength ="
+	//	trackUnitLength=INT ";";
 	public RollerCoasterElements getRollerCoasterAccess() {
 		return (pRollerCoaster != null) ? pRollerCoaster : (pRollerCoaster = new RollerCoasterElements());
 	}

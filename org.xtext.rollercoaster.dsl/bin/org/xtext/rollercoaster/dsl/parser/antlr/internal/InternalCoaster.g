@@ -262,15 +262,41 @@ ruleRollerCoaster returns [EObject current=null]
     {
     	newLeafNode(otherlv_11, grammarAccess.getRollerCoasterAccess().getRightParenthesisSemicolonKeyword_11());
     }
-	otherlv_12='DefaultTrackUnitLength =' 
+	otherlv_12='TicketPrice =' 
     {
-    	newLeafNode(otherlv_12, grammarAccess.getRollerCoasterAccess().getDefaultTrackUnitLengthKeyword_12());
+    	newLeafNode(otherlv_12, grammarAccess.getRollerCoasterAccess().getTicketPriceKeyword_12());
     }
 (
 (
-		lv_trackUnitLength_13_0=RULE_INT
+		lv_ticketPrice_13_0=RULE_INT
 		{
-			newLeafNode(lv_trackUnitLength_13_0, grammarAccess.getRollerCoasterAccess().getTrackUnitLengthINTTerminalRuleCall_13_0()); 
+			newLeafNode(lv_ticketPrice_13_0, grammarAccess.getRollerCoasterAccess().getTicketPriceINTTerminalRuleCall_13_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getRollerCoasterRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"ticketPrice",
+        		lv_ticketPrice_13_0, 
+        		"INT");
+	    }
+
+)
+)	otherlv_14=';' 
+    {
+    	newLeafNode(otherlv_14, grammarAccess.getRollerCoasterAccess().getSemicolonKeyword_14());
+    }
+	otherlv_15='DefaultTrackUnitLength =' 
+    {
+    	newLeafNode(otherlv_15, grammarAccess.getRollerCoasterAccess().getDefaultTrackUnitLengthKeyword_15());
+    }
+(
+(
+		lv_trackUnitLength_16_0=RULE_INT
+		{
+			newLeafNode(lv_trackUnitLength_16_0, grammarAccess.getRollerCoasterAccess().getTrackUnitLengthINTTerminalRuleCall_16_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -279,14 +305,14 @@ ruleRollerCoaster returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"trackUnitLength",
-        		lv_trackUnitLength_13_0, 
+        		lv_trackUnitLength_16_0, 
         		"INT");
 	    }
 
 )
-)	otherlv_14=';' 
+)	otherlv_17=';' 
     {
-    	newLeafNode(otherlv_14, grammarAccess.getRollerCoasterAccess().getSemicolonKeyword_14());
+    	newLeafNode(otherlv_17, grammarAccess.getRollerCoasterAccess().getSemicolonKeyword_17());
     }
 )
 ;

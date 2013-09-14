@@ -835,11 +835,11 @@ rule__RollerCoaster__Group__12__Impl
     }
 :
 (
-{ before(grammarAccess.getRollerCoasterAccess().getDefaultTrackUnitLengthKeyword_12()); }
+{ before(grammarAccess.getRollerCoasterAccess().getTicketPriceKeyword_12()); }
 
-	'DefaultTrackUnitLength =' 
+	'TicketPrice =' 
 
-{ after(grammarAccess.getRollerCoasterAccess().getDefaultTrackUnitLengthKeyword_12()); }
+{ after(grammarAccess.getRollerCoasterAccess().getTicketPriceKeyword_12()); }
 )
 
 ;
@@ -866,9 +866,9 @@ rule__RollerCoaster__Group__13__Impl
     }
 :
 (
-{ before(grammarAccess.getRollerCoasterAccess().getTrackUnitLengthAssignment_13()); }
-(rule__RollerCoaster__TrackUnitLengthAssignment_13)
-{ after(grammarAccess.getRollerCoasterAccess().getTrackUnitLengthAssignment_13()); }
+{ before(grammarAccess.getRollerCoasterAccess().getTicketPriceAssignment_13()); }
+(rule__RollerCoaster__TicketPriceAssignment_13)
+{ after(grammarAccess.getRollerCoasterAccess().getTicketPriceAssignment_13()); }
 )
 
 ;
@@ -883,6 +883,7 @@ rule__RollerCoaster__Group__14
     }
 :
 	rule__RollerCoaster__Group__14__Impl
+	rule__RollerCoaster__Group__15
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -905,6 +906,102 @@ rule__RollerCoaster__Group__14__Impl
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+rule__RollerCoaster__Group__15
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__RollerCoaster__Group__15__Impl
+	rule__RollerCoaster__Group__16
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RollerCoaster__Group__15__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getRollerCoasterAccess().getDefaultTrackUnitLengthKeyword_15()); }
+
+	'DefaultTrackUnitLength =' 
+
+{ after(grammarAccess.getRollerCoasterAccess().getDefaultTrackUnitLengthKeyword_15()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__RollerCoaster__Group__16
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__RollerCoaster__Group__16__Impl
+	rule__RollerCoaster__Group__17
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RollerCoaster__Group__16__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getRollerCoasterAccess().getTrackUnitLengthAssignment_16()); }
+(rule__RollerCoaster__TrackUnitLengthAssignment_16)
+{ after(grammarAccess.getRollerCoasterAccess().getTrackUnitLengthAssignment_16()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__RollerCoaster__Group__17
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__RollerCoaster__Group__17__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RollerCoaster__Group__17__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getRollerCoasterAccess().getSemicolonKeyword_17()); }
+
+	';' 
+
+{ after(grammarAccess.getRollerCoasterAccess().getSemicolonKeyword_17()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+
+
+
 
 
 
@@ -1673,14 +1770,29 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RollerCoaster__TrackUnitLengthAssignment_13
+rule__RollerCoaster__TicketPriceAssignment_13
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getRollerCoasterAccess().getTrackUnitLengthINTTerminalRuleCall_13_0()); }
-	RULE_INT{ after(grammarAccess.getRollerCoasterAccess().getTrackUnitLengthINTTerminalRuleCall_13_0()); }
+{ before(grammarAccess.getRollerCoasterAccess().getTicketPriceINTTerminalRuleCall_13_0()); }
+	RULE_INT{ after(grammarAccess.getRollerCoasterAccess().getTicketPriceINTTerminalRuleCall_13_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RollerCoaster__TrackUnitLengthAssignment_16
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getRollerCoasterAccess().getTrackUnitLengthINTTerminalRuleCall_16_0()); }
+	RULE_INT{ after(grammarAccess.getRollerCoasterAccess().getTrackUnitLengthINTTerminalRuleCall_16_0()); }
 )
 
 ;

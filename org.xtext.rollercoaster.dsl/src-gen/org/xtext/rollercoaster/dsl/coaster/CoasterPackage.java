@@ -131,13 +131,22 @@ public interface CoasterPackage extends EPackage
   int ROLLER_COASTER__CART = 3;
 
   /**
+   * The feature id for the '<em><b>Ticket Price</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLLER_COASTER__TICKET_PRICE = 4;
+
+  /**
    * The feature id for the '<em><b>Track Unit Length</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ROLLER_COASTER__TRACK_UNIT_LENGTH = 4;
+  int ROLLER_COASTER__TRACK_UNIT_LENGTH = 5;
 
   /**
    * The number of structural features of the '<em>Roller Coaster</em>' class.
@@ -146,7 +155,7 @@ public interface CoasterPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ROLLER_COASTER_FEATURE_COUNT = 5;
+  int ROLLER_COASTER_FEATURE_COUNT = 6;
 
   /**
    * The meta object id for the '{@link org.xtext.rollercoaster.dsl.coaster.impl.StraightImpl <em>Straight</em>}' class.
@@ -425,6 +434,17 @@ public interface CoasterPackage extends EPackage
    * @generated
    */
   EReference getRollerCoaster_Cart();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTicketPrice <em>Ticket Price</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ticket Price</em>'.
+   * @see org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTicketPrice()
+   * @see #getRollerCoaster()
+   * @generated
+   */
+  EAttribute getRollerCoaster_TicketPrice();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.rollercoaster.dsl.coaster.RollerCoaster#getTrackUnitLength <em>Track Unit Length</em>}'.
@@ -713,6 +733,14 @@ public interface CoasterPackage extends EPackage
      * @generated
      */
     EReference ROLLER_COASTER__CART = eINSTANCE.getRollerCoaster_Cart();
+
+    /**
+     * The meta object literal for the '<em><b>Ticket Price</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ROLLER_COASTER__TICKET_PRICE = eINSTANCE.getRollerCoaster_TicketPrice();
 
     /**
      * The meta object literal for the '<em><b>Track Unit Length</b></em>' attribute feature.

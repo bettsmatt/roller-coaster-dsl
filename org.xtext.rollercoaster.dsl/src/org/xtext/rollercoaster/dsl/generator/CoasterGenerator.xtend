@@ -74,7 +74,7 @@ class CoasterGenerator implements IGenerator {
   				<div class="col-md-6"> ''' + genSummary (rc) +'''</div>
 			</div>
 			
-			<div class="row"> ''' + genFinincial (rc) +'''</div> 
+			<div class="row"> ''' + genFinancial(rc) +'''</div> 
 		
 		''';
 		/*
@@ -142,12 +142,31 @@ class CoasterGenerator implements IGenerator {
 			<li class="list-group-item">''' + speed + ''' max speed</li>
 			<li class="list-group-item">''' + cartWeight + ''' cart weight</li>
 			<li class="list-group-item">''' + gForce + ''' gforces </li>
+			<li class="list-group-item">''' + '''Cheese Burger''' + ''' Average Quality(TODO) </li>
 		</ul>
 		'''
 	}
 	
-	def genFinincial (RollerCoaster rc){
-		'''Finincials Goes Here'''
+	def genFinancial(RollerCoaster rc){
+		val quality = 7;
+		
+		val runningCosts = RollerCoasterInfo.getRunningCost(rc);
+		val earnings = (Math.random*75)/quality;
+		val trackConstructionCosts = RollerCoasterInfo.getTrackConstructionCost(rc);
+		val cartConstructionCosts = RollerCoasterInfo.getCartConstructionCost(rc);
+		val profitPerRun = RollerCoasterInfo.getProfitPerRun(rc);
+		
+		'''	<h1> Financial Details </h1>
+		<ul class="list-group">
+			<li class="list-group-item">$''' + rc.ticketPrice + ''' Ticket Price</li>
+			<li class="list-group-item">$''' + runningCosts + ''' Running Costs</li>
+			<li class="list-group-item">''' + (runningCosts/rc.ticketPrice) + ''' Number of seats filled to make profit </li>
+			<li class="list-group-item">$''' + profitPerRun + ''' Profit per run at max capacity</li>
+			<li class="list-group-item">$''' + trackConstructionCosts + ''' Track Construction Costs</li>
+				<li class="list-group-item">$''' + cartConstructionCosts + ''' Cart Construction Costs</li>
+				<li class="list-group-item">$''' + (cartConstructionCosts+trackConstructionCosts)+ ''' Total Construction Costs</li>
+			
+		</ul>'''
 	}
 
 	/**
