@@ -142,7 +142,6 @@ class CoasterGenerator implements IGenerator {
 			<li class="list-group-item">''' + speed + ''' max speed</li>
 			<li class="list-group-item">''' + cartWeight + ''' cart weight</li>
 			<li class="list-group-item">''' + gForce + ''' gforces </li>
-			<li class="list-group-item">''' + '''Cheese Burger''' + ''' Average Quality(TODO) </li>
 		</ul>
 		'''
 	}
@@ -160,7 +159,7 @@ class CoasterGenerator implements IGenerator {
 		<ul class="list-group">
 			<li class="list-group-item">$''' + rc.ticketPrice + ''' Ticket Price</li>
 			<li class="list-group-item">$''' + runningCosts + ''' Running Costs</li>
-			<li class="list-group-item">''' + (runningCosts/rc.ticketPrice) + ''' Number of seats filled to make profit </li>
+			<li class="list-group-item">''' + ((runningCosts/rc.ticketPrice)+1) + ''' Number of seats filled to make profit </li>
 			<li class="list-group-item">$''' + profitPerRun + ''' Profit per run at max capacity</li>
 			<li class="list-group-item">$''' + trackConstructionCosts + ''' Track Construction Costs</li>
 				<li class="list-group-item">$''' + cartConstructionCosts + ''' Cart Construction Costs</li>
