@@ -39,44 +39,95 @@ class CoasterGenerator implements IGenerator {
 	 * 	Fun
 	 * 	Name
 	 */	
-	def genReport (RollerCoaster rc)
+	def genReport (RollerCoaster rc) {
 	
+		// Set up basic structure of the report
+		// A title and brief introduction
+		// Two columns,  
+		//		Preview
+		//		Statistics
+		// Then a table of costs.
+		var report = '''
+			
+			<div class="row"> ''' + genTitle(rc) +'''</div> 
+			
+			<div class="row">
+  				<div class="col-md-6">''' + getPathForTrack(rc) + '''</div>
+  				<div class="col-md-6"> ''' + genSummary (rc) +'''</div>
+			</div>
+			
+			<div class="row"> ''' + genFinincial (rc) +'''</div> 
+		
+		''';
+		/*
+		var reportContent = '''
+		<h4>Roller Coaster report for the « rc.name » roller coaster on the  « new Date() »</h4>
+		<p>Number of Pieces of track 	: « rc.track.length»</p>
+		<p>Number of Carts 				: « rc.cart.length»</p>
+		<h4>Itemized Cost of Track</h4>
+		<ul> 
+			« val listOfStraight = rc.track.filter[t | t instanceof Straight ]»
+			« IF listOfStraight.length > 0 »
+				« val head = listOfStraight.head »
+				<li> « Descriptions.getShort(head) » : « Costs.get(head) » * « listOfStraight.length » : « Costs.get(head) * listOfStraight.length » </li>
+			« ENDIF »
+			
+			« val listOfCorner = rc.track.filter[t | t instanceof Corner ]»
+			« IF listOfCorner.length > 0 »
+				« val head = listOfCorner.head »
+				<li> « Descriptions.getShort(head) » : « Costs.get(head) » * « listOfCorner.length » : « Costs.get(head) * listOfCorner.length » </li>
+			« ENDIF »
+			
+			<li> Total Track Cost : «rc.track.fold(0.00)[seed,item | seed + Costs.get(item)]»</li>
+			
+		</ul>
+		
+		<h4>Itemized Cost of Carts</h4> 
+		<ul> 
+			« FOR o: rc.cart »
+				<li> « Descriptions.getShort(o) » : « Costs.get(o) » </li>
+			« ENDFOR »
+			<li> Total : «rc.cart.fold(0.00)[seed,item | seed + Costs.get(item)]»</li>
+		</ul>
+		<h4> Sample rendering of the track </h4>
+		« getPathForTrack (rc)»
 		'''
-		<html>
-			<body>
-				<h4>Roller Coaster report for the « rc.name » roller coaster on the  « new Date() »</h4>
-				<p>Number of Pieces of track 	: « rc.track.length »</p>
-				<p>Number of Carts 				: « rc.cart.length»</p>
-				<h4>Itemized Cost of Track</h4>
-				<ul> 
-					« val listOfStraight = rc.track.filter[t | t instanceof Straight ]»
-					« IF listOfStraight.length > 0 »
-						« val head = listOfStraight.head »
-						<li> « Descriptions.getShort(head) » : « Costs.get(head) » * « listOfStraight.length » : « Costs.get(head) * listOfStraight.length » </li>
-					« ENDIF »
-					
-					« val listOfCorner = rc.track.filter[t | t instanceof Corner ]»
-					« IF listOfCorner.length > 0 »
-						« val head = listOfCorner.head »
-						<li> « Descriptions.getShort(head) » : « Costs.get(head) » * « listOfCorner.length » : « Costs.get(head) * listOfCorner.length » </li>
-					« ENDIF »
-					
-					<li> Total Track Cost : «rc.track.fold(0.00)[seed,item | seed + Costs.get(item)]»</li>
-					
-				</ul>
-				
-				<h4>Itemized Cost of Carts</h4> 
-				<ul> 
-					« FOR o: rc.cart »
-						<li> « Descriptions.getShort(o) » : « Costs.get(o) » </li>
-					« ENDFOR »
-					<li> Total : «rc.cart.fold(0.00)[seed,item | seed + Costs.get(item)]»</li>
-				</ul>
-				<h4> Sample rendering of the track </h4>
-  				« getPathForTrack (rc)»
-			</body>
-		</html>	
+		 */
+		// Add this HTML into the bootstrap template
+		return addIntoBootstrapTemplate(report);
+		
+	}
+	
+	/**
+	 * Generate the title information
+	 */
+	def genTitle (RollerCoaster rc){
+		
+		'''<h1> ''' + rc.name + '''</h1>''' +
+		'''<p> '''  +  '''Roller Coaster Report''' + '''</p>'''
+		
+	}
+
+	def genSummary (RollerCoaster rc){
+		
+		val pieces =  rc.track.length;
+		val carts = rc.cart.length;
+		
 		'''
+		<h1> Summary </h1>
+		<ul class="list-group">
+			<li class="list-group-item">''' + pieces + ''' pieces of track </li>
+			<li class="list-group-item">''' + carts +''' carts </li>
+			<li class="list-group-item">Morbi leo risus</li>
+			<li class="list-group-item">Porta ac consectetur ac</li>
+			<li class="list-group-item">Vestibulum at eros</li>
+		</ul>
+		'''
+	}
+	
+	def genFinincial (RollerCoaster rc){
+		'''Finincials Goes Here'''
+	}
 
 	/**
 	 * Build a svg path from a list of tracks
@@ -84,9 +135,9 @@ class CoasterGenerator implements IGenerator {
 	def getPathForTrack (RollerCoaster rc){
 		// The start of the svg
 		var tracks = rc.track;
-		val start = '''<svg width="2000px" height="2000px" version="1.1" xmlns="http://www.w3.org/2000/svg"> '''
-		val zeroZeroPoint = '''<circle xmlns="http://www.w3.org/2000/svg" cx="400" cy="300" r="4" fill="#ff0000" stroke="#000000" stroke-width="2"/>'''
-		val pathStart = '''<path d=" M 400 300 '''
+		val start = '''<svg width="100%" height="400px" version="1.1" xmlns="http://www.w3.org/2000/svg"> '''
+		val zeroZeroPoint = '''<circle xmlns="http://www.w3.org/2000/svg" cx="100" cy="100" r="4" fill="#ff0000" stroke="#000000" stroke-width="2"/>'''
+		val pathStart = '''<path d=" M 100 100 '''
 		
 		var path = "";
 		
@@ -188,6 +239,83 @@ class CoasterGenerator implements IGenerator {
 		// Build the path with enclosing svg 
 		start + zeroZeroPoint + pathStart + path + pathEnd + end;
 		
+	}
+	
+	/**
+	 * This method injects what ever HTML we have into the content part of a bootstrap basic template.
+	 * There may be better ways to do this like a web api, but given the scope of the project this will do.
+	 */
+	def addIntoBootstrapTemplate (String content){
+		'''
+		<!DOCTYPE html>
+		<!-- saved from url=(0050)http://getbootstrap.com/examples/starter-template/ -->
+		<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		    <meta charset="utf-8">
+		    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		    <meta name="description" content="">
+		    <meta name="author" content="">
+		    <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.png">
+		
+		    <title>Roller Coaster Report</title>
+		
+		    <!-- Bootstrap core CSS -->
+		    <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet">
+		
+		    <!-- Custom styles for this template -->
+		    <link href="http://getbootstrap.com/examples/starter-template/starter-template.css" rel="stylesheet">
+		
+		    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		    <!--[if lt IE 9]>
+		      <script src="../../assets/js/html5shiv.js"></script>
+		      <script src="../../assets/js/respond.min.js"></script>
+		    <![endif]-->
+		    
+		  </head>
+		
+		  <body style="">
+		
+		    <div class="navbar navbar-inverse navbar-fixed-top">
+		      <div class="container">
+		        <div class="navbar-header">
+		          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		          </button>
+		          <a class="navbar-brand" href="http://getbootstrap.com/examples/starter-template/#">Roller Coaster Report</a>
+		        </div>
+		        <div class="collapse navbar-collapse">
+		          <ul class="nav navbar-nav">
+		            <li class="active"><a href="http://getbootstrap.com/examples/starter-template/#">Preview</a></li>
+		            <li><a href="http://getbootstrap.com/examples/starter-template/#about">Statistics</a></li>
+		            <li><a href="http://getbootstrap.com/examples/starter-template/#contact">Finincials</a></li>
+		          </ul>
+		        </div><!--/.nav-collapse -->
+		      </div>
+		    </div>
+		
+		    <div class="container">
+		
+		      <div class="starter-template">
+		        <h1>Bootstrap starter template</h1>
+		        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+		      </div> ''' +
+		
+		content
+		
+		+ '''
+		    </div><!-- /.container -->
+		
+		
+		    <!-- Bootstrap core JavaScript
+		    ================================================== -->
+		    <!-- Placed at the end of the document so the pages load faster -->
+		    <script src="./Starter Template for Bootstrap_files/jquery.js"></script>
+		    <script src="./Starter Template for Bootstrap_files/bootstrap.min.js"></script>
+		  
+		</body>
+		</html>
+		'''
 	}
 }
 	

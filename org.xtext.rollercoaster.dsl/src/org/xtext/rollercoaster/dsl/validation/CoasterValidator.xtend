@@ -9,6 +9,7 @@ import org.xtext.rollercoaster.dsl.coaster.CoasterPackage
 import org.xtext.rollercoaster.dsl.coaster.Corner
 import org.xtext.rollercoaster.dsl.coaster.Straight
 import org.xtext.rollercoaster.dsl.coaster.Cart
+import org.rollercoaster.utils.RollerCoasterInfo
 
 //import org.eclipse.xtext.validation.Check
 
@@ -95,7 +96,6 @@ def checkStartMeetsEnd(RollerCoaster rc){
 			currentY = (currentY + (Math.sin(currentAngle)*s.length));
 			
 		}
-		//println(currentX+">>"+currentY);
 	}
 	distance = Math.sqrt(Math.pow(currentX, 2) + Math.pow(currentY, 2));
 	
@@ -204,11 +204,7 @@ def hasEnoughPower(RollerCoaster rc){
 
 
 def getTotalWeight(RollerCoaster rc){
-	var totalWeight = 0;
-	for(Cart c: rc.cart){
-		totalWeight = totalWeight + c.seatNumber*120 + 250;
-	}
-	return totalWeight;
+	RollerCoasterInfo.getTotalWeight(rc);
 }
 
 def checkSpeedOnStraights(RollerCoaster rc, Straight s, int trackQuality, int speed){

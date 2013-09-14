@@ -5,7 +5,6 @@ package org.xtext.rollercoaster.dsl.generator;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
-import java.util.Date;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -14,13 +13,9 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.Conversions;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.Functions.Function2;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
-import org.rollercoaster.utils.Costs;
-import org.rollercoaster.utils.Descriptions;
 import org.xtext.rollercoaster.dsl.coaster.Cart;
 import org.xtext.rollercoaster.dsl.coaster.Corner;
 import org.xtext.rollercoaster.dsl.coaster.RollerCoaster;
@@ -41,7 +36,7 @@ public class CoasterGenerator implements IGenerator {
         public void apply(final RollerCoaster rc) {
           String _name = rc.getName();
           String _plus = (_name + ".html");
-          CharSequence _genReport = CoasterGenerator.this.genReport(rc);
+          String _genReport = CoasterGenerator.this.genReport(rc);
           fsa.generateFile(_plus, _genReport);
         }
       };
@@ -56,186 +51,126 @@ public class CoasterGenerator implements IGenerator {
    * 	Fun
    * 	Name
    */
-  public CharSequence genReport(final RollerCoaster rc) {
+  public String genReport(final RollerCoaster rc) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<html>");
     _builder.newLine();
-    _builder.append("\t");
-    _builder.append("<body>");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("<h4>Roller Coaster report for the ");
-    String _name = rc.getName();
-    _builder.append(_name, "		");
-    _builder.append(" roller coaster on the  ");
-    Date _date = new Date();
-    _builder.append(_date, "		");
-    _builder.append("</h4>");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("<p>Number of Pieces of track \t: ");
-    EList<EObject> _track = rc.getTrack();
-    int _length = ((Object[])Conversions.unwrapArray(_track, Object.class)).length;
-    _builder.append(_length, "		");
-    _builder.append("</p>");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("<p>Number of Carts \t\t\t\t: ");
-    EList<Cart> _cart = rc.getCart();
-    int _length_1 = ((Object[])Conversions.unwrapArray(_cart, Object.class)).length;
-    _builder.append(_length_1, "		");
-    _builder.append("</p>");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("<h4>Itemized Cost of Track</h4>");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("<ul> ");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    EList<EObject> _track_1 = rc.getTrack();
-    final Function1<EObject,Boolean> _function = new Function1<EObject,Boolean>() {
-        public Boolean apply(final EObject t) {
-          return Boolean.valueOf((t instanceof Straight));
-        }
-      };
-    final Iterable<EObject> listOfStraight = IterableExtensions.<EObject>filter(_track_1, _function);
-    _builder.newLineIfNotEmpty();
-    {
-      int _length_2 = ((Object[])Conversions.unwrapArray(listOfStraight, Object.class)).length;
-      boolean _greaterThan = (_length_2 > 0);
-      if (_greaterThan) {
-        _builder.append("\t\t\t");
-        final EObject head = IterableExtensions.<EObject>head(listOfStraight);
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t\t\t");
-        _builder.append("<li> ");
-        String _short = Descriptions.getShort(head);
-        _builder.append(_short, "			");
-        _builder.append(" : ");
-        double _get = Costs.get(head);
-        _builder.append(_get, "			");
-        _builder.append(" * ");
-        int _length_3 = ((Object[])Conversions.unwrapArray(listOfStraight, Object.class)).length;
-        _builder.append(_length_3, "			");
-        _builder.append(" : ");
-        double _get_1 = Costs.get(head);
-        int _length_4 = ((Object[])Conversions.unwrapArray(listOfStraight, Object.class)).length;
-        double _multiply = (_get_1 * _length_4);
-        _builder.append(_multiply, "			");
-        _builder.append(" </li>");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t\t\t");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    EList<EObject> _track_2 = rc.getTrack();
-    final Function1<EObject,Boolean> _function_1 = new Function1<EObject,Boolean>() {
-        public Boolean apply(final EObject t) {
-          return Boolean.valueOf((t instanceof Corner));
-        }
-      };
-    final Iterable<EObject> listOfCorner = IterableExtensions.<EObject>filter(_track_2, _function_1);
-    _builder.newLineIfNotEmpty();
-    {
-      int _length_5 = ((Object[])Conversions.unwrapArray(listOfCorner, Object.class)).length;
-      boolean _greaterThan_1 = (_length_5 > 0);
-      if (_greaterThan_1) {
-        _builder.append("\t\t\t");
-        final EObject head_1 = IterableExtensions.<EObject>head(listOfCorner);
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t\t\t");
-        _builder.append("<li> ");
-        String _short_1 = Descriptions.getShort(head_1);
-        _builder.append(_short_1, "			");
-        _builder.append(" : ");
-        double _get_2 = Costs.get(head_1);
-        _builder.append(_get_2, "			");
-        _builder.append(" * ");
-        int _length_6 = ((Object[])Conversions.unwrapArray(listOfCorner, Object.class)).length;
-        _builder.append(_length_6, "			");
-        _builder.append(" : ");
-        double _get_3 = Costs.get(head_1);
-        int _length_7 = ((Object[])Conversions.unwrapArray(listOfCorner, Object.class)).length;
-        double _multiply_1 = (_get_3 * _length_7);
-        _builder.append(_multiply_1, "			");
-        _builder.append(" </li>");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t\t\t");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("<li> Total Track Cost : ");
-    EList<EObject> _track_3 = rc.getTrack();
-    final Function2<Double,EObject,Double> _function_2 = new Function2<Double,EObject,Double>() {
-        public Double apply(final Double seed, final EObject item) {
-          double _get = Costs.get(item);
-          double _plus = ((seed).doubleValue() + _get);
-          return Double.valueOf(_plus);
-        }
-      };
-    Double _fold = IterableExtensions.<EObject, Double>fold(_track_3, Double.valueOf(0.00), _function_2);
-    _builder.append(_fold, "			");
-    _builder.append("</li>");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t\t");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("</ul>");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("<h4>Itemized Cost of Carts</h4> ");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("<ul> ");
-    _builder.newLine();
-    {
-      EList<Cart> _cart_1 = rc.getCart();
-      for(final Cart o : _cart_1) {
-        _builder.append("\t\t\t");
-        _builder.append("<li> ");
-        String _short_2 = Descriptions.getShort(o);
-        _builder.append(_short_2, "			");
-        _builder.append(" : ");
-        double _get_4 = Costs.get(o);
-        _builder.append(_get_4, "			");
-        _builder.append(" </li>");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t\t\t");
-    _builder.append("<li> Total : ");
-    EList<Cart> _cart_2 = rc.getCart();
-    final Function2<Double,Cart,Double> _function_3 = new Function2<Double,Cart,Double>() {
-        public Double apply(final Double seed, final Cart item) {
-          double _get = Costs.get(item);
-          double _plus = ((seed).doubleValue() + _get);
-          return Double.valueOf(_plus);
-        }
-      };
-    Double _fold_1 = IterableExtensions.<Cart, Double>fold(_cart_2, Double.valueOf(0.00), _function_3);
-    _builder.append(_fold_1, "			");
-    _builder.append("</li>");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("</ul>");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("<h4> Sample rendering of the track </h4>");
-    _builder.newLine();
-    _builder.append("  \t\t\t\t");
+    _builder.append("<div class=\"row\"> ");
+    String _genTitle = this.genTitle(rc);
+    String _plus = (_builder.toString() + _genTitle);
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("</div> ");
+    _builder_1.newLine();
+    _builder_1.append("\t\t\t");
+    _builder_1.newLine();
+    _builder_1.append("\t\t\t");
+    _builder_1.append("<div class=\"row\">");
+    _builder_1.newLine();
+    _builder_1.append("  \t\t\t\t");
+    _builder_1.append("<div class=\"col-md-6\">");
+    String _plus_1 = (_plus + _builder_1);
     String _pathForTrack = this.getPathForTrack(rc);
-    _builder.append(_pathForTrack, "  				");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("</body>");
-    _builder.newLine();
-    _builder.append("</html>\t");
-    _builder.newLine();
+    String _plus_2 = (_plus_1 + _pathForTrack);
+    StringConcatenation _builder_2 = new StringConcatenation();
+    _builder_2.append("</div>");
+    _builder_2.newLine();
+    _builder_2.append("  \t\t\t\t");
+    _builder_2.append("<div class=\"col-md-6\"> ");
+    String _plus_3 = (_plus_2 + _builder_2);
+    String _genSummary = this.genSummary(rc);
+    String _plus_4 = (_plus_3 + _genSummary);
+    StringConcatenation _builder_3 = new StringConcatenation();
+    _builder_3.append("</div>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t\t");
+    _builder_3.append("</div>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t\t");
+    _builder_3.newLine();
+    _builder_3.append("\t\t\t");
+    _builder_3.append("<div class=\"row\"> ");
+    String _plus_5 = (_plus_4 + _builder_3);
+    CharSequence _genFinincial = this.genFinincial(rc);
+    String _plus_6 = (_plus_5 + _genFinincial);
+    StringConcatenation _builder_4 = new StringConcatenation();
+    _builder_4.append("</div> ");
+    _builder_4.newLine();
+    _builder_4.append("\t\t");
+    _builder_4.newLine();
+    String report = (_plus_6 + _builder_4);
+    return this.addIntoBootstrapTemplate(report);
+  }
+  
+  /**
+   * Generate the title information
+   */
+  public String genTitle(final RollerCoaster rc) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<h1> ");
+    String _name = rc.getName();
+    String _plus = (_builder.toString() + _name);
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("</h1>");
+    String _plus_1 = (_plus + _builder_1);
+    StringConcatenation _builder_2 = new StringConcatenation();
+    _builder_2.append("<p> ");
+    String _plus_2 = (_plus_1 + _builder_2);
+    StringConcatenation _builder_3 = new StringConcatenation();
+    _builder_3.append("Roller Coaster Report");
+    String _plus_3 = (_plus_2 + _builder_3);
+    StringConcatenation _builder_4 = new StringConcatenation();
+    _builder_4.append("</p>");
+    String _plus_4 = (_plus_3 + _builder_4);
+    return _plus_4;
+  }
+  
+  public String genSummary(final RollerCoaster rc) {
+    String _xblockexpression = null;
+    {
+      EList<EObject> _track = rc.getTrack();
+      final int pieces = ((Object[])Conversions.unwrapArray(_track, Object.class)).length;
+      EList<Cart> _cart = rc.getCart();
+      final int carts = ((Object[])Conversions.unwrapArray(_cart, Object.class)).length;
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("<h1> Summary </h1>");
+      _builder.newLine();
+      _builder.append("<ul class=\"list-group\">");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("<li class=\"list-group-item\">");
+      String _plus = (_builder.toString() + Integer.valueOf(pieces));
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append(" ");
+      _builder_1.append("pieces of track </li>");
+      _builder_1.newLine();
+      _builder_1.append("\t\t\t");
+      _builder_1.append("<li class=\"list-group-item\">");
+      String _plus_1 = (_plus + _builder_1);
+      String _plus_2 = (_plus_1 + Integer.valueOf(carts));
+      StringConcatenation _builder_2 = new StringConcatenation();
+      _builder_2.append(" ");
+      _builder_2.append("carts </li>");
+      _builder_2.newLine();
+      _builder_2.append("\t\t\t");
+      _builder_2.append("<li class=\"list-group-item\">Morbi leo risus</li>");
+      _builder_2.newLine();
+      _builder_2.append("\t\t\t");
+      _builder_2.append("<li class=\"list-group-item\">Porta ac consectetur ac</li>");
+      _builder_2.newLine();
+      _builder_2.append("\t\t\t");
+      _builder_2.append("<li class=\"list-group-item\">Vestibulum at eros</li>");
+      _builder_2.newLine();
+      _builder_2.append("\t\t");
+      _builder_2.append("</ul>");
+      _builder_2.newLine();
+      String _plus_3 = (_plus_2 + _builder_2);
+      _xblockexpression = (_plus_3);
+    }
+    return _xblockexpression;
+  }
+  
+  public CharSequence genFinincial(final RollerCoaster rc) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("Finincials Goes Here");
     return _builder;
   }
   
@@ -247,13 +182,13 @@ public class CoasterGenerator implements IGenerator {
     {
       EList<EObject> tracks = rc.getTrack();
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("<svg width=\"2000px\" height=\"2000px\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"> ");
+      _builder.append("<svg width=\"100%\" height=\"400px\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"> ");
       final String start = _builder.toString();
       StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("<circle xmlns=\"http://www.w3.org/2000/svg\" cx=\"400\" cy=\"300\" r=\"4\" fill=\"#ff0000\" stroke=\"#000000\" stroke-width=\"2\"/>");
+      _builder_1.append("<circle xmlns=\"http://www.w3.org/2000/svg\" cx=\"100\" cy=\"100\" r=\"4\" fill=\"#ff0000\" stroke=\"#000000\" stroke-width=\"2\"/>");
       final String zeroZeroPoint = _builder_1.toString();
       StringConcatenation _builder_2 = new StringConcatenation();
-      _builder_2.append("<path d=\" M 400 300 ");
+      _builder_2.append("<path d=\" M 100 100 ");
       final String pathStart = _builder_2.toString();
       String path = "";
       double currentAngle = 0.0;
@@ -438,5 +373,181 @@ public class CoasterGenerator implements IGenerator {
       _xblockexpression = (_plus_5);
     }
     return _xblockexpression;
+  }
+  
+  /**
+   * This method injects what ever HTML we have into the content part of a bootstrap basic template.
+   * There may be better ways to do this like a web api, but given the scope of the project this will do.
+   */
+  public String addIntoBootstrapTemplate(final String content) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<!DOCTYPE html>");
+    _builder.newLine();
+    _builder.append("<!-- saved from url=(0050)http://getbootstrap.com/examples/starter-template/ -->");
+    _builder.newLine();
+    _builder.append("<html lang=\"en\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<meta charset=\"utf-8\">");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<meta name=\"description\" content=\"\">");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<meta name=\"author\" content=\"\">");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<link rel=\"shortcut icon\" href=\"http://getbootstrap.com/assets/ico/favicon.png\">");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<title>Roller Coaster Report</title>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<!-- Bootstrap core CSS -->");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<link href=\"http://getbootstrap.com/dist/css/bootstrap.css\" rel=\"stylesheet\">");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<!-- Custom styles for this template -->");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<link href=\"http://getbootstrap.com/examples/starter-template/starter-template.css\" rel=\"stylesheet\">");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<!--[if lt IE 9]>");
+    _builder.newLine();
+    _builder.append("      ");
+    _builder.append("<script src=\"../../assets/js/html5shiv.js\"></script>");
+    _builder.newLine();
+    _builder.append("      ");
+    _builder.append("<script src=\"../../assets/js/respond.min.js\"></script>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<![endif]-->");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("</head>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("<body style=\"\">");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<div class=\"navbar navbar-inverse navbar-fixed-top\">");
+    _builder.newLine();
+    _builder.append("      ");
+    _builder.append("<div class=\"container\">");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<div class=\"navbar-header\">");
+    _builder.newLine();
+    _builder.append("          ");
+    _builder.append("<button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<span class=\"icon-bar\"></span>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<span class=\"icon-bar\"></span>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<span class=\"icon-bar\"></span>");
+    _builder.newLine();
+    _builder.append("          ");
+    _builder.append("</button>");
+    _builder.newLine();
+    _builder.append("          ");
+    _builder.append("<a class=\"navbar-brand\" href=\"http://getbootstrap.com/examples/starter-template/#\">Roller Coaster Report</a>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("</div>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<div class=\"collapse navbar-collapse\">");
+    _builder.newLine();
+    _builder.append("          ");
+    _builder.append("<ul class=\"nav navbar-nav\">");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<li class=\"active\"><a href=\"http://getbootstrap.com/examples/starter-template/#\">Preview</a></li>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<li><a href=\"http://getbootstrap.com/examples/starter-template/#about\">Statistics</a></li>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<li><a href=\"http://getbootstrap.com/examples/starter-template/#contact\">Finincials</a></li>");
+    _builder.newLine();
+    _builder.append("          ");
+    _builder.append("</ul>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("</div><!--/.nav-collapse -->");
+    _builder.newLine();
+    _builder.append("      ");
+    _builder.append("</div>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("</div>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<div class=\"container\">");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("      ");
+    _builder.append("<div class=\"starter-template\">");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<h1>Bootstrap starter template</h1>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<p class=\"lead\">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>");
+    _builder.newLine();
+    _builder.append("      ");
+    _builder.append("</div> ");
+    String _plus = (_builder.toString() + content);
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("    ");
+    _builder_1.append("</div><!-- /.container -->");
+    _builder_1.newLine();
+    _builder_1.newLine();
+    _builder_1.newLine();
+    _builder_1.append("    ");
+    _builder_1.append("<!-- Bootstrap core JavaScript");
+    _builder_1.newLine();
+    _builder_1.append("    ");
+    _builder_1.append("================================================== -->");
+    _builder_1.newLine();
+    _builder_1.append("    ");
+    _builder_1.append("<!-- Placed at the end of the document so the pages load faster -->");
+    _builder_1.newLine();
+    _builder_1.append("    ");
+    _builder_1.append("<script src=\"./Starter Template for Bootstrap_files/jquery.js\"></script>");
+    _builder_1.newLine();
+    _builder_1.append("    ");
+    _builder_1.append("<script src=\"./Starter Template for Bootstrap_files/bootstrap.min.js\"></script>");
+    _builder_1.newLine();
+    _builder_1.append("  ");
+    _builder_1.newLine();
+    _builder_1.append("</body>");
+    _builder_1.newLine();
+    _builder_1.append("</html>");
+    _builder_1.newLine();
+    String _plus_1 = (_plus + _builder_1);
+    return _plus_1;
   }
 }

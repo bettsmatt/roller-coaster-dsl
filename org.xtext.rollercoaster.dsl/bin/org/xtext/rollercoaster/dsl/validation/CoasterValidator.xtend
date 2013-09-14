@@ -8,12 +8,14 @@ import org.eclipse.xtext.validation.Check
 import org.xtext.rollercoaster.dsl.coaster.CoasterPackage
 import org.xtext.rollercoaster.dsl.coaster.Corner
 import org.xtext.rollercoaster.dsl.coaster.Straight
+import org.xtext.rollercoaster.dsl.coaster.Cart
+import org.rollercoaster.utils.RollerCoasterInfo
 
 //import org.eclipse.xtext.validation.Check
 
 /**
  * Custom validation rules. 
- *
+ *		
  * see http://www.eclipse.org/Xtext/documentation.html#validation
  */
 class CoasterValidator extends AbstractCoasterValidator {
@@ -36,9 +38,9 @@ def checkCompletePath(RollerCoaster rc){
 		}
 		
 	if(totalAngle%360 != 0){
-		error("Track angles do not form a cycle! "+totalAngle%360+" degrees from a cycle.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+		warning("Track angles do not form a cycle! "+totalAngle%360+" degrees from a cycle.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
 	}
-	println("totalAngle = "+totalAngle);
+	//println("totalAngle = "+totalAngle);
 }
 
 @Check
@@ -69,21 +71,21 @@ def checkStartMeetsEnd(RollerCoaster rc){
 			}
 			var r = rc.trackUnitLength;
 			if(c.type.equals('sharp45')){
-				currentX = (currentX + (Math.cos(currentAngle+angle)*r/4.0));
-				currentY = (currentY + (Math.sin(currentAngle+angle)*r));
+				currentX = (currentX + (Math.cos(currentAngle+angle)*Math.sqrt((Math.pow(r/2.0,2)+Math.pow(r,2)))));
+				currentY = (currentY + (Math.sin(currentAngle+angle)*Math.sqrt((Math.pow(r/2.0,2)+Math.pow(r,2)))));
 			}
 			else if(c.type.equals('sharp90')){
-				currentX = (currentX + Math.cos(currentAngle+angle)*(r/2.0));
-				currentY = (currentY + Math.sin(currentAngle+angle)*(r/2.0));
+				currentX = (currentX + Math.cos(currentAngle+angle)*Math.sqrt((Math.pow(r/2.0,2)+Math.pow(r/2.0,2))));
+				currentY = (currentY + Math.sin(currentAngle+angle)*Math.sqrt((Math.pow(r/2.0,2)+Math.pow(r/2.0,2))));
 				
 			}
 			else if(c.type.equals('easy45')){
-				currentX = (currentX + (Math.cos(currentAngle+angle)*(r/2.0)));
-				currentY = (currentY + (Math.sin(currentAngle+angle)*(r*2.0)));
+				currentX = (currentX + (Math.cos(currentAngle+angle)*Math.sqrt((Math.pow(r,2)+Math.pow(r*2,2)))));
+				currentY = (currentY + (Math.sin(currentAngle+angle)*Math.sqrt((Math.pow(r,2)+Math.pow(r*2,2)))));
 			}
 			else if(c.type.equals('easy90')){
-				currentX = (currentX + (Math.cos(currentAngle+angle)*r));
-				currentY = (currentY + (Math.sin(currentAngle+angle)*r));
+				currentX = (currentX + (Math.cos(currentAngle+angle)*Math.sqrt((Math.pow(r,2)+Math.pow(r,2)))));
+				currentY = (currentY + (Math.sin(currentAngle+angle)*Math.sqrt((Math.pow(r,2)+Math.pow(r,2)))));
 			}
 			
 			currentAngle = currentAngle+(angle*2);
@@ -94,13 +96,170 @@ def checkStartMeetsEnd(RollerCoaster rc){
 			currentY = (currentY + (Math.sin(currentAngle)*s.length));
 			
 		}
-		//println(currentX+">>"+currentY);
 	}
 	distance = Math.sqrt(Math.pow(currentX, 2) + Math.pow(currentY, 2));
 	
 	if( distance >= 0.5){
-		error("End of Track does not meet start! End of track is"+distance.intValue+1+"m from the start.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+		warning("End of Track does not meet start! End of track is"+(distance.intValue+1)+"m from the start.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
 	}
 }
+
+@Check
+def elevationMeetsAtStartAndEnd(RollerCoaster rc){
+	var elevation = 0;
+	for(Object t: rc.track){
+		var Corner c = null;
+		var Straight s = null;
+		switch (t) {
+			Corner:  c = t
+			Straight: s =t
+		}
+		if(s != null){
+			var change = s.elevationChange.value;
+			if(s.elevationChange.sign != null){
+				change = change * -1;
+			}
+			
+			elevation = elevation + change;
+		}
+		}
+		if(elevation != 0){
+			warning("End of Track does not meet start! Height of last track unit is "+(elevation)+"m from start.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+		}
 }
+
+@Check
+def hasEnoughPower(RollerCoaster rc){
+	var speed = 0;
+	
+	for(Object t: rc.track){
+		var Corner c = null;
+		var Straight s = null;
+		switch (t) {
+			Corner:  c = t
+			Straight: s = t
+		}
+		if(c != null){
+			var quality = switch (c.quality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+					default: switch (rc.baseQuality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+				}	
+				}
+			
+			checkSpeedOnCurve(rc, c, quality, speed);
+		}
+		
+		//If it is a straight
+		if(s != null){
+			// Convert text quality to numeric and if nothing provided get rc base quality
+			var quality = switch (s.quality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+					default: switch (rc.baseQuality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+				}	
+				}
+			
+			
+			//if straight is powered
+			if(s.powered != null){
+				
+				var temp = getTotalWeight(rc)/(quality*100);
+				speed = speed + (s.length*quality)/temp; //fine tune
+			}
+			// If there is an elevation change.
+			if(s.elevationChange != null){
+				var change = s.elevationChange.value/2;
+				//downhill
+				if(s.elevationChange.sign != null){
+					speed = speed + (change *  s.length *quality); //weight has no effect going downhill
+				}
+			 // uphill
+				else {
+					change = change * -1;
+					
+					var temp = getTotalWeight(rc)/(quality*1000);
+					speed = speed + (change *  s.length/quality)-temp;
+				}
+			}
+			//on flat slowly decrease
+			else{speed = speed - s.length/(quality*10);} //weight has no effect on the flat 
+						
+			//println(speed);
+			checkSpeedOnStraights(rc, s, quality, speed);
+			if (speed <=0){
+				warning("Cart is moving backwards or stopped on "+(s.name)+", add powered units or downhill slopes.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+			}
+		}
+		}
+}
+
+
+def getTotalWeight(RollerCoaster rc){
+	RollerCoasterInfo.getTotalWeight(rc);
+}
+
+def checkSpeedOnStraights(RollerCoaster rc, Straight s, int trackQuality, int speed){
+	//cartQuality
+	//trackQuality
+	
+	for(Cart c: rc.cart){
+		var cartQuality = switch (c.quality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+					default: switch (rc.baseQuality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+				}	
+				}
+		var qualityFactor = trackQuality + cartQuality;
+				println("Straight - "+s.name +" - Speed - " +speed+"kph - our calculation - "+(speed/qualityFactor));
+		if(speed/qualityFactor > 75){
+			warning("Cart "+ c.name +" has been destroyed due to the excessive speed of "+speed+"kph on track "+s.name+", please improve quality of track or cart or reduce speed.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+			
+		}
+	}
+}
+
+def checkSpeedOnCurve(RollerCoaster rc, Corner corner, int trackQuality, int speed){
+	for(Cart c: rc.cart){
+		var cartQuality = switch (c.quality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+					default: switch (rc.baseQuality) {
+					String case "wood" :  1
+					String case "iron": 2
+					String case "steel": 3
+				}	
+				}
+		var qualityFactor = trackQuality + cartQuality;
+			var cornerType = switch (corner.type) {
+					String case "sharp45" :  3
+					String case "sharp90": 4
+					String case "easy45": 1
+					String case "easy90": 2
+					}
+		
+		println("Corner - "+corner.name +" - Speed - " +speed+"kph - our calculation - "+((speed/qualityFactor)*cornerType));
+		if((speed/qualityFactor)*cornerType > 100){ //cornertype/speed
+			warning("Cart "+ c.name +" has left the track due the excessive speed of "+speed+"kph on corner "+corner.name+", please improve quality of track or cart or reduce speed.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
+			
+		}
+	}
+}
+
+}
+
+
 

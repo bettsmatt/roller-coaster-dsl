@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.rollercoaster.utils.RollerCoasterInfo;
 import org.xtext.rollercoaster.dsl.coaster.Cart;
 import org.xtext.rollercoaster.dsl.coaster.CoasterPackage.Literals;
 import org.xtext.rollercoaster.dsl.coaster.Corner;
@@ -535,16 +536,8 @@ public class CoasterValidator extends AbstractCoasterValidator {
   }
   
   public int getTotalWeight(final RollerCoaster rc) {
-    int totalWeight = 0;
-    EList<Cart> _cart = rc.getCart();
-    for (final Cart c : _cart) {
-      int _seatNumber = c.getSeatNumber();
-      int _multiply = (_seatNumber * 120);
-      int _plus = (totalWeight + _multiply);
-      int _plus_1 = (_plus + 250);
-      totalWeight = _plus_1;
-    }
-    return totalWeight;
+    int _totalWeight = RollerCoasterInfo.getTotalWeight(rc);
+    return _totalWeight;
   }
   
   public void checkSpeedOnStraights(final RollerCoaster rc, final Straight s, final int trackQuality, final int speed) {
