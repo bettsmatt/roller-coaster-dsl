@@ -116,23 +116,22 @@ def elevationMeetsAtStartAndEnd(RollerCoaster rc){
 			Straight: s =t
 		}
 
-				println(c+">>"+s);
+			
 
 		if(s != null && s.elevationChange != null){
-			println("first val: "+s.elevationChange.value+" track:"+s.name);
+			
 			var change = s.elevationChange.value;
-			println("1");
+		
 			if(s.elevationChange.sign != null){
 				change = change * -1;
 			}
-			println("2");
+		
 			elevation = elevation + change;
-			println("3");
+	
 		}
-		println("4");
+
 		}
-		println("5");
-		println("final elevation: "+elevation);
+	
 		if(elevation != 0){
 			warning("End of Track does not meet start! Height of last track unit is "+(elevation)+"m from start.", CoasterPackage.Literals.ROLLER_COASTER.getEStructuralFeature("track"));
 		}
