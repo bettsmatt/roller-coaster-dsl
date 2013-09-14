@@ -4,20 +4,12 @@
 package org.xtext.rollercoaster.dsl.generator;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.Iterables;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
-import org.eclipse.xtext.xbase.lib.Conversions;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.IteratorExtensions;
-import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
-import org.rollercoaster.utils.RollerCoasterInfo;
-import org.xtext.rollercoaster.dsl.coaster.Cart;
 import org.xtext.rollercoaster.dsl.coaster.Corner;
 import org.xtext.rollercoaster.dsl.coaster.RollerCoaster;
 import org.xtext.rollercoaster.dsl.coaster.Straight;
@@ -29,19 +21,19 @@ import org.xtext.rollercoaster.dsl.coaster.Straight;
  */
 @SuppressWarnings("all")
 public class CoasterGenerator implements IGenerator {
+  private /* HashMap<String,RollerCoaster> */Object listOfRC;
+  
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
-    TreeIterator<EObject> _allContents = resource.getAllContents();
-    Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
-    Iterable<RollerCoaster> _filter = Iterables.<RollerCoaster>filter(_iterable, RollerCoaster.class);
-    final Procedure1<RollerCoaster> _function = new Procedure1<RollerCoaster>() {
-        public void apply(final RollerCoaster rc) {
-          String _name = rc.getName();
-          String _plus = (_name + ".html");
-          String _genReport = CoasterGenerator.this.genReport(rc);
-          fsa.generateFile(_plus, _genReport);
-        }
-      };
-    IterableExtensions.<RollerCoaster>forEach(_filter, _function);
+    throw new Error("Unresolved compilation problems:"
+      + "\nHashMap cannot be resolved."
+      + "\nput cannot be resolved"
+      + "\nkeySet cannot be resolved"
+      + "\nkeySet cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nget cannot be resolved");
   }
   
   /**
@@ -52,7 +44,7 @@ public class CoasterGenerator implements IGenerator {
    * 	Fun
    * 	Name
    */
-  public String genReport(final RollerCoaster rc) {
+  public String genReport(final RollerCoaster rc, final String navList) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("<div class=\"row\"> ");
@@ -98,7 +90,7 @@ public class CoasterGenerator implements IGenerator {
     _builder_4.append("\t\t");
     _builder_4.newLine();
     String report = (_plus_6 + _builder_4);
-    return this.addIntoBootstrapTemplate(report);
+    return this.addIntoBootstrapTemplate(report, navList);
   }
   
   /**
@@ -125,66 +117,13 @@ public class CoasterGenerator implements IGenerator {
   }
   
   public String genSummary(final RollerCoaster rc) {
-    String _xblockexpression = null;
-    {
-      EList<EObject> _track = rc.getTrack();
-      final int pieces = ((Object[])Conversions.unwrapArray(_track, Object.class)).length;
-      EList<Cart> _cart = rc.getCart();
-      final int carts = ((Object[])Conversions.unwrapArray(_cart, Object.class)).length;
-      final int speed = RollerCoasterInfo.getMaxSpeed(rc);
-      final int cartWeight = RollerCoasterInfo.getTotalWeight(rc);
-      final int gForce = RollerCoasterInfo.getMaxGForce(rc);
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("<h1> Summary </h1>");
-      _builder.newLine();
-      _builder.append("<ul class=\"list-group\">");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("<li class=\"list-group-item\">");
-      String _plus = (_builder.toString() + Integer.valueOf(pieces));
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append(" ");
-      _builder_1.append("pieces of track </li>");
-      _builder_1.newLine();
-      _builder_1.append("\t\t\t");
-      _builder_1.append("<li class=\"list-group-item\">");
-      String _plus_1 = (_plus + _builder_1);
-      String _plus_2 = (_plus_1 + Integer.valueOf(carts));
-      StringConcatenation _builder_2 = new StringConcatenation();
-      _builder_2.append(" ");
-      _builder_2.append("carts </li>");
-      _builder_2.newLine();
-      _builder_2.append("\t\t\t");
-      _builder_2.append("<li class=\"list-group-item\">");
-      String _plus_3 = (_plus_2 + _builder_2);
-      String _plus_4 = (_plus_3 + Integer.valueOf(speed));
-      StringConcatenation _builder_3 = new StringConcatenation();
-      _builder_3.append(" ");
-      _builder_3.append("max speed</li>");
-      _builder_3.newLine();
-      _builder_3.append("\t\t\t");
-      _builder_3.append("<li class=\"list-group-item\">");
-      String _plus_5 = (_plus_4 + _builder_3);
-      String _plus_6 = (_plus_5 + Integer.valueOf(cartWeight));
-      StringConcatenation _builder_4 = new StringConcatenation();
-      _builder_4.append(" ");
-      _builder_4.append("cart weight<li>");
-      _builder_4.newLine();
-      _builder_4.append("\t\t\t");
-      _builder_4.append("<li class=\"list-group-item\">");
-      String _plus_7 = (_plus_6 + _builder_4);
-      String _plus_8 = (_plus_7 + Integer.valueOf(gForce));
-      StringConcatenation _builder_5 = new StringConcatenation();
-      _builder_5.append(" ");
-      _builder_5.append("gforces <li>");
-      _builder_5.newLine();
-      _builder_5.append("\t\t");
-      _builder_5.append("</ul>");
-      _builder_5.newLine();
-      String _plus_9 = (_plus_8 + _builder_5);
-      _xblockexpression = (_plus_9);
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field RollerCoasterInfo is undefined for the type CoasterGenerator"
+      + "\nThe method or field RollerCoasterInfo is undefined for the type CoasterGenerator"
+      + "\nThe method or field RollerCoasterInfo is undefined for the type CoasterGenerator"
+      + "\ngetMaxSpeed cannot be resolved"
+      + "\ngetTotalWeight cannot be resolved"
+      + "\ngetMaxGForce cannot be resolved");
   }
   
   public CharSequence genFinincial(final RollerCoaster rc) {
@@ -398,7 +337,7 @@ public class CoasterGenerator implements IGenerator {
    * This method injects what ever HTML we have into the content part of a bootstrap basic template.
    * There may be better ways to do this like a web api, but given the scope of the project this will do.
    */
-  public String addIntoBootstrapTemplate(final String content) {
+  public String addIntoBootstrapTemplate(final String content, final String navCoasters) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<!DOCTYPE html>");
     _builder.newLine();
@@ -500,73 +439,66 @@ public class CoasterGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("          ");
     _builder.append("<ul class=\"nav navbar-nav\">");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("<li class=\"active\"><a href=\"http://getbootstrap.com/examples/starter-template/#\">Preview</a></li>");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("<li><a href=\"http://getbootstrap.com/examples/starter-template/#about\">Statistics</a></li>");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("<li><a href=\"http://getbootstrap.com/examples/starter-template/#contact\">Finincials</a></li>");
-    _builder.newLine();
-    _builder.append("          ");
-    _builder.append("</ul>");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("</div><!--/.nav-collapse -->");
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.append("</div>");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("</div>");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("<div class=\"container\">");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.append("<div class=\"starter-template\">");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("<h1>Bootstrap starter template</h1>");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("<p class=\"lead\">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>");
-    _builder.newLine();
-    _builder.append("      ");
-    _builder.append("</div> ");
-    String _plus = (_builder.toString() + content);
+    String _plus = (_builder.toString() + navCoasters);
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("    ");
-    _builder_1.append("</div><!-- /.container -->");
-    _builder_1.newLine();
-    _builder_1.newLine();
+    _builder_1.append("      ");
+    _builder_1.append("</ul>");
     _builder_1.newLine();
     _builder_1.append("    ");
-    _builder_1.append("<!-- Bootstrap core JavaScript");
-    _builder_1.newLine();
-    _builder_1.append("    ");
-    _builder_1.append("================================================== -->");
-    _builder_1.newLine();
-    _builder_1.append("    ");
-    _builder_1.append("<!-- Placed at the end of the document so the pages load faster -->");
-    _builder_1.newLine();
-    _builder_1.append("    ");
-    _builder_1.append("<script src=\"./Starter Template for Bootstrap_files/jquery.js\"></script>");
-    _builder_1.newLine();
-    _builder_1.append("    ");
-    _builder_1.append("<script src=\"./Starter Template for Bootstrap_files/bootstrap.min.js\"></script>");
+    _builder_1.append("</div><!--/.nav-collapse -->");
     _builder_1.newLine();
     _builder_1.append("  ");
+    _builder_1.append("</div>");
     _builder_1.newLine();
-    _builder_1.append("</body>");
+    _builder_1.append("</div>");
     _builder_1.newLine();
-    _builder_1.append("</html>");
+    _builder_1.append("\t\t");
     _builder_1.newLine();
+    _builder_1.append("<div class=\"container\">");
+    _builder_1.newLine();
+    _builder_1.append("\t\t");
+    _builder_1.newLine();
+    _builder_1.append("  ");
+    _builder_1.append("<div class=\"starter-template\">");
+    _builder_1.newLine();
+    _builder_1.append("    ");
+    _builder_1.append("<h1>Bootstrap starter template</h1>");
+    _builder_1.newLine();
+    _builder_1.append("    ");
+    _builder_1.append("<p class=\"lead\">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>");
+    _builder_1.newLine();
+    _builder_1.append("  ");
+    _builder_1.append("</div> ");
     String _plus_1 = (_plus + _builder_1);
-    return _plus_1;
+    String _plus_2 = (_plus_1 + content);
+    StringConcatenation _builder_2 = new StringConcatenation();
+    _builder_2.append("    ");
+    _builder_2.append("</div><!-- /.container -->");
+    _builder_2.newLine();
+    _builder_2.newLine();
+    _builder_2.newLine();
+    _builder_2.append("    ");
+    _builder_2.append("<!-- Bootstrap core JavaScript");
+    _builder_2.newLine();
+    _builder_2.append("    ");
+    _builder_2.append("================================================== -->");
+    _builder_2.newLine();
+    _builder_2.append("    ");
+    _builder_2.append("<!-- Placed at the end of the document so the pages load faster -->");
+    _builder_2.newLine();
+    _builder_2.append("    ");
+    _builder_2.append("<script src=\"./Starter Template for Bootstrap_files/jquery.js\"></script>");
+    _builder_2.newLine();
+    _builder_2.append("    ");
+    _builder_2.append("<script src=\"./Starter Template for Bootstrap_files/bootstrap.min.js\"></script>");
+    _builder_2.newLine();
+    _builder_2.append("  ");
+    _builder_2.newLine();
+    _builder_2.append("</body>");
+    _builder_2.newLine();
+    _builder_2.append("</html>");
+    _builder_2.newLine();
+    String _plus_3 = (_plus_2 + _builder_2);
+    return _plus_3;
   }
 }

@@ -13,7 +13,12 @@ import org.xtext.rollercoaster.dsl.coaster.Straight
 import org.xtext.rollercoaster.dsl.coaster.Corner
 import org.rollercoaster.utils.Costs
 import org.rollercoaster.utils.Descriptions
+<<<<<<< HEAD
 import org.rollercoaster.utils.RollerCoasterInfo
+=======
+import java.util.ArrayList
+import java.util.HashMap
+>>>>>>> 97f0e786b346e44365c6c9523b55d15bd46e56a5
 
 /**
  * Generates code from your model files on save.
@@ -22,12 +27,32 @@ import org.rollercoaster.utils.RollerCoasterInfo
  */
 class CoasterGenerator implements IGenerator {
 	
+	HashMap<String, RollerCoaster> listOfRC;
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 	
+		listOfRC = new HashMap<String, RollerCoaster>();
+	
+	
+	
 		resource.allContents.toIterable.filter(RollerCoaster).forEach[ rc | 
-			fsa.generateFile(rc.name + ".html", genReport(rc));
+			listOfRC.put(rc.name+".html", rc);
 		]
+		
+		for(String currentRC: listOfRC.keySet){
+			var navList = "";
+			for(String rc: listOfRC.keySet){
+				if(rc.equals(currentRC)){
+					navList = navList+'''<li class="active"><a href="'''+rc+'''">'''+listOfRC.get(rc).name+'''</a></li>''';
+				}
+				else{
+					navList = navList+'''<li><a href="'''+rc+'''">'''+listOfRC.get(rc).name+'''</a></li>'''
+				}
+				
+			}
+			
+			fsa.generateFile(currentRC, genReport(listOfRC.get(currentRC), navList));
+		}
 		
 	}
 	
@@ -39,7 +64,7 @@ class CoasterGenerator implements IGenerator {
 	 * 	Fun
 	 * 	Name
 	 */	
-	def genReport (RollerCoaster rc) {
+	def genReport (RollerCoaster rc, String navList) {
 	
 		// Set up basic structure of the report
 		// A title and brief introduction
@@ -94,7 +119,7 @@ class CoasterGenerator implements IGenerator {
 		'''
 		 */
 		// Add this HTML into the bootstrap template
-		return addIntoBootstrapTemplate(report);
+		return addIntoBootstrapTemplate(report, navList);
 		
 	}
 	
@@ -248,7 +273,9 @@ class CoasterGenerator implements IGenerator {
 	 * This method injects what ever HTML we have into the content part of a bootstrap basic template.
 	 * There may be better ways to do this like a web api, but given the scope of the project this will do.
 	 */
-	def addIntoBootstrapTemplate (String content){
+	def addIntoBootstrapTemplate (String content, String navCoasters){
+		
+		
 		'''
 		<!DOCTYPE html>
 		<!-- saved from url=(0050)http://getbootstrap.com/examples/starter-template/ -->
@@ -288,10 +315,9 @@ class CoasterGenerator implements IGenerator {
 		          <a class="navbar-brand" href="http://getbootstrap.com/examples/starter-template/#">Roller Coaster Report</a>
 		        </div>
 		        <div class="collapse navbar-collapse">
-		          <ul class="nav navbar-nav">
-		            <li class="active"><a href="http://getbootstrap.com/examples/starter-template/#">Preview</a></li>
-		            <li><a href="http://getbootstrap.com/examples/starter-template/#about">Statistics</a></li>
-		            <li><a href="http://getbootstrap.com/examples/starter-template/#contact">Finincials</a></li>
+		          <ul class="nav navbar-nav">'''+
+		          navCoasters
+		          +'''
 		          </ul>
 		        </div><!--/.nav-collapse -->
 		      </div>
