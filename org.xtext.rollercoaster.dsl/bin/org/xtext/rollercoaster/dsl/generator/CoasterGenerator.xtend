@@ -3,22 +3,15 @@
  */
 package org.xtext.rollercoaster.dsl.generator
 
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.IGenerator
-import org.eclipse.xtext.generator.IFileSystemAccess
-import org.xtext.rollercoaster.dsl.coaster.RollerCoaster
-import java.util.Date
-import org.eclipse.emf.ecore.EObject
-import org.xtext.rollercoaster.dsl.coaster.Straight
-import org.xtext.rollercoaster.dsl.coaster.Corner
-import org.rollercoaster.utils.Costs
-import org.rollercoaster.utils.Descriptions
-<<<<<<< HEAD
-import org.rollercoaster.utils.RollerCoasterInfo
-=======
-import java.util.ArrayList
 import java.util.HashMap
->>>>>>> 97f0e786b346e44365c6c9523b55d15bd46e56a5
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.generator.IGenerator
+import org.rollercoaster.utils.RollerCoasterInfo
+import org.xtext.rollercoaster.dsl.coaster.Corner
+import org.xtext.rollercoaster.dsl.coaster.RollerCoaster
+import org.xtext.rollercoaster.dsl.coaster.Straight
 
 /**
  * Generates code from your model files on save.

@@ -4,12 +4,22 @@
 package org.xtext.rollercoaster.dsl.generator;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
+import java.util.HashMap;
+import java.util.Set;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.rollercoaster.utils.RollerCoasterInfo;
+import org.xtext.rollercoaster.dsl.coaster.Cart;
 import org.xtext.rollercoaster.dsl.coaster.Corner;
 import org.xtext.rollercoaster.dsl.coaster.RollerCoaster;
 import org.xtext.rollercoaster.dsl.coaster.Straight;
@@ -21,19 +31,66 @@ import org.xtext.rollercoaster.dsl.coaster.Straight;
  */
 @SuppressWarnings("all")
 public class CoasterGenerator implements IGenerator {
-  private /* HashMap<String,RollerCoaster> */Object listOfRC;
+  private HashMap<String,RollerCoaster> listOfRC;
   
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nHashMap cannot be resolved."
-      + "\nput cannot be resolved"
-      + "\nkeySet cannot be resolved"
-      + "\nkeySet cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nname cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nname cannot be resolved"
-      + "\nget cannot be resolved");
+    HashMap<String,RollerCoaster> _hashMap = new HashMap<String,RollerCoaster>();
+    this.listOfRC = _hashMap;
+    TreeIterator<EObject> _allContents = resource.getAllContents();
+    Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
+    Iterable<RollerCoaster> _filter = Iterables.<RollerCoaster>filter(_iterable, RollerCoaster.class);
+    final Procedure1<RollerCoaster> _function = new Procedure1<RollerCoaster>() {
+        public void apply(final RollerCoaster rc) {
+          String _name = rc.getName();
+          String _plus = (_name + ".html");
+          CoasterGenerator.this.listOfRC.put(_plus, rc);
+        }
+      };
+    IterableExtensions.<RollerCoaster>forEach(_filter, _function);
+    Set<String> _keySet = this.listOfRC.keySet();
+    for (final String currentRC : _keySet) {
+      {
+        String navList = "";
+        Set<String> _keySet_1 = this.listOfRC.keySet();
+        for (final String rc : _keySet_1) {
+          boolean _equals = rc.equals(currentRC);
+          if (_equals) {
+            StringConcatenation _builder = new StringConcatenation();
+            _builder.append("<li class=\"active\"><a href=\"");
+            String _plus = (navList + _builder);
+            String _plus_1 = (_plus + rc);
+            StringConcatenation _builder_1 = new StringConcatenation();
+            _builder_1.append("\">");
+            String _plus_2 = (_plus_1 + _builder_1);
+            RollerCoaster _get = this.listOfRC.get(rc);
+            String _name = _get.getName();
+            String _plus_3 = (_plus_2 + _name);
+            StringConcatenation _builder_2 = new StringConcatenation();
+            _builder_2.append("</a></li>");
+            String _plus_4 = (_plus_3 + _builder_2);
+            navList = _plus_4;
+          } else {
+            StringConcatenation _builder_3 = new StringConcatenation();
+            _builder_3.append("<li><a href=\"");
+            String _plus_5 = (navList + _builder_3);
+            String _plus_6 = (_plus_5 + rc);
+            StringConcatenation _builder_4 = new StringConcatenation();
+            _builder_4.append("\">");
+            String _plus_7 = (_plus_6 + _builder_4);
+            RollerCoaster _get_1 = this.listOfRC.get(rc);
+            String _name_1 = _get_1.getName();
+            String _plus_8 = (_plus_7 + _name_1);
+            StringConcatenation _builder_5 = new StringConcatenation();
+            _builder_5.append("</a></li>");
+            String _plus_9 = (_plus_8 + _builder_5);
+            navList = _plus_9;
+          }
+        }
+        RollerCoaster _get_2 = this.listOfRC.get(currentRC);
+        String _genReport = this.genReport(_get_2, navList);
+        fsa.generateFile(currentRC, _genReport);
+      }
+    }
   }
   
   /**
@@ -117,13 +174,66 @@ public class CoasterGenerator implements IGenerator {
   }
   
   public String genSummary(final RollerCoaster rc) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field RollerCoasterInfo is undefined for the type CoasterGenerator"
-      + "\nThe method or field RollerCoasterInfo is undefined for the type CoasterGenerator"
-      + "\nThe method or field RollerCoasterInfo is undefined for the type CoasterGenerator"
-      + "\ngetMaxSpeed cannot be resolved"
-      + "\ngetTotalWeight cannot be resolved"
-      + "\ngetMaxGForce cannot be resolved");
+    String _xblockexpression = null;
+    {
+      EList<EObject> _track = rc.getTrack();
+      final int pieces = ((Object[])Conversions.unwrapArray(_track, Object.class)).length;
+      EList<Cart> _cart = rc.getCart();
+      final int carts = ((Object[])Conversions.unwrapArray(_cart, Object.class)).length;
+      final int speed = RollerCoasterInfo.getMaxSpeed(rc);
+      final int cartWeight = RollerCoasterInfo.getTotalWeight(rc);
+      final int gForce = RollerCoasterInfo.getMaxGForce(rc);
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("<h1> Summary </h1>");
+      _builder.newLine();
+      _builder.append("<ul class=\"list-group\">");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("<li class=\"list-group-item\">");
+      String _plus = (_builder.toString() + Integer.valueOf(pieces));
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append(" ");
+      _builder_1.append("pieces of track </li>");
+      _builder_1.newLine();
+      _builder_1.append("\t\t\t");
+      _builder_1.append("<li class=\"list-group-item\">");
+      String _plus_1 = (_plus + _builder_1);
+      String _plus_2 = (_plus_1 + Integer.valueOf(carts));
+      StringConcatenation _builder_2 = new StringConcatenation();
+      _builder_2.append(" ");
+      _builder_2.append("carts </li>");
+      _builder_2.newLine();
+      _builder_2.append("\t\t\t");
+      _builder_2.append("<li class=\"list-group-item\">");
+      String _plus_3 = (_plus_2 + _builder_2);
+      String _plus_4 = (_plus_3 + Integer.valueOf(speed));
+      StringConcatenation _builder_3 = new StringConcatenation();
+      _builder_3.append(" ");
+      _builder_3.append("max speed</li>");
+      _builder_3.newLine();
+      _builder_3.append("\t\t\t");
+      _builder_3.append("<li class=\"list-group-item\">");
+      String _plus_5 = (_plus_4 + _builder_3);
+      String _plus_6 = (_plus_5 + Integer.valueOf(cartWeight));
+      StringConcatenation _builder_4 = new StringConcatenation();
+      _builder_4.append(" ");
+      _builder_4.append("cart weight</li>");
+      _builder_4.newLine();
+      _builder_4.append("\t\t\t");
+      _builder_4.append("<li class=\"list-group-item\">");
+      String _plus_7 = (_plus_6 + _builder_4);
+      String _plus_8 = (_plus_7 + Integer.valueOf(gForce));
+      StringConcatenation _builder_5 = new StringConcatenation();
+      _builder_5.append(" ");
+      _builder_5.append("gforces </li>");
+      _builder_5.newLine();
+      _builder_5.append("\t\t");
+      _builder_5.append("</ul>");
+      _builder_5.newLine();
+      String _plus_9 = (_plus_8 + _builder_5);
+      _xblockexpression = (_plus_9);
+    }
+    return _xblockexpression;
   }
   
   public CharSequence genFinincial(final RollerCoaster rc) {
